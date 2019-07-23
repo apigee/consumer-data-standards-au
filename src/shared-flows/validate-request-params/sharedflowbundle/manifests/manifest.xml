@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="JS-validateRequestParams" version="SHA-512:b8ae9fad063dbb7cd23ef8559cd71e0bda9d7fcb8664c9351c0f1217bc0859211a59f9f683737cb889c084eb87f1a4ee5026fcf5f9c3bf7f405cd7690bac8fb2"/>
+        <VersionInfo resourceName="RF-InvalidRequestParams" version="SHA-512:89c4b24e2ec76fe6fa401a964022097c92d0166d2a4c79dbfe54c252499f4bb276afb63a08d379a480f031f70f1249b2e5a5faa03a543e009414e6e7b8cc8f7b"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources>
+        <VersionInfo resourceName="jsc://validateRequestParams.js" version="SHA-512:6c10f118d944644859ba6bf808c65a73f3bbc536eca658a05ef9e06e1be2af2dc3c4bf211f6d354dc3690a9e21ea7bbe5c746747d970bfaa91a79f075fdf322e"/>
+    </Resources>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:c48b540c7bdd38015a042c3034d43c31b759a1344434b3b0758012deaa0bff680111d0185ffffb96f851af36c105e7c3c09bfe9776e3e2487a882c0c4a23066d"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

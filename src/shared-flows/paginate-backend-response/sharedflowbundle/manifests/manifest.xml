@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="JS-Do-Pagination" version="SHA-512:26b709940118bebecb650ed6484499ccbf421194cb1533adea90fb4ccb073d2f8bf405d4b21714dcda7edbb2c86c5512c081b2567a3b80824cc05debd812920b"/>
+        <VersionInfo resourceName="RF-Pagination-Error" version="SHA-512:858c2e61ce158ac2a5a73ee724f74edd49e762371cdbbaadc58cfb85c2a54d25fbdab09a8628c035c5a3504b65dc2a1ae298bc32a5f1d69f6431ce2fc7ac8b5d"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources>
+        <VersionInfo resourceName="jsc://DoPagination.js" version="SHA-512:00ae20e4e10c3402c9fd2cd6b7c30655d0ba9a8d30d855646f8024817d8b2cb22f9490f95a742dfb7ff26cdbe3d81f694fff49c27238a9ddd8a085569c0ae44a"/>
+    </Resources>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:bf732e864663f2d09418d87e3cce1b055730757d6a11699cd93bab48aadeab7695a42b88b0916b1a6831b76797ed1552f7a2f8d417510052372b390d18ca8d21"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

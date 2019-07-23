@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfProducts">
+    <DisplayName>AM-MockFullListOfProducts</DisplayName>
+    <AssignVariable>
+        <Name>listOfAllProductDetails</Name>
+        <Template>
+[
+	{
+		"productId": "SavingsAccount1",
+		"effectiveFrom": "2015-07-01T00:00:00+10:00",
+		"lastUpdated": "2018-03-15T00:00:00+11:00",
+		"productCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+		"name": "Savings Account",
+		"description": "A savings account with everything you need",
+		"brand": "Savings Account",
+		"applicationUri": "https://apibank.com.au/savings/apply",
+		"isTailored": false,
+		"additionalInformation": {
+			"overviewUri": "https://apibank.com.au/savings/overview",
+			"termsUri": "https://apibank.com.au/savings/tycs",
+			"feesAndPricingUri": "https://apibank.com.au/savings/fees"
+		},
+		"features": [
+			{
+				"featureType": "CARD_ACCESS"
+			},
+			{
+				"featureType": "UNLIMITED_TXNS"
+			}
+		],
+		"fees": [
+			{
+				"name": "Monthly fee",
+				"feeType": "PERIODIC",
+				"amount": "5.00",
+				"additionalValue": "P1M"
+			}
+		]
+	},
+	{
+		"productId": "BasicMortgage1",
+		"effectiveFrom": "2015-07-01T00:00:00+10:00",
+		"lastUpdated": "2018-06-15T00:00:00+10:00",
+		"productCategory": "RESIDENTIAL_MORTGAGES",
+		"name": "Basic Mortgage",
+		"description": "A low cost mortgage that will let you access your dream home",
+		"brand": "Basic Mortgage",
+		"applicationUri": "https://apibank.com.au/mortgage/apply",
+		"isTailored": false,
+		"additionalInformation": {
+			"overviewUri": "https://apibank.com.au/mortgage/overview",
+			"termsUri": "https://apibank.com.au/mortgage/tycs",
+			"feesAndPricingUri": "https://apibank.com.au/mortgage/fees"
+		},
+		"features": [
+			{
+				"featureType": "REDRAW"
+			}
+		],
+		"eligibility": [
+			{
+				"eligibilityType": "MIN_INCOME",
+				"additionalValue": "40000.00"
+			},
+			{
+				"eligibilityType": "EMPLOYMENT_STATUS",
+				"additionalValue": "Full time employee"
+			}
+		],
+		"fees": [
+			{
+				"name": "Annual Fees",
+				"feeType": "PERIODIC",
+				"additionalValue": "P1Y",
+				"amount": "200"
+			}
+		],
+		"lendingRates": [
+			{
+				"lendingRateType": "VARIABLE",
+				"rate": "4.39",
+				"additionalValue": "P1Y"
+			}
+		]
+	}
+]
+        </Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

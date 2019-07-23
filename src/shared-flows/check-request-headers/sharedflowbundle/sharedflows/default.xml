@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Condition>request.verb = "OPTIONS"</Condition>
+        <FaultRules/>
+        <Name>RF-Return-CORS-Headers</Name>
+    </Step>
+    <Step>
+        <Condition>(request.header.x-v = null)</Condition>
+        <FaultRules/>
+        <Name>RF-Missing-Version-Header</Name>
+    </Step>
+    <Step>
+        <Condition>(request.header.x-v != "1")</Condition>
+        <FaultRules/>
+        <Name>RF-Invalid-Version</Name>
+    </Step>
+    <Step>
+        <Condition>(request.header.x-min-v != null) and (request.header.x-min-v != "1")</Condition>
+        <FaultRules/>
+        <Name>RF-Invalid-Version</Name>
+    </Step>
+    <Step>
+        <Condition>(request.header.accept != null) and (request.header.accept != "application/json")</Condition>
+        <FaultRules/>
+        <Name>RF-Invalid-Accept-Header</Name>
+    </Step>
+    <Step>
+        <Condition>(request.verb = "POST") and (request.header.Content-type != null) and (request.header.Content-type != "application/json")</Condition>
+        <FaultRules/>
+        <Name>RF-Invalid-Content-Type-Header</Name>
+    </Step>
+    <Step>
+        <!-- x-fapi-auth-date header should be present in all authenticated requests. i.e: all requests except for Get Products and Get Product Details -->
+        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (request.header.x-fapi-auth-date = null)</Condition>
+        <Name>RF-Missing-Authdate-Header</Name>
+    </Step>
+    <Step>
+        <!-- x-cds-User-Agent header should be present in all authenticated and attended requests. i.e: all requests, except for Get Products and Get Product Details, where x-fapi-customer-ip-addressis also include -->
+        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (request.header.x-fapi-customer-ip-address != null) and (request.header.x-cds-User-Agent = null)</Condition>
+        <Name>RF-Missing-cdsUserAgent-Header</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>EV-Preserve-Request-Headers</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>AM-Extract-Pagination-Params</Name>
+    </Step>
+</SharedFlow>

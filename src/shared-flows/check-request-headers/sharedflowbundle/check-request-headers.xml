@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="8" name="check-request-headers">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1546400695647</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
+    <DisplayName>check-request-headers</DisplayName>
+    <LastModifiedAt>1563510767008</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:7a25a2a78de46672a60eaa6417dff1c5a0c034d27be32710a82304c54de37f20e25271b25a93bec89fcf4bbab5d55190d59e8101b1e77c9e163711a8af2d3df9</ManifestVersion>
+    <Policies>
+        <Policy>AM-Extract-Pagination-Params</Policy>
+        <Policy>EV-Preserve-Request-Headers</Policy>
+        <Policy>RF-Invalid-Accept-Header</Policy>
+        <Policy>RF-Invalid-Content-Type-Header</Policy>
+        <Policy>RF-Invalid-Version</Policy>
+        <Policy>RF-Missing-Authdate-Header</Policy>
+        <Policy>RF-Missing-Version-Header</Policy>
+        <Policy>RF-Missing-cdsUserAgent-Header</Policy>
+        <Policy>RF-Return-CORS-Headers</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

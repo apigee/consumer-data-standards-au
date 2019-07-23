@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-Extract-Pagination-Params">
+    <DisplayName>AM-Extract-Pagination-Params</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>pagination.page</Name>
+        <Value>1</Value>
+        <Ref>request.queryparam.page</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>pagination.page-size</Name>
+        <Value>25</Value>
+        <Ref>request.queryparam.page-size</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+</AssignMessage>

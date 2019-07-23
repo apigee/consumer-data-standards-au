@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="8" name="add-response-headers-links-meta">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1563511463612</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Add mandatory headers to response</Description>
+    <DisplayName>add-response-headers</DisplayName>
+    <LastModifiedAt>1563511463612</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:0fcfa94704e2b305da2a2187b092ca8b51efcbc410582f13103518f2957675e2e477dda3612b26e78fdac03ba9e85a6dd8e89174bf559eaec5ed536a326ff5c3</ManifestVersion>
+    <Policies>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-Add-Existing-FAPI-Interaction-Id</Policy>
+        <Policy>AM-Generate-New-Fapi-Interaction-Id</Policy>
+        <Policy>AM-Set-Content-Type-And-Version-Headers</Policy>
+        <Policy>JS-Add-Links-Meta-To-Response</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://AddLinksMetaToResponse.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>
