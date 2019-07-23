@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Invalid-Accept-Header">
+    <DisplayName>RF-Invalid-Accept-Header</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">{
+  “errors”: [
+    {
+       “code”: “406”,
+       “title”: “Not Acceptable”,
+       “detail”: “Accept Header must be application/json”
+    }
+  ]
+}</Payload>
+            <StatusCode>406</StatusCode>
+            <ReasonPhrase>Not Acceptable</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

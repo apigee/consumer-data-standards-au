@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-Preserve-Request-Headers">
+    <DisplayName>EV-Preserve Request Headers and Self Link</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Header name="x-fapi-auth-date">
+        <Pattern ignoreCase="true">{fapiAuthDate}</Pattern>
+    </Header>
+    <Header name="x-fapi-customer-ip-address">
+        <Pattern ignoreCase="true">{fapiCustomerIpAddr}</Pattern>
+    </Header>
+    <Header name="x-fapi-interaction-id">
+        <Pattern ignoreCase="true">{fapiInteractionId}</Pattern>
+    </Header>
+    <Variable name="client.scheme">
+        <Pattern ignoreCase="false">{selfLinkProtocol}</Pattern>
+    </Variable>
+    <Header name="host">
+        <Pattern ignoreCase="true">{selfLinkHost}</Pattern>
+    </Header>
+    <Variable name="proxy.basepath">
+        <Pattern ignoreCase="false">{selfLinkBasePath}</Pattern>
+    </Variable>
+    <Variable name="proxy.pathsuffix">
+        <Pattern ignoreCase="false">{selfLinkPathSuffix}</Pattern>
+    </Variable>
+    <Variable name="request.querystring">
+        <Pattern ignoreCase="false">{selfLinkQueryString}</Pattern>
+    </Variable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

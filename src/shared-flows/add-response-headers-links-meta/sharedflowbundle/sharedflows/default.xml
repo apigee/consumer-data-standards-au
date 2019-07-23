@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <FaultRules/>
+        <Name>AM-Set-Content-Type-And-Version-Headers</Name>
+    </Step>
+    <Step>
+        <Condition>fapiInteractionId != null</Condition>
+        <FaultRules/>
+        <Name>AM-Add-Existing-FAPI-Interaction-Id</Name>
+    </Step>
+    <Step>
+        <Condition>fapiInteractionId = null</Condition>
+        <FaultRules/>
+        <Name>AM-Generate-New-Fapi-Interaction-Id</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>AM-Add-CORS-Headers</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>JS-Add-Links-Meta-To-Response</Name>
+    </Step>
+</SharedFlow>

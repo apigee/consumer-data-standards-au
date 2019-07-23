@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <DefaultFaultRule>
+        <Step>
+            <Name>AM-Add-CORS-Headers</Name>
+            <!-- Avoid adding headers again in OPTIONS case -->
+            <Condition>message.status.code != "200"</Condition>
+        </Step>
+    </DefaultFaultRule>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>SA-limitPublicTraffic</Name>
+            </Step>
+            <Step>
+                <Name>RF-TooManyRequests</Name>
+                <Condition>ratelimit.SA-limitPublicTraffic.failed = "true"</Condition>
+            </Step>
+            <Step>
+                <Name>FC-CheckRequestHeaders</Name>
+            </Step>
+            <Step>
+                <Name>AM-MockFullListOfProducts</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>FC-AddResponseHeaders-Link-Meta</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="listProducts">
+            <Description>Get Products</Description>
+            <Request>
+                <Step>
+                    <Name>FC-ValidateRequestParams</Name>
+                </Step>
+                <Step>
+                    <Name>EV-GetProductFilterCriteria</Name>
+                </Step>
+                <Step>
+                    <Name>AM-Set-Pagination-Settings</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-FilterProductListBasedOnRequestFilters</Name>
+                </Step>
+                <Step>
+                    <Name>JS-RemoveProductDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-PaginateResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="getProductDetail">
+            <Description>Get Product Detail</Description>
+            <Request>
+                <Step>
+                    <Name>EV-productIdFromURL</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>EV-productDetailsForProductId</Name>
+                </Step>
+                <Step>
+                    <Name>JS-BuildProductDetailsResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{theProductId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/")  or (proxy.pathsuffix MatchesPath "/{productId}")</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/cds-au/v1/banking/products</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

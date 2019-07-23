@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Invalid-Content-Type-Header">
+    <DisplayName>RF-Invalid-Content-Type-Header</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">{
+  “errors”: [
+    {
+       “code”: “415”,
+       “title”: “Unsupported Media Type”,
+       “detail”: “Content-type Header must be application/json”
+    }
+  ]
+}</Payload>
+            <StatusCode>415</StatusCode>
+            <ReasonPhrase>Unsupported Media Type</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>
