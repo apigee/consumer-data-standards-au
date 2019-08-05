@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfProducts">
     <DisplayName>AM-MockFullListOfProducts</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <AssignVariable>
         <Name>listOfAllProductDetails</Name>
         <Template>
@@ -22,7 +24,8 @@
 		},
 		"features": [
 			{
-				"featureType": "CARD_ACCESS"
+				"featureType": "CARD_ACCESS",
+				"additionalValue": "Debit card"
 			},
 			{
 				"featureType": "UNLIMITED_TXNS"
@@ -72,13 +75,13 @@
 				"name": "Annual Fees",
 				"feeType": "PERIODIC",
 				"additionalValue": "P1Y",
-				"amount": "200"
+				"amount": "200.00"
 			}
 		],
 		"lendingRates": [
 			{
 				"lendingRateType": "VARIABLE",
-				"rate": "4.39",
+				"rate": "0.0414",
 				"additionalValue": "P1Y"
 			}
 		]
@@ -87,5 +90,5 @@
         </Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>
