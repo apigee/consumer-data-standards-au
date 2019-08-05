@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="JS-BuildProductDetailsResponse">
+    <DisplayName>JS-BuildAccountDetailsResponse</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ResourceURL>jsc://buildAccountDetailsResponse.js</ResourceURL>
+</Javascript>

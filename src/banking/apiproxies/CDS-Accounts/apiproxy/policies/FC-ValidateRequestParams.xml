@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ValidateRequestParams">
+    <DisplayName>FC-ValidateRequestParams</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="validateParamConfig">{ "QueryParams": [
+            {"product-category": {"ValueList": ["TRANS_AND_SAVINGS_ACCOUNTS","TERM_DEPOSITS","TRAVEL_CARDS","REGULATED_TRUST_ACCOUNTS","RESIDENTIAL_MORTGAGES","CRED_AND_CHRG_CARDS","PERS_LOANS","MARGIN_LOANS","LEASES","TRADE_FINANCE","OVERDRAFTS","BUSINESS_LOANS"]}},
+            {"open-status": {"ValueList": ["OPEN", "CLOSED", "ALL"] } },
+            {"is-owned": {"ValueType": "Boolean"}},
+            {"page": {"ValueType": "PositiveInteger"}},
+            {"page-size": {"ValueType": "PositiveInteger"}}
+          ]
+        }</Parameter>
+    </Parameters>
+    <SharedFlowBundle>validate-request-params</SharedFlowBundle>
+</FlowCallout>

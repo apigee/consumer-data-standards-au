@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="1" name="validate-request-params">
+<SharedFlowBundle revision="4" name="validate-request-params">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1560993005321</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Execute a configurable set of request parameter validations (eg: type, list of allowed values)</Description>
     <DisplayName>validate-request-params</DisplayName>
-    <LastModifiedAt>1562126237604</LastModifiedAt>
+    <LastModifiedAt>1564720846945</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:1f4184b1546c1bdddb1c2d654d0c3dd8e255fc8492b1460af1654026b049b82be6826f7cd49797494f9d19bf73fc709e69b221ad5740927ee13c193fea5ab7d2</ManifestVersion>
+    <ManifestVersion>SHA-512:6533156fa63122e1ac3b1c9ccec84506c2a850db589aa28e2832614eca72f33aae121dc6dbd0eeb09588b43726d768ae0d89b1a0a838b68ba281d843af89a239</ManifestVersion>
     <Policies>
         <Policy>JS-validateRequestParams</Policy>
         <Policy>RF-InvalidRequestParams</Policy>

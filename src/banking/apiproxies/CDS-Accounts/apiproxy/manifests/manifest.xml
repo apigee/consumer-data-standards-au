@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:6061ecdd49bfdd5b697dfab77c56733baeec7f5ad734c43d61be016cc78cd0e3a7ba6d641031668692433ed93374b306856df7b516fc42647b055649d9c95101"/>
+        <VersionInfo resourceName="AM-MockFullListOfAccounts" version="SHA-512:214c9160e7a760c3894f28148047cd760dfc11c61129e9bfcd3c4f5629ec74a375681d8227ae767c2d61ffb11c1d0ac4ea0cfa08438a3c0b7a02bbbd109b79b5"/>
+        <VersionInfo resourceName="AM-Set-Pagination-Settings" version="SHA-512:7ccf4d4922af2fd396ce786713c494175c09dfa12595bc2a438f0a8524a31bbadc8a44c7d46781f28103e5904373b164855aa51419e38f5cff11e407ecf86b90"/>
+        <VersionInfo resourceName="AM-TEMP-SetCustomerId" version="SHA-512:3bb0d30f8ae015c7762cba56da09007cadb447abb0c25fd4c39922441c10bc22c1b3cb29e8a6b6a7a395161b182a2582157f59a59b11f072fe3d81f8cdf7c367"/>
+        <VersionInfo resourceName="EV-GetAccountsFilterCriteria" version="SHA-512:d956d7065a0215b25d1b0b2bf8e35c2f8f60eed20ec7a5e7154b04f938a0b2523549bcd77e08271cb019bb1c5937b178cf18f430bf0cb4ea622941fccc6c0889"/>
+        <VersionInfo resourceName="EV-GetAllAcountsForCustomer" version="SHA-512:e595602ebf699edf3450c6c75fabcc13db50b8cb3b435823ed440ea97f56707071d7940c90cbb0d36bf92175ac68ed24e63a118b74af2762e773256ee9f0e708"/>
+        <VersionInfo resourceName="EV-productDetailsForProductId" version="SHA-512:1c6025c060320393f661405586c66c6d297403dbfd6435068f1b7b2712de5cc97ebe9d27e334cf489c2bea6e0849af162fa5cc3bf0b966147f9db83dae7a224c"/>
+        <VersionInfo resourceName="EV-productIdFromURL" version="SHA-512:f34fe5ce9ac2563b8220e35a65a10351b53e8f7f63b507d08a785d6b388c6835c740c2f7380160045c9353af1b3adfae4450b6f59a591a96b500f7f3f6e354c3"/>
+        <VersionInfo resourceName="FC-AddResponseHeaders-Link-Meta" version="SHA-512:78f3541fc8a112fc73bb0d09d5b767a554d34dfdfed6962232388e454a15f6d18499aa6f158e74ab4895fbe53f098aecc92f6c1e29750e2caaa61724343bc612"/>
+        <VersionInfo resourceName="FC-CheckRequestHeaders" version="SHA-512:5b2ad6beed370945c3f80cbbfe381ba5f4210637a358598c032049cd2c9f360c133b64ded5be5f9be5b5b7272af3ed743abbcedbb324e5a406e81140680bebb6"/>
+        <VersionInfo resourceName="FC-PaginateResponse" version="SHA-512:8c19e55d5eb9514aa0990d2e5dce46d944880ddd89c6339f9d76270a6800a2ca8255e9ea062e3910e8ffb51d8bf68fce49f14042d78be7dfa2ff39eb532a5406"/>
+        <VersionInfo resourceName="FC-ValidateRequestParams" version="SHA-512:88c4fd385fdad4782076522036687615994473e941d23b385415a5ed8723c322d8167b30acfa44d64ea654bb5129b863ee20386dc731ebf38f9b59147195aeba"/>
+        <VersionInfo resourceName="JS-BuildProductDetailsResponse" version="SHA-512:ab7338a28a69df4754f9266632e73899b502c9449145c12d88c93651dab5f72fccf9c8e75630366747e036f81fc4af100a8cab50ecc93c6ee8c88f8e2ab65f29"/>
+        <VersionInfo resourceName="JS-FilterAccountsListBasedOnRequestFilters" version="SHA-512:07fbe040e85857b1d21d20beed637819a1f26a959386cd430ff74e4bd14912311c4317401273014883b6ac0908fcc57805b56eee25955474e7a9de7e1c74af31"/>
+        <VersionInfo resourceName="JS-RemoveProductDetails" version="SHA-512:b8ae8048aebc6dcd68419ac5a307ec362a5b180b0d425db62c6218dbe14b9e47d3f0f49950706cc7272d358f4a4e71f12b807cfe53d21bc59d78ee4557f28372"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:7e9ce01bfdc030b64110c0ad2fa97edc5e624583f6e71bfcb9d8ea14de54a614bf0f7a6a6b30f70e7bcec67634e6577e58a3c2b7f026cc5eac782859292390e1"/>
+        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:a1ead4d964c008f2dea439e1d5317c0193f9a35151587cc649eef2a27a0d09909055bf11ee23b9d07965c16654633a34af7ba8e01b4709b530eede5b9ee49918"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:ea7fee814c4e8b0b4ef2b74470b73f96b125b95c3fe9b3c9aec64693c9ba257b48f5a55ec86560bf8730e288c5a5de086fa36a8343ac9db15e9c5fbebea0a26c"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://buildAccountDetailsResponse.js" version="SHA-512:ba0f79a11d2a85baead8aa28671580f9f79632028daf7e1700fff9cccb2e896fb56d0c8c2213ebff540cfe016bc8e88f79a99e4c382259f9795b3f2e2bbe1481"/>
+        <VersionInfo resourceName="jsc://filterAccountsListBasedOnRequestFilters.js" version="SHA-512:adac1f1166882555ec0b334c6449999fe945f080639814b14803cdc95b6495786d4c03cd4028a15b710b24462c7f67db913637169cd45d6e34ab55f66d9babe3"/>
+        <VersionInfo resourceName="jsc://removeAccountDetails.js" version="SHA-512:cdb45112c31ef1606dc1b2f37c07f1278691e72df5c46edffc1bfc8dbdacda4fedff17e361967f04b1d862847cc61758e20633d1ebb4c33f1bc23ca64b2e718a"/>
+        <VersionInfo resourceName="openapi://association.json" version="SHA-512:4a44c55ec53b4deb1219564b3b02611cffd9457672a969baee7aad15ab47ecda76515798696791b72bf87e569bfce9b45d4755eb57faae916d22a2c6062a59a0"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints/>
+</Manifest>
