@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAllAcountsForCustomer">
+    <DisplayName>EV-GetAllAcountsForCustomer</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="listOfAllAccountDetails">
+            <JSONPath>$.[?(@.customer == {customerId})].accounts</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">listOfAllAccountDetailsByCustomer</Source>
+</ExtractVariables>

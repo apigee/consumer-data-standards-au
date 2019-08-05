@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="7" name="CDS-Accounts">
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1563516215003</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+    <DisplayName>CDS-Accounts</DisplayName>
+    <LastModifiedAt>1564725731970</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:1ff735ae6b5477c789a17d498d9243757807dcc0af6e4f4a92f4daac8b4bd5698998943b4d641bccbaa458b9febf6885df6e023b83d4f912573173e5dbe45bc5</ManifestVersion>
+    <Policies>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-MockFullListOfAccounts</Policy>
+        <Policy>AM-Set-Pagination-Settings</Policy>
+        <Policy>AM-TEMP-SetCustomerId</Policy>
+        <Policy>EV-GetAccountsFilterCriteria</Policy>
+        <Policy>EV-GetAllAcountsForCustomer</Policy>
+        <Policy>EV-productDetailsForProductId</Policy>
+        <Policy>EV-productIdFromURL</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-PaginateResponse</Policy>
+        <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>JS-BuildProductDetailsResponse</Policy>
+        <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
+        <Policy>JS-RemoveProductDetails</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>openapi://association.json</Resource>
+        <Resource>jsc://buildAccountDetailsResponse.js</Resource>
+        <Resource>jsc://filterAccountsListBasedOnRequestFilters.js</Resource>
+        <Resource>jsc://removeAccountDetails.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

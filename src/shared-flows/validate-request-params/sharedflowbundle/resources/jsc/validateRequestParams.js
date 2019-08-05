@@ -303,7 +303,15 @@ function isValidParamType(param, configparam, ispresent) {
                     valueArr.push(parseFloat(param));
                     return valueArr;
                 }
-
+            }
+            else if (configparam.ValueType == "Boolean") {
+                if (param.toString().toLowerCase() != "false" && param.toString().toLowerCase() != "true") {
+                    return false;
+                }
+                else {
+                    valueArr.push(param);
+                    return valueArr;
+                }
             }
             // To Do - Handle DateString, TimeString, DateTimeString
             else if (configparam.ValueType == "Date") {
@@ -311,11 +319,9 @@ function isValidParamType(param, configparam, ispresent) {
                     return false;
                 }
                 else {
-
                     valueArr.push(Date.parse(param));
                     return valueArr;
                 }
-
             }
             else return false;
 

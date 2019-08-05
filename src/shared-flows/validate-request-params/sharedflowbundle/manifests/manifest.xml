@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="JS-validateRequestParams" version="SHA-512:b8ae9fad063dbb7cd23ef8559cd71e0bda9d7fcb8664c9351c0f1217bc0859211a59f9f683737cb889c084eb87f1a4ee5026fcf5f9c3bf7f405cd7690bac8fb2"/>
-        <VersionInfo resourceName="RF-InvalidRequestParams" version="SHA-512:89c4b24e2ec76fe6fa401a964022097c92d0166d2a4c79dbfe54c252499f4bb276afb63a08d379a480f031f70f1249b2e5a5faa03a543e009414e6e7b8cc8f7b"/>
+        <VersionInfo resourceName="JS-validateRequestParams" version="SHA-512:865336e98d3f484643f1a67bc8a5bd600224edc4a95b5fce727529d9c0a3c653fb2602854758fe82af63ab20a2d6d0d2545ae84b9e2093cc1022d71999dba163"/>
+        <VersionInfo resourceName="RF-InvalidRequestParams" version="SHA-512:89b0d9702b5cc9bef553d3b1119a8cdab7c5c3e180cf961ec9ec6651ba25c1487102aae40d8c4701788557c803634a874d318cfea41ae9314fe6356ed860f230"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources>
-        <VersionInfo resourceName="jsc://validateRequestParams.js" version="SHA-512:6c10f118d944644859ba6bf808c65a73f3bbc536eca658a05ef9e06e1be2af2dc3c4bf211f6d354dc3690a9e21ea7bbe5c746747d970bfaa91a79f075fdf322e"/>
+        <VersionInfo resourceName="jsc://validateRequestParams.js" version="SHA-512:0bc826cd162b2128d64a49bc3daf82186a885be9b908f34be2210e4f6953e2eae2f5faae3360b7247130316613c7f179a79d1c542656dcb2b33c3a71ef33b775"/>
     </Resources>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:c48b540c7bdd38015a042c3034d43c31b759a1344434b3b0758012deaa0bff680111d0185ffffb96f851af36c105e7c3c09bfe9776e3e2487a882c0c4a23066d"/>
+        <VersionInfo resourceName="default" version="SHA-512:4479657259761640e54252732454cc952d5fe147fd7564134237f9ff7f58514c502c804463b74a0a2389f8654b605fa4c309538d8d95912f330980ad566a90a1"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

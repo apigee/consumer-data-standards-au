@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-PaginateResponse">
+    <DisplayName>FC-PaginateResponse</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>paginate-backend-response</SharedFlowBundle>
+</FlowCallout>

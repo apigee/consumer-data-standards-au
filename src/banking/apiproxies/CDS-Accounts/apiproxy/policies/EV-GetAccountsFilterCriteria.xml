@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAccountsFilterCriteria">
+    <DisplayName>EV-GetAccountsFilterCriteria</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <QueryParam name="product-category">
+        <Pattern ignoreCase="true">{product-category}</Pattern>
+    </QueryParam>
+    <QueryParam name="open-status">
+        <Pattern ignoreCase="true">{open-status}</Pattern>
+    </QueryParam>
+    <QueryParam name="is-owned">
+        <Pattern ignoreCase="true">{is-owned}</Pattern>
+    </QueryParam>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+    <VariablePrefix>accountsFilter</VariablePrefix>
+</ExtractVariables>
