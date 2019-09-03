@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-IssueOpaqueAuthCode">
+    <!-- Issue an opaque auth code with the same expiry time as the one issued byt the OIDC Provier.
+         Store the OIDC Auth Code and customerId (which was included as claim.subject) as additional attributes -->
+    <DisplayName>OA-IssueOpaqueAuthCode</DisplayName>
+    <Properties/>
+    <ClientId>theClientId</ClientId>
+    <ExpiresIn ref="ExpiryTimeInMillis">600000</ExpiresIn>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>GenerateAuthorizationCode</Operation>
+    <RedirectUri>jwt.JWT-DecodeOIDCAuthCode.decoded.claim.redirect_uri</RedirectUri>
+    <ResponseType>message.header.response_type</ResponseType>
+    <Scope>jwt.JWT-DecodeOIDCAuthCode.decoded.claim.scope</Scope>
+    <GenerateResponse enabled="false"/>
+    <Attributes>
+        <Attribute name="OIDCAuthCode" ref="OIDCAuthCode" display="false"/>
+        <Attribute name="customerId" ref="jwt.JWT-DecodeOIDCAuthCode.decoded.claim.sub" display="false"/>
+    </Attributes>
+    <Tokens/>
+</OAuthV2>

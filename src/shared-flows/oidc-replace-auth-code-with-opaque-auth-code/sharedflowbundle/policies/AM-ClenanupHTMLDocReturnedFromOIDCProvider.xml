@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ClenanupHTMLDocReturnedFromOIDCProvider">
+    <DisplayName>AM-CleanupHTMLDocReturnedFromOIDCProvider</DisplayName>
+    <!-- The HTML document returned by the OIDC Provider is based on HTML 4 and
+         starts with !DOCTYPE html. This makes it not XML. Let's fix this  by removing "!DOCTYPE "-->
+    <Properties/>
+    <AssignVariable>
+        <Name>regex</Name>
+        <Value>!DOCTYPE\s*</Value>
+    </AssignVariable>
+    <Set>
+        <Payload contentType="application/xml">{replaceFirst(response.content,regex,'')}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>
