@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>AM-ClenanupHTMLDocReturnedFromOIDCProvider</Name>
+        <Condition>response.status.code = 200</Condition>
+    </Step>
+    <!-- The OIDC Provider MAY return an error in a 200 response
+         Raise a fault if that's the case -->
+    <Step>
+        <Name>EV-ErrorMessageInResponseBody</Name>
+        <Condition>response.status.code = 200</Condition>
+    </Step>
+    <Step>
+        <Name>AM-ErrorMessageInLocationHeader</Name>
+        <Condition>response.status.code = 302</Condition>
+    </Step>
+    <Step>
+        <Name>RF-OIDCProviderErrorIn200Response</Name>
+        <Condition>(errorInfo.error != null) and (errorInfo.error != "")</Condition>
+    </Step>
+    <Step>
+        <Name>EV-OIDCAuthCodeFromResponseBody</Name>
+        <Condition>response.status.code = 200</Condition>
+    </Step>
+    <Step>
+        <Name>AM-ExtractOIDCAuthCodeFromLocationHeader</Name>
+        <Condition>response.status.code = 302</Condition>
+    </Step>
+    <Step>
+        <Name>JWT-DecodeOIDCAuthCode</Name>
+    </Step>
+    <Step>
+        <Name>JS-GenerateVarsReqForAuthCodeGeneration</Name>
+    </Step>
+    <Step>
+        <Name>OA-IssueOpaqueAuthCode</Name>
+    </Step>
+    <Step>
+        <Name>JS-ReplaceOpaqueAuthCodeInResponse</Name>
+        <Condition>(response.status.code = 302 || response.status.code = 200)</Condition>
+    </Step>
+</SharedFlow>

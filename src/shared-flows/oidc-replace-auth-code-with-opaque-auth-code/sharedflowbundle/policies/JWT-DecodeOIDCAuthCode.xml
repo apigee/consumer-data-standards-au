@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DecodeJWT async="false" continueOnError="false" enabled="true" name="JWT-DecodeOIDCAuthCode">
+    <!-- Read the auth code which is jwt format to obtain the customer Id (claim.subject) 
+         and the remaining time in seconds -->
+    <DisplayName>JWT-DecodeOIDCAuthCode</DisplayName>
+    <Source>OIDCAuthCode</Source>
+</DecodeJWT>

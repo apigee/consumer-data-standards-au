@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ErrorMessageInResponseBody">
+    <DisplayName>EV-ErrorMessageInResponseBody</DisplayName>
+    <Properties/>
+    <Source clearPayload="false">response</Source>
+    <VariablePrefix>errorInfo</VariablePrefix>
+    <XMLPayload stopPayloadProcessing="false">
+        <Variable name="error" type="string">
+            <XPath>/html/body/form/input[@name="error"]/@value</XPath>
+        </Variable>
+        <Variable name="error_description" type="string">
+            <XPath>/html/body/form/input[@name="error_description"]/@value</XPath>
+        </Variable>
+    </XMLPayload>
+</ExtractVariables>

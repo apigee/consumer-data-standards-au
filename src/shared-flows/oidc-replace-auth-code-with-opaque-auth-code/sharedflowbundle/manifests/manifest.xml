@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-ClenanupHTMLDocReturnedFromOIDCProvider" version="SHA-512:e45c380699771cfb6ff3672d3dbf3021ad172d26b9f4e8672db3d22b407d8565bedeed53060f2d9d86e7e2313d6cc590092c74b08337d4f9af319b7875d4b3b4"/>
+        <VersionInfo resourceName="AM-ErrorMessageInLocationHeader" version="SHA-512:ec68d255710540bf85940d567cc7f38863dd30e17c57d6eea350f56f2d3f19f32eb0a3c69eed8379c79d6f0eaf815c4822c4ac2f768bd67a81e6b8ddbaf7cc6f"/>
+        <VersionInfo resourceName="AM-ExtractOIDCAuthCodeFromLocationHeader" version="SHA-512:92665ffec2f4bafe1033206be22285bea55583db9fa0846c4e6d65a211f3ef1ac4bfb8600492eab481f156168253bcb66fc90563f3ac321b46987f7a56327326"/>
+        <VersionInfo resourceName="EV-ErrorMessageInResponseBody" version="SHA-512:d8f067141a134cd943dceae47251c6ce56b2905c42d143de2ec5e5a0eb0a3a3e1a93fa4dcfdb1096fc157ee233849589102eb513481fd1eabe4814bb10595e2f"/>
+        <VersionInfo resourceName="EV-OIDCAuthCodeFromResponseBody" version="SHA-512:49f964a815175f440385bf810f87799d0d99e6da4de496b3abe7d14dfb0dbe77dd1150ba08c42eee2475639ab6b7b38990a8db0bbb2c8d6349fe90494d8dab73"/>
+        <VersionInfo resourceName="JS-GenerateVarsReqForAuthCodeGeneration" version="SHA-512:a718fa1386b66e48ed5ac721e6a7a5f8850228efddd1b57d12d560131e6013fc965fc7d84175e0a89575b92ee37462d9cbd431b64b02eff5cfe15fb989698d91"/>
+        <VersionInfo resourceName="JS-ReplaceOpaqueAuthCodeInResponse" version="SHA-512:4c84553762289f26f35e2780e6f396c280cf2bcfe3f07ac253b4e76e3556c451daf85110e7b453b21fa94020a36508130f0f390b17aaac0d2c6d74a8ca5f0b0b"/>
+        <VersionInfo resourceName="JWT-DecodeOIDCAuthCode" version="SHA-512:4d3fcca911920b4c4cf14b93b29917acb54ac619e2f56f0f15488c6a11f4bf714dfd5d05f4940ae9816fa6cdeb66f03f8b5e78f50b2d2fda75b455aa86721ca7"/>
+        <VersionInfo resourceName="OA-IssueOpaqueAuthCode" version="SHA-512:96cb8863958f537c16850b22af32fc4548f153a5eadc682b7961a96b2cb6febb888a3e08e91aeade8eb43cd2c53c30086e7f7f012cff3aa494a871d092e11aa2"/>
+        <VersionInfo resourceName="RF-OIDCProviderErrorIn200Response" version="SHA-512:514c6dcf764419bea33bcf6f49cfb471fdb1ddb7661bdf86d74d0d60b7fcf598047427968e1003c71f27a3fc82ec1233feef5aaf09f0e904fd004b7f4bb56959"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources>
+        <VersionInfo resourceName="jsc://generateVarsReqForAuthCodeGeneration" version="SHA-512:386bb20377e2e6e17c67fe07601d3fe9113729e493dd7bc9a99c17a599726bbcd599a0ad0f0ab8659daeb9287bc5122c63c0d8cc398a58a04f147779fef16444"/>
+        <VersionInfo resourceName="jsc://replaceOpaqueAuthCodeInResponse.js" version="SHA-512:274b997718dc0ba693a4b6c9c346e3b02cbc6f61a9761e0362758ac8b1602072b523ebe39eda65bb8a288278bf52bb4b19de24a86e0e14723ba24d8b8b395f8a"/>
+    </Resources>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:ea37cbeafe7db2a94ccf6c6b2b27e9eddd59d546af8e391d6c035bccc4865cc17ba15e8671d94538a8f85a31f961ee8fd66a2df5ebf1474f2e54b1461a989a77"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

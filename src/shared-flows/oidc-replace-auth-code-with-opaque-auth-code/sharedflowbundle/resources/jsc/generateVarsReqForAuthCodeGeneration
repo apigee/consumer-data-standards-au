@@ -1,0 +1,14 @@
+  // Set variables required for Auth Code Token generation
+ 
+ var expiryTimeInSeconds = context.getVariable("jwt.JWT-DecodeOIDCAuthCode.seconds_remaining");
+ if ( (!expiryTimeInSeconds) || (isNaN(expiryTimeInSeconds)) ) {
+     // Set default value (2 minutes)
+     expiryTimeInSeconds = "120"
+ }
+ 
+ // The client_id is returned in the aud claim (audience), as an array.
+ // use only its first element
+ var audArray = JSON.parse(context.getVariable("jwt.JWT-DecodeOIDCAuthCode.decoded.claim.aud"));
+ context.setVariable("theClientId",audArray[0]);
+ context.setVariable("ExpiryTimeInMillis", expiryTimeInSeconds + "000");
+ context.setVariable("message.header.response_type", "code");
