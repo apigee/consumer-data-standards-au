@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <AlwaysEnforce>false</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description/>
+    <FaultRules/>
+    <Flows>
+        <Flow name="listProducts">
+            <Description>Get Products</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-ValidateRequestParams</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-GetProductFilterCriteria</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-Set-Pagination-Settings</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-FilterProductListBasedOnRequestFilters</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-RemoveProductDetails</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-PaginateResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="getProductDetail">
+            <Description>Get Product Detail</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-productIdFromURL</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-productDetailsForProductId</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-BuildProductDetailsResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{theProductId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/")  or (proxy.pathsuffix MatchesPath "/{productId}")</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <FaultRules/>
+                <Name>FC-AddResponseHeaders-Link-Meta</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>FC-TrafficThresholds</Name>
+            </Step>
+            <Step>
+                <Condition>ratelimit.SA-limitPublicTraffic.failed = "true"</Condition>
+                <FaultRules/>
+                <Name>RF-TooManyRequests</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>FC-CheckRequestHeaders</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>AM-MockFullListOfProducts</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/cds-au/v1/banking/products</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

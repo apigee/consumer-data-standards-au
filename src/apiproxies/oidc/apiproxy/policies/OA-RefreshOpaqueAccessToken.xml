@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-RefreshOpaqueAccessToken">
+    <DisplayName>OA-RefreshOpaqueAccessToken</DisplayName>
+    <Properties/>
+    <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
+    <GenerateResponse enabled="false"/>
+    <GrantType>TokenRequestParams.grant_type</GrantType>
+    <Operation>RefreshAccessToken</Operation>
+    <RefreshToken>theRefreshToken</RefreshToken>
+    <Scope>OIDCTokenResponse.scope</Scope>
+    <Attributes>
+        <Attribute name="OIDCAccessCode" ref="OIDCTokenResponse.access_token" display="false"/>
+        <Attribute name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token" display="false"/>
+        <Attribute name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId" display="false"/>
+    </Attributes>
+</OAuthV2>

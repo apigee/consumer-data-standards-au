@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ReinstateAuthHeaderInResponse">
+    <DisplayName>AM-ReinstateAuthHeaderInResponse</DisplayName>
+    <!-- An OAuthv2 policy for generating or refreshing an access token requires basic authentication -->
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">{TokenRequestParams.authorization_header}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

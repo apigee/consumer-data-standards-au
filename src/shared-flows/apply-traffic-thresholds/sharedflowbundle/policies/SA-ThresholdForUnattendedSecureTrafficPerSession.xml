@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest async="false" continueOnError="true" enabled="true" name="SA-ThresholdForUnattendedSecureTrafficPerSession">
+    <DisplayName>SA-ThresholdForUnattendedSecureTrafficPerSession</DisplayName>
+    <Properties/>
+    <!--We keep track of secure traffic per session -->
+    <Identifier ref="sessionId"/>
+    <!-- Use a smaller rate for testing purposes. Eg: 2pm -->
+    <Rate>5ps</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>

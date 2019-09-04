@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="10" name="CDS-Products">
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1560831663655</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Product API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+    <DisplayName>CDS-Products</DisplayName>
+    <LastModifiedAt>1566977331288</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:4dbf18ad0a420552ff45794ea85475b0277b3912ded948a01c82d9f4b38dea62e3c04605c2d386bcb26fdecf327938141eb1caafef8aed9117599aee277978d8</ManifestVersion>
+    <Policies>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-MockFullListOfProducts</Policy>
+        <Policy>AM-Set-Pagination-Settings</Policy>
+        <Policy>EV-GetProductFilterCriteria</Policy>
+        <Policy>EV-productDetailsForProductId</Policy>
+        <Policy>EV-productIdFromURL</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-PaginateResponse</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>JS-BuildProductDetailsResponse</Policy>
+        <Policy>JS-FilterProductListBasedOnRequestFilters</Policy>
+        <Policy>JS-RemoveProductDetails</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>RF-TooManyRequests</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>openapi://association.json</Resource>
+        <Resource>jsc://buildProductDetailsResponse.js</Resource>
+        <Resource>jsc://filterProductListBasedOnRequestFilters.js</Resource>
+        <Resource>jsc://removeProductDetails.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

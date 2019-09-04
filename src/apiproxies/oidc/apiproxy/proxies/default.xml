@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="Invalid Refresh Token">
+            <Step>
+                <Name>RF-InvalidRefreshToken</Name>
+            </Step>
+            <Condition>(fault.name = "invalid_refresh_token")</Condition>
+        </FaultRule>
+        <FaultRule name="Invalid Refresh Token in Introspection">
+            <!-- Token introspection will always return a 200 response, even for invalid refresh tokens, so we must handle this case  -->
+            <Step>
+                <Name>AM-BuildIntrospectionResponseInactiveToken</Name>
+            </Step>
+            <Condition>(fault.name = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/token/introspection")</Condition>
+        </FaultRule>
+        <FaultRule name="Invalid Auth Code">
+            <Step>
+                <Name>RF-InvalidAuthCode</Name>
+            </Step>
+            <Condition>(fault.name = "invalid_request-authorization_code_invalid")</Condition>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow>
+        <Request>
+            <Step>
+                <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Get OIDC Configuration">
+            <Description/>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>JS-ReplaceHTPrivateIPAddrWithHostname</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Authorise">
+            <Description>Get Authorisation Code</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
+                    <Condition>response.status.code = 200</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorise") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Refresh Token">
+            <Description>Refresh Token</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Name>
+                </Step>
+                <Step>
+                    <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
+                </Step>
+                <Step>
+                    <Name>EV-StoreTokenRequestDetails</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>EV-getInfoReqdForIssuingAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>JS-GetOIDCTokenExpiryTime</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ReinstateAuthHeaderInResponse</Name>
+                </Step>
+                <Step>
+                    <Name>OA-RefreshOpaqueAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "refresh_token")</Condition>
+        </Flow>
+        <Flow name="Acquire Token">
+            <Description>Acquire Token</Description>
+            <Request>
+                <Step>
+                    <Name>OAInfo-RetrieveOIDCAuthCode</Name>
+                </Step>
+                <Step>
+                    <Name>EV-StoreTokenRequestDetails</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>EV-getInfoReqdForIssuingAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>JS-GetOIDCTokenExpiryTime</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ReinstateAuthHeaderInResponse</Name>
+                </Step>
+                <Step>
+                    <Name>OA-IssueOpaqueAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Revoke Token">
+            <Description>Get Token Info</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractRefreshTokenFromTokenFormParam</Name>
+                </Step>
+                <Step>
+                    <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>OA-RevokeRefreshToken</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
+                </Step>
+                <!-- If we could not retrieve info for token as a refresh token, let's assume it's an access token -->
+                <Step>
+                    <Name>AM-SetRefreshTokenAsAccessToken</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                </Step>
+                <Step>
+                    <Name>OAInfo-RetrieveAccessTokenDetails</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                </Step>
+                <Step>
+                    <Name>OA-RevokeAccessToken</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/token/revocation") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Token Introspection">
+            <Description>Get Token Info</Description>
+            <Request>
+                <Step>
+                    <Name>RF-UnsupportedTokenType</Name>
+                    <Condition>(request.formparam.token_type_hint !="") and (request.formparam.token_type_hint !="refresh_token")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractRefreshTokenFromTokenFormParam</Name>
+                </Step>
+                <Step>
+                    <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
+                </Step>
+                <Step>
+                    <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>EV-IsTokenActive</Name>
+                </Step>
+                <Step>
+                    <Name>EV-TokenExpiryTime</Name>
+                    <Condition>(isTokenActive = true)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildIntrospectionResponseActiveToken</Name>
+                    <Condition>(isTokenActive = true)</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token/introspection") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Userinfo">
+            <Description>Get Userinfo</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractAccessTokenFromAuthHdr</Name>
+                </Step>
+                <Step>
+                    <Name>OAInfo-RetrieveAccessTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidAccessToken</Name>
+                    <Condition>(oauthV2.OAInfo-RetrieveAccessTokenDetails.failed = "true")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/me") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Get OIDC Public Certs">
+            <Description>Get OIDC Public Certs</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/certs") and (request.verb = "GET")</Condition>
+        </Flow>
+        <!-- Interactions to support mock login and consent -->
+        <Flow name="LoginPage">
+            <Description> Mock login Page</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Submit Login">
+            <Description> Submit Login</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/login") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="ConsentPage">
+            <Description> Mock consent Page</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/consent") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Submit Consent">
+            <Description> Submit Consent</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/consent") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="FinalAuthorise">
+            <Description>Return Auth Code</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorise/{interactionId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Not Found">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="sandbox">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

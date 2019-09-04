@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest async="false" continueOnError="true" enabled="true" name="SA-ThresholdForSecureTrafficPerClientId">
+    <DisplayName>SA-ThresholdForSecureTrafficPerClientId</DisplayName>
+    <!--We keep track of secure traffic per clientId (ie: Data Recipient) -->
+    <Identifier ref="clientId"/>
+    <!-- Use a smaller rate for testing purposes. Eg: 2pm -->
+    <Rate>50ps</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>

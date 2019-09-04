@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SpikeArrest async="false" continueOnError="true" enabled="true" name="SA-GlobalTrafficThreshold">
+    <DisplayName>SA-GlobalTrafficThreshold</DisplayName>
+    <Properties/>
+    <!-- Using an identifier of type Boolean means we keep track of public (true) and secure traffic (false) separately -->
+    <Identifier ref="isPublicEndpoint"/>
+    <!-- Use a smaller rate for testing purposes. Eg: 2pm -->
+    <Rate>300ps</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>

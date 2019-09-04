@@ -7,11 +7,11 @@
         <Set>
             <Headers/>
             <Payload contentType="application/json">{
-  “errors”: [
+  "errors": [
     {
-       “code”: “406”,
-       “title”: “Not Acceptable”,
-       “detail”: “Accept Header must be application/json”
+       "code": "406",
+       "title": "Not Acceptable",
+       "detail": "Accept Header must be application/json"
     }
   ]
 }</Payload>

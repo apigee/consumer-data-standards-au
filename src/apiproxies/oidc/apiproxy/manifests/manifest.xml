@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-BuildIntrospectionResponseActiveToken" version="SHA-512:0d00394e69e9906d09be877779dedaa802233e50e9449e650f2e4eb3f0d85667c726d7b576d4bac6a73891109d33edf49e277bbfe5d993b2fa0a27658f54c794"/>
+        <VersionInfo resourceName="AM-BuildIntrospectionResponseInactiveToken" version="SHA-512:71a9bde585757774a736196fc6709b8993471fb16a082204bfdab6194f1cbb49c029e1bfc5264d3203481edf24541f3271f48690c2634f27bac3f60f048687ce"/>
+        <VersionInfo resourceName="AM-ReinstateAuthHeaderInResponse" version="SHA-512:2504f9dc74412f72f1f3c1da714a7d50ac6a2e7afa515964c5dc6aa2e8bd1265c33255c1ef5edfe8c4d6e5238b2a185c2fd44aac9061e0dd98583ddef1b0a243"/>
+        <VersionInfo resourceName="AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider" version="SHA-512:97c9bf65aa3dc344aea34436aeac7057d098d8d8d804022d7d3fc3447553f7f3c1f4d695fa8c94060ea6c4307c0f11f8c80a24bf09ec24039fbc0c248d0045e1"/>
+        <VersionInfo resourceName="AM-ReplaceAccessTokenInRequestSentToOIDCProvider" version="SHA-512:4ab9edfbe9b669375153ea763f7c406003f9e39553e7fff3ec48c6dc03cb88bbc50c3d255715df048f0144410ec641712e4e9cd3b05147311f918b0c71be7d97"/>
+        <VersionInfo resourceName="AM-ReplaceAuthCodeInRequestSentToOIDCProvider" version="SHA-512:a16288f474b349638afe6a3825af847a7b0b57de0469fed972f0f4ce817b89f36268614f00aedea171e4e92ca773b1e1a4ed3dd5b21dc8f7a7a8052c850f9c79"/>
+        <VersionInfo resourceName="AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider" version="SHA-512:1da61361101d034d45557f6153074df11abb69e1b8a49afbc89916c73a862da7e8bbce5941ff41727569a925e1ddbdafd89137dfc60a2c834ebf9eddf03b1bd5"/>
+        <VersionInfo resourceName="AM-ReplaceRefreshTokenInRequestSentToOIDCProvider" version="SHA-512:848403375c10b025c0aa22bcfdac3f1835dfbb79a6896de24987313e378a26ce0c74a219f1704b3f47bfbafaaa444976c7a879f840f5d112fce027fc1f9b1df0"/>
+        <VersionInfo resourceName="AM-SetRefreshTokenAsAccessToken" version="SHA-512:1c7bc01efa86dbf0843f34eda700436d8c6a371cf4bd79852d25f75162741d4913f7de269920ee00831eef6a3d94d3727c3db7987fc1c39cf96ba597e1884e62"/>
+        <VersionInfo resourceName="EV-ExtractAccessTokenFromAuthHdr" version="SHA-512:d76c842e6ea42774d77552b53fe452d10ff5f84f922bc7e9e6a74a2e9b712e4f18823ef680219eac8908976da5ca98d7e9aae32913a1ee795e892948370a2229"/>
+        <VersionInfo resourceName="EV-ExtractRefreshTokenFromRefreshTokenFormParam" version="SHA-512:f997d5c3e2b675cb75e23eb4738f7c958d845ab36146b3e6fec7f714c049d60378d9182d3da0f53e47b378b473512ad9a0139cdf13674718d595bf06c4474a77"/>
+        <VersionInfo resourceName="EV-ExtractRefreshTokenFromTokenFormParam" version="SHA-512:cf1893521e5e0eb5b62d80a7a8e102d827661b8a26d6882d329b1d5f5bc410e2202b65787f0f75a207855a56130b911e3d7461a8be61e2606985fc88d86abb23"/>
+        <VersionInfo resourceName="EV-IsTokenActive" version="SHA-512:14c238633eaedf6cf6512dd83c50c36c3dab6a98f2258349d809bd7c3cfdd7964d7f9d9da0c398a61a0b9404d940bc9e73704ad4008a4fb6a491e305ffaa3a95"/>
+        <VersionInfo resourceName="EV-StoreTokenRequestDetails" version="SHA-512:6765f8839d7da4610df3a0bbbd733ec7d91f97d3f2ce54336c9f2eb6e9c4d3cdeb6e128195726b58e64d208c8ef46dfb50eceb2e37c1f9b66b5618fda604d097"/>
+        <VersionInfo resourceName="EV-TokenExpiryTime" version="SHA-512:97b4d75313cbaf15285a0c86c2aacd1d5a7403f9c3a2ad10fc540d2da2e3701007fcffc932ee0dc99da0bee472e876071614137304677c95079d873951806612"/>
+        <VersionInfo resourceName="EV-getInfoReqdForIssuingAccessToken" version="SHA-512:5d719e380a93275c4385c0c435c11a1c1c761d78dfeceee02b9044c601849eb15731e1621e2bcacb46750d4b597849518832df05410ab5221dee954415479e6e"/>
+        <VersionInfo resourceName="FC-GeneralTrafficThresholdsForAuthEndpoints" version="SHA-512:fefefff2fb930fc31b3b9bc445a88d0c2c70754958d7270c539b448b1ef7c4ecc2cd9eae509d86d81e0b684a159540b19571b5afdb6ba76f7e5550e55040ad61"/>
+        <VersionInfo resourceName="FC-ReplaceAuthCodeWithOpaqueAuthCode" version="SHA-512:40773c1a2c9427d733269846f4f9690549893f9078a55ca733660028a1fb1376d3ca583c6a00bd6570c0e6e4d50ee54d2a3313c3d8e69e9500556be118a7bc4e"/>
+        <VersionInfo resourceName="FC-TrafficThresholdsWhenRefreshTokenIsPresent" version="SHA-512:c57e1a45e81ef4ebbab9b9f670473cd5ce981cb2882cee2e9e08a94ee9dfa5307de91419131c96a898494c44dee81ca5ef49cfcf49c08dddf27f01fbfb1ea931"/>
+        <VersionInfo resourceName="JS-GetOIDCTokenExpiryTime" version="SHA-512:3dc62be2aa1c04fa816d6796cc666eaf3118029ecde312e80c29458f3f878db6e1c025df538f57fa435aeb6f0c25f00c5fe81428528fdf20e410879eb2e9c250"/>
+        <VersionInfo resourceName="JS-ReplaceHTPrivateIPAddrWithHostname" version="SHA-512:204777b5586ee763220ed1f640d4ac93390f0204df84a49d9e7ad2ea4429da669613c98c970725d4c7a94adaa67887b969495565d375b034be00bc6670cf402e"/>
+        <VersionInfo resourceName="JS-SubstituteWithOpaqueAccessTokenInResponse" version="SHA-512:9ed00b4bca91b6e6428db827cd836d7fe129474bc7704c38208f10745ff57e4dde390dcb91bd19fa6ace8083d5fb87de3935f392453c1c5b0dab850b0fdf0ab3"/>
+        <VersionInfo resourceName="OA-IssueOpaqueAccessToken" version="SHA-512:4ef8151fe194f6a938930eb8fc0866ee3f3e232439c6c4443eb19713749f8188d817e83ceec4f425521e47c0c4c83ec68f09f7cb8c07867af3b6b384a0eadda4"/>
+        <VersionInfo resourceName="OA-RefreshOpaqueAccessToken" version="SHA-512:ae1f5ce648b05bb19760300cfe876ccc415747b7b0a3e50ea4b12e8a87a51188e0b62a72d3c32adace96b22b7fb112a0326e834f6e1f0efa60dca1887a9db410"/>
+        <VersionInfo resourceName="OA-RevokeAccessToken" version="SHA-512:3fe089b99f861eb7c51f0f135966cfd7889f4d7201a099c7ab4501df12aa9cffedbad21303a2665bad9655b8196ab01557b0a9083b910283a1b3eb52b397e9d1"/>
+        <VersionInfo resourceName="OA-RevokeRefreshToken" version="SHA-512:63f677f75352ce81548c894ac2dfb4e554e0bc65e2ecaf2c9bdf48401b50ae79b6f1a9fab437a788bf0a7124fcb171c3bfc0c95f24adbd8e078ef24be3af89dc"/>
+        <VersionInfo resourceName="OAInfo-RetrieveAccessTokenDetails" version="SHA-512:9c879ac76d0ddbb4da3a1b1b066ebabe72dd2efcd8040eb1d7025f5ddd204138fde64c1a3e1aa5d3440bac4a86e3f2e8ad01b206ac23a54f40697513dafd6283"/>
+        <VersionInfo resourceName="OAInfo-RetrieveOIDCAuthCode" version="SHA-512:0a011eb5b0809f176ba5460d8fe06aa1ddc26e6bbf3c30b1d96a4d26ebdd17c742aab5529d66d1223200ea79753d14d1524699334d58bcdf8ebd9199fa492ea6"/>
+        <VersionInfo resourceName="OAInfo-RetrieveRefreshTokenDetails" version="SHA-512:5c853491bc07c6fb441957c33e0906e89b2b7bbee6450e804d8fe2f48cba2b391b22b97bddb1141afaf4a5607f5487684fb120679ca1cc84a53e62b29e584b78"/>
+        <VersionInfo resourceName="RF-InvalidAccessToken" version="SHA-512:72a8a4375e6fb8809cf750eb57559755a4fbf7cfa8d2d727cfd8983140fdd8a90e55d473123da44e48a877f0d47eb5d268e0adf12595a0745a256e44b1b8fe51"/>
+        <VersionInfo resourceName="RF-InvalidAuthCode" version="SHA-512:2de5dc2cff6e3df21dab5db55244c9fe82a801bb675b74e62ac95fba7a5f01e6766aa1cf538a5bae63d409425bb25bf04d657cbb19cb3529575eafb5595aa628"/>
+        <VersionInfo resourceName="RF-InvalidRefreshToken" version="SHA-512:8118f270780fa3433606a8d691ab16c52494b900c4ef762e3a72381557392dbfd103e16aa3d0ce2e85fb46409cf6d8db842ecc153a2cad8c23c8124247e315c1"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:ea784de7c504bdf83151a91a6747937a3eeced611ab303e622f90dac9cdb5fddd0ad5e31f7792982911e8e249fcac740ac3533815b6ee0fb07ee32254d12544b"/>
+        <VersionInfo resourceName="RF-OIDCProviderError" version="SHA-512:83c9aef3a1eea83dae9f5cc15ac61abf5aa814a965f8700e4f12aefd8cd4b4ef3383d8d86bf773a57796693d8136b218a4584cc74968c9c73aa6309c1eaca8c3"/>
+        <VersionInfo resourceName="RF-OIDCProviderTimeout" version="SHA-512:d0db92e8d070a58b065c0a0fb32a4f8aca8d4e31ae50ddb25fca7eaf74d3023af8ca63e628711cfba973d361aa612dce827bef3bd4b7b4400d34e705d897e997"/>
+        <VersionInfo resourceName="RF-UnsupportedTokenType" version="SHA-512:04a9b9eb64482eb030f3d75ff78513fc13ab0aba97e75bf038e1511df030293b5047cb5a8f23b9921e8f001a059ca19c0251ad016b75dec46d298d39be6e07e3"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:1a4f0c8341b1a5643e8124127ec6b6b106fcb424c52449ebec4be5da05507b9933ef90ce1457e7de46409a64259a35b2d373e0231b89547369ea2437844d77a6"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="hosted://README.md" version="SHA-512:34da6331b7dfcbc4f71c896db691074499d1c351e6dc02419c2880f2a9403c53b729f29c3808b00f7dc25969d8561ca83c84f6ff0891979f3009c1ce7be5415f"/>
+        <VersionInfo resourceName="hosted://app.js" version="SHA-512:2169ced6a7ef118b09b2521a303869f9fbcfe2ead72682ab8dc5ab25f09788c4306a3ff74095887abd5bfcc71a9f546452d26377ad334be9f6f31e12518bc776"/>
+        <VersionInfo resourceName="hosted://app.yaml" version="SHA-512:6864911a33140deaf890b646a8241d68268bcd03752a2867324ca6f43a4464ca95a2d59593a448de5c142996f4902090ea181061b5087f008a26e539421c1519"/>
+        <VersionInfo resourceName="hosted://package.json" version="SHA-512:a8bd681f974d437f4e3f9cb14fe1dda612d3e87c2412d4ad872a0a3166384c1657ef8d61775b3f7f3b3d8788cf51c35e68fc82299c86b502dc2acf0532a87ec0"/>
+        <VersionInfo resourceName="hosted://support/account.js" version="SHA-512:c732dabc502da2a32aeb327a7c287f46453ad0cd53913f637ad7c5f33920e79f3cfdbdca8db1af2fce1fd005d81c50faeb883f6a85c6bbb4e1dc068f9766b1a1"/>
+        <VersionInfo resourceName="hosted://support/clients.json" version="SHA-512:c5bad129553eb1ce9e95794e53ea1fa796d57bdf9878f4b4c973483f8d427ee4574fc81884d478acf8f37116d983cad466cead9e9a0a9883f2724466032186cb"/>
+        <VersionInfo resourceName="hosted://support/config.json" version="SHA-512:9ec9bf7ee144e910911e6ba6caf4232340b2c985e4b903b55b85b63c2370e0c1dbedef6d5d6a4cb45c51e6012206debdb83ba054ca97d1b27217b2060749a967"/>
+        <VersionInfo resourceName="hosted://support/routes.js" version="SHA-512:c732dabc502da2a32aeb327a7c287f46453ad0cd53913f637ad7c5f33920e79f3cfdbdca8db1af2fce1fd005d81c50faeb883f6a85c6bbb4e1dc068f9766b1a1"/>
+        <VersionInfo resourceName="hosted://views/consent.ejs" version="SHA-512:85f454b5147461c786fab8bb796d295385c3d9bc3d3fb1299fab3e47e193d12030eabd07fadd5929f9356f899bade1afb9ae17af1c52f39badaebdcd68feade0"/>
+        <VersionInfo resourceName="hosted://views/login.ejs" version="SHA-512:6c8b01a5d13830ba3928ac537a77dcc11a7696b7e465994b49aee03a40171f2065865545a3af336e8fc4a46ac603ba2593e6a9eb14d8bce217f6ec6655c3ce5f"/>
+        <VersionInfo resourceName="hosted://views/ping.ejs" version="SHA-512:52d70887c62c54d1a4115900a302c4474dc0ac4f194b4b5e9e7de3ba46c3f27158251c2d0974f6b0cd1c63a272ee745eae4451baf2d3b253ed311111c005fda7"/>
+        <VersionInfo resourceName="jsc://getOIDCTokenExpiryTime.js" version="SHA-512:86b93de14b69f97c0b24ecd45fe61702df4e51d4944aabc0a9dfbf9deb12e3ca7bde03876ecd96bac6b2ed6ccab00f30fbe9fe99731ac5f84b185cc3cb7fca32"/>
+        <VersionInfo resourceName="jsc://replaceHTPrivateIPAddrWithHostname.js" version="SHA-512:19b0ddc359eae8015136cf2f6876ea473d1a31ea24ed4a3ecf62b9879d74f081eea8c838a6a4da1a51c8121eb001202ea4d881efdee5dbde74b04fdd6533e36a"/>
+        <VersionInfo resourceName="jsc://substituteWithOpaqueAccessTokenInResponse.js" version="SHA-512:ba6f7039f0aa1242af743fe8da3f4fe4b4f8a99cace6d6250a91428286925508f4b5681e8f8c68eae1068157ecbf5e7ddfc0cad3723b2aa3a8e2c2c4c5a5290a"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:28926f68218aec5fba28c47418f76d3e118036f1c7f43374fb1326a57ef73242760e0b59229b65e4ce7f2b2cacb1f5591d284ce7586378b5e7dbbb2ad7652c76"/>
+    </TargetEndpoints>
+</Manifest>

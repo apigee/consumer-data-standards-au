@@ -6,5 +6,6 @@ deb-temp/*
 node_modules/
 .vscode/settings.json
 test/postman/*environment.json
-test/postman/OpenBankingAUNZ.postman_collection.json
+setup/certs/
+setup/certs/*
 

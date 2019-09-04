@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider">
+    <DisplayName>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</DisplayName>
+    <Properties/>
+    <Set>
+        <FormParams>
+            <FormParam name="refresh_token">{oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.OIDCRefreshToken}</FormParam>
+        </FormParams>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

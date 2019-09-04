@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GetOAuthV2Info async="false" continueOnError="true" enabled="true" name="OAInfo-RetrieveAccessTokenDetails">
+    <!-- Since we want the revoke token operation to always return 200 OK, we'll continue even if the token doesn't exist -->
+    <DisplayName>OAInfo-RetrieveAccessTokenDetails</DisplayName>
+    <AccessToken ref="theAccessToken"/>
+</GetOAuthV2Info>

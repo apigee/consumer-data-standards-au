@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider">
+    <DisplayName>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Authorization">Bearer {oauthv2accesstoken.OAInfo-RetrieveAccessTokenDetails.accesstoken.OIDCAccessToken}</Header>
+        </Headers>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

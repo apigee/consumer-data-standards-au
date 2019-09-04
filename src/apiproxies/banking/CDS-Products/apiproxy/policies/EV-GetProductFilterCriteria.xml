@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetProductFilterCriteria">
+    <DisplayName>EV-GetProductFilterCriteria</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <QueryParam name="effective">
+        <Pattern ignoreCase="true">{effective}</Pattern>
+    </QueryParam>
+    <QueryParam name="updated-since">
+        <Pattern ignoreCase="true">{updated-since}</Pattern>
+    </QueryParam>
+    <QueryParam name="brand">
+        <Pattern ignoreCase="true">{brand}</Pattern>
+    </QueryParam>
+    <QueryParam name="product-category">
+        <Pattern ignoreCase="true">{product-category}</Pattern>
+    </QueryParam>
+    <URIPath/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+    <VariablePrefix>prodFilter</VariablePrefix>
+</ExtractVariables>

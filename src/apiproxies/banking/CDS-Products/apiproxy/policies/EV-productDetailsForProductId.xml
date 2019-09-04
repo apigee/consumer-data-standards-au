@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-productDetailsForProductId">
+    <DisplayName>EV-productDetailsForProductId</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="theProductDetails">
+            <JSONPath>$.[?(@.productId == '{theProductId}')]</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">listOfAllProductDetails</Source>
+</ExtractVariables>

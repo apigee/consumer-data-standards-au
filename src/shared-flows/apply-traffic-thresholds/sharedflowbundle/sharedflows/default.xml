@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>SA-GlobalTrafficThreshold</Name>
+    </Step>
+    <Step>
+        <Name>SA-ThresholdForSecureTrafficPerClientId</Name>
+        <Condition>isPublicEndpoint = "false"</Condition>
+    </Step>
+    <Step>
+        <Name>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Name>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true")</Condition>
+    </Step>
+    <Step>
+        <Name>Q-RequestsPerSessionForUnattendedAndAuthTraffic</Name>
+        <Condition>((isPublicEndpoint = "false") and (isCustomerPresent = "false")) or (isAuthEndpoint = "true")</Condition>
+    </Step>
+    <Step>
+        <Name>SA-ThresholdForUnattendedSecureTrafficPerSession</Name>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false")</Condition>
+    </Step>
+    <Step>
+        <Name>RF-TooManyRequests</Name>
+        <Condition>(ratelimit.SA-ThresholdForSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForCustomerPresentSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true")</Condition>
+    </Step>
+    <Step>
+        <Name>RF-QuotaExceededForSessionWithUnattendedTraffic</Name>
+        <Condition>ratelimit.Q-RequestsPerSessionForUnattendedAndAuthTraffic.failed = "true"</Condition>
+    </Step>
+</SharedFlow>
