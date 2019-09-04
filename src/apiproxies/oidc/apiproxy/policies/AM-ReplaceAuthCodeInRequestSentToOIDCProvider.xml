@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ReplaceAuthCodeInRequestSentToOIDCProvider">
+    <DisplayName>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</DisplayName>
+    <!-- Replace the opaque auth code sent by the client
+         with the one that the OIDC provider had issued, before passing
+         on this request to the OIDC provider -->
+    <Properties/>
+    <Set>
+        <FormParams>
+            <FormParam name="code">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.OIDCAuthCode}</FormParam>
+        </FormParams>
+        <Path/>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

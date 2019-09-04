@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SpikeArrest async="false" continueOnError="true" enabled="true" name="SA-limitPublicTraffic">
-    <DisplayName>SA-limitPublicTraffic</DisplayName>
-    <Rate>300ps</Rate>
-    <!-- Use the following value (1 per minute) if you want to manually test how
-        traffic limiting works -->
-    <!--<Rate>1pm</Rate>-->
-</SpikeArrest>

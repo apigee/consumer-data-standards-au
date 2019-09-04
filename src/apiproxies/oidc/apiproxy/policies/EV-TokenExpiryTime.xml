@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-TokenExpiryTime">
+    <DisplayName>EV-TokenExpiryTime</DisplayName>
+    <JSONPayload>
+        <Variable name="tokenExpiryTime">
+            <JSONPath>$.exp</JSONPath>
+        </Variable>
+    </JSONPayload>
+</ExtractVariables>

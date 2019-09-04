@@ -7,11 +7,11 @@
         <Set>
             <Headers/>
             <Payload contentType="application/json">{
-  “errors”: [
+  "errors": [
     {
-       “code”: “400”,
-       “title”: “Bad Request”,
-       “detail”: “Missing x-fapi-auth-date header”
+       "code": "400",
+       "title": "Bad Request",
+       "detail": "Missing x-fapi-auth-date header"
     }
   ]
 }</Payload>

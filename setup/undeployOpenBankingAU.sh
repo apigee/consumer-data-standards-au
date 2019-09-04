@@ -17,23 +17,46 @@
 # limitations under the License.
 #
 
+# Remove test app
+echo Removing Test App: CDRTestApp...
+apigeetool deleteApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL --name CDSTestApp
+
+# Remove test developer
+echo Removing Test Developer: $CDS_TEST_DEVELOPER_EMAIL
+apigeetool deleteDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL
+
+# Remove products
+echo Removing API Product "Products"
+apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSProducts"
+
+echo Removing API Product "Accounts"
+apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSAccounts"
+
+echo Removing API Product "OIDC"
+apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSOIDC"
+
 # Undeploy apiproxies
-cd src/gateway/apiproxies
+cd src/apiproxies/banking
 for ap in $(ls .) 
 do 
     echo Undeploying $ap Apiproxy
     cd $ap
-    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PWD -n $ap
+    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
     cd ..
  done
 
+# Undeploy oidc proxy
+cd ../oidc
+echo Undeploying oidc Apiproxy
+apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
+
 # Undeploy Shared flows
-cd ../shared-flows
+cd ../../shared-flows
 for sf in $(ls .) 
 do 
     echo Undeploying $sf Shared Flow 
     cd $sf
-    apigeetool undeploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PWD -n $sf 
+    apigeetool undeploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
     cd ..
 done
 

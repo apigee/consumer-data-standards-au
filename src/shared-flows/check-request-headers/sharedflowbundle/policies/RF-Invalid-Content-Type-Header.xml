@@ -7,11 +7,11 @@
         <Set>
             <Headers/>
             <Payload contentType="application/json">{
-  “errors”: [
+  "errors": [
     {
-       “code”: “415”,
-       “title”: “Unsupported Media Type”,
-       “detail”: “Content-type Header must be application/json”
+       "code": "415",
+       "title": "Unsupported Media Type",
+       "detail": "Content-type Header must be application/json"
     }
   ]
 }</Payload>

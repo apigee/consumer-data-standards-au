@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent">
+    <DisplayName>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://validateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</ResourceURL>
+</Javascript>

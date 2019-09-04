@@ -41,6 +41,18 @@
         <Name>RF-Missing-cdsUserAgent-Header</Name>
     </Step>
     <Step>
+        <Name>AM-SetIsCustomerPresentToFalse</Name>
+        <Condition>(request.header.x-fapi-customer-ip-address = null) or (request.header.x-fapi-customer-ip-address = "")</Condition>
+    </Step>
+    <Step>
+        <Name>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Name>
+        <Condition>(request.header.x-fapi-customer-ip-address != null) and (request.header.x-fapi-customer-ip-address != "")</Condition>
+    </Step>
+    <Step>
+        <Name>RF-Invalid-X-Fapi-Customer-IP-Address</Name>
+        <Condition>(request.header.x-fapi-customer-ip-address != null) and (request.header.x-fapi-customer-ip-address != "") and (isCustomerPresent != "true")</Condition>
+    </Step>
+    <Step>
         <FaultRules/>
         <Name>EV-Preserve-Request-Headers</Name>
     </Step>

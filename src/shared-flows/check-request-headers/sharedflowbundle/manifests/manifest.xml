@@ -2,19 +2,24 @@
 <Manifest name="manifest">
     <Policies>
         <VersionInfo resourceName="AM-Extract-Pagination-Params" version="SHA-512:efef6ef409caa6df073d2cb968fcc0f21162b538d23d9eadb4398fbbc5d388190483a654dab4e3a207af669a5de03d5c5139d59969aa5cb0e17609cae9380e90"/>
+        <VersionInfo resourceName="AM-SetIsCustomerPresentToFalse" version="SHA-512:7a0cfa5c599e615ee7fe3c8f2c5c8843016fff4650e1d72605d4fe1c9636859a49b38943e86c0f48034e913197aaa878d6030ad00727cd7bc653ff877a008b80"/>
         <VersionInfo resourceName="EV-Preserve-Request-Headers" version="SHA-512:f120bb420f72c9bc81930058abc873a971a38dc8406b02d9090a8f19c13ea480dcb26003a9cc33ea7bd9f95731523d7e971aad04ab20a0433e5c5807a63455df"/>
-        <VersionInfo resourceName="RF-Invalid-Accept-Header" version="SHA-512:2891a66fff1ea0d0a53e43b6e5696196674b204a8e79d76653276025dc0982c211b6da100749889ae5d85b1a1bfca2d38ebaa19aab0ed8eb9f2383c3a8e8177c"/>
-        <VersionInfo resourceName="RF-Invalid-Content-Type-Header" version="SHA-512:7606a02d8a483a380eeff4d0e57c490fc7187cf772f9517a3cf3e23a5a183b704bd8c0c475870d5dbca2ad381c4a6d46256503431686df914bf28a3b146a263b"/>
-        <VersionInfo resourceName="RF-Invalid-Version" version="SHA-512:2af52e84621a97cab99368d6275545e3e54808b13df6f85655efbc73c9997decabb9d731d5af66e4c5d7836e7abb16bd34b6145c5466ed432e96c0989c783d86"/>
-        <VersionInfo resourceName="RF-Missing-Authdate-Header" version="SHA-512:89ab237b41e7793beee323b765d786c0e1a939e130a4aba6799638f907126e3623f49e54ac88cd51b2a9805626800f60a88b1f28175505e3e951e2cda2c5dc59"/>
-        <VersionInfo resourceName="RF-Missing-Version-Header" version="SHA-512:034a04f8233746fdfbff72b5ba692578c4dc70983c8ad5977b141f321a2fdff5c04e995c13fafa68f5b89ff1f4304603cd05be0dad693f638133a709041dc987"/>
-        <VersionInfo resourceName="RF-Missing-cdsUserAgent-Header" version="SHA-512:c182485f1ad7f888354437e81714300c40e24c277471d7e949b6c9b10a3a2ea5393783bfacdcb029e4b52f2666b2fd831ba1ed69da23e8633879fe65b211234b"/>
+        <VersionInfo resourceName="JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent" version="SHA-512:88eb9a9d1f799c6541a04ea5676000b458ccb53c86d9cc3c6a45ebb6e3582c62afe8caf39cf50a28576ed01da548ddf9dfa1e2057ef9cec3261b79e7659806a4"/>
+        <VersionInfo resourceName="RF-Invalid-Accept-Header" version="SHA-512:aa99e9754520cfa22f5db089afaac91afe07ec9bec6967e0124687c2c91c738cfe93a064b007f13fed3dce00836ea90a923cd9b31b5dfc078b07ef118c3662b5"/>
+        <VersionInfo resourceName="RF-Invalid-Content-Type-Header" version="SHA-512:23a4c9f6e035456be239035198c45e3efb10b6b86714a90118a3cd4ca9bb353a7e6964d9c2e9eba5024d649016074c32cad4bd9f0f464c478ee049c99efb86d5"/>
+        <VersionInfo resourceName="RF-Invalid-Version" version="SHA-512:65d2fe5677a1266ffcf5a4a455d33157f72a175eb5d3480b8ca96725746ca9a2c6712587b5ce00fc7766a2563b74afcc9467fdb91626614b054e90350405ce6e"/>
+        <VersionInfo resourceName="RF-Invalid-X-Fapi-Customer-IP-Address" version="SHA-512:1fe4cabc097f1e88682544f0833e94eb3381188c2dd12de0a62ba7ef14d43c4e887e313bac1d3664d98530b8e1df08f6684868759267c7036a995264a01519d0"/>
+        <VersionInfo resourceName="RF-Missing-Authdate-Header" version="SHA-512:a6e73a842b1564cd0f5d29b5afd46f8c9ae2447a9ead1a9572f48831f3744162d2cbc37c4bea44ebe53cc7461994a528aed72adccfa754a4fc57d84080d01b27"/>
+        <VersionInfo resourceName="RF-Missing-Version-Header" version="SHA-512:64fd3985622312ce4d8229c876b2c439c581debe1dcb4db2eb2ae962eacc3bb8d73c818e4dc1a65fef92a31e358b1411e08020275fb2b7784b5aafea2244dafc"/>
+        <VersionInfo resourceName="RF-Missing-cdsUserAgent-Header" version="SHA-512:05354645a413ac19aba5f8b9cc3fc8aeea7aa2b7729086e2048ec967859c86650d266064bfdf402e7166822a3330bfd2b536853da92e32817e7f6150ce9e1297"/>
         <VersionInfo resourceName="RF-Return-CORS-Headers" version="SHA-512:a50dfe2cf72fd0b2db14b6ed882b1ffe789fd5b91148a54b81706f571de5104023dd17a0328cc4a3a21273eb8f2a62ef2701dfb2f7f09c10f81b71209e3d44e2"/>
     </Policies>
     <ProxyEndpoints/>
-    <Resources/>
+    <Resources>
+        <VersionInfo resourceName="jsc://validateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent" version="SHA-512:f095fc050ddc1cd3ba5e512a8e8acd8ba76db9edc8d9661a8bf2b880aa09b17d04d464a0bedaafc7721a7470e1fffeafc6eba64526579b1b69f92ead6046df40"/>
+    </Resources>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:1aaf21643a98cdbacc930ccc805767651b9d298f3c30b78ce4e6e9490e47eb5add0003828f15ce52128333acf5b7884eb4a1d965bc30cf181d248a46c156f2f8"/>
+        <VersionInfo resourceName="default" version="SHA-512:c2e39cab6c8ab4f63836f2f2c3ff307131cc39d51957dea58f1ec7f1777feedd55b66c401af5723db08c7b5c871e75fb4fe615f7e2e6f3c478254703a8148dc7"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

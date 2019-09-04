@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-IssueOpaqueAccessToken">
+    <DisplayName>OA-IssueOpaqueAccessToken</DisplayName>
+    <Properties/>
+    <Code>TokenRequestParams.code</Code>
+    <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
+    <GenerateResponse enabled="false"/>
+    <GrantType>TokenRequestParams.grant_type</GrantType>
+    <Operation>GenerateAccessToken</Operation>
+    <RedirectUri>TokenRequestParams.redirect_uri</RedirectUri>
+    <Scope>OIDCTokenResponse.scope</Scope>
+    <SupportedGrantTypes>
+        <GrantType>authorization_code</GrantType>
+    </SupportedGrantTypes>
+    <Attributes>
+        <Attribute name="OIDCAccessToken" ref="OIDCTokenResponse.access_token" display="false"/>
+        <Attribute name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token" display="false"/>
+        <Attribute name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId" display="false"/>
+    </Attributes>
+</OAuthV2>

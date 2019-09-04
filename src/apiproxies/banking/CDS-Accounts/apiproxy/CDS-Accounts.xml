@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="10" name="CDS-Accounts">
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1563516215003</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+    <DisplayName>CDS-Accounts</DisplayName>
+    <LastModifiedAt>1566977441689</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:c36a61df6b3d087e91911f5354bf1bc9f4646fbbc05f08d785136a82a5a86a965b026dd2cc9c0c71ff19147826f3caba57260433f00080b1cc3b3b12ebb0aa19</ManifestVersion>
+    <Policies>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-MockFullListOfAccounts</Policy>
+        <Policy>AM-Set-Pagination-Settings</Policy>
+        <Policy>AM-SetCustomerId</Policy>
+        <Policy>EV-GetAccountsFilterCriteria</Policy>
+        <Policy>EV-GetAllAcountsForCustomer</Policy>
+        <Policy>EV-getErrorDetail</Policy>
+        <Policy>EV-productDetailsForProductId</Policy>
+        <Policy>EV-productIdFromURL</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-PaginateResponse</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>JS-BuildProductDetailsResponse</Policy>
+        <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
+        <Policy>JS-RemoveProductDetails</Policy>
+        <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
+        <Policy>OA-VerifyTokenForListAccounts</Policy>
+        <Policy>RF-InvalidScope</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>RF-TokenNotVerified</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>openapi://association.json</Resource>
+        <Resource>jsc://buildAccountDetailsResponse.js</Resource>
+        <Resource>jsc://filterAccountsListBasedOnRequestFilters.js</Resource>
+        <Resource>jsc://removeAccountDetails.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfAccounts">
+    <DisplayName>AM-MockFullListOfAccounts</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>listOfAllAccountDetailsByCustomer</Name>
+        <Template>
+[{
+    "customer": "10203040",
+    "accounts": [{
+            "accountId": "10203040-Acc001",
+            "displayName": "Savings Account",
+            "maskedNumber": "************001",
+            "openStatus": "OPEN",
+            "isOwned": true,
+            "productCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+            "productName": "Savings Account Basic",
+            "bsb": "111000",
+            "accountNumber": "10203040001"
+        },
+        {
+            "accountId": "10203040-Acc002",
+            "displayName": "An old Savings Account",
+            "maskedNumber": "************002",
+            "openStatus": "CLOSED",
+            "isOwned": false,
+            "productCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+            "productName": "Savings Account Basic",
+            "bsb": "111000",
+            "accountNumber": "10203040002"
+        },
+        {
+            "accountId": "10203040-Acc003",
+            "displayName": "Basic Mortgage",
+            "maskedNumber": "************003",
+            "openStatus": "OPEN",
+            "isOwned": true,
+            "productCategory": "RESIDENTIAL_MORTGAGES",
+            "productName": "Mortgage Basic",
+            "bsb": "111000",
+            "accountNumber": "10203040001",
+            "specificAccountUType": "loan",
+            "loan": {
+                "originalStartDate": "2018-11-01",
+                "originalLoanAmount": "100000.00",
+                "originalLoanCurrency": "AUD",
+                "loanEndDate": "2048-11-01",
+                "nextInstalmentDate": "2019-03-01",
+                "minInstalmentAmount": "500.00",
+                "minInstalmentCurrency": "AUD",
+                "maxRedraw": "20000.00",
+                "maxRedrawCurrency": "AUD",
+                "minRedraw": "0.00",
+                "minRedrawCurrency": "AUD",
+                "offsetAccountEnabled": false,
+                "repaymentType": "INTEREST_ONLY",
+                "repaymentFrequency": "P1M"
+            },
+            "fees": [{
+                "name": "Annual Fees",
+                "feeType": "PERIODIC",
+                "additionalValue": "P1Y",
+                "amount": "200.00"
+            }],
+            "lendingRates": [{
+                "lendingRateType": "VARIABLE",
+                "rate": "0.0414",
+                "additionalValue": "P1Y"
+            }]
+        }
+    ]
+ }
+]
+        </Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

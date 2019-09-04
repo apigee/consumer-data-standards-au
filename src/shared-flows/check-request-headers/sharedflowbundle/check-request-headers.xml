@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="8" name="check-request-headers">
+<SharedFlowBundle revision="10" name="check-request-headers">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1546400695647</CreatedAt>
+    <CreatedAt>1566976268830</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1563510767008</LastModifiedAt>
+    <LastModifiedAt>1566976268830</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:7a25a2a78de46672a60eaa6417dff1c5a0c034d27be32710a82304c54de37f20e25271b25a93bec89fcf4bbab5d55190d59e8101b1e77c9e163711a8af2d3df9</ManifestVersion>
+    <ManifestVersion>SHA-512:8db555291864ffddefdf9da8de0a05d441f4c38a3b211934fb6e037825e940e09062ad23345587b41822610ab030551021aa9b2098285b0a62075a997ba0f346</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
+        <Policy>AM-SetIsCustomerPresentToFalse</Policy>
         <Policy>EV-Preserve-Request-Headers</Policy>
+        <Policy>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Policy>
         <Policy>RF-Invalid-Accept-Header</Policy>
         <Policy>RF-Invalid-Content-Type-Header</Policy>
         <Policy>RF-Invalid-Version</Policy>
+        <Policy>RF-Invalid-X-Fapi-Customer-IP-Address</Policy>
         <Policy>RF-Missing-Authdate-Header</Policy>
         <Policy>RF-Missing-Version-Header</Policy>
         <Policy>RF-Missing-cdsUserAgent-Header</Policy>
         <Policy>RF-Return-CORS-Headers</Policy>
     </Policies>
-    <Resources/>
+    <Resources>
+        <Resource>jsc://validateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Resource>
+    </Resources>
     <Spec></Spec>
     <subType>SharedFlow</subType>
     <SharedFlows>

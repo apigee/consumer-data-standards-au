@@ -1,0 +1,36 @@
+<html>
+<h1>API Bank Login</h1>
+<form id="loginForm" autocomplete="off" action="/interaction/<%= details.uuid %>/login" method="post">
+  <input type="hidden" name="uuid" id="uuid" value="<%= details.uuid %>"/>
+  <input type="hidden" name="acr" id="acr" value="<%= details.params.acr_values %>"/>
+  <table>
+	  <tr>
+		  <td>Enter your API Bank Customer Id<br/>10203040 will return data, but you can try with any</td>
+  <td>
+	  <input required type="text" name="login" id="login" placeholder="10203040" <% if (!details.params.login_hint) { %>autofocus="on"<% } else { %> value="<%= details.params.login_hint %>" <% } %>>
+  </td>
+      </tr>
+	  <tr>
+	  	<td>
+	  		<p/>
+	  	</td>
+	  </tr>
+	  <tr>
+		  <td>and the one-time password we've sent you...</td>
+		  <td>
+  <input required type="password" name="password" id="password" placeholder="Any password will do" <% if (details.params.login_hint) { %>autofocus="on"<% } %>>
+</td>
+</tr>
+<tr>
+	<td>
+		<p/>
+	</td>
+</tr>
+<tr>
+	<td>
+  <button type="submit" id="submit" class="login login-submit">Sign-in</button>
+</td>
+</tr>
+  </table>
+</form>
+</html>

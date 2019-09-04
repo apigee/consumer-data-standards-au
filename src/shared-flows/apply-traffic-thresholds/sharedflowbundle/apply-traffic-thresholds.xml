@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="3" name="apply-traffic-thresholds">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1564713794748</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Apply the traffic thresholds specified by CDS non functional requirements</Description>
+    <DisplayName>apply-traffic-thresholds</DisplayName>
+    <LastModifiedAt>1566970567080</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:7b9d2f11193350a28868c46427de94bcebe1b7b7c400d9f38fd724cd1eb6888e4d9f1917352a659d5ca89b1d173e34fc1bd1490a881d2facb52540200b05caf2</ManifestVersion>
+    <Policies>
+        <Policy>Q-RequestsPerSessionForUnattendedAndAuthTraffic</Policy>
+        <Policy>RF-QuotaExceededForSessionWithUnattendedTraffic</Policy>
+        <Policy>RF-TooManyRequests</Policy>
+        <Policy>SA-GlobalTrafficThreshold</Policy>
+        <Policy>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Policy>
+        <Policy>SA-ThresholdForSecureTrafficPerClientId</Policy>
+        <Policy>SA-ThresholdForUnattendedSecureTrafficPerSession</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

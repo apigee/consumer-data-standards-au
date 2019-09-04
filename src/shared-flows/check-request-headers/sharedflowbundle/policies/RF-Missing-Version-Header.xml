@@ -7,11 +7,11 @@
         <Set>
             <Headers/>
             <Payload contentType="application/json">{
-  “errors”: [
+  "errors": [
     {
-       “code”: “406”,
-       “title”: “Not Acceptable”,
-       “detail”: “Missing version header x-v. Only version 1 is supported”
+       "code": "406",
+       "title": "Not Acceptable",
+       "detail": "Missing version header x-v. Only version 1 is supported"
     }
   ]
 }</Payload>

@@ -10,24 +10,42 @@ This implementation is based on **v0.9.5** of the standards and currently suppor
 
 - Get Products
 - Get Product Detail
+- Get Accounts
+- Get Account Detail
+
+as well as the required security endpoints:
+- Authorisation
+- Token
+- Token Refresh
+- Token Revocation
+- UserInfo
+- Introspection
+- OpenID Provider Configuration
 
 Other APIs will be gradually added.
 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
-2. An apiproxy as a reference implementation that returns mock data from a fictional bank, and showcases how to include those reusable artefacts
+2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts
+3. An API Proxy (*oidc*) that implements a standalone Open ID Connect Identity Provider, and highlights one of the multiple patterns in which Apigee can interact with an Identity Provider
 
-The reference implementation can accelerate Open Banking implementation in two ways:
+The reference implementation can accelerate Open Banking implementation in multiple ways:
 - Quick delivery of a sandbox API environment, returning mock data.
 - Reusable artefacts (implemented as shared flows) can be included in real API implementations.
+- Leverage the implemented Apigee/Standalone OIDC Provider interaction to kickstart the interaction between Apigee and a real OIDC Provider.
 
 **This is not an officially supported Google product.**
 
 ## Setup
 
 ### Pre-requisites
-+ node.js 
-+ npm
+- node.js 
+- npm
+- jq
+	- For MacOS, `brew install jq`
+	- See [https://stedolan.github.io/jq/download/](https://stedolan.github.io/jq/download/) for other platforms
+- openssl 
+- pem-jwk: `npm install -g pem-jwk`
 
 ### Installation
 1. Install apigeetool
@@ -40,17 +58,29 @@ export APIGEE_ORG=<your-org-name>
 export APIGEE_ENV=<your-env-name>
 export APIGEE_USER=<your-user-name>
 export APIGEE_PASSWORD='<your-password>'   # Make sure to surround your password in single quotes, in case it includes special characters such as '$'
+export CDS_TEST_DEVELOPER_EMAIL=<your-email-address>
 ```
 3. Run the following script from the root folder of the cloned repo.
 ```
 ./setup/deployOpenBankingAU.sh
 ```
+This script deploys all the required artefacts and also creates a sample test app (registered to the developer provided by the *CDS_TEST_DEVELOPER_EMAIL* variable). 
+
+### Testing the Installation
+A Postman collection includes sample requests for the implemented APIs, and for obtaining an access token (including navigating through the mock login and consent pages)
 
 ## Shared Flows
 
-There are 4 shared flows that implement common functionality required by the Banking APIs.
+There are 5 shared flows that implement common functionality required by the Banking APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
 2. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc
 3. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request
 4. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
+5. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+
+There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints
+
+
+
+

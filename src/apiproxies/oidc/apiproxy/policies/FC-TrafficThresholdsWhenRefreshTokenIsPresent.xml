@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-TrafficThresholdsWhenRefreshTokenIsPresent">
+    <DisplayName>FC-TrafficThresholdsWhenRefreshTokenIsPresent</DisplayName>
+    <Parameters>
+        <Parameter name="isPublicEndpoint">false</Parameter>
+        <Parameter name="isAuthEndpoint">true</Parameter>
+        <Parameter name="isCustomerPresent">false</Parameter>
+        <Parameter name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
+        <Parameter name="clientId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.client_id"/>
+        <Parameter name="sessionId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.access_token"/>
+    </Parameters>
+    <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>
+</FlowCallout>

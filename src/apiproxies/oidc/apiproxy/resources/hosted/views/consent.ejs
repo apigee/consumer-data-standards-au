@@ -1,0 +1,91 @@
+<html>
+<h1>Consent</h1>
+<form id="consentForm" autocomplete="off" action="/interaction/<%= details.uuid %>/consent" method="post">
+  <input type="hidden" name="uuid" id="uuid" value="<%= details.uuid %>"/>
+  <input type="hidden" name="acr" id="acr" value="<%= details.params.acr_values %>"/>
+  <input type="hidden" name="account" id="account" value="<%= details.params.login %>"/>
+  <table>
+	<tr>Do you allow <b>Test Application</b> to access</tr>
+	<% if ( details.params.scope.includes("bank:accounts.basic:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Basic information of your accounts?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="bank:accounts.basic:read" id="bank:accounts.basic:read" value="bank:accounts.basic:read">
+		<td>
+	</tr>
+	<% } %>
+	<% if ( details.params.scope.includes("bank:accounts.detail:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Detailed information of your accounts?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="bank:accounts.detail:read" id="bank:accounts.detail:read" value="bank:accounts.detail:read">
+		<td>
+	</tr>
+	<% } %>
+	<% if ( details.params.scope.includes("bank:transactions:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Transaction data for your accounts?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="bank:transactions:read" id="bank:transactions:read" value="bank:transactions:read">
+		<td>
+	</tr>
+	<% } %>
+	<% if ( details.params.scope.includes("bank:payees:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Payee information you have stored with API Bank?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="bank:payees:read" id="bank:payees:read" value="bank:payees:read">
+		<td>
+	</tr>
+	<% } %>
+	<% if ( details.params.scope.includes("bank:regular_payments:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Access regular payments, including Direct Debits and Scheduled Payments?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="bank:regular_payments:read" id="bank:regular_payments:read" value="bank:regular_payments:read">
+		<td>
+	</tr>
+	<% } %>
+	<% if ( details.params.scope.includes("common:customer.basic:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Access personal information about you (Mainly your name)?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="common:customer.basic:read" id="common:customer.basic:read" value="common:customer.basic:read">
+		<td>
+	</tr>
+	<% } %>
+	<% if ( details.params.scope.includes("common:customer.detail:read") ) { %>
+	<tr>
+		<td>
+  		  <label>Access more detailed information about you (Name and contact details)?</label>
+		</td>
+		<td>
+  		  <input type="checkbox" name="common:customer.detail:read" id="common:customer.detail:read" value="common:customer.detail:read">
+		<td>
+	</tr>
+	<% } %>
+	<tr>
+		<td>
+			<p/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button type="submit" id="submit" class="login login-submit">Submit</button>
+		</td>
+	</tr>
+</table>
+</form>
+</html>
