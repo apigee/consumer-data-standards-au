@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ReplaceAccessTokenInRequestSentToOIDCProvider">
     <DisplayName>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <Set>
         <FormParams>
             <FormParam name="token">{oauthv2accesstoken.OAInfo-RetrieveAccessTokenDetails.accesstoken.OIDCAccessToken}</FormParam>
         </FormParams>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ExtractRefreshTokenFromRefreshTokenFormParam">
     <DisplayName>EV-ExtractRefreshTokenFromRefreshTokenFormParam</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FormParam name="refresh_token">
-        <Pattern>{theRefreshToken}</Pattern>
+        <Pattern ignoreCase="false">{theRefreshToken}</Pattern>
     </FormParam>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <Source clearPayload="false">request</Source>

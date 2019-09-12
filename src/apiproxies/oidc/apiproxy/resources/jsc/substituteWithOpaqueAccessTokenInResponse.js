@@ -18,6 +18,7 @@
 * @file
 * substituteWithOpaqueAccessTokenInResponse.js
 * Replace the OIDC Access and refresh tokens with the newly issued opaque AccessToken and Refresh Token
+* Also insert the refresh_token_expires_at claim, using the exp claim found in the OIDC issued Refresh Token
 **/
 
 var theGrantType = context.getVariable("TokenRequestParams.grant_type");
@@ -27,6 +28,7 @@ var thePayload =  JSON.parse(context.getVariable("response.content"));
 
 thePayload.access_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".access_token");
 thePayload.refresh_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token");
+thePayload.refresh_token_expirest_at = context.getVariable("jwt.JWT-DecodeOIDCRefreshToken.decoded.claim.exp");
 context.setVariable("response.content", JSON.stringify(thePayload));
 
 // Also remove the temporarily reinstated authorization header (required for OAuthV2 policy)

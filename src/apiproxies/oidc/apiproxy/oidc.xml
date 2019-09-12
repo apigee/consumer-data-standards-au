@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="20" name="oidc">
+<APIProxy revision="30" name="oidc">
     <Basepaths></Basepaths>
+    <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
@@ -8,10 +9,10 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>OIDC Provider - Mock OIDC Provider based on node-oidc-provider open source</Description>
     <DisplayName>oidc</DisplayName>
-    <HostedManifestVersion>SHA-512:0fbbd3b11577b5ef89d5ee2d3c8684cee95be3fd8e3a9583b62d13e8cec423c36f1b17109f5904dddd030c6c1edf11fea15020c818fd89b532678648eb67fef8:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1567146128107</LastModifiedAt>
+    <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
+    <LastModifiedAt>1568264565279</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:412c551fdc57c630f2b967ca75e0746d14b3b5a6370a4858f8dee414e39acaccd6067c851941610dd64c743dca96f4cdacf235a7ee5c795195794b194f4021dc</ManifestVersion>
+    <ManifestVersion>SHA-512:200022855fff4ff437b233864068b145a7c7390dffc9a673f93853c6aebdb8603fc583e2cfed044f7579a9a186d56b592fd869807afcb2e929d12fbedea3ea79</ManifestVersion>
     <Policies>
         <Policy>AM-BuildIntrospectionResponseActiveToken</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
@@ -35,6 +36,7 @@
         <Policy>JS-GetOIDCTokenExpiryTime</Policy>
         <Policy>JS-ReplaceHTPrivateIPAddrWithHostname</Policy>
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
+        <Policy>JWT-DecodeOIDCRefreshToken</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>
         <Policy>OA-RevokeAccessToken</Policy>
@@ -42,6 +44,7 @@
         <Policy>OAInfo-RetrieveAccessTokenDetails</Policy>
         <Policy>OAInfo-RetrieveOIDCAuthCode</Policy>
         <Policy>OAInfo-RetrieveRefreshTokenDetails</Policy>
+        <Policy>OAInfoSet-ForceUpdateOfAttributes</Policy>
         <Policy>RF-InvalidAccessToken</Policy>
         <Policy>RF-InvalidAuthCode</Policy>
         <Policy>RF-InvalidRefreshToken</Policy>

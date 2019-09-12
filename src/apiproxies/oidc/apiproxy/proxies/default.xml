@@ -3,39 +3,34 @@
     <Description/>
     <FaultRules>
         <FaultRule name="Invalid Refresh Token">
+            <Condition>(fault.name = "invalid_refresh_token")</Condition>
             <Step>
+                <FaultRules/>
                 <Name>RF-InvalidRefreshToken</Name>
             </Step>
-            <Condition>(fault.name = "invalid_refresh_token")</Condition>
         </FaultRule>
         <FaultRule name="Invalid Refresh Token in Introspection">
-            <!-- Token introspection will always return a 200 response, even for invalid refresh tokens, so we must handle this case  -->
+            <Condition>(fault.name = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/token/introspection")</Condition>
             <Step>
+                <FaultRules/>
                 <Name>AM-BuildIntrospectionResponseInactiveToken</Name>
             </Step>
-            <Condition>(fault.name = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/token/introspection")</Condition>
         </FaultRule>
         <FaultRule name="Invalid Auth Code">
+            <Condition>(fault.name = "invalid_request-authorization_code_invalid")</Condition>
             <Step>
+                <FaultRules/>
                 <Name>RF-InvalidAuthCode</Name>
             </Step>
-            <Condition>(fault.name = "invalid_request-authorization_code_invalid")</Condition>
         </FaultRule>
     </FaultRules>
-    <PreFlow>
-        <Request>
-            <Step>
-                <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
-            </Step>
-        </Request>
-        <Response/>
-    </PreFlow>
     <Flows>
         <Flow name="Get OIDC Configuration">
             <Description/>
             <Request/>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>JS-ReplaceHTPrivateIPAddrWithHostname</Name>
                 </Step>
             </Response>
@@ -46,8 +41,9 @@
             <Request/>
             <Response>
                 <Step>
-                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
                     <Condition>response.status.code = 200</Condition>
+                    <FaultRules/>
+                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/authorise") and (request.verb = "GET")</Condition>
@@ -56,35 +52,51 @@
             <Description>Refresh Token</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-StoreTokenRequestDetails</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-getInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
+                    <Name>JWT-DecodeOIDCRefreshToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-ReinstateAuthHeaderInResponse</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-RefreshOpaqueAccessToken</Name>
                 </Step>
                 <Step>
+                    <Name>OAInfoSet-ForceUpdateOfAttributes</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
                     <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
                 </Step>
             </Response>
@@ -94,29 +106,40 @@
             <Description>Acquire Token</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>OAInfo-RetrieveOIDCAuthCode</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-StoreTokenRequestDetails</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-getInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
+                    <Name>JWT-DecodeOIDCRefreshToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-ReinstateAuthHeaderInResponse</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-IssueOpaqueAccessToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
                 </Step>
             </Response>
@@ -126,35 +149,42 @@
             <Description>Get Token Info</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-ExtractRefreshTokenFromTokenFormParam</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
+                    <FaultRules/>
                     <Name>OA-RevokeRefreshToken</Name>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                 </Step>
                 <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
+                    <FaultRules/>
                     <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                 </Step>
-                <!-- If we could not retrieve info for token as a refresh token, let's assume it's an access token -->
                 <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
                     <Name>AM-SetRefreshTokenAsAccessToken</Name>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                 </Step>
                 <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                 </Step>
                 <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
                     <Name>OA-RevokeAccessToken</Name>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                 </Step>
                 <Step>
-                    <Name>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Name>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
+                    <Name>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
             <Response/>
@@ -164,33 +194,41 @@
             <Description>Get Token Info</Description>
             <Request>
                 <Step>
-                    <Name>RF-UnsupportedTokenType</Name>
                     <Condition>(request.formparam.token_type_hint !="") and (request.formparam.token_type_hint !="refresh_token")</Condition>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedTokenType</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-ExtractRefreshTokenFromTokenFormParam</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-IsTokenActive</Name>
                 </Step>
                 <Step>
-                    <Name>EV-TokenExpiryTime</Name>
                     <Condition>(isTokenActive = true)</Condition>
+                    <FaultRules/>
+                    <Name>EV-TokenExpiryTime</Name>
                 </Step>
                 <Step>
-                    <Name>AM-BuildIntrospectionResponseActiveToken</Name>
                     <Condition>(isTokenActive = true)</Condition>
+                    <FaultRules/>
+                    <Name>AM-BuildIntrospectionResponseActiveToken</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token/introspection") and (request.verb = "POST")</Condition>
@@ -199,16 +237,20 @@
             <Description>Get Userinfo</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-ExtractAccessTokenFromAuthHdr</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>RF-InvalidAccessToken</Name>
                     <Condition>(oauthV2.OAInfo-RetrieveAccessTokenDetails.failed = "true")</Condition>
+                    <FaultRules/>
+                    <Name>RF-InvalidAccessToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
@@ -221,7 +263,6 @@
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/certs") and (request.verb = "GET")</Condition>
         </Flow>
-        <!-- Interactions to support mock login and consent -->
         <Flow name="LoginPage">
             <Description> Mock login Page</Description>
             <Request/>
@@ -251,6 +292,7 @@
             <Request/>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
                 </Step>
             </Response>
@@ -260,12 +302,22 @@
             <Description>Not Found</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>RF-NotFound</Name>
                 </Step>
             </Request>
             <Response/>
         </Flow>
     </Flows>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <FaultRules/>
+                <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
     <HTTPProxyConnection>
         <BasePath>/</BasePath>
         <Properties/>

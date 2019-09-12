@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OAuthV2 async="false" continueOnError="true" enabled="true" name="OA-RevokeAccessToken">
     <DisplayName>OA-RevokeAccessToken</DisplayName>
-    <Tokens>
-        <Token type="accesstoken" cascade="true">request.formparam.token</Token>
-    </Tokens>
+    <FaultRules/>
+    <Properties/>
+    <Attributes/>
+    <ExternalAuthorization>false</ExternalAuthorization>
     <Operation>InvalidateToken</Operation>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <SupportedGrantTypes/>
+    <Tokens>
+        <Token cascade="true" type="accesstoken">request.formparam.token</Token>
+    </Tokens>
 </OAuthV2>
