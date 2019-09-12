@@ -5,7 +5,8 @@ deb-temp/
 deb-temp/*
 node_modules/
 .vscode/settings.json
-test/postman/*environment.json
 setup/certs/
 setup/certs/*
-
+src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/
+src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/*
+test/postman/*environment.json

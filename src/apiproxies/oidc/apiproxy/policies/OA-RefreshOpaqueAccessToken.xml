@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-RefreshOpaqueAccessToken">
     <DisplayName>OA-RefreshOpaqueAccessToken</DisplayName>
+    <FaultRules/>
     <Properties/>
+    <Attributes>
+        <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
+        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
+        <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
+    </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
-    <GenerateResponse enabled="false"/>
+    <ExternalAuthorization>false</ExternalAuthorization>
     <GrantType>TokenRequestParams.grant_type</GrantType>
     <Operation>RefreshAccessToken</Operation>
     <RefreshToken>theRefreshToken</RefreshToken>
+    <RefreshTokenExpiresIn ref="refreshTokenExpiresInMillis">3600000</RefreshTokenExpiresIn>
+    <GenerateResponse enabled="false">
+        <Format>FORM_PARAM</Format>
+    </GenerateResponse>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
     <Scope>OIDCTokenResponse.scope</Scope>
-    <Attributes>
-        <Attribute name="OIDCAccessCode" ref="OIDCTokenResponse.access_token" display="false"/>
-        <Attribute name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token" display="false"/>
-        <Attribute name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId" display="false"/>
-    </Attributes>
+    <SupportedGrantTypes/>
+    <Tokens/>
 </OAuthV2>

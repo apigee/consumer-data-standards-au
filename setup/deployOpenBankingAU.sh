@@ -16,6 +16,30 @@
 # limitations under the License.
 #
 
+
+# Deploy Shared flows
+cd src/shared-flows
+for sf in $(ls .) 
+do 
+    echo Deploying $sf Shared Flow 
+    cd $sf
+    apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
+    cd ..
+ done
+
+ # Deploy banking apiproxies
+cd ../apiproxies/banking
+for ap in $(ls .) 
+do 
+    echo Deploying $ap Apiproxy
+    cd $ap
+    apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
+    cd ..
+ done
+
+ # Revert to original directory
+ cd ../../..
+
 # Create Products required for the different APIs
 echo Creating API Product: "Products"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
@@ -88,31 +112,11 @@ rm ./tmpJQFilter
 # Revert to original directory
  cd ../..
 
-# Deploy Shared flows
-cd src/shared-flows
-for sf in $(ls .) 
-do 
-    echo Deploying $sf Shared Flow 
-    cd $sf
-    apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
-    cd ..
- done
-
- # Deploy apiproxies
-cd ../apiproxies/banking
-for ap in $(ls .) 
-do 
-    echo Deploying $ap Apiproxy
-    cd $ap
-    apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
-    cd ..
- done
 
 # Deploy oidc proxy
 cd ../oidc
 echo Deploying oidc Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
-
 
 # Revert to original directory
  cd ../../..

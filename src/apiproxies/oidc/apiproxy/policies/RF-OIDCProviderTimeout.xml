@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-OIDCProviderTimeout">
     <DisplayName>RF-OIDCProviderTimeout</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FaultResponse>
         <Set>
@@ -18,4 +19,5 @@
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
 </RaiseFault>

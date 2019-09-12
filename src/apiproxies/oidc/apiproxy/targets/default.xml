@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TargetEndpoint name="default">
-    <Description/>
+    <Description></Description>
     <FaultRules>
         <FaultRule name="OIDCProviderTimeout">
+            <Condition>(message.status.code = 504)</Condition>
             <Step>
+                <FaultRules/>
                 <Name>RF-OIDCProviderTimeout</Name>
             </Step>
-            <Condition>(message.status.code = 504)</Condition>
         </FaultRule>
         <FaultRule name="OIDCProviderError">
+            <Condition>(response.status.code != 200) and (response.status.code != 302)</Condition>
             <Step>
+                <FaultRules/>
                 <Name>RF-OIDCProviderError</Name>
             </Step>
-            <Condition>(response.status.code != 200) and (response.status.code != 302)</Condition>
         </FaultRule>
     </FaultRules>
-    <Flows>
-    </Flows>
+    <Flows/>
     <HostedTarget>
         <Properties/>
     </HostedTarget>

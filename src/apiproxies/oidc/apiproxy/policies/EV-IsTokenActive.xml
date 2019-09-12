@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-IsTokenActive">
     <DisplayName>EV-IsTokenActive</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     <JSONPayload>
         <Variable name="isTokenActive">
             <JSONPath>$.active</JSONPath>

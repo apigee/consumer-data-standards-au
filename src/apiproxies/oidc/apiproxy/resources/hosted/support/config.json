@@ -7,9 +7,6 @@
 		"clientCredentials": {
 			"enabled": true
 		},
-		"conformIdTokenClaims": {
-			"enabled": false
-		},
 		"discovery": true,
 		"introspection": {
 			"enabled": true
@@ -62,10 +59,13 @@
 		"refresh_token_expires_at": null,
 		"sharing_expires_at": null
 	},
+	"conformIdTokenClaims": {
+			"enabled": false
+	},
 	"formats": {
 		"AccessToken": "jwt",
 		"ClientCredentials": "opaque",
-		"RefreshToken": "opaque",
+		"RefreshToken": "jwt",
 		"default": "jwt"
 	},
 	"jwks": {

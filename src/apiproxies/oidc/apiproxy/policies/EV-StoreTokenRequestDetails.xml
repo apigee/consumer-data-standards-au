@@ -2,18 +2,19 @@
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-StoreTokenRequestDetails">
     <!-- This policy is also reused in a refresh token request, even though in that case not all  the information is required, just the authorization header and grant_type -->
     <DisplayName>EV-StoreTokenRequestDetails</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FormParam name="grant_type">
-        <Pattern>{grant_type}</Pattern>
+        <Pattern ignoreCase="false">{grant_type}</Pattern>
     </FormParam>
     <FormParam name="code">
-        <Pattern>{code}</Pattern>
+        <Pattern ignoreCase="false">{code}</Pattern>
     </FormParam>
     <FormParam name="redirect_uri">
-        <Pattern>{redirect_uri}</Pattern>
+        <Pattern ignoreCase="false">{redirect_uri}</Pattern>
     </FormParam>
     <Header name="Authorization">
-        <Pattern>{authorization_header}</Pattern>
+        <Pattern ignoreCase="false">{authorization_header}</Pattern>
     </Header>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <Source clearPayload="false">request</Source>
