@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="Invalid Scope">
+            <Condition>(fault.name = "InsufficientScope")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>RF-InvalidScope</Name>
+            </Step>
+            <Step>
+                <Name>AM-Add-CORS-Headers</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Invalid Access Token">
+            <Condition>(fault.name Matches "*access_token*") or (fault.name = "apiresource_doesnot_exist") or (fault.name = "InvalidAccessToken") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>EV-getErrorDetail</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>RF-TokenNotVerified</Name>
+            </Step>
+            <Step>
+                <Name>AM-Add-CORS-Headers</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
     <DefaultFaultRule name="DefaultFaultRule">
         <Step>
             <Condition>message.status.code != "200"</Condition>
             <FaultRules/>
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
-        <AlwaysEnforce>false</AlwaysEnforce>
+        <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
-    <Description/>
-    <FaultRules>
-        <FaultRule name="Invalid Scope">
-            <Step>
-                <Name>RF-InvalidScope</Name>
-            </Step>
-            <Condition>(fault.name = "InsufficientScope")</Condition>
-        </FaultRule>
-        <FaultRule name="Invalid Access Token">
-            <Step>
-                <Name>EV-getErrorDetail</Name>
-            </Step>
-            <Step>
-                <Name>RF-TokenNotVerified</Name>
-            </Step>
-            <Condition>(fault.name Matches "*access_token*") or (fault.name = "apiresource_doesnot_exist") or (fault.name = "InvalidAccessToken") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
-        </FaultRule>
-    </FaultRules>
     <Flows>
         <Flow name="listAccounts">
             <Description>Get Accounts</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-VerifyTokenForListAccounts</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-SetCustomerId</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>FC-TrafficThresholds</Name>
                 </Step>
                 <Step>
@@ -52,6 +64,7 @@
                     <Name>AM-Set-Pagination-Settings</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-GetAllAcountsForCustomer</Name>
                 </Step>
             </Request>
@@ -75,12 +88,15 @@
             <Description>Get Accounts Detail</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-VerifyTokenForGetAccountDetails</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-SetCustomerId</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>FC-TrafficThresholds</Name>
                 </Step>
                 <Step>

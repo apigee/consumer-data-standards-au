@@ -5,8 +5,7 @@
     <Properties/>
     <AssignVariable>
         <Name>listOfAllAccountDetailsByCustomer</Name>
-        <Template>
-[{
+        <Template>[{
     "customer": "10203040",
     "accounts": [{
             "accountId": "10203040-Acc001",
@@ -71,9 +70,8 @@
         }
     ]
  }
-]
-        </Template>
+]</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

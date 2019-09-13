@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidScope">
     <DisplayName>RF-InvalidScope</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FaultResponse>
         <Set>
-            <Headers/>
+            <Headers>
+                <Header name="Access-Control-Allow-Origin">*</Header>
+                <Header name="Access-Control-Allow-Headers">origin, x-requested-with, accept, content-type, Authorization,  x-v, x-min-v, x-fapi-customer-last-logged-time, x-fapi-customer-ip-address, x-fapi-interaction-id, x-fapi-correlation-id, x-fapi-auth-date</Header>
+                <Header name="Access-Control-Max-Age">3628800</Header>
+                <Header name="Access-Control-Allow-Methods">GET, PUT, POST, DELETE, OPTIONS</Header>
+            </Headers>
             <Payload contentType="application/json">{ "errors": [
     {
       "code": "403",
