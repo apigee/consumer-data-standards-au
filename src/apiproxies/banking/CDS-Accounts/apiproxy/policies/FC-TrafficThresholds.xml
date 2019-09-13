@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <FlowCallout async="false" continueOnError="false" enabled="true" name="FC-TrafficThresholds">
     <DisplayName>FC-TrafficThresholds</DisplayName>
-    <Parameters>
+    <FaultRules/>
+    <Properties/>
+    <Parameters ignoreUnresolvedVariables="false">
         <Parameter name="isPublicEndpoint">false</Parameter>
         <Parameter name="isAuthEndpoint">false</Parameter>
-        <Parameter name="isCustomerPresent" ref="isCustomerPresent"/>
-        <Parameter name="customerId" ref="customerId"/>
-        <Parameter name="clientId" ref="client_id"/>
-        <Parameter name="sessionId" ref="access_token"/>
+        <Parameter name="isCustomerPresent" ref="isCustomerPresent"></Parameter>
+        <Parameter name="customerId" ref="customerId"></Parameter>
+        <Parameter name="clientId" ref="client_id"></Parameter>
+        <Parameter name="sessionId" ref="access_token"></Parameter>
     </Parameters>
-    <Properties/>
     <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>
 </FlowCallout>
