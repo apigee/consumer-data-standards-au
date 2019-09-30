@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="30" name="oidc">
+<APIProxy revision="33" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1566213116257</CreatedAt>
+    <CreatedAt>1569806695836</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
-    <Description>OIDC Provider - Mock OIDC Provider based on node-oidc-provider open source</Description>
+    <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1568264565279</LastModifiedAt>
+    <LastModifiedAt>1569806695836</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:200022855fff4ff437b233864068b145a7c7390dffc9a673f93853c6aebdb8603fc583e2cfed044f7579a9a186d56b592fd869807afcb2e929d12fbedea3ea79</ManifestVersion>
+    <ManifestVersion>SHA-512:8d9a81387bb01bb832d7869d848d2b078b4c5d0664fcdd9a348fe09487cff89c1e8d608585276da236c575d6dab5fd7b28922ceda068a77f6c14b18892e53642</ManifestVersion>
     <Policies>
-        <Policy>AM-BuildIntrospectionResponseActiveToken</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
         <Policy>AM-ReinstateAuthHeaderInResponse</Policy>
         <Policy>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Policy>
@@ -26,15 +25,13 @@
         <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
         <Policy>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Policy>
         <Policy>EV-ExtractRefreshTokenFromTokenFormParam</Policy>
-        <Policy>EV-IsTokenActive</Policy>
         <Policy>EV-StoreTokenRequestDetails</Policy>
-        <Policy>EV-TokenExpiryTime</Policy>
         <Policy>EV-getInfoReqdForIssuingAccessToken</Policy>
         <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
         <Policy>FC-ReplaceAuthCodeWithOpaqueAuthCode</Policy>
         <Policy>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Policy>
         <Policy>JS-GetOIDCTokenExpiryTime</Policy>
-        <Policy>JS-ReplaceHTPrivateIPAddrWithHostname</Policy>
+        <Policy>JS-RemoveOIDCProvideBasePath</Policy>
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
         <Policy>JWT-DecodeOIDCRefreshToken</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
@@ -49,8 +46,6 @@
         <Policy>RF-InvalidAuthCode</Policy>
         <Policy>RF-InvalidRefreshToken</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>RF-OIDCProviderError</Policy>
-        <Policy>RF-OIDCProviderTimeout</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>
     </Policies>
     <ProxyEndpoints>
@@ -58,19 +53,8 @@
     </ProxyEndpoints>
     <Resources>
         <Resource>jsc://getOIDCTokenExpiryTime.js</Resource>
-        <Resource>jsc://replaceHTPrivateIPAddrWithHostname.js</Resource>
+        <Resource>jsc://removeOIDCProvideBasePath.js</Resource>
         <Resource>jsc://substituteWithOpaqueAccessTokenInResponse.js</Resource>
-        <Resource>hosted://README.md</Resource>
-        <Resource>hosted://app.js</Resource>
-        <Resource>hosted://app.yaml</Resource>
-        <Resource>hosted://package.json</Resource>
-        <Resource>hosted://support/account.js</Resource>
-        <Resource>hosted://support/clients.json</Resource>
-        <Resource>hosted://support/config.json</Resource>
-        <Resource>hosted://support/routes.js</Resource>
-        <Resource>hosted://views/consent.ejs</Resource>
-        <Resource>hosted://views/login.ejs</Resource>
-        <Resource>hosted://views/ping.ejs</Resource>
     </Resources>
     <Spec></Spec>
     <TargetServers/>

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ErrorMessageInLocationHeader">
     <DisplayName>AM-ErrorMessageInLocationHeader</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <AssignVariable>
         <Name>error</Name>
-        <Template>{replaceAll(replaceAll(response.header.Location,"((.)+error\=)",""),"",""}</Template>
+        <Template>{replaceAll(replaceAll(response.header.Location,'((.)+error\=)',''),'',''}</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>error_description</Name>
-        <Template>{replaceAll(replaceAll(response.header.Location,"((.)+error_description\=)",""),"",""}</Template>
+        <Template>{replaceAll(replaceAll(response.header.Location,'((.)+error_description\=)',''),'',''}</Template>
     </AssignVariable>
-    <AssignTo createNew="false" transport="http" type="response"/>
-    <VariablePrefix>errorInfo</VariablePrefix>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo type="response" transport="http" createNew="false"/>
 </AssignMessage>

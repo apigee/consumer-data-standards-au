@@ -31,7 +31,7 @@
             <Response>
                 <Step>
                     <FaultRules/>
-                    <Name>JS-ReplaceHTPrivateIPAddrWithHostname</Name>
+                    <Name>JS-RemoveOIDCProvideBasePath</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") and (request.verb = "GET")</Condition>
@@ -215,22 +215,7 @@
                     <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
-            <Response>
-                <Step>
-                    <FaultRules/>
-                    <Name>EV-IsTokenActive</Name>
-                </Step>
-                <Step>
-                    <Condition>(isTokenActive = true)</Condition>
-                    <FaultRules/>
-                    <Name>EV-TokenExpiryTime</Name>
-                </Step>
-                <Step>
-                    <Condition>(isTokenActive = true)</Condition>
-                    <FaultRules/>
-                    <Name>AM-BuildIntrospectionResponseActiveToken</Name>
-                </Step>
-            </Response>
+            <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/token/introspection") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Userinfo">
