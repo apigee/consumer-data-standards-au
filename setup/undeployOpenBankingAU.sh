@@ -50,6 +50,11 @@ cd ../oidc
 echo Undeploying oidc Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
 
+# Undeploy oidc-mock-provider proxy
+cd ../oidc-mock-provider
+echo Undeploying oidc-mock-provider Apiproxy
+apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
+
 # Undeploy Shared flows
 cd ../../shared-flows
 for sf in $(ls .) 

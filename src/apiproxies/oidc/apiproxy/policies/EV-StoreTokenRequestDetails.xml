@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-StoreTokenRequestDetails">
-    <!-- This policy is also reused in a refresh token request, even though in that case not all  the information is required, just the authorization header and grant_type -->
     <DisplayName>EV-StoreTokenRequestDetails</DisplayName>
     <FaultRules/>
     <Properties/>

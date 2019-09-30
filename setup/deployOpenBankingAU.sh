@@ -103,15 +103,19 @@ echo $APP_JWK > ./CDSTestApp.jwk
 # so that it is recognised by the OIDC provider as a client
 echo "Creating new entry in OIDC Provider configuratation for CDSTestApp"
 APP_CLIENT_ENTRY=$(echo '{ "client_id": "'$APP_KEY'", "client_secret": "'$APP_SECRET'", "redirect_uris": ["https://httpbin.org/post"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"],"jwks": {"keys": ['$APP_JWK']}}')
-OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/oidc/apiproxy/resources/hosted/support/clients.json)
+OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
 # Write the JQ Filter that we're going to use to a file
 echo '. + ['$APP_CLIENT_ENTRY']' > ./tmpJQFilter
-echo $OIDC_CLIENT_CONFIG | jq -f ./tmpJQFilter > ../../src/apiproxies/oidc/apiproxy/resources/hosted/support/clients.json
+echo $OIDC_CLIENT_CONFIG | jq -f ./tmpJQFilter > ../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
 rm ./tmpJQFilter
 
 # Revert to original directory
  cd ../..
 
+# Deploy oidc proxy
+cd src/apiproxies/oidc-mock-provider
+echo Deploying oidc-mock-provider Apiproxy
+apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
 
 # Deploy oidc proxy
 cd ../oidc

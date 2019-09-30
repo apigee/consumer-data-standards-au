@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,26 +16,18 @@
 
 /**
 * @file
-* replaceHTPrivateIPAddrWithHostname.js
-* The OIDC provider reports endpoints using its private IP Address
-* Replace them with the proxy hostname (which is reported as "issuer"
-* in the OIDC provider anyway)
+* removeOIDCProvideBasePath.js
+* The OIDC provider reports endpoints using its proxy base path
+* Remove the base path
 **/
 
 var payload = JSON.parse(context.getVariable("response.content"))
-var issuerHostname= payload.issuer;
-
-// We also need to remove registration endpoint. Even though it is disabled
-// the OIDC provider still reports it
-delete payload["registration_endpoint"];
-
-var privateIPAddr = payload.authorization_endpoint.substring(0,payload.authorization_endpoint.indexOf("/authorise"));
 
 Object.keys(payload).forEach(function (key) {
     if ((key == "jwks_uri") || key.endsWith("endpoint")) {
         // The attributes that need to be changed are jwks_uri and any whose name
         // finishes in endpoint
-        payload[key] = payload[key].replace(privateIPAddr, issuerHostname);
+        payload[key] = payload[key].replace("/mock-oidc", "");
     }
 });
 

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ExtractOIDCAuthCodeFromLocationHeader">
-    <!-- When the response mode is fragment or query the OIDC provider
-         will send a redirect and include in the Location header the auth code
-         as the code parameter in the URI -->
     <DisplayName>AM-ExtractOIDCAuthCodeFromLocationHeader</DisplayName>
+    <FaultRules/>
     <Properties/>
     <AssignVariable>
         <Name>OIDCAuthCode</Name>
-        <Template>{replaceAll(replaceAll(response.header.Location,"((.)+code\=)",""),"",""}</Template>
+        <Template>{replaceAll(replaceAll(response.header.Location,'((.)+code\=)',''),'',''}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="response"/>
+    <AssignTo type="response" transport="http" createNew="false"/>
 </AssignMessage>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ReinstateAuthHeaderInResponse">
-    <!-- An OAuthv2 policy for generating or refreshing an access token requires basic authentication -->
     <DisplayName>AM-ReinstateAuthHeaderInResponse</DisplayName>
     <FaultRules/>
     <Properties/>
