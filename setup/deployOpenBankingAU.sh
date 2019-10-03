@@ -67,11 +67,11 @@ APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE
 APP_KEY=$(echo $APP_CREDENTIALS | jq -r .consumerKey)
 APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
 
+
 # Update app attributes
 curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$CDS_TEST_DEVELOPER_EMAIL/apps/CDSTestApp \
-  -u $APIGEE_ORG:$APIGEE_PASSWORD \
+  -u $APIGEE_USER:$APIGEE_PASSWORD \
   -H 'Accept: */*' \
-  -H 'Authorization: Basic ZGVib3JhZWxraW5AZ29vZ2xlLmNvbTpDcmVzdCQyMiE=' \
   -H 'Content-Type: application/json' \
   -d '{
   "attributes": [
