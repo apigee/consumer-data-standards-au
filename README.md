@@ -75,9 +75,9 @@ A Postman collection includes sample requests for the implemented APIs, and for 
 There are 6 shared flows that implement common functionality required by the Banking APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
-2. *check-cds-subject-header*: Checks the x-cds-subject header with the value stored with an access token for authenticated calls. Used by the *check-request-headers*, but can also be used independently
-3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc
-4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request
+2. *check-cds-subject-header*: Checks the x-cds-subject header with the value associated with the access token issued for authenticated calls. Used by the *check-request-headers* shared flow, but can also be used independently.
+3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
+4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
 5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
 6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
 
