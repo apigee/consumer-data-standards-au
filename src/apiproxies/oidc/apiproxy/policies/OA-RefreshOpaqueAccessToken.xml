@@ -7,6 +7,7 @@
         <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
+        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>

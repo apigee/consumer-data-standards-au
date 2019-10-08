@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TargetEndpoint name="default">
-    <Description/>
-    <FaultRules>
-    </FaultRules>
+    <Description></Description>
+    <FaultRules/>
     <Flows/>
     <LocalTargetConnection>
         <Path>/mock-oidc</Path>
+        <Properties/>
     </LocalTargetConnection>
 </TargetEndpoint>

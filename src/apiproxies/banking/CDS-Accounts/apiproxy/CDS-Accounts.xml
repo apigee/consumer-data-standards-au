@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="16" name="CDS-Accounts">
+<APIProxy revision="19" name="CDS-Accounts">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1563516215003</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1568350387882</LastModifiedAt>
+    <LastModifiedAt>1570515761572</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:4468cc11708318bc79cc7fbe0da64e73037755696934b5e69ff9dadd5da8a92d29be357fa3fef7a35af0764c2a387da9112396fe47fec08b74496ef5ba80f83d</ManifestVersion>
+    <ManifestVersion>SHA-512:7a0346538097a271c7b42509488297f48888b44fc2a4809b1f45a3a61293f0c0b51e6a8c49c5717141f79bcca6c279e164b4633f55b187f21a894bf2fbc1a112</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-MockFullListOfAccounts</Policy>

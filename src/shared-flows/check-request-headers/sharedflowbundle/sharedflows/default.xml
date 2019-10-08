@@ -31,26 +31,34 @@
         <Name>RF-Invalid-Content-Type-Header</Name>
     </Step>
     <Step>
-        <!-- x-fapi-auth-date header should be present in all authenticated requests. i.e: all requests except for Get Products and Get Product Details -->
         <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (request.header.x-fapi-auth-date = null)</Condition>
+        <FaultRules/>
         <Name>RF-Missing-Authdate-Header</Name>
     </Step>
     <Step>
-        <!-- x-cds-User-Agent header should be present in all authenticated and attended requests. i.e: all requests, except for Get Products and Get Product Details, where x-fapi-customer-ip-addressis also include -->
+        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products"))</Condition>
+        <FaultRules/>
+        <Name>FC-checkCDSSubjectHeader</Name>
+    </Step>
+    <Step>
         <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (request.header.x-fapi-customer-ip-address != null) and (request.header.x-cds-User-Agent = null)</Condition>
+        <FaultRules/>
         <Name>RF-Missing-cdsUserAgent-Header</Name>
     </Step>
     <Step>
-        <Name>AM-SetIsCustomerPresentToFalse</Name>
         <Condition>(request.header.x-fapi-customer-ip-address = null) or (request.header.x-fapi-customer-ip-address = "")</Condition>
+        <FaultRules/>
+        <Name>AM-SetIsCustomerPresentToFalse</Name>
     </Step>
     <Step>
-        <Name>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Name>
         <Condition>(request.header.x-fapi-customer-ip-address != null) and (request.header.x-fapi-customer-ip-address != "")</Condition>
+        <FaultRules/>
+        <Name>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Name>
     </Step>
     <Step>
-        <Name>RF-Invalid-X-Fapi-Customer-IP-Address</Name>
         <Condition>(request.header.x-fapi-customer-ip-address != null) and (request.header.x-fapi-customer-ip-address != "") and (isCustomerPresent != "true")</Condition>
+        <FaultRules/>
+        <Name>RF-Invalid-X-Fapi-Customer-IP-Address</Name>
     </Step>
     <Step>
         <FaultRules/>

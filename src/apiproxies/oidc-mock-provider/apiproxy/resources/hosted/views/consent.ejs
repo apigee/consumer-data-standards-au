@@ -9,7 +9,7 @@
 	<% if ( details.params.scope.includes("bank:accounts.basic:read") ) { %>
 	<tr>
 		<td>
-  		  <label>Basic information of your accounts?</label>
+  		  <label>Basic information of your accounts? (Account name and type)</label>
 		</td>
 		<td>
   		  <input type="checkbox" name="bank:accounts.basic:read" id="bank:accounts.basic:read" value="bank:accounts.basic:read">
@@ -19,7 +19,7 @@
 	<% if ( details.params.scope.includes("bank:accounts.detail:read") ) { %>
 	<tr>
 		<td>
-  		  <label>Detailed information of your accounts?</label>
+  		  <label>Detailed information of your accounts? (Account balance and details)</label>
 		</td>
 		<td>
   		  <input type="checkbox" name="bank:accounts.detail:read" id="bank:accounts.detail:read" value="bank:accounts.detail:read">
@@ -29,7 +29,7 @@
 	<% if ( details.params.scope.includes("bank:transactions:read") ) { %>
 	<tr>
 		<td>
-  		  <label>Transaction data for your accounts?</label>
+  		  <label>Transaction data for your accounts? (Transaction details)</label>
 		</td>
 		<td>
   		  <input type="checkbox" name="bank:transactions:read" id="bank:transactions:read" value="bank:transactions:read">
@@ -39,7 +39,7 @@
 	<% if ( details.params.scope.includes("bank:payees:read") ) { %>
 	<tr>
 		<td>
-  		  <label>Payee information you have stored with API Bank?</label>
+  		  <label>Payee information you have stored with API Bank? (Saved payees)</label>
 		</td>
 		<td>
   		  <input type="checkbox" name="bank:payees:read" id="bank:payees:read" value="bank:payees:read">
@@ -59,7 +59,7 @@
 	<% if ( details.params.scope.includes("common:customer.basic:read") ) { %>
 	<tr>
 		<td>
-  		  <label>Access personal information about you (Mainly your name)?</label>
+  		  <label>Access personal information about you? (Name and occupation)</label>
 		</td>
 		<td>
   		  <input type="checkbox" name="common:customer.basic:read" id="common:customer.basic:read" value="common:customer.basic:read">
@@ -69,7 +69,7 @@
 	<% if ( details.params.scope.includes("common:customer.detail:read") ) { %>
 	<tr>
 		<td>
-  		  <label>Access more detailed information about you (Name and contact details)?</label>
+  		  <label>Access more detailed information about you (Name, occupation and contact details)?</label>
 		</td>
 		<td>
   		  <input type="checkbox" name="common:customer.detail:read" id="common:customer.detail:read" value="common:customer.detail:read">

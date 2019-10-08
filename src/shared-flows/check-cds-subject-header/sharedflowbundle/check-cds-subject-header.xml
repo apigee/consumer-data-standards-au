@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="check-cds-subject-header">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1570514001821</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Checks the x-cds-subject header with the value stored with an access token for authenticated calls</Description>
+    <DisplayName>check-cds-subject-header</DisplayName>
+    <LastModifiedAt>1570514391161</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:6c55215eb6e8e41a8a97c5b9ecdb345acdae7feb68711afc0852cd1451d89494a9d4f3c705f107152a4e7e58f9f84fb90cf3669d988414c57f17a98af030ee1e</ManifestVersion>
+    <Policies>
+        <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
+        <Policy>OAInfo-RetrieveAccessTokenDetails</Policy>
+        <Policy>RF-Invalid-CDSSubject-Header</Policy>
+        <Policy>RF-Missing-CDSSubject-Header</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

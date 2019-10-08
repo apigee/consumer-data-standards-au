@@ -7,7 +7,7 @@
         <Set>
             <Headers>
                 <Header name="Access-Control-Allow-Origin">*</Header>
-                <Header name="Access-Control-Allow-Headers">origin, x-requested-with, accept, content-type, Authorization, x-v, x-min-v, x-fapi-customer-last-logged-time, x-fapi-customer-ip-address, x-fapi-interaction-id, x-fapi-correlation-id, x-fapi-auth-date</Header>
+                <Header name="Access-Control-Allow-Headers">origin, x-requested-with, accept, content-type, Authorization, x-v, x-min-v, x-fapi-customer-last-logged-time, x-fapi-customer-ip-address, x-fapi-interaction-id, x-fapi-correlation-id, x-fapi-auth-date,x-cds-subject</Header>
                 <Header name="Access-Control-Max-Age">3628800</Header>
                 <Header name="Access-Control-Allow-Methods">GET, POST, OPTIONS</Header>
             </Headers>

@@ -17,6 +17,9 @@
         <Variable name="scope">
             <JSONPath>$.scope</JSONPath>
         </Variable>
+        <Variable name="id_token">
+            <JSONPath>$.id_token</JSONPath>
+        </Variable>
     </JSONPayload>
     <Source clearPayload="false">response</Source>
     <VariablePrefix>OIDCTokenResponse</VariablePrefix>

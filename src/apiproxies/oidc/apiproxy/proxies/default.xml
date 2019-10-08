@@ -78,11 +78,15 @@
                     <Name>EV-getInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -93,6 +97,7 @@
                     <Name>OA-RefreshOpaqueAccessToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OAInfoSet-ForceUpdateOfAttributes</Name>
                 </Step>
                 <Step>
@@ -124,11 +129,15 @@
                     <Name>EV-getInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>

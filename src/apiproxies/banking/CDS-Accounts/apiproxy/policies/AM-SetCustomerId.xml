@@ -8,5 +8,5 @@
         <Ref>accesstoken.customerId</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

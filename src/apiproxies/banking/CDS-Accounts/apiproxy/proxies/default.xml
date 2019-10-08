@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <Description/>
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description></Description>
     <FaultRules>
         <FaultRule name="Invalid Scope">
             <Condition>(fault.name = "InsufficientScope")</Condition>
@@ -9,6 +17,7 @@
                 <Name>RF-InvalidScope</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>AM-Add-CORS-Headers</Name>
             </Step>
         </FaultRule>
@@ -23,18 +32,11 @@
                 <Name>RF-TokenNotVerified</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>AM-Add-CORS-Headers</Name>
             </Step>
         </FaultRule>
     </FaultRules>
-    <DefaultFaultRule name="DefaultFaultRule">
-        <Step>
-            <Condition>message.status.code != "200"</Condition>
-            <FaultRules/>
-            <Name>AM-Add-CORS-Headers</Name>
-        </Step>
-        <AlwaysEnforce>true</AlwaysEnforce>
-    </DefaultFaultRule>
     <Flows>
         <Flow name="listAccounts">
             <Description>Get Accounts</Description>

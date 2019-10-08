@@ -8,16 +8,19 @@
         <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"/>
+        <!-- Store the pseudonym assigned to this customerId for this particular client, so it can verified-->
+        <!-- when sent in x-cds-subject header -->
+        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>
     <GrantType>TokenRequestParams.grant_type</GrantType>
     <Operation>GenerateAccessToken</Operation>
     <RedirectUri>TokenRequestParams.redirect_uri</RedirectUri>
+    <RefreshTokenExpiresIn ref="refreshTokenExpiresInMillis">3600000</RefreshTokenExpiresIn>
     <GenerateResponse enabled="false">
         <Format>FORM_PARAM</Format>
     </GenerateResponse>
-    <RefreshTokenExpiresIn ref="refreshTokenExpiresInMillis">3600000</RefreshTokenExpiresIn>
     <ReuseRefreshToken>false</ReuseRefreshToken>
     <Scope>OIDCTokenResponse.scope</Scope>
     <SupportedGrantTypes>
