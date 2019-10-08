@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SetOAuthV2Info async="false" continueOnError="false" enabled="true" name="OAInfoSet-ForceUpdateOfAttributes">
     <DisplayName>OAInfoSet-ForceUpdateOfAttributes</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <AccessToken ref="oauthv2accesstoken.OA-RefreshOpaqueAccessToken.access_token"/>
     <Attributes>
         <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
+        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"/>
     </Attributes>
 </SetOAuthV2Info>

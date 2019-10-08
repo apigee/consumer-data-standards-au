@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Invalid-X-Fapi-Customer-IP-Address">
-    <DisplayName>RF-Invalid-X-Fapi-Customer-IP-Address</DisplayName>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Invalid-CDSSubject-Header">
+    <DisplayName>RF-Invalid-CDSSubject-Header</DisplayName>
     <FaultRules/>
     <Properties/>
     <FaultResponse>
@@ -11,7 +11,7 @@
     {
        "code": "400",
        "title": "Bad Request",
-       "detail": "x-fapi-customer-ip-address Header must contain a valid IP Address"
+       "detail": "Invalid x-cds-subject header. Must match sub claim in id_token returned when authenticating"
     }
   ]
 }</Payload>

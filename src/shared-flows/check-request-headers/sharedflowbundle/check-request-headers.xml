@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="10" name="check-request-headers">
+<SharedFlowBundle revision="20" name="check-request-headers">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1566976268830</CreatedAt>
+    <CreatedAt>1546400695647</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1566976268830</LastModifiedAt>
+    <LastModifiedAt>1570515696560</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:8db555291864ffddefdf9da8de0a05d441f4c38a3b211934fb6e037825e940e09062ad23345587b41822610ab030551021aa9b2098285b0a62075a997ba0f346</ManifestVersion>
+    <ManifestVersion>SHA-512:8dcf189a32d6a2a1b4b276a9ae8ae095340e74f1f91795b157ff1878b0ec7af98ec0aff83f67773bf7bbece24a5745936461926a4ee2e469139138a2d5411974</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
         <Policy>AM-SetIsCustomerPresentToFalse</Policy>
         <Policy>EV-Preserve-Request-Headers</Policy>
+        <Policy>FC-checkCDSSubjectHeader</Policy>
         <Policy>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Policy>
         <Policy>RF-Invalid-Accept-Header</Policy>
         <Policy>RF-Invalid-Content-Type-Header</Policy>

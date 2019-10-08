@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="33" name="oidc">
+<APIProxy revision="36" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
+    <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1569806695836</CreatedAt>
+    <CreatedAt>1566213116257</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1569806695836</LastModifiedAt>
+    <LastModifiedAt>1570512734406</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:8d9a81387bb01bb832d7869d848d2b078b4c5d0664fcdd9a348fe09487cff89c1e8d608585276da236c575d6dab5fd7b28922ceda068a77f6c14b18892e53642</ManifestVersion>
+    <ManifestVersion>SHA-512:2543b9e80fbfed6cde4352698367d08cfec4767512eed1040f67c9bf68fef9597b116600306912664bcf4779599930cafd6c8971bdf6152732adca3550830835</ManifestVersion>
     <Policies>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
         <Policy>AM-ReinstateAuthHeaderInResponse</Policy>
@@ -33,6 +34,7 @@
         <Policy>JS-GetOIDCTokenExpiryTime</Policy>
         <Policy>JS-RemoveOIDCProvideBasePath</Policy>
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
+        <Policy>JWT-DecodeOIDCIdToken</Policy>
         <Policy>JWT-DecodeOIDCRefreshToken</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>

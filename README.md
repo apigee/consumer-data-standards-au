@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v0.9.6** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.0** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -72,16 +72,13 @@ A Postman collection includes sample requests for the implemented APIs, and for 
 
 ## Shared Flows
 
-There are 5 shared flows that implement common functionality required by the Banking APIs.
+There are 6 shared flows that implement common functionality required by the Banking APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
-2. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc
-3. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request
-4. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
-5. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+2. *check-cds-subject-header*: Checks the x-cds-subject header with the value stored with an access token for authenticated calls. Used by the *check-request-headers*, but can also be used independently
+3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc
+4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request
+5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
+6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
 
 There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints
-
-
-
-
