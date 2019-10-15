@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-VerifyTokenForGetTransactions">
+    <DisplayName>OA-VerifyTokenForGetTransactions</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Attributes/>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>VerifyAccessToken</Operation>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <Scope>bank:transactions:read</Scope>
+    <SupportedGrantTypes/>
+    <Tokens/>
+</OAuthV2>

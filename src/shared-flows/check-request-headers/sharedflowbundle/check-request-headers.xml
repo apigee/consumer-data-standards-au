@@ -5,9 +5,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1570515696560</LastModifiedAt>
+    <LastModifiedAt>1571020525496</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:8dcf189a32d6a2a1b4b276a9ae8ae095340e74f1f91795b157ff1878b0ec7af98ec0aff83f67773bf7bbece24a5745936461926a4ee2e469139138a2d5411974</ManifestVersion>
+    <ManifestVersion>SHA-512:116bc78b3b08d716453d8e6a9bc9ddd3f65a9bff90c57eaa14f7f32d31de853c6ff46ae0f90fe607251a26faaa7a7cb9accbf654a44d29cf2b924995c8172964</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
         <Policy>AM-SetIsCustomerPresentToFalse</Policy>

@@ -18,11 +18,8 @@
     <Header name="host">
         <Pattern ignoreCase="true">{selfLinkHost}</Pattern>
     </Header>
-    <Variable name="proxy.basepath">
+    <Variable name="request.path">
         <Pattern ignoreCase="false">{selfLinkBasePath}</Pattern>
-    </Variable>
-    <Variable name="proxy.pathsuffix">
-        <Pattern ignoreCase="false">{selfLinkPathSuffix}</Pattern>
     </Variable>
     <Variable name="request.querystring">
         <Pattern ignoreCase="false">{selfLinkQueryString}</Pattern>

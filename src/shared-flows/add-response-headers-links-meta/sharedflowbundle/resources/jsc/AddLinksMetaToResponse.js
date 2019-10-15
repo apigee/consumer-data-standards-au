@@ -27,7 +27,7 @@
   var linksObj = getObjectFromResponse("links");
 
   // Add self link
-  var linkBase = context.getVariable("selfLinkProtocol") + "://" + context.getVariable("selfLinkHost") + context.getVariable("selfLinkBasePath") + context.getVariable("selfLinkPathSuffix");
+  var linkBase = context.getVariable("selfLinkProtocol") + "://" + context.getVariable("selfLinkHost") + context.getVariable("selfLinkBasePath");
   selfLink = (context.getVariable("selfLinkQueryString") === null || context.getVariable("selfLinkQueryString") === "" ) ? linkBase : linkBase + "?" + context.getVariable("selfLinkQueryString");
 
   linksObj.self = selfLink;

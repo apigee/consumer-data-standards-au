@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<GetOAuthV2Info async="false" continueOnError="true" enabled="true" name="OAInfo-RetrieveAccessTokenDetails">
+<GetOAuthV2Info async="false" continueOnError="false" enabled="true" name="OAInfo-RetrieveAccessTokenDetails">
     <DisplayName>OAInfo-RetrieveAccessTokenDetails</DisplayName>
     <FaultRules/>
     <Properties/>

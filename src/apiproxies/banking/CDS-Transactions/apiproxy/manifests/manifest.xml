@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:58fe66d1d33144f72fd5c6f06930e1e71d8d833cb913d580cbc0873720a6b3e7ecf23986836ab96c757b4ae0956625efeb9f3b1344a03ad0d716be9f343079c3"/>
+        <VersionInfo resourceName="AM-MockFullListOfTransactions" version="SHA-512:b9b81c0cbda4680a661c051a40aa774c505b0b24926393f5d59d5c31caea6b95ba06f676ffc4f491860ac35f93b5ee031874be647f382adf9d16d57c7aae0dbf"/>
+        <VersionInfo resourceName="AM-Set-Pagination-Settings" version="SHA-512:7ccf4d4922af2fd396ce786713c494175c09dfa12595bc2a438f0a8524a31bbadc8a44c7d46781f28103e5904373b164855aa51419e38f5cff11e407ecf86b90"/>
+        <VersionInfo resourceName="AM-SetCustomerId" version="SHA-512:a3453e0bb3d4ac78d8563df052c62aa1dbd12c22fe6587ea842b0a39b8b3db0e054aadfcd80965f6b2a0066946ad8763d3be155cd48a75c9cc9a9f5e04fd9ba7"/>
+        <VersionInfo resourceName="EV-AccountIdFromBasePath" version="SHA-512:9a12d57df339197489c99983ef9dc0fb0bf48b491c3ad4aa8883a58be312c701dd893348960a41974f0351a412319a5b10c274b8e35fd2e98c48f5c61a962b91"/>
+        <VersionInfo resourceName="EV-GetAllTransactionsForCustomer" version="SHA-512:2152e5aaf58171a3f8a4dec14390d80884a4ec404f608bee31d4fba16e84a518be9bae6c6fd56d58ed4e04c80594bef9078c253664ec516d5400cfac79148911"/>
+        <VersionInfo resourceName="EV-GetTransactionsFilterCriteria" version="SHA-512:5594738500db6a9476116b63f28af5a69ccdc04bb23582371b6bcec4ec411e1f8331755f8ea664f7f4de788e822887630d2116273281df203ac4c7cac80997d0"/>
+        <VersionInfo resourceName="EV-TxDetailsForTxId" version="SHA-512:e5492ec0cc766066e301a20146d770317be5a73d08a4062bb2ff1df97efce36c6306e9ecfc80fc403ec86e5ec63e6c2d08641276afa1c25f5a50918f4eac7fd5"/>
+        <VersionInfo resourceName="EV-TxIdFromURIParam" version="SHA-512:238fd36a5b9a7cdb6dd934306b6f96106c33868d37ba902e35d47de254c615197234edf8ce4fe514d468e2823116be8d3449dedbe76af56c32cfc74e6b094c3e"/>
+        <VersionInfo resourceName="EV-getErrorDetail" version="SHA-512:ac48a4848a7f79e59fb33ba3957af686fdf4ef508285412b557b7152d8205322d4b0ee985ede863a25a8ee046afdb66b84e30540ff20ef4db670822c1b4a8034"/>
+        <VersionInfo resourceName="FC-AddResponseHeaders-Link-Meta" version="SHA-512:78f3541fc8a112fc73bb0d09d5b767a554d34dfdfed6962232388e454a15f6d18499aa6f158e74ab4895fbe53f098aecc92f6c1e29750e2caaa61724343bc612"/>
+        <VersionInfo resourceName="FC-CheckRequestHeaders" version="SHA-512:5b2ad6beed370945c3f80cbbfe381ba5f4210637a358598c032049cd2c9f360c133b64ded5be5f9be5b5b7272af3ed743abbcedbb324e5a406e81140680bebb6"/>
+        <VersionInfo resourceName="FC-PaginateResponse" version="SHA-512:8c19e55d5eb9514aa0990d2e5dce46d944880ddd89c6339f9d76270a6800a2ca8255e9ea062e3910e8ffb51d8bf68fce49f14042d78be7dfa2ff39eb532a5406"/>
+        <VersionInfo resourceName="FC-TrafficThresholds" version="SHA-512:6224b63910e4ca49bd6937d2b42b079156f6162aee3b89e9fcb15226172dbd29e40a6d218eab366b2e9bef4f4905db1ad9f008be1aae1731f24d70e77aa44a3f"/>
+        <VersionInfo resourceName="FC-ValidateRequestParams" version="SHA-512:d3d0fb72db078f2528532c6ecddb99f3450bf829a499e000f73f56a31a733149cb574135541ba9fb2f6c2034b6437a2105f0fbfd781f449048491f9d47c4995d"/>
+        <VersionInfo resourceName="JS-BuildTransactionDetailsResponse" version="SHA-512:51556b3aa32248848cf5fc996b0cb8beb82afc28e6a25ae81372b0f41d2e03b7fafda396beeec0dfa6f693f44e2d0849662bb45af887da1ea342cf54de187db5"/>
+        <VersionInfo resourceName="JS-FilterTransactionsListBasedOnRequestFilters" version="SHA-512:228d04681a9f491507277eccf4270cc19e86bbc6bad7eeba614778cc2865b7e866f9ce3a5a20592897cc532dba05301f13c985766b34bbbcd5b2fc033a287688"/>
+        <VersionInfo resourceName="JS-ModifyDatesInMockTransactions" version="SHA-512:87cc846ed92c74ad39db45da4b74753e1d3be094d9bb04b869d4d0a2153cf01597b9d8ec7ebecab4ba8c180f299c2723cfbc0d2c1d795338c1ff705c9591cd90"/>
+        <VersionInfo resourceName="JS-RemoveTransactionDetails" version="SHA-512:f4d64d4da48170a0a4a34c5d0d432de91238aedcc9af13171c2105c3d7b08b9711ed1505b00677a0c45c947fe42b300c297d60d6bd5d958585ebc3d40eb26b8d"/>
+        <VersionInfo resourceName="OA-VerifyTokenForGetTransactions" version="SHA-512:ca21af2f5c3b6719c1ecda58308033bf327194c589d694718dd3d48555c3efbc8ba3043f71bd628f93473e63726fc7476caee86db7e4b6e69da5e7f9c99592ef"/>
+        <VersionInfo resourceName="RF-InvalidScope" version="SHA-512:b8a59895d60f2b296d364e1d43d16414ef196184a5907b84910e1da20bd65e87f94f4958d234432d40fd9f2d5cb6be20bf3e717608e25f30e0453fc160bafd0e"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:dd8c233ed6dd3ee535323424b9a23a9814a67b806688179cb68f1f6d05a7269489074030dccccbc8cbba1504fb41d01b2bd68ca4df314d0ff07472df82f58d42"/>
+        <VersionInfo resourceName="RF-TokenNotVerified" version="SHA-512:b7549cde5e1d5afdb7be05139395f6e682f3ea1b5cdafb932836b45d8de927b38e8375d67d3c9eafa3b723ef7ebee1bb5a00120a29c394d7a24433dad2bae8ab"/>
+        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:07e6655bc3c0a7514fbce38ead742f8fb8a069a0aa4f18fe65a3c24490e7e0664a24f2714ebe5e4f733eda7a076ee049a67f3a028f2892d766b49d5db849d36f"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:dd3c96dab7a457929aea4a68222e4639a51cf2eec4af2b73382495342c3772ed79aaa17cbd921e815c2b455dbe449e1f6e9cbbf6929c561206f6567bbd061b7d"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://buildTransactionDetailsResponse.js" version="SHA-512:a539d78e3f784754750aec1d457855f7703fa4b93237e026bf3d8e8a790cf83d66471ba2e901f4b3f1b3368ad5d7b31d0a3245637091874e418d4e760605ea37"/>
+        <VersionInfo resourceName="jsc://filterTransactionsListBasedOnRequestFilters.js" version="SHA-512:c094d3c0f999a158f4cd105b9c2de8ab7dffefb2fad7a4def0fa10921f468ba8dd7896bfe03c16f75e2d14e0ec2bb8d4d9aa8b0742844a2a3e0d73ff1f305332"/>
+        <VersionInfo resourceName="jsc://modifyDatesInMockTransactions.js" version="SHA-512:8f37c1cbb5b55e737fbfd026c8f981cc4e87b833f577d3c523a6a6c6f6004f39a82d45bf53e0cb609062bce906dcabb7213aa37c7a0a7f75b551f8302ff61b22"/>
+        <VersionInfo resourceName="jsc://removeTransactionDetails.js" version="SHA-512:763de794a4ab0558494ffaf5088ba643ef627730cae83b9a8f6a470bd4505498d396607eabf62c7afd7efeff3a5ad1010f817cbc60ce40d7754d2dd96f6f9f57"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints/>
+</Manifest>

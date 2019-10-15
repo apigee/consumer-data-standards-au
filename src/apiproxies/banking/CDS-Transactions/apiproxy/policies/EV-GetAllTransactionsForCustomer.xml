@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAllTransactionsForCustomer">
+    <DisplayName>EV-GetAllTransactionsForCustomer</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="listOfAllTransactionsDetails">
+            <JSONPath>$.[?(@.customer == {customerId})].transactions</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">listOfAllTransactionsDetailsByCustomer</Source>
+</ExtractVariables>

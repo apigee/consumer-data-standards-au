@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description/>
+    <FaultRules>
+        <FaultRule name="Invalid Scope">
+            <Condition>(fault.name = "InsufficientScope")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>RF-InvalidScope</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>AM-Add-CORS-Headers</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Invalid Access Token">
+            <Condition>(fault.name Matches "*access_token*") or (fault.name = "apiresource_doesnot_exist") or (fault.name = "InvalidAccessToken") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>EV-getErrorDetail</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>RF-TokenNotVerified</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>AM-Add-CORS-Headers</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="listTransactions">
+            <Description>Get Transactions for Account</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-TrafficThresholds</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-ValidateRequestParams</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-GetTransactionsFilterCriteria</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-Set-Pagination-Settings</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-FilterTransactionsListBasedOnRequestFilters</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-RemoveTransactionDetails</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-PaginateResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="getTransactionDetail">
+            <Description>Get Transaction Detail</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-TrafficThresholds</Name>
+                </Step>
+                <Step>
+                    <Name>EV-TxIdFromURIParam</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-TxDetailsForTxId</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-BuildTransactionDetailsResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{theTransactionId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/")  or (proxy.pathsuffix MatchesPath "/{theTransactionId}")</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <FaultRules/>
+                <Name>FC-AddResponseHeaders-Link-Meta</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <FaultRules/>
+                <Name>FC-CheckRequestHeaders</Name>
+            </Step>
+            <Step>
+                <Name>OA-VerifyTokenForGetTransactions</Name>
+            </Step>
+            <Step>
+                <Name>AM-SetCustomerId</Name>
+            </Step>
+            <Step>
+                <Name>EV-AccountIdFromBasePath</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>AM-MockFullListOfTransactions</Name>
+            </Step>
+            <Step>
+                <Name>EV-GetAllTransactionsForCustomer</Name>
+            </Step>
+            <Step>
+                <Name>JS-ModifyDatesInMockTransactions</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/cds-au/v1/banking/accounts/*/transactions</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

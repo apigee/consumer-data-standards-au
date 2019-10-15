@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetTransactionsFilterCriteria">
+    <DisplayName>EV-GetTransactionsFilterCriteria</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <QueryParam name="oldest-time">
+        <Pattern ignoreCase="true">{oldest-time}</Pattern>
+    </QueryParam>
+    <QueryParam name="newest-time">
+        <Pattern ignoreCase="true">{newest-time}</Pattern>
+    </QueryParam>
+    <QueryParam name="min-amount">
+        <Pattern ignoreCase="true">{min-amount}</Pattern>
+    </QueryParam>
+    <QueryParam name="max-amount">
+        <Pattern ignoreCase="true">{max-amount}</Pattern>
+    </QueryParam>
+    <QueryParam name="text">
+        <Pattern ignoreCase="true">{text}</Pattern>
+    </QueryParam>
+    <Variable name="theAccountId">
+        <Pattern>{accountId}</Pattern>
+    </Variable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+    <VariablePrefix>transactionsFilter</VariablePrefix>
+</ExtractVariables>
