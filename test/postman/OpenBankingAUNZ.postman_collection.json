@@ -85,7 +85,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read&state=af0ifjsldkl&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
+							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldkl&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -112,7 +112,7 @@
 								},
 								{
 									"key": "scope",
-									"value": "openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read",
+									"value": "openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read",
 									"description": "Add the required scopes, separated by %20"
 								},
 								{
@@ -334,8 +334,7 @@
 									"key": "bank:transactions:read",
 									"value": "bank:transactions:read",
 									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								},
 								{
 									"key": "bank:payees:read",
@@ -868,7 +867,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/products?effective=ALL",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/products?",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -884,7 +883,8 @@
 							"query": [
 								{
 									"key": "effective",
-									"value": "ALL"
+									"value": "ALL",
+									"disabled": true
 								},
 								{
 									"key": "product-category",
@@ -1043,7 +1043,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts?open-status=ALL",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts?",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1059,7 +1059,8 @@
 							"query": [
 								{
 									"key": "open-status",
-									"value": "ALL"
+									"value": "ALL",
+									"disabled": true
 								},
 								{
 									"key": "product-category",
@@ -1283,6 +1284,315 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get Transactions For Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "2965365e-ab4d-4158-8eda-ca48f1f4f225",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "2019-08-01",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.168.1.1",
+								"type": "text"
+							},
+							{
+								"key": "x-cds-User-Agent",
+								"value": "SomeAgent",
+								"type": "text"
+							},
+							{
+								"key": "x-cds-subject",
+								"value": "{{cdsSubject}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions?",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "oldest-time",
+									"value": "2016-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "newest-time",
+									"value": "2021-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "min-amount",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "max-amount",
+									"value": "1000",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": "pay",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page-size",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions For Account - Test Invalid Headers or Params",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "x-min-v",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-cds-subject",
+								"value": "{{cdsSubject}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions?",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "oldest-time",
+									"value": "2016-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "newest-time",
+									"value": "2021-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "min-amount",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "max-amount",
+									"value": "1000",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": "pay",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page-size",
+									"value": "1000",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Selectively remove or change header or param values to other values to check different error messages"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Options for Get Transactions For Accounts",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "OPTIONS",
+						"header": [
+							{
+								"key": "x-fapi-correlation-id",
+								"type": "text",
+								"value": "TEST"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-cds-subject",
+								"value": "{{cdsSubject}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions/tx0003",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"tx0003"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	]
 }
