@@ -5,9 +5,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Checks the x-cds-subject header with the value stored with an access token for authenticated calls</Description>
     <DisplayName>check-cds-subject-header</DisplayName>
-    <LastModifiedAt>1570514391161</LastModifiedAt>
+    <LastModifiedAt>1570767825769</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:6c55215eb6e8e41a8a97c5b9ecdb345acdae7feb68711afc0852cd1451d89494a9d4f3c705f107152a4e7e58f9f84fb90cf3669d988414c57f17a98af030ee1e</ManifestVersion>
+    <ManifestVersion>SHA-512:15f496479575224c73ba961306b3b8464b548c3a16bd53c9812a87605399dae5136fac289bd262cde41dba0352f75b13ebc3eb105ab7d8dfe3616606335cafeb</ManifestVersion>
     <Policies>
         <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
         <Policy>OAInfo-RetrieveAccessTokenDetails</Policy>

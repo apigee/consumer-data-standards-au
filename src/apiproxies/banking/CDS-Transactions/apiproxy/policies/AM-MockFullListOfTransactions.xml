@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfTransactions">
+    <DisplayName>AM-MockFullListOfTransactions</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>listOfAllTransactionsDetailsByCustomer</Name>
+        <Template>[{
+    "customer": "10203040",
+    "transactions": [{
+            "accountId": "10203040-Acc001",
+            "transactionId": "tx0001",
+            "isDetailAvailable": false,
+            "type": "TRANSFER_INCOMING",
+            "status": "POSTED",
+            "description": "Salary",
+            "postingDateTime": "2018-12-12T10:43:00+11:00",
+            "amount": "3000.00",
+            "reference": ""
+        },
+        {
+            "accountId": "10203040-Acc001",
+            "transactionId": "tx0002",
+            "isDetailAvailable": false,
+            "type": "PAYMENT",
+            "status": "POSTED",
+            "description": "Mortgage repayment",
+            "postingDateTime": "2018-12-13T11:43:00+11:00",
+            "amount": "-1000.00",
+            "reference": ""
+        },
+        {
+            "accountId": "10203040-Acc001",
+            "transactionId": "tx0003",
+            "isDetailAvailable": true,
+            "type": "TRANSFER_OUTGOING",
+            "status": "POSTED",
+            "description": "Pay John for dinner",
+            "postingDateTime": "2018-12-14T09:43:00+11:00",
+            "amount": "-100.00",
+            "reference": "",
+            "extendedData": {
+                "payer": "Mary Smith",
+                "payee": "John Smith",
+                "extensionUType": "x2p101Payload",
+                "x2p101Payload": {
+                    "extendedDescription": "Pay John for dinner from Wednesday",
+                    "endToEndId": "12345"
+                },
+                "service": "X2P1.01"
+            }
+        },
+        {
+            "accountId": "10203040-Acc001",
+            "transactionId": "tx0008",
+            "isDetailAvailable": false,
+            "type": "TRANSFER_INCOMING",
+            "status": "PAYMENT",
+            "description": "Payment to AusGas",
+            "postingDateTime": "2018-12-14T15:43:00+11:00",
+            "amount": "-50.00",
+            "reference": "",
+            "billerCode": "11111",
+            "billerName": "AusGas",
+            "crn": "010122222"
+        },
+        {
+            "accountId": "10203040-Acc002",
+            "transactionId": "tx0004",
+            "isDetailAvailable": false,
+            "type": "TRANSFER_INCOMING",
+            "status": "POSTED",
+            "description": "Salary",
+            "postingDateTime": "2017-11-12T10:43:00+11:00",
+            "amount": "3000.00",
+            "reference": ""
+        },
+        {
+            "accountId": "10203040-Acc002",
+            "transactionId": "tx0005",
+            "isDetailAvailable": true,
+            "type": "TRANSFER_OUTGOING",
+            "status": "POSTED",
+            "description": "Transfer to Sue",
+            "postingDateTime": "2018-01-13T11:43:00+11:00",
+            "amount": "-20.00",
+            "reference": "",
+            "extendedData": {
+                "payer": "Mary Smith",
+                "payee": "John Smith",
+                "extensionUType": "x2p101Payload",
+                "x2p101Payload": {
+                    "extendedDescription": "Transfer to Sue gift money",
+                    "endToEndId": "12389"
+                },
+                "service": "X2P1.01"
+            }
+        },
+        {
+            "accountId": "10203040-Acc002",
+            "transactionId": "tx0007",
+            "isDetailAvailable": false,
+            "type": "TRANSFER_OUTGOING",
+            "status": "POSTED",
+            "description": "Cash withdrawal",
+            "postingDateTime": "2018-02-04T14:43:00+11:00",
+            "amount": "-1900.00",
+            "reference": ""
+        },
+        {
+            "accountId": "10203040-Acc003",
+            "transactionId": "tx0006",
+            "isDetailAvailable": false,
+            "type": "TRANSFER_INCOMING",
+            "status": "POSTED",
+            "description": "Mortgage Repayment",
+            "postingDateTime": "2018-12-13T11:43:00+11:00",
+            "amount": "1000.00",
+            "reference": ""
+        }
+    ]
+}]</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

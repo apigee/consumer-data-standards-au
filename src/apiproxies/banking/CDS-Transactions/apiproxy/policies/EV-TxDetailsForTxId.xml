@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-TxDetailsForTxId">
+    <DisplayName>EV-TxDetailsForTxId</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="theTransactionDetails">
+            <JSONPath>$.[?(@.transactionId == {theTransactionId})]</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">listOfAllTransactionsDetails</Source>
+</ExtractVariables>

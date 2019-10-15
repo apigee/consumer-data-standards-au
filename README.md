@@ -12,6 +12,8 @@ This implementation is based on **v1.0** of the standards and currently supports
 - Get Product Detail
 - Get Accounts
 - Get Account Detail
+- Get Transactions For Account
+- Get Transaction Detail
 
 as well as the required security endpoints:
 - Authorisation

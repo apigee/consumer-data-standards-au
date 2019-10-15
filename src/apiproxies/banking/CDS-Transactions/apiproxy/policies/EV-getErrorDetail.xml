@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-getErrorDetail">
+    <DisplayName>EV-getErrorDetail</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="errorDetail">
+            <JSONPath>$.fault.faultstring</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">message</Source>
+</ExtractVariables>

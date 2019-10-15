@@ -2,7 +2,7 @@
 <Manifest name="manifest">
     <Policies>
         <VersionInfo resourceName="EV-ExtractAccessTokenFromAuthHdr" version="SHA-512:b05abc65bcaeb2bf900938018613d398153466f989d97f272f561f7a286636c2a4d9f1429986bc849bd17632bae1f062a8b44385616a18647ea42a8a2600b118"/>
-        <VersionInfo resourceName="OAInfo-RetrieveAccessTokenDetails" version="SHA-512:10248e691d6c681a2f0ea643c12c8dec06615da82e60669115ad213c81c5f559debd6f8448d57dcc14c42046500b3199c0ddbf8d0447a95c19727aa9146ba2a5"/>
+        <VersionInfo resourceName="OAInfo-RetrieveAccessTokenDetails" version="SHA-512:3e0d2b0465d908e44fa469d10e81b52dee3bf4cbd06a4a625406b2308a398780ee97fb9de7b3b4e667863a1b38dc280b45222aef78eae0b9d611674087bb156c"/>
         <VersionInfo resourceName="RF-Invalid-CDSSubject-Header" version="SHA-512:13fa0dbe638f0583160e590fae223adb8baff94157a1a071de8587e86c6698b4d783c7a306d6909bc393256b1342f55efe4a113941531a64f9ffd31e8f73950e"/>
         <VersionInfo resourceName="RF-Missing-CDSSubject-Header" version="SHA-512:95b1b2d1402a4959ffadc054a7e6040705eb6516d8722ee724e55d514179900fbf263d27e45a77b97ab3ba9a03386fc109fc6c775d7a06a6fe2aad2dccaf4fca"/>
     </Policies>
