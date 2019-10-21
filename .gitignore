@@ -7,6 +7,7 @@ node_modules/
 .vscode/settings.json
 setup/certs/
 setup/certs/*
+specs/*Full.yaml
 src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/
 src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/*
 test/postman/*environment.json
