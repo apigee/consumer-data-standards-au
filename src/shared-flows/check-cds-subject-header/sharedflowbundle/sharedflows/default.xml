@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
-        <Name>RF-Missing-CDSSubject-Header</Name>
         <Condition>request.header.x-cds-subject = null</Condition>
+        <FaultRules/>
+        <Name>RF-Missing-CDSSubject-Header</Name>
     </Step>
     <Step>
+        <FaultRules/>
         <Name>EV-ExtractAccessTokenFromAuthHdr</Name>
     </Step>
     <Step>
+        <Name>RF-TokenNotFound</Name>
+        <Condition>(theAccessToken = null) or (theAccessToken = "")</Condition>
+    </Step>
+    <Step>
+        <FaultRules/>
         <Name>OAInfo-RetrieveAccessTokenDetails</Name>
     </Step>
     <Step>
-        <Name>RF-Invalid-CDSSubject-Header</Name>
         <Condition>request.header.x-cds-subject != oauthv2accesstoken.OAInfo-RetrieveAccessTokenDetails.accesstoken.cdsSubject</Condition>
+        <FaultRules/>
+        <Name>RF-Invalid-CDSSubject-Header</Name>
     </Step>
 </SharedFlow>
