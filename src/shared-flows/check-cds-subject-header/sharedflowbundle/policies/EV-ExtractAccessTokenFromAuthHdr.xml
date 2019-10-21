@@ -6,6 +6,6 @@
     <Header name="Authorization">
         <Pattern ignoreCase="true">Bearer {theAccessToken}</Pattern>
     </Header>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     <Source clearPayload="false">request</Source>
 </ExtractVariables>

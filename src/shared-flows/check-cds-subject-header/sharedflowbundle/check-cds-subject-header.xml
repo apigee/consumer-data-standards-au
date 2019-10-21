@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="1" name="check-cds-subject-header">
+<SharedFlowBundle revision="5" name="check-cds-subject-header">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1570514001821</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Checks the x-cds-subject header with the value stored with an access token for authenticated calls</Description>
     <DisplayName>check-cds-subject-header</DisplayName>
-    <LastModifiedAt>1570767825769</LastModifiedAt>
+    <LastModifiedAt>1571615805527</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:15f496479575224c73ba961306b3b8464b548c3a16bd53c9812a87605399dae5136fac289bd262cde41dba0352f75b13ebc3eb105ab7d8dfe3616606335cafeb</ManifestVersion>
+    <ManifestVersion>SHA-512:d84eb3b25ee0cdd2b50b33d2a1d87a5ee29eb976bdea3421dfdb79f4fe5104bfb669fe70c4a6fdb8624c932dee26c44e88c09ca8c1614218156221d9b6248d15</ManifestVersion>
     <Policies>
         <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
         <Policy>OAInfo-RetrieveAccessTokenDetails</Policy>
         <Policy>RF-Invalid-CDSSubject-Header</Policy>
         <Policy>RF-Missing-CDSSubject-Header</Policy>
+        <Policy>RF-TokenNotFound</Policy>
     </Policies>
     <Resources/>
     <Spec></Spec>
