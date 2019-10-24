@@ -37,6 +37,12 @@ do
     cd ..
  done
 
+ # Deploy oidc proxy
+cd ../oidc
+echo Deploying oidc Apiproxy
+apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
+
+
  # Revert to original directory
  cd ../../..
 
@@ -55,7 +61,6 @@ echo Creating API Product: "Transactions"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSTransactions" --displayName "Transactions" --approvalType "auto" --productDesc "Get access to Transactions APIs" \
    --environments $APIGEE_ENV --proxies CDS-Transactions --scopes "bank:transactions:read" 
-
 
 echo Creating API Product: "OIDC"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
@@ -107,7 +112,7 @@ echo $APP_JWK > ./CDSTestApp.jwk
 
 # Create a new entry in the OIDC provider client configuration for this TestApp,
 # so that it is recognised by the OIDC provider as a client
-echo "Creating new entry in OIDC Provider configuratation for CDSTestApp"
+echo "Creating new entry in OIDC Provider configuration for CDSTestApp"
 APP_CLIENT_ENTRY=$(echo '{ "client_id": "'$APP_KEY'", "client_secret": "'$APP_SECRET'", "redirect_uris": ["https://httpbin.org/post"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"],"jwks": {"keys": ['$APP_JWK']}}')
 OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
 # Write the JQ Filter that we're going to use to a file
@@ -118,15 +123,10 @@ rm ./tmpJQFilter
 # Revert to original directory
  cd ../..
 
-# Deploy oidc proxy
+# Deploy oidc-mock-provider proxy
 cd src/apiproxies/oidc-mock-provider
 echo Deploying oidc-mock-provider Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
-
-# Deploy oidc proxy
-cd ../oidc
-echo Deploying oidc Apiproxy
-apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
 
 # Revert to original directory
  cd ../../..
