@@ -72,6 +72,16 @@
  }
 ]</Template>
     </AssignVariable>
+    <!-- Copy this variable into listOfAllResults, in case accounts is the information that needs to be returned
+         If other information will be returned, eg: balances, these 2 next variables will be overwritten accordingly -->
+    <AssignVariable>
+        <Name>listOfAllResultsByCustomer</Name>
+        <Reference>listOfAllAccountDetailsByCustomer</Reference>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>resultsType</Name>
+        <Value>accounts</Value>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

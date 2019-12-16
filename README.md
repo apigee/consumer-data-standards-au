@@ -11,6 +11,9 @@ This implementation is based on **v1.0.1** of the standards and currently suppor
 - Get Products
 - Get Product Detail
 - Get Accounts
+- Get Bulk Balances
+- Get Balances For Specific Accounts
+- Get Account Balance
 - Get Account Detail
 - Get Transactions For Account
 - Get Transaction Detail

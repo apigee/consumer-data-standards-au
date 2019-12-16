@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ResultsForAccountId">
+    <DisplayName>EV-ResultsForAccountId</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="theResultsForAccountId">
+            <JSONPath>$..[?(@.accountId == '{theAccountId}')]</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">listOfAllResultsByCustomer</Source>
+</ExtractVariables>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-VerifyTokenForListAccounts">
-    <DisplayName>OA-VerifyTokenForListAccounts</DisplayName>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-VerifyTokenForGetAccountsBasic">
+    <DisplayName>OA-VerifyTokenForGetAccountsBasic</DisplayName>
     <FaultRules/>
     <Properties/>
     <Attributes/>

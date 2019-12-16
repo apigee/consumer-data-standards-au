@@ -52,10 +52,11 @@ var newAccountList = [];
 if (fullListOfAccountsDetails && fullListOfAccountsDetails.length > 0) {
     for (var i = 0; i < fullListOfAccountsDetails.length; i++) {
         if (accountMeetsSearchCriteria(fullListOfAccountsDetails[i], customerIdFilter, prodCategoryFilter, openStatusFilter, isOwnedFilter)) {
-            // Only include in the response accounts matching the filter criteria
-            newAccountList.push(fullListOfAccountsDetails[i]);
+            // Add accountId to the list of accounts matching the filter criteria
+            newAccountList.push(fullListOfAccountsDetails[i].accountId);
         }
     }
 
     context.setVariable("filteredAccountList", JSON.stringify(newAccountList));
+    print("Produced JSON String = " + JSON.stringify(newAccountList));
 }
