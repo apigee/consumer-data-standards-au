@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfBalances">
+    <DisplayName>AM-MockFullListOfBalances</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>listOfAllResultsByCustomer</Name>
+        <Template>[{
+    "customer": "10203040",
+    "balances": [{
+            "accountId": "10203040-Acc001",
+            "currentBalance": "2452.33",
+            "availableBalance": "2452.33",
+            "currency": "AUD"
+        },
+        {
+            "accountId": "10203040-Acc002",
+            "currentBalance": "0.00",
+            "availableBalance": "0.00",
+            "currency": "AUD"
+        },
+        {
+            "accountId": "10203040-Acc003",
+            "currentBalance": "-42000.00",
+            "availableBalance": "30000",
+            "creditLimit": "30000",
+            "amortisedLimit": "28000",
+            "currency": "AUD"
+        }
+    ]
+}]</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>resultsType</Name>
+        <Value>balances</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

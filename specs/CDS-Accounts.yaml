@@ -5,7 +5,7 @@ info:
   version: 1.0.0
   title: Consumer Data Standards
   contact:
-    name: APIBank CDS Team 
+    name: APIBank CDS Team
     url: https://apibank.com.au/cds
   license:
     name: MIT License
@@ -165,6 +165,376 @@ paths:
       x-scopes:
         - bank:accounts.basic:read
       x-version: "1"
+  /banking/accounts/balances:
+    get:
+      tags:
+        - Banking
+        - Accounts
+      summary: Get Bulk Balances
+      description: Obtain balances for multiple, filtered accounts
+      operationId: listBalancesBulk
+      parameters:
+        - name: product-category
+          in: query
+          description: Used to filter results on the productCategory field applicable to
+            accounts. Any one of the valid values for this field can be
+            supplied. If absent then all accounts returned.
+          required: false
+          type: string
+          enum:
+            - TRANS_AND_SAVINGS_ACCOUNTS
+            - TERM_DEPOSITS
+            - TRAVEL_CARDS
+            - REGULATED_TRUST_ACCOUNTS
+            - RESIDENTIAL_MORTGAGES
+            - CRED_AND_CHRG_CARDS
+            - PERS_LOANS
+            - MARGIN_LOANS
+            - LEASES
+            - TRADE_FINANCE
+            - OVERDRAFTS
+            - BUSINESS_LOANS
+        - name: open-status
+          in: query
+          description: Used to filter results according to open/closed status. Values can
+            be OPEN, CLOSED or ALL. If absent then ALL is assumed
+          required: false
+          type: string
+          default: ALL
+          enum:
+            - OPEN
+            - CLOSED
+            - ALL
+        - name: is-owned
+          in: query
+          description: Filters accounts based on whether they are owned by the authorised
+            customer.  True for owned accounts, false for unowned accounts and
+            absent for all accounts
+          required: false
+          type: boolean
+          x-cds-type: Boolean
+        - name: page
+          in: query
+          description: Page of results to request (standard pagination)
+          required: false
+          type: integer
+          default: 1
+          x-cds-type: PositiveInteger
+        - name: page-size
+          in: query
+          description: Page size to request. Default is 25 (standard pagination)
+          required: false
+          type: integer
+          default: 25
+          x-cds-type: PositiveInteger
+        - name: x-v
+          in: header
+          description: Version of the API end point requested by the client. Must be set to
+            a positive integer. The data holder should respond with the highest
+            supported version between [x-min-v](#request-headers) and
+            [x-v](#request-headers). If the value of [x-min-v](#request-headers)
+            is equal to or higher than the value of [x-v](#request-headers) then
+            the [x-min-v](#request-headers) header should be treated as absent.
+            If all versions requested are not supported then the data holder
+            should respond with a 406 Not Acceptable. See [HTTP
+            Headers](#request-headers)
+          required: true
+          type: string
+        - name: x-min-v
+          in: header
+          description: Minimum version of the API end point requested by the client. Must
+            be set to a positive integer if provided. The data holder should
+            respond with the highest supported version between
+            [x-min-v](#request-headers) and [x-v](#request-headers). If all
+            versions requested are not supported then the data holder should
+            respond with a 406 Not Acceptable.
+          required: false
+          type: string
+        - name: x-fapi-interaction-id
+          in: header
+          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+            correlation id. If provided, the data holder must play back this
+            value in the x-fapi-interaction-id response header. If not provided
+            a [RFC4122] UUID value is required to be provided in the response
+            header to track the interaction.
+          required: false
+          type: string
+        - name: x-fapi-auth-date
+          in: header
+          description: The time when the customer last logged in to the data recipient.
+            Required for all resource calls (customer present and unattended).
+            Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-fapi-customer-ip-address
+          in: header
+          description: The customer's original IP address if the customer is currently
+            logged in to the data recipient. The presence of this header
+            indicates that the API is being called in a customer present
+            context. Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-cds-User-Agent
+          in: header
+          description: The customer's original standard http headers
+            [Base64](#common-field-types) encoded, including the original User
+            Agent header, if the customer is currently logged in to the data
+            recipient. Mandatory for customer present calls.  Not required for
+            unattended or unauthenticated calls.
+          required: false
+          type: string
+          x-cds-type: Base64
+        - name: x-cds-subject
+          in: header
+          description: Subject identifier. Locally unique and never reassigned identifier
+            within the Holder for the End-User. Mandatory for authenticated
+            calls. Not required for unattended or unauthenticated calls.
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          headers:
+            x-v:
+              type: string
+              description: The [version](#response-headers) of the API end point that the
+                data holder has responded with.
+            x-fapi-interaction-id:
+              type: string
+              description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+                correlation id. If provided, the data holder must play back this
+                value in the x-fapi-interaction-id response header. If not
+                provided a [RFC4122] UUID value is required to be provided in
+                the response header to track the interaction.
+          schema:
+            $ref: "#/definitions/ResponseBankingAccountsBalanceList"
+      x-scopes:
+        - bank:accounts.basic:read
+      x-version: "1"
+    post:
+      tags:
+        - Banking
+        - Accounts
+      summary: Get Balances For Specific Accounts
+      description: Obtain balances for a specified list of accounts
+      operationId: listBalancesSpecificAccounts
+      parameters:
+        - in: body
+          name: accountIds
+          description: The list of account IDs to obtain balances for
+          required: true
+          schema:
+            $ref: "#/definitions/RequestAccountIds"
+        - name: page
+          in: query
+          description: Page of results to request (standard pagination)
+          required: false
+          type: integer
+          default: 1
+          x-cds-type: PositiveInteger
+        - name: page-size
+          in: query
+          description: Page size to request. Default is 25 (standard pagination)
+          required: false
+          type: integer
+          default: 25
+          x-cds-type: PositiveInteger
+        - name: x-v
+          in: header
+          description: Version of the API end point requested by the client. Must be set to
+            a positive integer. The data holder should respond with the highest
+            supported version between [x-min-v](#request-headers) and
+            [x-v](#request-headers). If the value of [x-min-v](#request-headers)
+            is equal to or higher than the value of [x-v](#request-headers) then
+            the [x-min-v](#request-headers) header should be treated as absent.
+            If all versions requested are not supported then the data holder
+            should respond with a 406 Not Acceptable. See [HTTP
+            Headers](#request-headers)
+          required: true
+          type: string
+        - name: x-min-v
+          in: header
+          description: Minimum version of the API end point requested by the client. Must
+            be set to a positive integer if provided. The data holder should
+            respond with the highest supported version between
+            [x-min-v](#request-headers) and [x-v](#request-headers). If all
+            versions requested are not supported then the data holder should
+            respond with a 406 Not Acceptable.
+          required: false
+          type: string
+        - name: x-fapi-interaction-id
+          in: header
+          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+            correlation id. If provided, the data holder must play back this
+            value in the x-fapi-interaction-id response header. If not provided
+            a [RFC4122] UUID value is required to be provided in the response
+            header to track the interaction.
+          required: false
+          type: string
+        - name: x-fapi-auth-date
+          in: header
+          description: The time when the customer last logged in to the data recipient.
+            Required for all resource calls (customer present and unattended).
+            Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-fapi-customer-ip-address
+          in: header
+          description: The customer's original IP address if the customer is currently
+            logged in to the data recipient. The presence of this header
+            indicates that the API is being called in a customer present
+            context. Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-cds-User-Agent
+          in: header
+          description: The customer's original standard http headers
+            [Base64](#common-field-types) encoded, including the original User
+            Agent header, if the customer is currently logged in to the data
+            recipient. Mandatory for customer present calls.  Not required for
+            unattended or unauthenticated calls.
+          required: false
+          type: string
+          x-cds-type: Base64
+        - name: x-cds-subject
+          in: header
+          description: Subject identifier. Locally unique and never reassigned identifier
+            within the Holder for the End-User. Mandatory for authenticated
+            calls. Not required for unattended or unauthenticated calls.
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          headers:
+            x-v:
+              type: string
+              description: The [version](#response-headers) of the API end point that the
+                data holder has responded with.
+            x-fapi-interaction-id:
+              type: string
+              description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+                correlation id. If provided, the data holder must play back this
+                value in the x-fapi-interaction-id response header. If not
+                provided a [RFC4122] UUID value is required to be provided in
+                the response header to track the interaction.
+          schema:
+            $ref: "#/definitions/ResponseBankingAccountsBalanceList"
+        "422":
+          description: The request was well formed but was unable to be processed due to
+            business logic specific to the request
+          headers:
+            x-fapi-interaction-id:
+              type: string
+              description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+                correlation id. If provided, the data holder must play back this
+                value in the x-fapi-interaction-id response header. If not
+                provided a [RFC4122] UUID value is required to be provided in
+                the response header to track the interaction.
+          schema:
+            $ref: "#/definitions/ResponseErrorList"
+      x-scopes:
+        - bank:accounts.basic:read
+      x-version: "1"
+  "/banking/accounts/{accountId}/balance":
+    get:
+      tags:
+        - Banking
+        - Accounts
+      summary: Get Account Balance
+      description: Obtain the balance for a single specified account
+      operationId: listBalance
+      parameters:
+        - name: accountId
+          in: path
+          description: ID of the specific account requested
+          required: true
+          type: string
+          x-cds-type: ASCIIString
+        - name: x-v
+          in: header
+          description: Version of the API end point requested by the client. Must be set to
+            a positive integer. The data holder should respond with the highest
+            supported version between [x-min-v](#request-headers) and
+            [x-v](#request-headers). If the value of [x-min-v](#request-headers)
+            is equal to or higher than the value of [x-v](#request-headers) then
+            the [x-min-v](#request-headers) header should be treated as absent.
+            If all versions requested are not supported then the data holder
+            should respond with a 406 Not Acceptable. See [HTTP
+            Headers](#request-headers)
+          required: true
+          type: string
+        - name: x-min-v
+          in: header
+          description: Minimum version of the API end point requested by the client. Must
+            be set to a positive integer if provided. The data holder should
+            respond with the highest supported version between
+            [x-min-v](#request-headers) and [x-v](#request-headers). If all
+            versions requested are not supported then the data holder should
+            respond with a 406 Not Acceptable.
+          required: false
+          type: string
+        - name: x-fapi-interaction-id
+          in: header
+          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+            correlation id. If provided, the data holder must play back this
+            value in the x-fapi-interaction-id response header. If not provided
+            a [RFC4122] UUID value is required to be provided in the response
+            header to track the interaction.
+          required: false
+          type: string
+        - name: x-fapi-auth-date
+          in: header
+          description: The time when the customer last logged in to the data recipient.
+            Required for all resource calls (customer present and unattended).
+            Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-fapi-customer-ip-address
+          in: header
+          description: The customer's original IP address if the customer is currently
+            logged in to the data recipient. The presence of this header
+            indicates that the API is being called in a customer present
+            context. Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-cds-User-Agent
+          in: header
+          description: The customer's original standard http headers
+            [Base64](#common-field-types) encoded, including the original User
+            Agent header, if the customer is currently logged in to the data
+            recipient. Mandatory for customer present calls.  Not required for
+            unattended or unauthenticated calls.
+          required: false
+          type: string
+          x-cds-type: Base64
+        - name: x-cds-subject
+          in: header
+          description: Subject identifier. Locally unique and never reassigned identifier
+            within the Holder for the End-User. Mandatory for authenticated
+            calls. Not required for unattended or unauthenticated calls.
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          headers:
+            x-v:
+              type: string
+              description: The [version](#response-headers) of the API end point that the
+                data holder has responded with.
+            x-fapi-interaction-id:
+              type: string
+              description: An RFC4122 UID used as a correlation id. The data holder must
+                set the response header x-fapi-interaction-id to the value
+                received from the corresponding fapi client request header or to
+                a new RFC4122 UUID value if the request header was not provided
+                to track the interaction.
+          schema:
+            $ref: "#/definitions/ResponseBankingAccountsBalanceById"
+      x-scopes:
+        - bank:accounts.basic:read
+      x-version: "1"
   "/banking/accounts/{accountId}":
     get:
       tags:
@@ -266,6 +636,15 @@ paths:
         - bank:accounts.detail:read
       x-version: "1"
 definitions:
+  RequestAccountIds:
+    type: object
+    required:
+      - data
+    properties:
+      data:
+        $ref: "#/definitions/RequestAccountIds_data"
+      meta:
+        $ref: "#/definitions/Meta"
   BankingProductFeature:
     type: object
     required:
@@ -1004,6 +1383,86 @@ definitions:
         description: The expected or required repayment frequency. Formatted according to
           [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
         x-cds-type: ExternalRef
+  ResponseBankingAccountsBalanceList:
+    type: object
+    required:
+      - data
+      - links
+      - meta
+    properties:
+      data:
+        $ref: "#/definitions/ResponseBankingAccountsBalanceList_data"
+      links:
+        $ref: "#/definitions/LinksPaginated"
+      meta:
+        $ref: "#/definitions/MetaPaginated"
+  ResponseBankingAccountsBalanceById:
+    required:
+      - data
+      - links
+    properties:
+      data:
+        $ref: "#/definitions/BankingBalance"
+      links:
+        $ref: "#/definitions/Links"
+      meta:
+        $ref: "#/definitions/Meta"
+  BankingBalance:
+    type: object
+    required:
+      - accountId
+      - availableBalance
+      - currentBalance
+    properties:
+      accountId:
+        type: string
+        description: A unique ID of the account adhering to the standards for ID permanence
+        x-cds-type: ASCIIString
+      currentBalance:
+        type: string
+        description: The balance of the account at this time. Should align to the balance
+          available via other channels such as Internet Banking. Assumed to be
+          negative if the customer has money owing
+        x-cds-type: AmountString
+      availableBalance:
+        type: string
+        description: Balance representing the amount of funds available for transfer.
+          Assumed to be zero or positive
+        x-cds-type: AmountString
+      creditLimit:
+        type: string
+        description: Object representing the maximum amount of credit that is available for
+          this account. Assumed to be zero if absent
+        x-cds-type: AmountString
+      amortisedLimit:
+        type: string
+        description: Object representing the available limit amortised according to payment
+          schedule. Assumed to be zero if absent
+        x-cds-type: AmountString
+      currency:
+        type: string
+        description: The currency for the balance amounts. If absent assumed to be AUD
+        x-cds-type: CurrencyString
+      purses:
+        type: array
+        description: Optional array of balances for the account in other currencies.
+          Included to support accounts that support multi-currency purses such
+          as Travel Cards
+        items:
+          $ref: "#/definitions/BankingBalancePurse"
+  BankingBalancePurse:
+    type: object
+    required:
+      - amount
+    properties:
+      amount:
+        type: string
+        description: The balance available for this additional currency purse
+        x-cds-type: AmountString
+      currency:
+        type: string
+        description: The currency for the purse
+        x-cds-type: CurrencyString
   CommonPhysicalAddress:
     type: object
     required:
@@ -1214,6 +1673,15 @@ definitions:
         description: The total number of pages in the full set. See
           [pagination](#pagination).
         x-cds-type: NaturalNumber
+  ResponseErrorList:
+    type: object
+    required:
+      - errors
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: "#/definitions/ResponseErrorList_errors"
   BankingProductCategory:
     type: string
     description: The category to which a product or account belongs. See
@@ -1231,6 +1699,16 @@ definitions:
       - TRADE_FINANCE
       - OVERDRAFTS
       - BUSINESS_LOANS
+  RequestAccountIds_data:
+    required:
+      - accountIds
+    properties:
+      accountIds:
+        type: array
+        items:
+          type: string
+          description: Array of specific accountIds to obtain authorisations for
+          x-cds-type: ASCIIString
   BankingProductRateTier_subTier:
     required:
       - maximumValue
@@ -1286,3 +1764,31 @@ definitions:
           then this array may have no records
         items:
           $ref: "#/definitions/BankingAccount"
+  ResponseBankingAccountsBalanceList_data:
+    required:
+      - balances
+    properties:
+      balances:
+        type: array
+        description: The list of balances returned
+        items:
+          $ref: "#/definitions/BankingBalance"
+  ResponseErrorList_errors:
+    required:
+      - code
+      - detail
+      - title
+    properties:
+      code:
+        type: string
+        description: "Must be one of the following: 0001 â€“ Account not able to be found"
+      title:
+        type: string
+        description: "Must be one of the following: Invalid account"
+      detail:
+        type: string
+        description: ID of the account not found
+      meta:
+        type: object
+        description: Optional additional data for specific error types
+        properties: {}

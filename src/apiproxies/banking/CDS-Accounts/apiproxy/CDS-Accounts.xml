@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="19" name="CDS-Accounts">
+<APIProxy revision="25" name="CDS-Accounts">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1563516215003</CreatedAt>
+    <CreatedAt>1576466012101</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1570515761572</LastModifiedAt>
+    <LastModifiedAt>1576466012101</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:7a0346538097a271c7b42509488297f48888b44fc2a4809b1f45a3a61293f0c0b51e6a8c49c5717141f79bcca6c279e164b4633f55b187f21a894bf2fbc1a112</ManifestVersion>
+    <ManifestVersion>SHA-512:3b075462c6dd9fb95e5cc3f5811eaa7855cfc07370e987b9683c426db0ba520f22e68eb5e23e3556c855e9a96a30ecfc554c2ef1ffeac0eaa42e8d20db4b88ff</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
         <Policy>AM-MockFullListOfAccounts</Policy>
+        <Policy>AM-MockFullListOfBalances</Policy>
         <Policy>AM-Set-Pagination-Settings</Policy>
         <Policy>AM-SetCustomerId</Policy>
+        <Policy>EV-AccountIdFromURL</Policy>
         <Policy>EV-GetAccountsFilterCriteria</Policy>
         <Policy>EV-GetAllAcountsForCustomer</Policy>
-        <Policy>EV-getErrorDetail</Policy>
-        <Policy>EV-productDetailsForProductId</Policy>
-        <Policy>EV-productIdFromURL</Policy>
+        <Policy>EV-GetAllBalancesForCustomer</Policy>
+        <Policy>EV-GetErrorDetail</Policy>
+        <Policy>EV-ResultsForAccountId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-PaginateResponse</Policy>
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-ValidateRequestParams</Policy>
-        <Policy>JS-BuildProductDetailsResponse</Policy>
+        <Policy>JS-BuildDetailsResponse</Policy>
+        <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
         <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
-        <Policy>JS-RemoveProductDetails</Policy>
+        <Policy>JS-FilterResults</Policy>
         <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
-        <Policy>OA-VerifyTokenForListAccounts</Policy>
+        <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
         <Policy>RF-InvalidScope</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-TokenNotVerified</Policy>
@@ -42,9 +47,10 @@
     </ProxyEndpoints>
     <Resources>
         <Resource>openapi://association.json</Resource>
-        <Resource>jsc://buildAccountDetailsResponse.js</Resource>
+        <Resource>jsc://buildDetailsResponse.js</Resource>
+        <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
         <Resource>jsc://filterAccountsListBasedOnRequestFilters.js</Resource>
-        <Resource>jsc://removeAccountDetails.js</Resource>
+        <Resource>jsc://filterResults.js</Resource>
     </Resources>
     <Spec></Spec>
     <TargetServers/>

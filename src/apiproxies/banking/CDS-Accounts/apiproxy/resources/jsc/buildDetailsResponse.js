@@ -16,19 +16,18 @@
 
 /**
  * @file
- * buildAccountDetailsResponse.js
+ * buildDetailsResponse.js
  * Format response according to Get Account Details spec
  */
 
 
-//TO DO
 
-// Format response according to Get Account Details spec
-// The result of the JSONPath expression is always an array (of AccountDetails in this case),
-// but the product details response needs the productDetails element
-var theAccountDetails = JSON.parse(context.getVariable("theAccountDetails"));
+// Format response according to Get (Account|Balance) Details spec
+// The result of the JSONPath expression is always an array with one element,
+// but the  details response needs the  element itself
+var theDetailsForAccountId = JSON.parse(context.getVariable("theResultsForAccountId"));
 
-var accountDetails = {};
-accountDetails.data = theAccountDetails[0];
-context.setVariable("response.content",JSON.stringify(accountDetails));
+var results = {};
+results.data = theDetailsForAccountId[0];
+context.setVariable("response.content",JSON.stringify(results));
     
