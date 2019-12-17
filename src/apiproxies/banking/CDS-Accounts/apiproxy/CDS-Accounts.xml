@@ -6,13 +6,13 @@
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1576466012101</CreatedAt>
+    <CreatedAt>1563516215003</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1576466012101</LastModifiedAt>
+    <LastModifiedAt>1576559645642</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:3b075462c6dd9fb95e5cc3f5811eaa7855cfc07370e987b9683c426db0ba520f22e68eb5e23e3556c855e9a96a30ecfc554c2ef1ffeac0eaa42e8d20db4b88ff</ManifestVersion>
+    <ManifestVersion>SHA-512:1c1f820ca1a023ae704b7c7314ffed6edf3273e3ed896b20012215b5cd3c71c4db947bf3ba75424d7995ca734c2742b5d0ca6795740ff48e1475dbe8f8a6bc12</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>

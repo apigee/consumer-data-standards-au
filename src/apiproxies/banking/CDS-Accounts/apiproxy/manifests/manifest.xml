@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:5e0f83f85cdcb46e457a5b1ff61e2225e0a3723f42ff01b1c98e8d603536da84d130b9a7d1ba6b8f22aca7cf0216f1b3ef375aaecdeac965c15fd278b920b636"/>
-        <VersionInfo resourceName="AM-CopyListOfAllAccountsToAllResults" version="SHA-512:90a66424506fd9e9fc3f5a0b97a9f4affb09845318e9ad940ff4bea1360218cf32d64df63349d0f81a6332ea38e01497d49b8e479c9b54184139cc13ebec41cc"/>
-        <VersionInfo resourceName="AM-MockFullListOfAccounts" version="SHA-512:2a5f00b12cf9c6d53537515551b1036a1a1ad6bf27c252c80b0ced490115faac3a79a9e6c6fa0c9b8d35ce40f61faeca8164886207b684263ba3f6c3bb3736dd"/>
+        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:764119ddf1910a70d299a7b875ea6bf412cdafef28b7ee06be0ffc59b7d9664af238c1b3822dac6afee54e5d95e6cb2682d65ed429dcdb35fc0fd4a89591584a"/>
+        <VersionInfo resourceName="AM-CopyListOfAllAccountsToAllResults" version="SHA-512:f790f18ae594fb6cc8cb5f004af3f46c4997f609732224d749c8512f5bd183924c654e8c50977aa136a520a7afaf95b136f988fd8cc4359ffaa233e1a1324a8b"/>
+        <VersionInfo resourceName="AM-MockFullListOfAccounts" version="SHA-512:9d83266a6744613d67be2fd61e985cf8e7ba223152ae45ad64321b5ee6c3a5deb80ae7e60d10589953a43696c29711e38d83e8c9e0deeb4306f19a65966f4cb1"/>
         <VersionInfo resourceName="AM-MockFullListOfBalances" version="SHA-512:9de6d9204e442689470c926fe8a56877fdee504d407430dfa10e9b8cd034b9404daa60086d94b93114d5d2fff3bfc90b0b8993dc5eab6b9b56ad22688fae72c5"/>
         <VersionInfo resourceName="AM-Set-Pagination-Settings" version="SHA-512:7ccf4d4922af2fd396ce786713c494175c09dfa12595bc2a438f0a8524a31bbadc8a44c7d46781f28103e5904373b164855aa51419e38f5cff11e407ecf86b90"/>
         <VersionInfo resourceName="AM-SetCustomerId" version="SHA-512:a3453e0bb3d4ac78d8563df052c62aa1dbd12c22fe6587ea842b0a39b8b3db0e054aadfcd80965f6b2a0066946ad8763d3be155cd48a75c9cc9a9f5e04fd9ba7"/>
@@ -24,9 +24,9 @@
         <VersionInfo resourceName="JS-FilterResults" version="SHA-512:c5e96fd7d23c47b9ca1002ad8dcc5815dc2570524b8145ae4320cee073ff3cfdec946f84c08f5eea95e3001367e35e51dcbf2c13874deb33a3f86e51eaa99f1b"/>
         <VersionInfo resourceName="OA-VerifyTokenForGetAccountDetails" version="SHA-512:de7b1cb8a8f2ca305e7fb3821bc66d56d613d6f4c425cbe811214142cd05575f1f6631a9da5413c7c2aaff6c20976226c641c064e14c22e41e3c97dcff7ba3ca"/>
         <VersionInfo resourceName="OA-VerifyTokenForGetAccountsBasic" version="SHA-512:f66acd9a64342013e5b009903b5a7086f433faa361cf482d4428eea9df792b48cb103380e759841c5bcdc5d311426f61b2dd176670196fdfa3158d85a32ceab0"/>
-        <VersionInfo resourceName="RF-InvalidScope" version="SHA-512:3b0b2e7d4405a724bd1910cca7b1333e13252801686aaaecda85b4c8e958665350d4ddd1b2084e86564434eee545a8ea45d59cbecba6e2db3a3ca3448249e627"/>
+        <VersionInfo resourceName="RF-InvalidScope" version="SHA-512:8def2217f7b40e8220d5314b5ec6a1fc0f37d5c6ea2aa9ff3cc6b26cefc00385cbca24abceb889c617d4d4e2d58a9c03806b75993b77348ff4e076b92d0a9158"/>
         <VersionInfo resourceName="RF-NotFound" version="SHA-512:dd8c233ed6dd3ee535323424b9a23a9814a67b806688179cb68f1f6d05a7269489074030dccccbc8cbba1504fb41d01b2bd68ca4df314d0ff07472df82f58d42"/>
-        <VersionInfo resourceName="RF-TokenNotVerified" version="SHA-512:dbd0baea9467ea03dd6431221be398bdf058e7905664363be0e9ac7b8cd692f275b0facac32926925c5b16b80c53c26cd068a36945c33aa1e9cd410301af8710"/>
+        <VersionInfo resourceName="RF-TokenNotVerified" version="SHA-512:edeb0542422b04f8ed7db8dcf469a09d778a89403849c9b3ca455ea1bcc9286fd8e11ae8e4ff44e756e7007f0cd8dd3d8da425454c6bb329dab4c152fc5273cb"/>
         <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:07e6655bc3c0a7514fbce38ead742f8fb8a069a0aa4f18fe65a3c24490e7e0664a24f2714ebe5e4f733eda7a076ee049a67f3a028f2892d766b49d5db849d36f"/>
     </Policies>
     <ProxyEndpoints>

@@ -76,7 +76,7 @@
          If other information will be returned, eg: balances, these 2 next variables will be overwritten accordingly -->
     <AssignVariable>
         <Name>listOfAllResultsByCustomer</Name>
-        <Reference>listOfAllAccountDetailsByCustomer</Reference>
+        <Ref>listOfAllAccountDetailsByCustomer</Ref>
     </AssignVariable>
     <AssignVariable>
         <Name>resultsType</Name>

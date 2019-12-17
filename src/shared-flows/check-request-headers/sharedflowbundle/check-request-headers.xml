@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="20" name="check-request-headers">
+<SharedFlowBundle revision="22" name="check-request-headers">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1546400695647</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1571020525496</LastModifiedAt>
+    <LastModifiedAt>1576558133033</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:116bc78b3b08d716453d8e6a9bc9ddd3f65a9bff90c57eaa14f7f32d31de853c6ff46ae0f90fe607251a26faaa7a7cb9accbf654a44d29cf2b924995c8172964</ManifestVersion>
+    <ManifestVersion>SHA-512:fb2cdea3b5f9012b4dfa92a991b84d16618b64a4d04265d6d279d93c28bdba294958a7809bbbb9efdb3af3b037241891abce1ad1956e66ea4091132be2d7d5ba</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
         <Policy>AM-SetIsCustomerPresentToFalse</Policy>
