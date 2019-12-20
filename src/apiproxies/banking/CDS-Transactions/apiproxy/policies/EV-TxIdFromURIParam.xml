@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-TxIdFromURIParam">
     <DisplayName>EV-TxIdFromURIParam</DisplayName>
+    <FaultRules/>
     <Properties/>
     <URIPath>
-        <Pattern>/{theTransactionId}</Pattern>
+        <Pattern ignoreCase="false">/{theTransactionId}</Pattern>
     </URIPath>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
 </ExtractVariables>

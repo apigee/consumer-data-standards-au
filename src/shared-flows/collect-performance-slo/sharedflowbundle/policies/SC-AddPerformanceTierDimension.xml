@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StatisticsCollector async="false" continueOnError="false" enabled="true" name="SC-AddPerformanceTierDimension">
+    <DisplayName>SC-AddPerformanceTierDimension</DisplayName>
+    <Properties/>
+    <Statistics>
+        <Statistic name="PerformanceTier" ref="performanceTier" type="STRING">undetermined</Statistic>
+        <Statistic name="MeetsPerformanceSLO" ref="meetsPerformanceSLO" type="STRING">undetermined</Statistic>
+    </Statistics>
+</StatisticsCollector>

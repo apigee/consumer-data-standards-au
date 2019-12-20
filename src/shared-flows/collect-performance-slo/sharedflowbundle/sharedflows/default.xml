@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Condition>(isPublicEndpoint = "true")</Condition>
+        <FaultRules/>
+        <Name>AM-SetPerformanceTierToUnauthenticated</Name>
+    </Step>
+    <Step>
+        <!-- No large paylaod endpoints implemented yet -->
+        <Condition>true = false</Condition>
+        <FaultRules/>
+        <Name>AM-SetPerformanceTierToLargePayload</Name>
+    </Step>
+    <Step>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false")</Condition>
+        <FaultRules/>
+        <Name>AM-SetPerformanceTierToUnattended</Name>
+    </Step>
+    <Step>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true") and ( (isAuthEndpoint = "true") or ((proxy.basepath = "/cds-au/v1/banking/accounts") and (proxy.pathsuffix MatchesPath "/") ) )</Condition>
+        <FaultRules/>
+        <Name>AM-SetPerformanceTierToHighPriority</Name>
+    </Step>
+    <Step>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true") and ( (isAuthEndpoint = "false") and ( (proxy.basepath != "/cds-au/v1/banking/accounts") or (not (proxy.pathsuffix MatchesPath "/")) )  )</Condition>
+        <FaultRules/>
+        <Name>AM-SetPerformanceTierToLowPriority</Name>
+    </Step>
+    <Step>
+        <Name>AM-SetMessageSLO</Name>
+    </Step>
+    <Step>
+        <Name>JS-CheckIfRequestMeetsPerformanceSLO</Name>
+    </Step>
+    <Step>
+        <Name>SC-AddPerformanceTierDimension</Name>
+    </Step>
+</SharedFlow>

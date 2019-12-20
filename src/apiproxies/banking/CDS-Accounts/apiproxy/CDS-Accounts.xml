@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="25" name="CDS-Accounts">
+<APIProxy revision="30" name="CDS-Accounts">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1563516215003</CreatedAt>
+    <CreatedAt>1576808739338</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1576559645642</LastModifiedAt>
+    <LastModifiedAt>1576808739338</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:1c1f820ca1a023ae704b7c7314ffed6edf3273e3ed896b20012215b5cd3c71c4db947bf3ba75424d7995ca734c2742b5d0ca6795740ff48e1475dbe8f8a6bc12</ManifestVersion>
+    <ManifestVersion>SHA-512:2b15202e9f60747ff7a2e1a7fa057fb0abd7be7b8d6dcc28b323baad70b3045a4a9cd38bdc63f7b1b2b5398664765807be60d6ee9103d6a9def5433d79446aa0</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
+        <Policy>AM-InvalidScope</Policy>
         <Policy>AM-MockFullListOfAccounts</Policy>
         <Policy>AM-MockFullListOfBalances</Policy>
         <Policy>AM-Set-Pagination-Settings</Policy>
         <Policy>AM-SetCustomerId</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
         <Policy>EV-AccountIdFromURL</Policy>
         <Policy>EV-GetAccountsFilterCriteria</Policy>
         <Policy>EV-GetAllAcountsForCustomer</Policy>
@@ -28,6 +31,7 @@
         <Policy>EV-ResultsForAccountId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
         <Policy>FC-PaginateResponse</Policy>
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-ValidateRequestParams</Policy>
@@ -37,9 +41,7 @@
         <Policy>JS-FilterResults</Policy>
         <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
         <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
-        <Policy>RF-InvalidScope</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>RF-TokenNotVerified</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
     </Policies>
     <ProxyEndpoints>

@@ -3,11 +3,11 @@
     <DisplayName>OAInfoSet-ForceUpdateOfAttributes</DisplayName>
     <FaultRules/>
     <Properties/>
-    <AccessToken ref="oauthv2accesstoken.OA-RefreshOpaqueAccessToken.access_token"/>
+    <AccessToken ref="oauthv2accesstoken.OA-RefreshOpaqueAccessToken.access_token"></AccessToken>
     <Attributes>
-        <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
-        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
-        <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
-        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"/>
+        <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"></Attribute>
+        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"></Attribute>
+        <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"></Attribute>
+        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"></Attribute>
     </Attributes>
 </SetOAuthV2Info>

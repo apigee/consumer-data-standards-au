@@ -2,15 +2,8 @@
 <ProxyEndpoint name="default">
     <Description/>
     <FaultRules>
-        <FaultRule name="Invalid Refresh Token">
-            <Condition>(fault.name = "invalid_refresh_token")</Condition>
-            <Step>
-                <FaultRules/>
-                <Name>RF-InvalidRefreshToken</Name>
-            </Step>
-        </FaultRule>
         <FaultRule name="Invalid Refresh Token in Introspection">
-            <Condition>(fault.name = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/token/introspection")</Condition>
+            <Condition>(faultType = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/token/introspection")</Condition>
             <Step>
                 <FaultRules/>
                 <Name>AM-BuildIntrospectionResponseInactiveToken</Name>
@@ -20,10 +13,16 @@
             <Condition>(fault.name = "invalid_request-authorization_code_invalid")</Condition>
             <Step>
                 <FaultRules/>
-                <Name>RF-InvalidAuthCode</Name>
+                <Name>AM-InvalidAuthCode</Name>
             </Step>
         </FaultRule>
     </FaultRules>
+    <DefaultFaultRule name="defaultFaultRule">
+        <Step>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
     <Flows>
         <Flow name="Get OIDC Configuration">
             <Description/>
@@ -60,6 +59,11 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
+                    <Name>RF-InvalidRefreshToken</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
                 </Step>
@@ -86,6 +90,7 @@
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
@@ -137,6 +142,7 @@
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
@@ -214,6 +220,11 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
+                    <Name>RF-InvalidRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -306,12 +317,23 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <Name>FC-DecideIfCustomerIsPresent</Name>
+            </Step>
+            <Step>
                 <FaultRules/>
                 <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
             </Step>
         </Request>
         <Response/>
     </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
+        </Response>
+    </PostFlow>
     <HTTPProxyConnection>
         <BasePath>/</BasePath>
         <Properties/>

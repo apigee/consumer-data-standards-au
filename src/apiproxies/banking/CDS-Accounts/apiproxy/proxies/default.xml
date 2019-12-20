@@ -6,6 +6,9 @@
             <FaultRules/>
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
+        <Step>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
     <Description/>
@@ -13,11 +16,8 @@
         <FaultRule name="Invalid Scope">
             <Condition>(fault.name = "InsufficientScope")</Condition>
             <Step>
-                <Name>RF-InvalidScope</Name>
-            </Step>
-            <Step>
                 <FaultRules/>
-                <Name>AM-Add-CORS-Headers</Name>
+                <Name>AM-InvalidScope</Name>
             </Step>
         </FaultRule>
         <FaultRule name="Invalid Access Token">
@@ -28,11 +28,7 @@
             </Step>
             <Step>
                 <FaultRules/>
-                <Name>RF-TokenNotVerified</Name>
-            </Step>
-            <Step>
-                <FaultRules/>
-                <Name>AM-Add-CORS-Headers</Name>
+                <Name>AM-TokenNotVerified</Name>
             </Step>
         </FaultRule>
     </FaultRules>
@@ -53,6 +49,7 @@
                     <Name>AM-Set-Pagination-Settings</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-CopyListOfAllAccountsToAllResults</Name>
                 </Step>
             </Request>
@@ -116,6 +113,7 @@
                     <Name>EV-AccountIdFromURL</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-CopyListOfAllAccountsToAllResults</Name>
                 </Step>
             </Request>
@@ -135,9 +133,11 @@
             <Description>Get Balances For Specific Accounts</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>FC-ValidateRequestParams</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JS-BuildFilteredAccountListFromRequestBody</Name>
                 </Step>
                 <Step>
@@ -145,6 +145,7 @@
                     <Name>AM-Set-Pagination-Settings</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-GetAllBalancesForCustomer</Name>
                 </Step>
             </Request>
@@ -164,9 +165,11 @@
             <Description>Get Account Balance</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-AccountIdFromURL</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-GetAllBalancesForCustomer</Name>
                 </Step>
             </Request>
@@ -211,6 +214,9 @@
                 <FaultRules/>
                 <Name>FC-AddResponseHeaders-Link-Meta</Name>
             </Step>
+            <Step>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
         </Response>
     </PostFlow>
     <PreFlow name="PreFlow">
@@ -224,19 +230,19 @@
                 <Name>AM-MockFullListOfAccounts</Name>
             </Step>
             <Step>
-                <Name>AM-MockFullListOfBalances</Name>
                 <Condition>proxy.pathsuffix Matches "*/balance*"</Condition>
+                <FaultRules/>
+                <Name>AM-MockFullListOfBalances</Name>
             </Step>
             <Step>
+                <Condition>(proxy.pathsuffix MatchesPath "/balances") or (not (proxy.pathsuffix MatchesPath "/{theAccountId}"))  or (request.verb != "GET")</Condition>
                 <FaultRules/>
                 <Name>OA-VerifyTokenForGetAccountsBasic</Name>
-                <Condition>(proxy.pathsuffix MatchesPath "/balances") or (not (proxy.pathsuffix MatchesPath "/{theAccountId}"))  or (request.verb != "GET")</Condition>
             </Step>
-            <!-- getAccountDetails requires a different scope than all the other endpoints -->
             <Step>
+                <Condition>(proxy.pathsuffix MatchesPath "/{theAccountId}") and (not (proxy.pathsuffix MatchesPath "/balances") ) and (request.verb = "GET")</Condition>
                 <FaultRules/>
                 <Name>OA-VerifyTokenForGetAccountDetails</Name>
-                <Condition>(proxy.pathsuffix MatchesPath "/{theAccountId}") and (not (proxy.pathsuffix MatchesPath "/balances") ) and (request.verb = "GET")</Condition>
             </Step>
             <Step>
                 <FaultRules/>

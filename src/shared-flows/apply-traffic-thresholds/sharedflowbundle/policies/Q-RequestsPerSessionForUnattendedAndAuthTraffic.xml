@@ -4,9 +4,9 @@
     <FaultRules/>
     <Properties/>
     <Identifier ref="sessionId"/>
-    <!--<Allow count="100"/>-->
+    <Allow count="100"/>
     <!-- For testing purposes, set to a higher threshold -->
-    <Allow count="10000"/>
+    <!-- <Allow count="10000"/> -->
     <AsynchronousConfiguration>
         <SyncIntervalInSeconds>10</SyncIntervalInSeconds>
         <SyncMessageCount>0</SyncMessageCount>

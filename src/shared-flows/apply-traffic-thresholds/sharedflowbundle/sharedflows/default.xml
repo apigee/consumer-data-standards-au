@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
+        <FaultRules/>
         <Name>SA-GlobalTrafficThreshold</Name>
     </Step>
     <Step>
+        <Condition>(isPublicEndpoint = "false")</Condition>
+        <FaultRules/>
         <Name>SA-ThresholdForSecureTrafficPerClientId</Name>
-        <Condition>isPublicEndpoint = "false"</Condition>
     </Step>
     <Step>
-        <Name>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Name>
         <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true")</Condition>
+        <FaultRules/>
+        <Name>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Name>
     </Step>
     <Step>
-        <Name>Q-RequestsPerSessionForUnattendedAndAuthTraffic</Name>
         <Condition>((isPublicEndpoint = "false") and (isCustomerPresent = "false")) or (isAuthEndpoint = "true")</Condition>
+        <FaultRules/>
+        <Name>Q-RequestsPerSessionForUnattendedAndAuthTraffic</Name>
     </Step>
     <Step>
-        <Name>SA-ThresholdForUnattendedSecureTrafficPerSession</Name>
         <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false")</Condition>
+        <FaultRules/>
+        <Name>SA-ThresholdForUnattendedSecureTrafficPerSession</Name>
     </Step>
     <Step>
-        <Name>RF-TooManyRequests</Name>
         <Condition>(ratelimit.SA-ThresholdForSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForCustomerPresentSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true")</Condition>
+        <FaultRules/>
+        <Name>RF-TooManyRequests</Name>
     </Step>
     <Step>
-        <Name>RF-QuotaExceededForSessionWithUnattendedTraffic</Name>
         <Condition>ratelimit.Q-RequestsPerSessionForUnattendedAndAuthTraffic.failed = "true"</Condition>
+        <FaultRules/>
+        <Name>RF-QuotaExceededForSessionWithUnattendedTraffic</Name>
     </Step>
 </SharedFlow>

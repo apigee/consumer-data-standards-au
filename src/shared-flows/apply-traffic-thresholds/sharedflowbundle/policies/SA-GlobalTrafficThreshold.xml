@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SpikeArrest async="false" continueOnError="true" enabled="true" name="SA-GlobalTrafficThreshold">
     <DisplayName>SA-GlobalTrafficThreshold</DisplayName>
+    <FaultRules/>
     <Properties/>
     <!-- Using an identifier of type Boolean means we keep track of public (true) and secure traffic (false) separately -->
     <Identifier ref="isPublicEndpoint"/>

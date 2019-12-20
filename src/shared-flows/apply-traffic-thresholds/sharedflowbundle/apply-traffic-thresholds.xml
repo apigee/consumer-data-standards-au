@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="3" name="apply-traffic-thresholds">
+<SharedFlowBundle revision="17" name="apply-traffic-thresholds">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1564713794748</CreatedAt>
+    <CreatedAt>1576803746019</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Apply the traffic thresholds specified by CDS non functional requirements</Description>
     <DisplayName>apply-traffic-thresholds</DisplayName>
-    <LastModifiedAt>1566970567080</LastModifiedAt>
+    <LastModifiedAt>1576803746019</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:7b9d2f11193350a28868c46427de94bcebe1b7b7c400d9f38fd724cd1eb6888e4d9f1917352a659d5ca89b1d173e34fc1bd1490a881d2facb52540200b05caf2</ManifestVersion>
+    <ManifestVersion>SHA-512:02db21c7bd45dfec1dd50e553e9938bb6fac91af2191b0beaf103ab000ea365f69160de801bc78158f01cc1f74fba88b2481e0721d6669d57cefef787dd144bc</ManifestVersion>
     <Policies>
         <Policy>Q-RequestsPerSessionForUnattendedAndAuthTraffic</Policy>
         <Policy>RF-QuotaExceededForSessionWithUnattendedTraffic</Policy>

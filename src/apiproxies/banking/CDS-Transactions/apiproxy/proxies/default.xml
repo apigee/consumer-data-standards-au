@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <DefaultFaultRule name="DefaultFaultRule">
-        <Step>
-            <Condition>message.status.code != "200"</Condition>
-            <FaultRules/>
-            <Name>AM-Add-CORS-Headers</Name>
-        </Step>
-        <AlwaysEnforce>true</AlwaysEnforce>
-    </DefaultFaultRule>
     <Description/>
     <FaultRules>
         <FaultRule name="Invalid Scope">
             <Condition>(fault.name = "InsufficientScope")</Condition>
             <Step>
-                <FaultRules/>
-                <Name>RF-InvalidScope</Name>
-            </Step>
-            <Step>
-                <FaultRules/>
-                <Name>AM-Add-CORS-Headers</Name>
+                <Name>AM-InvalidScope</Name>
             </Step>
         </FaultRule>
         <FaultRule name="Invalid Access Token">
@@ -29,14 +16,21 @@
             </Step>
             <Step>
                 <FaultRules/>
-                <Name>RF-TokenNotVerified</Name>
-            </Step>
-            <Step>
-                <FaultRules/>
-                <Name>AM-Add-CORS-Headers</Name>
+                <Name>AM-TokenNotVerified</Name>
             </Step>
         </FaultRule>
     </FaultRules>
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <Step>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
     <Flows>
         <Flow name="listTransactions">
             <Description>Get Transactions for Account</Description>
@@ -82,6 +76,7 @@
                     <Name>FC-TrafficThresholds</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>EV-TxIdFromURIParam</Name>
                 </Step>
             </Request>
@@ -126,6 +121,9 @@
                 <FaultRules/>
                 <Name>FC-AddResponseHeaders-Link-Meta</Name>
             </Step>
+            <Step>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
         </Response>
     </PostFlow>
     <PreFlow name="PreFlow">
@@ -135,12 +133,15 @@
                 <Name>FC-CheckRequestHeaders</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>OA-VerifyTokenForGetTransactions</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>AM-SetCustomerId</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>EV-AccountIdFromBasePath</Name>
             </Step>
             <Step>
@@ -148,9 +149,11 @@
                 <Name>AM-MockFullListOfTransactions</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>EV-GetAllTransactionsForCustomer</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>JS-ModifyDatesInMockTransactions</Name>
             </Step>
         </Request>

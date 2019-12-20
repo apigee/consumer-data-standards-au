@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SpikeArrest async="false" continueOnError="true" enabled="true" name="SA-ThresholdForCustomerPresentSecureTrafficPerClientId">
     <DisplayName>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <!--We keep track of secure traffic per customerId -->
     <Identifier ref="customerId"/>
     <!-- Use a smaller rate for testing purposes. Eg: 2pm -->

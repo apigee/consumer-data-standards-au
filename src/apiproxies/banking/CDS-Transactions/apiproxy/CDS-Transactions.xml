@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="6" name="CDS-Transactions">
+<APIProxy revision="10" name="CDS-Transactions">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1570680124833</CreatedAt>
+    <CreatedAt>1576809158990</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Transaction API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Transactions</DisplayName>
-    <LastModifiedAt>1571019171103</LastModifiedAt>
+    <LastModifiedAt>1576809158990</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:add5cbd83b463035c7ae9fc9d0df3d16d6374f228b84dd439cc6e96d23d7a665d7cdb355e70c2d99cf226b3028b054fe833d6e5677a42a9d9d16749d43083ba5</ManifestVersion>
+    <ManifestVersion>SHA-512:2227ccdf3406a3cd169fefb8fbc86cc8597e75693d12da507a7325abd8b2cd9e519a0a564e28747a3c8f978c22ec4352615de1fd19b00dd7c3cf6a08b7e46864</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-InvalidScope</Policy>
         <Policy>AM-MockFullListOfTransactions</Policy>
         <Policy>AM-Set-Pagination-Settings</Policy>
         <Policy>AM-SetCustomerId</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
         <Policy>EV-AccountIdFromBasePath</Policy>
         <Policy>EV-GetAllTransactionsForCustomer</Policy>
         <Policy>EV-GetTransactionsFilterCriteria</Policy>
@@ -25,6 +28,7 @@
         <Policy>EV-getErrorDetail</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
         <Policy>FC-PaginateResponse</Policy>
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-ValidateRequestParams</Policy>
@@ -33,9 +37,7 @@
         <Policy>JS-ModifyDatesInMockTransactions</Policy>
         <Policy>JS-RemoveTransactionDetails</Policy>
         <Policy>OA-VerifyTokenForGetTransactions</Policy>
-        <Policy>RF-InvalidScope</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>RF-TokenNotVerified</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
     </Policies>
     <ProxyEndpoints>
