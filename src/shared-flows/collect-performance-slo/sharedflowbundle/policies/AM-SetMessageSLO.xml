@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetMessageSLO">
+    <DisplayName>AM-SetMessageSLO</DisplayName>
+    <AssignVariable>
+        <Name>performanceSLOByTier</Name>
+        <Value>{
+            "unauthenticated": 1500,
+            "highPriority": 1000,
+            "lowPriority": 1500,
+            "unattended": 4000,
+            "largePayload": 6000,
+            "undetermined": 4000
+        }</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jsonPathExpression</Name>
+        <Template>$..{performanceTier}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>performanceSLO</Name>
+        <Template>{jsonPath(jsonPathExpression,performanceSLOByTier)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

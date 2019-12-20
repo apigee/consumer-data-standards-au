@@ -5,8 +5,7 @@
     <Properties/>
     <AssignVariable>
         <Name>listOfAllProductDetails</Name>
-        <Template>
-[
+        <Template>[
 	{
 		"productId": "SavingsAccount1",
 		"effectiveFrom": "2015-07-01T00:00:00+10:00",
@@ -86,9 +85,8 @@
 			}
 		]
 	}
-]
-        </Template>
+]</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

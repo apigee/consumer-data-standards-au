@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="36" name="oidc">
+<APIProxy revision="41" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
+    <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1566213116257</CreatedAt>
+    <CreatedAt>1576810532144</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1570512734406</LastModifiedAt>
+    <LastModifiedAt>1576810532144</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:2543b9e80fbfed6cde4352698367d08cfec4767512eed1040f67c9bf68fef9597b116600306912664bcf4779599930cafd6c8971bdf6152732adca3550830835</ManifestVersion>
+    <ManifestVersion>SHA-512:5fbb14f92428a053c7cd88e8a6c1af7be3fdda4c6594b3f8af85979f65c39407a7f444d159f9c75979dfb7496720af8ffd84c8a54631d384ce5ee3dc8f24f1f3</ManifestVersion>
     <Policies>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
+        <Policy>AM-InvalidAuthCode</Policy>
         <Policy>AM-ReinstateAuthHeaderInResponse</Policy>
         <Policy>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Policy>
@@ -28,6 +30,8 @@
         <Policy>EV-ExtractRefreshTokenFromTokenFormParam</Policy>
         <Policy>EV-StoreTokenRequestDetails</Policy>
         <Policy>EV-getInfoReqdForIssuingAccessToken</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>FC-DecideIfCustomerIsPresent</Policy>
         <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
         <Policy>FC-ReplaceAuthCodeWithOpaqueAuthCode</Policy>
         <Policy>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Policy>
@@ -45,7 +49,6 @@
         <Policy>OAInfo-RetrieveRefreshTokenDetails</Policy>
         <Policy>OAInfoSet-ForceUpdateOfAttributes</Policy>
         <Policy>RF-InvalidAccessToken</Policy>
-        <Policy>RF-InvalidAuthCode</Policy>
         <Policy>RF-InvalidRefreshToken</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>

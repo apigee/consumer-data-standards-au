@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfBalances">
     <DisplayName>AM-MockFullListOfBalances</DisplayName>
+    <FaultRules/>
     <Properties/>
     <AssignVariable>
         <Name>listOfAllResultsByCustomer</Name>
@@ -34,5 +35,5 @@
         <Value>balances</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

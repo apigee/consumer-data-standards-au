@@ -30,32 +30,32 @@ function txMeetsSearchCriteria(txDetails, accountIdFilter, newestTimeFilter, old
     print("Starting date filter criteria checks. oldestTimeFilter = " + oldestTimeFilter + " - newestTimeFilter = " + newestTimeFilter);
 	// Check transaction time
 	var txTime = new Date(txDetails.postingDateTime);
-	// print("txTime (Posting) = " + txTime);
+	print("txTime (Posting) = " + txTime);
 	if ((!txTime || txTime === null || txTime == "Invalid Date")) {
 	    // Use value date instead. We assume that in the mock data one of these will always be defined
 	    txTime = new Date(txDetails.valueDateTime);
-	    // print("txTime (Value) = " + txTime);
+	    print("txTime (Value) = " + txTime);
 	}
 	
 	if ( (txTime > newestTimeFilter) || (txTime < oldestTimeFilter)) {
-	    // print("txTime: " + txTime + " does not match");
+	    print("txTime: " + txTime + " does not match");
 	    return false;
 	}
 	
 	// Check transaction amount
 	var txAmt = parseFloat(txDetails.amount);
-	// print("txAmt = " + txAmt);
+	print("txAmt = " + txAmt);
 	if (isNaN(txAmt)) {
-	    // print("txAmt: " + txAmt + " is not a number");
+	    print("txAmt: " + txAmt + " is not a number");
 	    return false;
 	}
 	print("Starting amount filter criteria checks. minAmountFilter = " + minAmountFilter + " - maxAmountFilter = " + maxAmountFilter);
 	if ((!isNaN(minAmountFilter)) && (txAmt < minAmountFilter)) {
-	    // print("txAmt: " + txAmt + " is less than minAmount");
+	    print("txAmt: " + txAmt + " is less than minAmount");
 	    return false;
 	}
 	if ((!isNaN(maxAmountFilter)) && (txAmt > maxAmountFilter)) {
-	    //  print("txAmt: " + txAmt + " is greater than maxAmount");
+	     print("txAmt: " + txAmt + " is greater than maxAmount");
 	    return false;
 	}
 	
@@ -63,19 +63,19 @@ function txMeetsSearchCriteria(txDetails, accountIdFilter, newestTimeFilter, old
     if (textFilter) {
         // Check description field
         if ( (txDetails.description) && (!txDetails.description.toLowerCase().includes(textFilter.toLowerCase()))) {
-            // print("Description: " + txDetails.description + " does not match");
+            print("Description: " + txDetails.description + " does not match");
             return false;
             
         }
         // Check reference field
 		if ( (txDetails.reference) && (!txDetails.reference.toLowerCase().includes(textFilter.toLowerCase()))) {
-		    // print("Reference: " + txDetails.reference + " does not match");
+		    print("Reference: " + txDetails.reference + " does not match");
 		    return false;
 		}
 
 	}
 	
-	// print("Transaction meets filter criteria");
+	print("Transaction meets filter criteria");
 	return true;
 
 }

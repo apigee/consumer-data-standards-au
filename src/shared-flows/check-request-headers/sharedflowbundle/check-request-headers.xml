@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="22" name="check-request-headers">
+<SharedFlowBundle revision="25" name="check-request-headers">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1546400695647</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1576558133033</LastModifiedAt>
+    <LastModifiedAt>1576807740299</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:fb2cdea3b5f9012b4dfa92a991b84d16618b64a4d04265d6d279d93c28bdba294958a7809bbbb9efdb3af3b037241891abce1ad1956e66ea4091132be2d7d5ba</ManifestVersion>
+    <ManifestVersion>SHA-512:1008a81707588e4f53a4d72ee7b66cf1239d25cd50ec119d353667ba5a276d39900d8d877cd01a2199e9b48877112daee9cf0fd778721c234278ad7d4a5faaa8</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
-        <Policy>AM-SetIsCustomerPresentToFalse</Policy>
         <Policy>EV-Preserve-Request-Headers</Policy>
+        <Policy>FC-DecideIfCustomerIsPresent</Policy>
         <Policy>FC-checkCDSSubjectHeader</Policy>
-        <Policy>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Policy>
         <Policy>RF-Invalid-Accept-Header</Policy>
         <Policy>RF-Invalid-Content-Type-Header</Policy>
         <Policy>RF-Invalid-Version</Policy>
-        <Policy>RF-Invalid-X-Fapi-Customer-IP-Address</Policy>
         <Policy>RF-Missing-Authdate-Header</Policy>
         <Policy>RF-Missing-Version-Header</Policy>
         <Policy>RF-Missing-cdsUserAgent-Header</Policy>
         <Policy>RF-Return-CORS-Headers</Policy>
     </Policies>
-    <Resources>
-        <Resource>jsc://validateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Resource>
-    </Resources>
+    <Resources/>
     <Spec></Spec>
     <subType>SharedFlow</subType>
     <SharedFlows>

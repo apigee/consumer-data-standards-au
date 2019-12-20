@@ -6,10 +6,10 @@
     <Parameters ignoreUnresolvedVariables="false">
         <Parameter name="isPublicEndpoint">false</Parameter>
         <Parameter name="isAuthEndpoint">true</Parameter>
-        <Parameter name="isCustomerPresent">false</Parameter>
-        <Parameter name="customerId"></Parameter>
-        <Parameter name="clientId"></Parameter>
-        <Parameter name="sessionId"></Parameter>
+        <Parameter name="isCustomerPresent" ref="isCustomerPresent">false</Parameter>
+        <Parameter name="customerId"/>
+        <Parameter name="clientId"/>
+        <Parameter name="sessionId"/>
     </Parameters>
     <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>
 </FlowCallout>

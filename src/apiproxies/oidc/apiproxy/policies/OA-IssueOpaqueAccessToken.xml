@@ -5,12 +5,10 @@
     <Properties/>
     <Code>TokenRequestParams.code</Code>
     <Attributes>
-        <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
-        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
-        <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"/>
-        <!-- Store the pseudonym assigned to this customerId for this particular client, so it can verified-->
-        <!-- when sent in x-cds-subject header -->
-        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"/>
+        <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"></Attribute>
+        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"></Attribute>
+        <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"></Attribute>
+        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"></Attribute>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>

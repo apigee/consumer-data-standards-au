@@ -6,7 +6,10 @@
             <FaultRules/>
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
-        <AlwaysEnforce>false</AlwaysEnforce>
+        <Step>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
     <Description/>
     <FaultRules/>
@@ -92,11 +95,15 @@
                 <FaultRules/>
                 <Name>FC-AddResponseHeaders-Link-Meta</Name>
             </Step>
+            <Step>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
         </Response>
     </PostFlow>
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <FaultRules/>
                 <Name>FC-TrafficThresholds</Name>
             </Step>
             <Step>

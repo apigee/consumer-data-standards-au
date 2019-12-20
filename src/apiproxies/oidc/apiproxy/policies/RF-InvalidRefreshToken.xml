@@ -18,6 +18,10 @@
             <StatusCode>400</StatusCode>
             <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>
+        <AssignVariable>
+            <Name>faultType</Name>
+            <Value>invalid_refresh_token</Value>
+        </AssignVariable>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <ShortFaultReason>false</ShortFaultReason>

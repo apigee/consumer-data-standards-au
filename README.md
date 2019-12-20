@@ -77,13 +77,15 @@ A Postman collection includes sample requests for the implemented APIs, and for 
 
 ## Shared Flows
 
-There are 6 shared flows that implement common functionality required by the Banking APIs.
+There are 8 shared flows that implement common functionality required by the Banking APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
 2. *check-cds-subject-header*: Checks the x-cds-subject header with the value associated with the access token issued for authenticated calls. Used by the *check-request-headers* shared flow, but can also be used independently.
-3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
-4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
-5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
-6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+3. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
+4. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
+5. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
+6. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
+7. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+8. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO.
 
 There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints

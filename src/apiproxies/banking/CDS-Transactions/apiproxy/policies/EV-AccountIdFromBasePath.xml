@@ -4,7 +4,7 @@
     <FaultRules/>
     <Properties/>
     <Variable name="request.path">
-        <Pattern>/cds-au/v1/banking/accounts/{theAccountId}/transactions</Pattern>
+        <Pattern ignoreCase="false">/cds-au/v1/banking/accounts/{theAccountId}/transactions</Pattern>
     </Variable>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
 </ExtractVariables>

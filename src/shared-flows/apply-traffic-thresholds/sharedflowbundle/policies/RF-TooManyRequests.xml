@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-TooManyRequests">
     <DisplayName>RF-TooManyRequests</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <FaultResponse>
         <Set>
             <Headers>
@@ -19,4 +21,6 @@
             <ReasonPhrase>Too many requests</ReasonPhrase>
         </Set>
     </FaultResponse>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
 </RaiseFault>

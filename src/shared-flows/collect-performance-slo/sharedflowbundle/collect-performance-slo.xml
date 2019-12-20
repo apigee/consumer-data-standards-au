@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="collect-performance-slo">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1576644058184</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Stores custom analytics metric that indicates whether a request meets its performance objective (based on tiers specified by CDS)</Description>
+    <DisplayName>collect-performance-slo</DisplayName>
+    <LastModifiedAt>1576807447404</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:3a5c2a743bb8210a0655977c9f1f8ba3ba854513760c1741e868ec5ea21c3f0b2b59d9797f04c1f25024c2004479e270b6efe2f4e89af99acee6b39b7b586371</ManifestVersion>
+    <Policies>
+        <Policy>AM-SetMessageSLO</Policy>
+        <Policy>AM-SetPerformanceTierToHighPriority</Policy>
+        <Policy>AM-SetPerformanceTierToLargePayload</Policy>
+        <Policy>AM-SetPerformanceTierToLowPriority</Policy>
+        <Policy>AM-SetPerformanceTierToUnattended</Policy>
+        <Policy>AM-SetPerformanceTierToUnauthenticated</Policy>
+        <Policy>JS-CheckIfRequestMeetsPerformanceSLO</Policy>
+        <Policy>SC-AddPerformanceTierDimension</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://checkIfRequestMeetsPerformanceSLO.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>
