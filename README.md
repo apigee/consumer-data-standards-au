@@ -79,7 +79,7 @@ A Postman collection includes sample requests for the implemented APIs, and for 
 You can find an adaptation of the Apigee Developer Kickstart Drupal distribution that works with this reference implementation at [https://github.com/srijanone/OpenBanking-Portal](https://github.com/srijanone/OpenBanking-Portal).
 This Distribution lets you quickly try out or get started using Drupal to create an Apigee developer portal. It also has the necessary callbacks required to authenticate/authorise an end user against the standalone OIDC provider included in this reference implementation. 
 
-You can publish APIs into the portal using the OpenAPI specifications found in [specs](./tree/master/specs)
+You can publish APIs into the portal using the OpenAPI specifications found in [specs](./specs)
 
 
 You can see and try out an actual instance of such a portal at [https://live-cds-au-sandbox.devportal.apigee.io](https://live-cds-au-sandbox.devportal.apigee.io)
