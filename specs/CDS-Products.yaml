@@ -90,7 +90,7 @@ paths:
           description: Allows for the filtering of products based on whether the current
             time is within the period of time defined as effective by the
             effectiveFrom and effectiveTo fields. Valid values are
-            â€˜CURRENTâ€™, â€˜FUTUREâ€™ and â€˜ALLâ€™. If absent defaults to
+            'CURRENT', 'FUTURE' and 'ALL'. If absent defaults to
             'CURRENT'
           required: false
           type: string
