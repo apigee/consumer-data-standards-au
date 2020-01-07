@@ -7,6 +7,8 @@ node_modules/
 .vscode/settings.json
 setup/certs/
 setup/certs/*
+setup/service-accounts/
+setup/service-accounts/*
 specs/*Full.yaml
 src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/
 src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/*
