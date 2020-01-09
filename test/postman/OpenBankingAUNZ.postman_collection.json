@@ -392,11 +392,6 @@
 									"pm.environment.set(\"id_token\", jsonData.id_token);",
 									"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
 									"pm.environment.set(\"scope\", jsonData.scope);",
-									"",
-									"// Store sub claim in id_token, so we can add it in x-cds-subject header in later requests",
-									"var parts = jsonData.id_token.split('.'); // header, payload, signature",
-									"var decodedJWTPayload = JSON.parse(atob(parts[1]));",
-									"pm.environment.set(\"cdsSubject\",decodedJWTPayload.sub);",
 									""
 								],
 								"type": "text/javascript"
@@ -523,10 +518,6 @@
 									"pm.environment.set(\"id_token\", jsonData.id_token);",
 									"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
 									"",
-									"// Store sub claim in id_token, so we can add it in x-cds-subject header in later requests",
-									"var parts = jsonData.id_token.split('.'); // header, payload, signature",
-									"var decodedJWTPayload = JSON.parse(atob(parts[1]));",
-									"pm.environment.set(\"cdsSubject\",decodedJWTPayload.sub);",
 									""
 								],
 								"type": "text/javascript"
@@ -561,6 +552,11 @@
 								"name": "Content-Type",
 								"type": "text",
 								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.168.1.1",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -852,7 +848,7 @@
 							{
 								"key": "x-v",
 								"type": "text",
-								"value": "1"
+								"value": "2"
 							},
 							{
 								"key": "Accept",
@@ -927,7 +923,7 @@
 							{
 								"key": "x-v",
 								"type": "text",
-								"value": "1"
+								"value": "2"
 							},
 							{
 								"key": "Accept",
@@ -1032,13 +1028,9 @@
 								"type": "text"
 							},
 							{
-								"key": "x-cds-User-Agent",
-								"value": "SomeAgent",
-								"type": "text"
-							},
-							{
-								"key": "x-cds-subject",
-								"value": "{{cdsSubject}}",
+								"key": "x-cds-client-headers",
+								"value": "Base64EncodedString1",
+								"description": "Base64 Encoded String",
 								"type": "text"
 							}
 						],
@@ -1123,8 +1115,9 @@
 								"value": "2019-08-01"
 							},
 							{
-								"key": "x-cds-subject",
-								"value": "{{cdsSubject}}",
+								"key": "x-cds-client-headers",
+								"value": "1234567=",
+								"description": "Base64 Encoded String",
 								"type": "text"
 							}
 						],
@@ -1262,6 +1255,22 @@
 								"key": "x-cds-subject",
 								"value": "{{cdsSubject}}",
 								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "2019-12-18",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.168.1.1",
+								"type": "text"
+							},
+							{
+								"key": "x-cds-client-headers",
+								"value": "Base64EncodedString1",
+								"description": "Base64 Encoded String",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1329,14 +1338,10 @@
 								"value": "192.168.1.1"
 							},
 							{
-								"key": "x-cds-User-Agent",
+								"description": "Base64 Encoded String",
+								"key": "x-cds-client-headers",
 								"type": "text",
-								"value": "SomeAgent"
-							},
-							{
-								"key": "x-cds-subject",
-								"type": "text",
-								"value": "{{cdsSubject}}"
+								"value": "Base64EncodedString1"
 							}
 						],
 						"url": {
@@ -1426,14 +1431,10 @@
 								"value": "192.168.1.1"
 							},
 							{
-								"key": "x-cds-User-Agent",
+								"description": "Base64 Encoded String",
+								"key": "x-cds-client-headers",
 								"type": "text",
-								"value": "SomeAgent"
-							},
-							{
-								"key": "x-cds-subject",
-								"type": "text",
-								"value": "{{cdsSubject}}"
+								"value": "Base64EncodedString1"
 							},
 							{
 								"key": "Content-Type",
@@ -1518,8 +1519,14 @@
 								"value": "2019-08-01"
 							},
 							{
-								"key": "x-cds-subject",
-								"value": "{{cdsSubject}}",
+								"key": "x-cds-client-headers",
+								"value": "InvalidBase64EncodedString@!%*",
+								"description": "Base64 Encoded String",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "10.0.0.0",
 								"type": "text"
 							}
 						],
@@ -1654,11 +1661,6 @@
 								"key": "Accept",
 								"type": "text",
 								"value": "application/json"
-							},
-							{
-								"key": "x-cds-subject",
-								"type": "text",
-								"value": "{{cdsSubject}}"
 							}
 						],
 						"url": {
@@ -1750,13 +1752,9 @@
 								"type": "text"
 							},
 							{
-								"key": "x-cds-User-Agent",
-								"value": "SomeAgent",
-								"type": "text"
-							},
-							{
-								"key": "x-cds-subject",
-								"value": "{{cdsSubject}}",
+								"key": "x-cds-client-headers",
+								"value": "Base64EncodedString1",
+								"description": "Base64 Encoded String",
 								"type": "text"
 							}
 						],
@@ -1853,8 +1851,14 @@
 								"value": "2019-08-01"
 							},
 							{
-								"key": "x-cds-subject",
-								"value": "{{cdsSubject}}",
+								"key": "x-cds-client-headers",
+								"value": "InvalidBase64String@!$$#",
+								"description": "Base64 Encoded String",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "10.0.0.1",
 								"type": "text"
 							}
 						],
@@ -1986,8 +1990,8 @@
 								"type": "text"
 							},
 							{
-								"key": "x-cds-subject",
-								"value": "{{cdsSubject}}",
+								"key": "x-customer-ip-address",
+								"value": "192.168.0.1",
 								"type": "text"
 							}
 						],

@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v1.0.1** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.1.0** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -87,10 +87,9 @@ You can see and try out an actual instance of such a portal at [https://live-cds
 
 ## Shared Flows
 
-There are 8 shared flows that implement common functionality required by the Banking APIs.
+There are 7 shared flows that implement common functionality required by the Banking APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
-2. *check-cds-subject-header*: Checks the x-cds-subject header with the value associated with the access token issued for authenticated calls. Used by the *check-request-headers* shared flow, but can also be used independently.
 3. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
 4. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
 5. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.

@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="25" name="check-request-headers">
+<SharedFlowBundle revision="28" name="check-request-headers">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1546400695647</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1576807740299</LastModifiedAt>
+    <LastModifiedAt>1578456606860</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:1008a81707588e4f53a4d72ee7b66cf1239d25cd50ec119d353667ba5a276d39900d8d877cd01a2199e9b48877112daee9cf0fd778721c234278ad7d4a5faaa8</ManifestVersion>
+    <ManifestVersion>SHA-512:1356671cbca8d6d563bb4c52673875141fd896c1d737d8c1e5a328fc131946a944ffd54ac6e1dff69fe77d8b4d787630f55cf8ff0a382b8cb9ce5bd402037915</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
         <Policy>EV-Preserve-Request-Headers</Policy>
         <Policy>FC-DecideIfCustomerIsPresent</Policy>
-        <Policy>FC-checkCDSSubjectHeader</Policy>
         <Policy>RF-Invalid-Accept-Header</Policy>
         <Policy>RF-Invalid-Content-Type-Header</Policy>
         <Policy>RF-Invalid-Version</Policy>
         <Policy>RF-Missing-Authdate-Header</Policy>
+        <Policy>RF-Missing-Invalid-cdsClientHeaders-Header</Policy>
         <Policy>RF-Missing-Version-Header</Policy>
-        <Policy>RF-Missing-cdsUserAgent-Header</Policy>
         <Policy>RF-Return-CORS-Headers</Policy>
     </Policies>
     <Resources/>

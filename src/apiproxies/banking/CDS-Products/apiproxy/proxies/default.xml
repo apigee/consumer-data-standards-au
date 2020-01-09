@@ -7,11 +7,12 @@
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
+            <FaultRules/>
             <Name>FC-CollectPerformanceSLO</Name>
         </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
-    <Description/>
+    <Description></Description>
     <FaultRules/>
     <Flows>
         <Flow name="listProducts">
@@ -96,6 +97,7 @@
                 <Name>FC-AddResponseHeaders-Link-Meta</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>FC-CollectPerformanceSLO</Name>
             </Step>
         </Response>

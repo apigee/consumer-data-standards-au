@@ -2,7 +2,13 @@
 <SharedFlow name="default">
     <Step>
         <FaultRules/>
-        <Name>AM-Set-Content-Type-And-Version-Headers</Name>
+        <Name>AM-Set-Content-Type-And-Version1-Headers</Name>
+        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products"))</Condition>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>AM-Set-Content-Type-And-Version2-Headers</Name>
+        <Condition>(proxy.basepath MatchesPath "/cds-au/v1/banking/products")</Condition>
     </Step>
     <Step>
         <Condition>fapiInteractionId != null</Condition>

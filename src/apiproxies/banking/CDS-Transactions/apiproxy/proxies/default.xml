@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <Description/>
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <Step>
+            <FaultRules/>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description></Description>
     <FaultRules>
         <FaultRule name="Invalid Scope">
             <Condition>(fault.name = "InsufficientScope")</Condition>
             <Step>
+                <FaultRules/>
                 <Name>AM-InvalidScope</Name>
             </Step>
         </FaultRule>
@@ -20,17 +33,6 @@
             </Step>
         </FaultRule>
     </FaultRules>
-    <DefaultFaultRule name="DefaultFaultRule">
-        <Step>
-            <Condition>message.status.code != "200"</Condition>
-            <FaultRules/>
-            <Name>AM-Add-CORS-Headers</Name>
-        </Step>
-        <Step>
-            <Name>FC-CollectPerformanceSLO</Name>
-        </Step>
-        <AlwaysEnforce>true</AlwaysEnforce>
-    </DefaultFaultRule>
     <Flows>
         <Flow name="listTransactions">
             <Description>Get Transactions for Account</Description>
@@ -122,6 +124,7 @@
                 <Name>FC-AddResponseHeaders-Link-Meta</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>FC-CollectPerformanceSLO</Name>
             </Step>
         </Response>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <Step>
+            <FaultRules/>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
     <Description/>
     <FaultRules>
         <FaultRule name="Invalid Refresh Token in Introspection">
@@ -17,12 +27,6 @@
             </Step>
         </FaultRule>
     </FaultRules>
-    <DefaultFaultRule name="defaultFaultRule">
-        <Step>
-            <Name>FC-CollectPerformanceSLO</Name>
-        </Step>
-        <AlwaysEnforce>true</AlwaysEnforce>
-    </DefaultFaultRule>
     <Flows>
         <Flow name="Get OIDC Configuration">
             <Description/>
@@ -91,10 +95,6 @@
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>JWT-DecodeOIDCIdToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
                     <Name>AM-ReinstateAuthHeaderInResponse</Name>
                 </Step>
                 <Step>
@@ -140,10 +140,6 @@
                 <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -314,9 +310,19 @@
             <Response/>
         </Flow>
     </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <FaultRules/>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
+        </Response>
+    </PostFlow>
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <FaultRules/>
                 <Name>FC-DecideIfCustomerIsPresent</Name>
             </Step>
             <Step>
@@ -324,16 +330,12 @@
                 <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
             </Step>
         </Request>
-        <Response/>
-    </PreFlow>
-    <PostFlow name="PostFlow">
-        <Request/>
         <Response>
             <Step>
-                <Name>FC-CollectPerformanceSLO</Name>
+                <Name>AM-Add-CORS-Headers</Name>
             </Step>
         </Response>
-    </PostFlow>
+    </PreFlow>
     <HTTPProxyConnection>
         <BasePath>/</BasePath>
         <Properties/>

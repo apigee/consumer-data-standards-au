@@ -1,16 +1,15 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  description: >-
-    API sets created by the Australian Consumer Data Standards to meet the needs
+  description: API sets created by the Australian Consumer Data Standards to meet the needs
     of the Consumer Data Right
-  version: 1.0.0
+  version: 1.1.0
   title: Consumer Data Standards
   contact:
     name: APIBank CDS Team
     url: https://apibank.com.au/cds
   license:
     name: MIT License
-    url: 'https://opensource.org/licenses/MIT'
+    url: https://opensource.org/licenses/MIT
 host: openbank-aunz-test.apigee.net
 basePath: /cds-au/v1
 schemes:
@@ -20,27 +19,39 @@ consumes:
 produces:
   - application/json
 paths:
-  '/banking/accounts/{accountId}/transactions':
+  "/banking/accounts/{accountId}/transactions":
     get:
       tags:
-        - Banking
         - Accounts
       summary: Get Transactions For Account
-      description: "Obtain transactions for a specific account.\n\nSome general notes that apply to all end points that retrieve transactions:\n\n- Where multiple transactions are returned, transactions should be ordered according to effective date in descending order\n- As the date and time for a transaction can alter depending on status and transaction type two separate date/times are included in the payload. There are still some scenarios where neither of these time stamps is available. For the purpose of filtering and ordering it is expected that the data holder will use the â€œeffectiveâ€\x9D date/time which will be defined as:\n\t\t- Posted date/time if available, then\n\t\t- Execution date/time if available, then\n\t\t- A reasonable date/time nominated by the data holder using internal data structures\n- For transaction amounts it should be assumed that a negative value indicates a reduction of the available balance on the account while a positive value indicates an increase in the available balance on the account"
+      description: >-
+        Obtain transactions for a specific account.
+
+
+        Some general notes that apply to all end points that retrieve transactions:
+
+
+        - Where multiple transactions are returned, transactions should be ordered according to effective date in descending order
+
+        - As the date and time for a transaction can alter depending on status and transaction type two separate date/times are included in the payload. There are still some scenarios where neither of these time stamps is available. For the purpose of filtering and ordering it is expected that the data holder will use the “effective” date/time which will be defined as:
+        		- Posted date/time if available, then
+        		- Execution date/time if available, then
+        		- A reasonable date/time nominated by the data holder using internal data structures
+        - For transaction amounts it should be assumed that a negative value indicates a reduction of the available balance on the account while a positive value indicates an increase in the available balance on the account
+
+        - For aggregated transactions (ie. groups of sub transactions reported as a single entry for the account) only the aggregated information, with as much consistent information accross the subsidiary transactions as possible, is required to be shared
       operationId: getTransactions
       parameters:
         - name: accountId
           in: path
-          description: >-
-            ID of the account to get transactions for.  Must have previously
+          description: ID of the account to get transactions for.  Must have previously
             been returned by one of the account list end points.
           required: true
           type: string
           x-cds-type: ASCIIString
         - name: oldest-time
           in: query
-          description: >-
-            Constrain the transaction history request to transactions with
+          description: Constrain the transaction history request to transactions with
             effective time at or after this date/time. If absent defaults to
             newest-time minus 90 days.  Format is aligned to DateTimeString
             common type
@@ -49,8 +60,7 @@ paths:
           x-cds-type: DateTimeString
         - name: newest-time
           in: query
-          description: >-
-            Constrain the transaction history request to transactions with
+          description: Constrain the transaction history request to transactions with
             effective time at or before this date/time.  If absent defaults to
             today.  Format is aligned to DateTimeString common type
           required: false
@@ -58,24 +68,21 @@ paths:
           x-cds-type: DateTimeString
         - name: min-amount
           in: query
-          description: >-
-            Filter transactions to only transactions with amounts higher or
+          description: Filter transactions to only transactions with amounts higher or
             equal to than this amount
           required: false
           type: string
           x-cds-type: AmountString
         - name: max-amount
           in: query
-          description: >-
-            Filter transactions to only transactions with amounts less than or
+          description: Filter transactions to only transactions with amounts less than or
             equal to than this amount
           required: false
           type: string
           x-cds-type: AmountString
         - name: text
           in: query
-          description: >-
-            Filter transactions to only transactions where this string value is
+          description: Filter transactions to only transactions where this string value is
             found as a substring of either the reference or description fields.
             Format is arbitrary ASCII string. This parameter is optionally
             implemented by data holders. If it is not implemented then a
@@ -101,8 +108,7 @@ paths:
           x-cds-type: PositiveInteger
         - name: x-v
           in: header
-          description: >-
-            Version of the API end point requested by the client. Must be set to
+          description: Version of the API end point requested by the client. Must be set to
             a positive integer. The data holder should respond with the highest
             supported version between [x-min-v](#request-headers) and
             [x-v](#request-headers). If the value of [x-min-v](#request-headers)
@@ -115,8 +121,7 @@ paths:
           type: string
         - name: x-min-v
           in: header
-          description: >-
-            Minimum version of the API end point requested by the client. Must
+          description: Minimum version of the API end point requested by the client. Must
             be set to a positive integer if provided. The data holder should
             respond with the highest supported version between
             [x-min-v](#request-headers) and [x-v](#request-headers). If all
@@ -126,8 +131,7 @@ paths:
           type: string
         - name: x-fapi-interaction-id
           in: header
-          description: >-
-            An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
             correlation id. If provided, the data holder must play back this
             value in the x-fapi-interaction-id response header. If not provided
             a [RFC4122] UUID value is required to be provided in the response
@@ -136,25 +140,22 @@ paths:
           type: string
         - name: x-fapi-auth-date
           in: header
-          description: >-
-            The time when the customer last logged in to the data recipient.
+          description: The time when the customer last logged in to the data recipient.
             Required for all resource calls (customer present and unattended).
             Not to be included for unauthenticated calls.
           required: false
           type: string
         - name: x-fapi-customer-ip-address
           in: header
-          description: >-
-            The customer's original IP address if the customer is currently
+          description: The customer's original IP address if the customer is currently
             logged in to the data recipient. The presence of this header
             indicates that the API is being called in a customer present
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
-          description: >-
-            The customer's original standard http headers
+          description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
             Agent header, if the customer is currently logged in to the data
             recipient. Mandatory for customer present calls.  Not required for
@@ -167,40 +168,29 @@ paths:
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
           required: true
           type: string
-        - name: x-cds-subject
-          in: header
-          description: >-
-            Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
       responses:
-        '200':
+        "200":
           description: Success
           headers:
             x-v:
               type: string
-              description: >-
-                The [version](#response-headers) of the API end point that the
+              description: The [version](#response-headers) of the API end point that the
                 data holder has responded with.
             x-fapi-interaction-id:
               type: string
-              description: >-
-                An RFC4122 UID used as a correlation id. The data holder must
+              description: An RFC4122 UID used as a correlation id. The data holder must
                 set the response header x-fapi-interaction-id to the value
                 received from the corresponding fapi client request header or to
                 a new RFC4122 UUID value if the request header was not provided
                 to track the interaction.
           schema:
-            $ref: '#/definitions/ResponseBankingTransactionList'
+            $ref: "#/definitions/ResponseBankingTransactionList"
       x-scopes:
-        - 'bank:transactions:read'
-      x-version: '1'
-  '/banking/accounts/{accountId}/transactions/{transactionId}':
+        - bank:transactions:read
+      x-version: "1"
+  "/banking/accounts/{accountId}/transactions/{transactionId}":
     get:
       tags:
-        - Banking
         - Accounts
       summary: Get Transaction Detail
       description: Obtain detailed information on a transaction for a specific account
@@ -208,24 +198,21 @@ paths:
       parameters:
         - name: accountId
           in: path
-          description: >-
-            ID of the account to get transactions for.  Must have previously
+          description: ID of the account to get transactions for.  Must have previously
             been returned by one of the account list end points
           required: true
           type: string
           x-cds-type: ASCIIString
         - name: transactionId
           in: path
-          description: >-
-            ID of the transaction obtained from a previous call to one of the
+          description: ID of the transaction obtained from a previous call to one of the
             other transaction end points
           required: true
           type: string
           x-cds-type: ASCIIString
         - name: x-v
           in: header
-          description: >-
-            Version of the API end point requested by the client. Must be set to
+          description: Version of the API end point requested by the client. Must be set to
             a positive integer. The data holder should respond with the highest
             supported version between [x-min-v](#request-headers) and
             [x-v](#request-headers). If the value of [x-min-v](#request-headers)
@@ -238,8 +225,7 @@ paths:
           type: string
         - name: x-min-v
           in: header
-          description: >-
-            Minimum version of the API end point requested by the client. Must
+          description: Minimum version of the API end point requested by the client. Must
             be set to a positive integer if provided. The data holder should
             respond with the highest supported version between
             [x-min-v](#request-headers) and [x-v](#request-headers). If all
@@ -249,8 +235,7 @@ paths:
           type: string
         - name: x-fapi-interaction-id
           in: header
-          description: >-
-            An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
+          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a
             correlation id. If provided, the data holder must play back this
             value in the x-fapi-interaction-id response header. If not provided
             a [RFC4122] UUID value is required to be provided in the response
@@ -259,25 +244,22 @@ paths:
           type: string
         - name: x-fapi-auth-date
           in: header
-          description: >-
-            The time when the customer last logged in to the data recipient.
+          description: The time when the customer last logged in to the data recipient.
             Required for all resource calls (customer present and unattended).
             Not to be included for unauthenticated calls.
           required: false
           type: string
         - name: x-fapi-customer-ip-address
           in: header
-          description: >-
-            The customer's original IP address if the customer is currently
+          description: The customer's original IP address if the customer is currently
             logged in to the data recipient. The presence of this header
             indicates that the API is being called in a customer present
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
-          description: >-
-            The customer's original standard http headers
+          description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
             Agent header, if the customer is currently logged in to the data
             recipient. Mandatory for customer present calls.  Not required for
@@ -290,36 +272,26 @@ paths:
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
           required: true
           type: string
-        - name: x-cds-subject
-          in: header
-          description: >-
-            Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
       responses:
-        '200':
+        "200":
           description: Success
           headers:
             x-v:
               type: string
-              description: >-
-                The [version](#response-headers) of the API end point that the
+              description: The [version](#response-headers) of the API end point that the
                 data holder has responded with.
             x-fapi-interaction-id:
               type: string
-              description: >-
-                An RFC4122 UID used as a correlation id. The data holder must
+              description: An RFC4122 UID used as a correlation id. The data holder must
                 set the response header x-fapi-interaction-id to the value
                 received from the corresponding fapi client request header or to
                 a new RFC4122 UUID value if the request header was not provided
                 to track the interaction.
           schema:
-            $ref: '#/definitions/ResponseBankingTransactionById'
+            $ref: "#/definitions/ResponseBankingTransactionById"
       x-scopes:
-        - 'bank:transactions:read'
-      x-version: '1'
+        - bank:transactions:read
+      x-version: "1"
 definitions:
   ResponseBankingTransactionList:
     type: object
@@ -329,11 +301,11 @@ definitions:
       - meta
     properties:
       data:
-        $ref: '#/definitions/ResponseBankingTransactionList_data'
+        $ref: "#/definitions/ResponseBankingTransactionList_data"
       links:
-        $ref: '#/definitions/LinksPaginated'
+        $ref: "#/definitions/LinksPaginated"
       meta:
-        $ref: '#/definitions/MetaPaginated'
+        $ref: "#/definitions/MetaPaginated"
   BankingTransaction:
     type: object
     required:
@@ -351,16 +323,14 @@ definitions:
         x-cds-type: ASCIIString
       transactionId:
         type: string
-        description: >-
-          A unique ID of the transaction adhering to the standards for ID
+        description: A unique ID of the transaction adhering to the standards for ID
           permanence.  This is mandatory (through hashing if necessary) unless
           there are specific and justifiable technical reasons why a transaction
           cannot be uniquely identified for a particular account type
         x-cds-type: ASCIIString
       isDetailAvailable:
         type: boolean
-        description: >-
-          True if extended information is available using the transaction detail
+        description: True if extended information is available using the transaction detail
           end point. False if extended data is not available
         x-cds-type: Boolean
       type:
@@ -377,8 +347,7 @@ definitions:
           - OTHER
       status:
         type: string
-        description: >-
-          Status of the transaction whether pending or posted. Note that there
+        description: Status of the transaction whether pending or posted. Note that there
           is currently no provision in the standards to guarantee the ability to
           correlate a pending transaction with an associated posted transaction
         enum:
@@ -389,28 +358,24 @@ definitions:
         description: The transaction description as applied by the financial institution
       postingDateTime:
         type: string
-        description: >-
-          The time the transaction was posted. This field is Mandatory if the
+        description: The time the transaction was posted. This field is Mandatory if the
           transaction has status POSTED.  This is the time that appears on a
           standard statement
         x-cds-type: DateTimeString
       valueDateTime:
         type: string
-        description: >-
-          Date and time at which assets become available to the account owner in
+        description: Date and time at which assets become available to the account owner in
           case of a credit entry, or cease to be available to the account owner
           in case of a debit transaction entry
         x-cds-type: DateTimeString
       executionDateTime:
         type: string
-        description: >-
-          The time the transaction was executed by the originating customer, if
+        description: The time the transaction was executed by the originating customer, if
           available
         x-cds-type: DateTimeString
       amount:
         type: string
-        description: >-
-          The value of the transaction. Negative values mean money was outgoing
+        description: The value of the transaction. Negative values mean money was outgoing
           from the account
         x-cds-type: AmountString
       currency:
@@ -419,16 +384,14 @@ definitions:
         x-cds-type: CurrencyString
       reference:
         type: string
-        description: >-
-          The reference for the transaction provided by the originating
+        description: The reference for the transaction provided by the originating
           institution. Empty string if no data provided
       merchantName:
         type: string
         description: Name of the merchant for an outgoing payment to a merchant
       merchantCategoryCode:
         type: string
-        description: >-
-          The merchant category code (or MCC) for an outgoing payment to a
+        description: The merchant category code (or MCC) for an outgoing payment to a
           merchant
       billerCode:
         type: string
@@ -452,20 +415,20 @@ definitions:
       - links
     properties:
       data:
-        $ref: '#/definitions/BankingTransactionDetail'
+        $ref: "#/definitions/BankingTransactionDetail"
       links:
-        $ref: '#/definitions/Links'
+        $ref: "#/definitions/Links"
       meta:
-        $ref: '#/definitions/Meta'
+        $ref: "#/definitions/Meta"
   BankingTransactionDetail:
     allOf:
-      - $ref: '#/definitions/BankingTransaction'
+      - $ref: "#/definitions/BankingTransaction"
       - type: object
         required:
           - extendedData
         properties:
           extendedData:
-            $ref: '#/definitions/BankingTransactionDetail_extendedData'
+            $ref: "#/definitions/BankingTransactionDetail_extendedData"
   Links:
     type: object
     required:
@@ -488,26 +451,22 @@ definitions:
         x-cds-type: URIString
       first:
         type: string
-        description: >-
-          URI to the first page of this set. Mandatory if this response is not
+        description: URI to the first page of this set. Mandatory if this response is not
           the first page
         x-cds-type: URIString
       prev:
         type: string
-        description: >-
-          URI to the previous page of this set. Mandatory if this response is
+        description: URI to the previous page of this set. Mandatory if this response is
           not the first page
         x-cds-type: URIString
       next:
         type: string
-        description: >-
-          URI to the next page of this set. Mandatory if this response is not
+        description: URI to the next page of this set. Mandatory if this response is not
           the last page
         x-cds-type: URIString
       last:
         type: string
-        description: >-
-          URI to the last page of this set. Mandatory if this response is not
+        description: URI to the last page of this set. Mandatory if this response is not
           the last page
         x-cds-type: URIString
     x-conditional:
@@ -523,14 +482,12 @@ definitions:
     properties:
       totalRecords:
         type: integer
-        description: >-
-          The total number of records in the full set. See
+        description: The total number of records in the full set. See
           [pagination](#pagination).
         x-cds-type: NaturalNumber
       totalPages:
         type: integer
-        description: >-
-          The total number of pages in the full set. See
+        description: The total number of pages in the full set. See
           [pagination](#pagination).
         x-cds-type: NaturalNumber
   ResponseBankingTransactionList_data:
@@ -540,23 +497,21 @@ definitions:
       transactions:
         type: array
         items:
-          $ref: '#/definitions/BankingTransaction'
+          $ref: "#/definitions/BankingTransaction"
   BankingTransactionDetail_extendedData_x2p101Payload:
     required:
       - extendedDescription
     properties:
       extendedDescription:
         type: string
-        description: >-
-          An extended string description. Only present if specified by the
+        description: An extended string description. Only present if specified by the
           extensionUType field
       endToEndId:
         type: string
         description: An end to end ID for the payment created at initiation
       purposeCode:
         type: string
-        description: >-
-          Purpose of the payment.  Format is defined by NPP standards for the
+        description: Purpose of the payment.  Format is defined by NPP standards for the
           x2p1.01 overlay service
   BankingTransactionDetail_extendedData:
     required:
@@ -567,23 +522,20 @@ definitions:
         description: Label of the originating payer. Mandatory for inbound payment
       payee:
         type: string
-        description: >-
-          Label of the target PayID.  Mandatory for an outbound payment. The
+        description: Label of the target PayID.  Mandatory for an outbound payment. The
           name assigned to the BSB/Account Number or PayID (by the owner of the
           PayID)
       extensionUType:
         type: string
-        description: >-
-          Optional extended data provided specific to transaction originated via
+        description: Optional extended data provided specific to transaction originated via
           NPP
         enum:
           - x2p101Payload
       x2p101Payload:
-        $ref: '#/definitions/BankingTransactionDetail_extendedData_x2p101Payload'
+        $ref: "#/definitions/BankingTransactionDetail_extendedData_x2p101Payload"
       service:
         type: string
-        description: >-
-          Identifier of the applicable overlay service. Valid values are:
-          X2P1.01
+        description: "Identifier of the applicable overlay service. Valid values are:
+          X2P1.01"
         enum:
           - X2P1.01

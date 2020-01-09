@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Missing-CDSSubject-Header">
-    <DisplayName>RF-Missing-CDSSubject-Header</DisplayName>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Missing-Invalid-cdsClientHeaders-Header">
+    <DisplayName>RF-Missing-Invalid-cdsClientHeaders-Header</DisplayName>
     <FaultRules/>
     <Properties/>
     <FaultResponse>
@@ -11,7 +11,7 @@
     {
        "code": "400",
        "title": "Bad Request",
-       "detail": "Missing x-cds-subject header"
+       "detail": "Missing or Invalid x-cds-client-headers header"
     }
   ]
 }</Payload>
