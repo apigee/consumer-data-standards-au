@@ -2,11 +2,11 @@ swagger: "2.0"
 info:
   description: API sets created by the Australian Consumer Data Standards to meet the needs
     of the Consumer Data Right
-  version: 1.0.0
+  version: 1.1.0
   title: Consumer Data Standards
   contact:
     name: APIBank CDS Team
-    url: https://openbank-aunz-test.apigee.net/cds
+    url: https://apibank.com.au/cds
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
@@ -22,7 +22,6 @@ paths:
   /banking/accounts:
     get:
       tags:
-        - Banking
         - Accounts
       summary: Get Accounts
       description: Obtain a list of accounts
@@ -128,7 +127,7 @@ paths:
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
           description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
@@ -138,13 +137,6 @@ paths:
           required: false
           type: string
           x-cds-type: Base64
-        - name: x-cds-subject
-          in: header
-          description: Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
         - name: Authorization
           in: header
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
@@ -160,11 +152,10 @@ paths:
                 data holder has responded with.
             x-fapi-interaction-id:
               type: string
-              description: An RFC4122 UID used as a correlation id. The data holder must
-                set the response header x-fapi-interaction-id to the value
-                received from the corresponding fapi client request header or to
-                a new RFC4122 UUID value if the request header was not provided
-                to track the interaction.
+              description: An optional [[RFC4122](https://tools.ietf.org/html/rfc4122)]
+                UUID used as a correlation id. If provided, the data holder must
+                "play back" this value in the `x-fapi-interaction-id` response
+                header.
           schema:
             $ref: "#/definitions/ResponseBankingAccountList"
       x-scopes:
@@ -173,7 +164,6 @@ paths:
   /banking/accounts/balances:
     get:
       tags:
-        - Banking
         - Accounts
       summary: Get Bulk Balances
       description: Obtain balances for multiple, filtered accounts
@@ -279,7 +269,7 @@ paths:
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
           description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
@@ -289,13 +279,6 @@ paths:
           required: false
           type: string
           x-cds-type: Base64
-        - name: x-cds-subject
-          in: header
-          description: Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
         - name: Authorization
           in: header
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
@@ -323,7 +306,6 @@ paths:
       x-version: "1"
     post:
       tags:
-        - Banking
         - Accounts
       summary: Get Balances For Specific Accounts
       description: Obtain balances for a specified list of accounts
@@ -396,7 +378,7 @@ paths:
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
           description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
@@ -406,13 +388,6 @@ paths:
           required: false
           type: string
           x-cds-type: Base64
-        - name: x-cds-subject
-          in: header
-          description: Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
         - name: Authorization
           in: header
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
@@ -454,11 +429,10 @@ paths:
   "/banking/accounts/{accountId}/balance":
     get:
       tags:
-        - Banking
         - Accounts
       summary: Get Account Balance
       description: Obtain the balance for a single specified account
-      operationId: listBalance
+      operationId: getBalance
       parameters:
         - name: accountId
           in: path
@@ -513,7 +487,7 @@ paths:
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
           description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
@@ -523,13 +497,6 @@ paths:
           required: false
           type: string
           x-cds-type: Base64
-        - name: x-cds-subject
-          in: header
-          description: Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
         - name: Authorization
           in: header
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
@@ -558,7 +525,6 @@ paths:
   "/banking/accounts/{accountId}":
     get:
       tags:
-        - Banking
         - Accounts
       summary: Get Account Detail
       description: Obtain detailed information on a single account
@@ -618,7 +584,7 @@ paths:
             context. Not to be included for unauthenticated calls.
           required: false
           type: string
-        - name: x-cds-User-Agent
+        - name: x-cds-client-headers
           in: header
           description: The customer's original standard http headers
             [Base64](#common-field-types) encoded, including the original User
@@ -628,13 +594,6 @@ paths:
           required: false
           type: string
           x-cds-type: Base64
-        - name: x-cds-subject
-          in: header
-          description: Subject identifier. Locally unique and never reassigned identifier
-            within the Holder for the End-User. Mandatory for authenticated
-            calls. Not required for unattended or unauthenticated calls.
-          required: false
-          type: string
         - name: Authorization
           in: header
           description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
@@ -767,7 +726,8 @@ definitions:
         description: The indicative frequency with which the fee is calculated on the
           account. Only applies if balanceRate or accruedRate is also present.
           Formatted according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       currency:
         type: string
@@ -946,14 +906,16 @@ definitions:
           daily (as balances may change) but accumulated until the total amount
           is 'applied' to the account (see applicationFrequency). Formatted
           according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       applicationFrequency:
         type: string
         description: The period after which the calculated amount(s) (see
           calculationFrequency) are 'applied' (i.e. debited or credited) to the
           account. Formatted according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       tiers:
         type: array
@@ -1012,14 +974,16 @@ definitions:
           daily (as balances may change) but accumulated until the total amount
           is 'applied' to the account (see applicationFrequency). Formatted
           according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       applicationFrequency:
         type: string
         description: The period after which the calculated amount(s) (see
           calculationFrequency) are 'applied' (i.e. debited or credited) to the
           account. Formatted according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       interestPaymentDue:
         type: string
@@ -1081,8 +1045,8 @@ definitions:
           tierValueMinimum. Where this is the same as the tierValueMinimum value
           of the next-higher tier the referenced tier should be exclusive of
           this value. For example a term deposit of 2 months falls into the
-          upper tier of the following tiers: (1-2 months, 2-3 months).
-          If absent the tier's range has no upper bound."
+          upper tier of the following tiers: (1 – 2 months, 2 – 3 months). If
+          absent the tier's range has no upper bound."
       rateApplicationMethod:
         type: string
         description: The method used to calculate the amount to be applied using one or
@@ -1171,7 +1135,7 @@ definitions:
         $ref: "#/definitions/BankingProductCategory"
       productName:
         type: string
-        description: The unique identifier of the account as defined by the account holder
+        description: The unique identifier of the account as defined by the data holder
           (akin to model number for the account)
   ResponseBankingAccountById:
     type: object
@@ -1213,7 +1177,9 @@ definitions:
               - creditCard
               - loan
           termDeposit:
-            $ref: "#/definitions/BankingTermDepositAccount"
+            type: array
+            items:
+              $ref: "#/definitions/BankingTermDepositAccount"
           creditCard:
             $ref: "#/definitions/BankingCreditCardAccount"
           loan:
@@ -1407,6 +1373,7 @@ definitions:
         type: string
         description: The expected or required repayment frequency. Formatted according to
           [ISO 8601 Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          (excludes recurrence syntax)
         x-cds-type: ExternalRef
   ResponseBankingAccountsBalanceList:
     type: object
@@ -1766,7 +1733,7 @@ definitions:
           tierValueMinimum. Where this is the same as the tierValueMinimum value
           of the next-higher tier the referenced tier should be exclusive of
           this value. For example a term deposit of 2 months falls into the
-          upper tier of the following tiers: (1-2 months, 2-3 months)."
+          upper tier of the following tiers: (1 – 2 months, 2 – 3 months)"
       rateApplicationMethod:
         type: string
         description: The method used to calculate the amount to be applied using one or
@@ -1806,7 +1773,7 @@ definitions:
     properties:
       code:
         type: string
-        description: "Must be one of the following: 0001 - Account not able to be found"
+        description: "Must be one of the following: 0001 – Account not able to be found"
       title:
         type: string
         description: "Must be one of the following: Invalid account"

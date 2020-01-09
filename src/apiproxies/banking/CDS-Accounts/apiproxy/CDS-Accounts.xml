@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="30" name="CDS-Accounts">
+<APIProxy revision="32" name="CDS-Accounts">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1576808739338</CreatedAt>
+    <CreatedAt>1563516215003</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1576808739338</LastModifiedAt>
+    <LastModifiedAt>1578456724788</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:2b15202e9f60747ff7a2e1a7fa057fb0abd7be7b8d6dcc28b323baad70b3045a4a9cd38bdc63f7b1b2b5398664765807be60d6ee9103d6a9def5433d79446aa0</ManifestVersion>
+    <ManifestVersion>SHA-512:a3ca11923fcf73b44ad3fcf46a233db7f48b7c993eb219988202eca04f0c196de823f6066f2bbcb512bec74d8c89e35799f960f221d8db914afcb54e51ffa60c</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>

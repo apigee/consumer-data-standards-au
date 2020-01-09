@@ -2,10 +2,10 @@ swagger: "2.0"
 info:
   description: API sets created by the Australian Consumer Data Standards to meet the needs
     of the Consumer Data Right
-  version: 1.0.0
+  version: 1.1.0
   title: Consumer Data Standards
   contact:
-    name: APIBank CDS Team 
+    name: APIBank CDS Team
     url: https://apibank.com.au/cds
   license:
     name: MIT License
@@ -22,7 +22,6 @@ paths:
   /banking/products:
     get:
       tags:
-        - Banking
         - Products
       summary: Get Products
       description: >-
@@ -83,15 +82,20 @@ paths:
 
 
         In addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely.
+
+
+        NOTE: This version must be implemented by **July 2020**
+
+
+        Obsolete versions: [v1](includes/obsolete/get-products-v1.html)
       operationId: listProducts
       parameters:
         - name: effective
           in: query
           description: Allows for the filtering of products based on whether the current
             time is within the period of time defined as effective by the
-            effectiveFrom and effectiveTo fields. Valid values are
-            'CURRENT', 'FUTURE' and 'ALL'. If absent defaults to
-            'CURRENT'
+            effectiveFrom and effectiveTo fields. Valid values are ‘CURRENT’,
+            ‘FUTURE’ and ‘ALL’. If absent defaults to 'CURRENT'
           required: false
           type: string
           default: CURRENT
@@ -178,15 +182,21 @@ paths:
                 data holder has responded with.
           schema:
             $ref: "#/definitions/ResponseBankingProductList"
-      x-version: "1"
+      x-version: "2"
   "/banking/products/{productId}":
     get:
       tags:
-        - Banking
         - Products
       summary: Get Product Detail
-      description: Obtain detailed information on a single product offered openly to the
-        market
+      description: >-
+        Obtain detailed information on a single product offered openly to the
+        market.
+
+
+        NOTE: This version must be implemented by **July 2020**
+
+
+        Obsolete versions: [v1](includes/obsolete/get-product-detail-v1.html)
       operationId: getProductDetail
       parameters:
         - name: productId
@@ -228,7 +238,7 @@ paths:
                 data holder has responded with.
           schema:
             $ref: "#/definitions/ResponseBankingProductById"
-      x-version: "1"
+      x-version: "2"
 definitions:
   ResponseBankingProductList:
     type: object
@@ -243,7 +253,7 @@ definitions:
         $ref: "#/definitions/LinksPaginated"
       meta:
         $ref: "#/definitions/MetaPaginated"
-  BankingProduct:
+  BankingProductV2:
     type: object
     required:
       - brand
@@ -307,7 +317,12 @@ definitions:
           thus that the provision of specific fees and rates is not applicable
         x-cds-type: Boolean
       additionalInformation:
-        $ref: "#/definitions/BankingProduct_additionalInformation"
+        $ref: "#/definitions/BankingProductV2_additionalInformation"
+      cardArt:
+        type: array
+        description: An array of card art images
+        items:
+          $ref: "#/definitions/BankingProductV2_cardArt"
   ResponseBankingProductById:
     type: object
     required:
@@ -322,7 +337,7 @@ definitions:
         $ref: "#/definitions/Meta"
   BankingProductDetail:
     allOf:
-      - $ref: "#/definitions/BankingProduct"
+      - $ref: "#/definitions/BankingProductV2"
       - type: object
         properties:
           bundles:
@@ -562,7 +577,8 @@ definitions:
         description: The indicative frequency with which the fee is calculated on the
           account. Only applies if balanceRate or accruedRate is also present.
           Formatted according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       currency:
         type: string
@@ -741,14 +757,16 @@ definitions:
           daily (as balances may change) but accumulated until the total amount
           is 'applied' to the account (see applicationFrequency). Formatted
           according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       applicationFrequency:
         type: string
         description: The period after which the calculated amount(s) (see
           calculationFrequency) are 'applied' (i.e. debited or credited) to the
           account. Formatted according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       tiers:
         type: array
@@ -807,14 +825,16 @@ definitions:
           daily (as balances may change) but accumulated until the total amount
           is 'applied' to the account (see applicationFrequency). Formatted
           according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       applicationFrequency:
         type: string
         description: The period after which the calculated amount(s) (see
           calculationFrequency) are 'applied' (i.e. debited or credited) to the
           account. Formatted according to [ISO 8601
-          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+          Durations](https://en.wikipedia.org/wiki/ISO_8601#Durations) (excludes
+          recurrence syntax)
         x-cds-type: ExternalRef
       interestPaymentDue:
         type: string
@@ -876,8 +896,8 @@ definitions:
           tierValueMinimum. Where this is the same as the tierValueMinimum value
           of the next-higher tier the referenced tier should be exclusive of
           this value. For example a term deposit of 2 months falls into the
-          upper tier of the following tiers: (1 â€“ 2 months, 2 â€“ 3 months).
-          If absent the tier's range has no upper bound."
+          upper tier of the following tiers: (1 – 2 months, 2 – 3 months). If
+          absent the tier's range has no upper bound."
       rateApplicationMethod:
         type: string
         description: The method used to calculate the amount to be applied using one or
@@ -990,8 +1010,8 @@ definitions:
         description: The list of products returned.  If the filter results in an empty set
           then this array may have no records
         items:
-          $ref: "#/definitions/BankingProduct"
-  BankingProduct_additionalInformation:
+          $ref: "#/definitions/BankingProductV2"
+  BankingProductV2_additionalInformation:
     properties:
       overviewUri:
         type: string
@@ -1015,6 +1035,18 @@ definitions:
         description: Description of a bundle that this product can be part of
         x-cds-type: URIString
     description: Object that contains links to additional information on specific topics
+  BankingProductV2_cardArt:
+    required:
+      - imageUri
+    properties:
+      title:
+        type: string
+        description: Display label for the specific image
+      imageUri:
+        type: string
+        description: Link to a PNG, JPG or GIF image with proportions defined by ISO 7810
+          ID-1 and width no greater than 512 pixels
+        x-cds-type: URIString
   BankingProductRateTier_subTier:
     required:
       - maximumValue
@@ -1047,7 +1079,7 @@ definitions:
           tierValueMinimum. Where this is the same as the tierValueMinimum value
           of the next-higher tier the referenced tier should be exclusive of
           this value. For example a term deposit of 2 months falls into the
-          upper tier of the following tiers: (1 â€“ 2 months, 2 â€“ 3 months)"
+          upper tier of the following tiers: (1 – 2 months, 2 – 3 months)"
       rateApplicationMethod:
         type: string
         description: The method used to calculate the amount to be applied using one or

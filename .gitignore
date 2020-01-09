@@ -10,6 +10,8 @@ setup/certs/*
 setup/service-accounts/
 setup/service-accounts/*
 specs/*Full.yaml
+specs/Older/
+specs/Older/*
 src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/
 src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/*
 test/postman/*environment.json

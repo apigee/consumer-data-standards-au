@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:6061ecdd49bfdd5b697dfab77c56733baeec7f5ad734c43d61be016cc78cd0e3a7ba6d641031668692433ed93374b306856df7b516fc42647b055649d9c95101"/>
+        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:f0cf9e4ae4b2187b1125f070323d4e4904d9c6575a4e7f2a73d2382510816ab1f923a2b8d070f4d8442c5f8d74373e391869a81be8e4a5131f07b09a689dc6d7"/>
         <VersionInfo resourceName="AM-Add-Existing-FAPI-Interaction-Id" version="SHA-512:dd41e54212597968c100a2065966e896d45812adeb605e5b31dc368e7a8bd1047972391b0a8fd995de89ce1110a854bac62f8683caa88215ce43056922bbd6c9"/>
         <VersionInfo resourceName="AM-Generate-New-Fapi-Interaction-Id" version="SHA-512:f3d80fdfd15fefb02fa64d54410302d0e60e336ca720c3e11f7bb67045c3203cb4a8913bbd44de6d3b67fd0660ad8202404b033e7abfce14c5626fd48125ccfe"/>
-        <VersionInfo resourceName="AM-Set-Content-Type-And-Version-Headers" version="SHA-512:29207b015b5dadc2adeac839a7d93a9ab313018648371ca602ea2d8e73942182469f7663be37971354094a4f69757e7ddf302a590a6d02e745c63cc4a9915f65"/>
+        <VersionInfo resourceName="AM-Set-Content-Type-And-Version1-Headers" version="SHA-512:8d8c30c90ca660fffd819eee3abd9007cae92dd686d6f2a307f96a26d10012f4d1dfd9d01e07f09c34f9be63f8a51af10e57deba30d5e0dff22137882e0bde35"/>
+        <VersionInfo resourceName="AM-Set-Content-Type-And-Version2-Headers" version="SHA-512:6a518b36b670c201d9047b3c54513f2a1720f7cc1679857f4c2ece706828a9a3a59de3fa7ee54751a62b2cbefbf148d487a5b7c51ac885153097c88d21222e56"/>
         <VersionInfo resourceName="JS-Add-Links-Meta-To-Response" version="SHA-512:02eb8d2998c4aba1ec881d73fa126782430246ba6c3ca7ef045fa65a3f7e18e7b31f0c5f04e95fcb294bdcb10ca0cbe0c7840ada3b54bc733373b21a06a63708"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources>
-        <VersionInfo resourceName="jsc://AddLinksMetaToResponse.js" version="SHA-512:d096cbb1b93d6c97acf2131e5ac3e7fe3899b3231c10e3535b9c68069418d57c295d3ef3d7e19d346d1ab0c3c0d0fb093bbb857af03507874dd3343ef00c06df"/>
+        <VersionInfo resourceName="jsc://AddLinksMetaToResponse.js" version="SHA-512:ca0f743c01595b0a1d18e3afbeee87e0f10e62569c3c95d33381f1de3a6bf0755513404ed931161394921c0516d8ea79670e6649fd907c7ef59a7e2aac647842"/>
     </Resources>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:b2d08e1222a259bbf84d0befe1ae5cd93f68d02260d6432eb26dc286a64951fe697742e12e787428346ac6eec6e32ab4801e95bbb5ca640c99983745b9ca0a33"/>
+        <VersionInfo resourceName="default" version="SHA-512:007f670b2d89c70fd12c6d73d9c07d634716450451e3a34ca5088b9c289536bf7cb9c34f5a247b1ad8136f984118ff3a07d7c056a9f76defd91bb5fd99b69c45"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

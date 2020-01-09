@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-Set-Content-Type-And-Version-Headers">
-    <DisplayName>AM-Set-Content-Type-And-Version-Headers</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-Set-Content-Type-And-Version1-Headers">
+    <DisplayName>AM-Set-Content-Type-And-Version1-Headers</DisplayName>
     <FaultRules/>
     <Properties/>
     <Set>
@@ -10,5 +10,5 @@
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="response" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="response" transport="http" createNew="false"/>
 </AssignMessage>

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="10" name="CDS-Transactions">
+<APIProxy revision="13" name="CDS-Transactions">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1576809158990</CreatedAt>
+    <CreatedAt>1578537304725</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Transaction API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Transactions</DisplayName>
-    <LastModifiedAt>1576809158990</LastModifiedAt>
+    <LastModifiedAt>1578537304725</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:2227ccdf3406a3cd169fefb8fbc86cc8597e75693d12da507a7325abd8b2cd9e519a0a564e28747a3c8f978c22ec4352615de1fd19b00dd7c3cf6a08b7e46864</ManifestVersion>
+    <ManifestVersion>SHA-512:55cc62cdcef3d7892d987492f995fd0daf65189eb86c336cc3e3f101aefc926778ddcd806491020f12ccfb9c7aad721228fee9e61c92b47a1e6545b715f41468</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>

@@ -5,10 +5,9 @@
     <Properties/>
     <Code>TokenRequestParams.code</Code>
     <Attributes>
-        <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"></Attribute>
-        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"></Attribute>
-        <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"></Attribute>
-        <Attribute display="false" name="cdsSubject" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub"></Attribute>
+        <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
+        <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
+        <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>

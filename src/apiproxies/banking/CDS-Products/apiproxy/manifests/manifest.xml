@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:6061ecdd49bfdd5b697dfab77c56733baeec7f5ad734c43d61be016cc78cd0e3a7ba6d641031668692433ed93374b306856df7b516fc42647b055649d9c95101"/>
+        <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:f0cf9e4ae4b2187b1125f070323d4e4904d9c6575a4e7f2a73d2382510816ab1f923a2b8d070f4d8442c5f8d74373e391869a81be8e4a5131f07b09a689dc6d7"/>
         <VersionInfo resourceName="AM-MockFullListOfProducts" version="SHA-512:2435ee6b106fdb19e5b9a283052d2ac9e5c73798b93039eb5439db649065bbe6aa744fc9a577817fdfd8e285dcd7f1c21e30f3ba6d3fc68ffc4f22813ac25216"/>
         <VersionInfo resourceName="AM-Set-Pagination-Settings" version="SHA-512:7ccf4d4922af2fd396ce786713c494175c09dfa12595bc2a438f0a8524a31bbadc8a44c7d46781f28103e5904373b164855aa51419e38f5cff11e407ecf86b90"/>
         <VersionInfo resourceName="EV-GetProductFilterCriteria" version="SHA-512:cc1841e4fa80f87fb9f44fff9860991195c128127f97f9ef703535fc9138c3a5da6fd40567d9d7ad31d56f6fd0ade18b1a72273bec017feb0e69b94c80d34313"/>
@@ -9,7 +9,7 @@
         <VersionInfo resourceName="EV-productIdFromURL" version="SHA-512:07c2d1a15aebf04668e289390260bdaf218a31bc9efc3cfc820fc5eed9f10453ef53a4a558e7a2170d586ff3e9c70346b907830aa694bf1cf592ed0efdd359c2"/>
         <VersionInfo resourceName="FC-AddResponseHeaders-Link-Meta" version="SHA-512:78f3541fc8a112fc73bb0d09d5b767a554d34dfdfed6962232388e454a15f6d18499aa6f158e74ab4895fbe53f098aecc92f6c1e29750e2caaa61724343bc612"/>
         <VersionInfo resourceName="FC-CheckRequestHeaders" version="SHA-512:5b2ad6beed370945c3f80cbbfe381ba5f4210637a358598c032049cd2c9f360c133b64ded5be5f9be5b5b7272af3ed743abbcedbb324e5a406e81140680bebb6"/>
-        <VersionInfo resourceName="FC-CollectPerformanceSLO" version="SHA-512:b63a0ac7803d08764b89df41c96e126f5983bd951b255bbd7e6690b7e63f084cb3988de3025f6b0b5329a42b7cea4d7a55e971d51da9ca9aec1a8ddc09347dde"/>
+        <VersionInfo resourceName="FC-CollectPerformanceSLO" version="SHA-512:a9b222146542fbfaf60ca59259f4e95151124f18a64d2f4f10cafdeb80166773c3d8ed29c40125ff4dc347e9f63a9e9dba2e14563f50cb5956821a6598411229"/>
         <VersionInfo resourceName="FC-PaginateResponse" version="SHA-512:8c19e55d5eb9514aa0990d2e5dce46d944880ddd89c6339f9d76270a6800a2ca8255e9ea062e3910e8ffb51d8bf68fce49f14042d78be7dfa2ff39eb532a5406"/>
         <VersionInfo resourceName="FC-TrafficThresholds" version="SHA-512:06b26c2a4f540a1f5d7a4e5d016097146e9265eafe8cd87246327c0dfcaa8b9ab8d6efb632c877aecac06f78064c54a855b544de1ced5fc806a4a2c903b17018"/>
         <VersionInfo resourceName="FC-ValidateRequestParams" version="SHA-512:1b17fe338134c6d6fb73087df378ef5814996ca03e53f051dc57f15e5cd014ce54210422b54dfc6606b7af7b0c7b93a555896df3f6e92ff9841ccab6e0439643"/>
@@ -21,7 +21,7 @@
         <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:07e6655bc3c0a7514fbce38ead742f8fb8a069a0aa4f18fe65a3c24490e7e0664a24f2714ebe5e4f733eda7a076ee049a67f3a028f2892d766b49d5db849d36f"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:8f40baf7885b8586f0f42b322214528d6364b0cfad4b4afbd4e6765467f16d47173f6f13c8a6cdf78f07a221cde3d3fd65f018a19b83a2e97ba6c456aff82698"/>
+        <VersionInfo resourceName="default" version="SHA-512:4400b61974191649eba4dd68f87c8ce41c6f0c7c6432acca6b701c07a37ba84d2210938f51d16690422031af3ddc3e34e1e5b57d19cd86f7cc01a7695d04cd1b"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://buildProductDetailsResponse.js" version="SHA-512:267b7c5c7a53e7d4bb4dd7bb11771b15e4a516ea2b465c096d13748916df3a47f35b98daa101d6f06355de9cd21aaf33de36e32799861fb2b5232295bc35e618"/>

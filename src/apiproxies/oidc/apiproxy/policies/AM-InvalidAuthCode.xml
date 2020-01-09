@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-InvalidAuthCode">
     <DisplayName>AM-InvalidAuthCode</DisplayName>
+    <FaultRules/>
     <Properties/>
     <Set>
         <Headers/>
@@ -17,5 +18,5 @@
         <ReasonPhrase>Bad Request</ReasonPhrase>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="message"/>
+    <AssignTo transport="http" createNew="false"></AssignTo>
 </AssignMessage>
