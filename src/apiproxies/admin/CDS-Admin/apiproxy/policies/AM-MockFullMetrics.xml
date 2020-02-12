@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullMetrics">
+    <DisplayName>AM-MockFullMetrics</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>allMetrics</Name>
+        <Template>{
+    "data": {
+        "requestTime": "{requestTime}",
+        "availability": {
+            "currentMonth": 1.0,
+            "previousMonths": [
+                1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+            ]
+        },
+        "performance": {
+            "currentDay": 1.0,
+            "previousDays": [
+                1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+            ]
+        },
+        "invocations": {
+            "unauthenticated": {
+                "currentDay": 20,
+                "previousDays": [
+                    20, 20, 20, 20, 20, 20, 20
+                ]
+            },
+            "highPriority": {
+                "currentDay": 10,
+                "previousDays": [
+                    10, 10, 10, 10, 10, 10, 10
+                ]
+            },
+            "lowPriority": {
+                "currentDay": 5,
+                "previousDays": [
+                    5, 5, 5, 5, 5, 5, 5
+                ]
+            },
+            "unattended": {
+                "currentDay": 3,
+                "previousDays": [
+                    3, 3, 3, 3, 3, 3, 3
+                ]
+            },
+            "largePayload": {
+                "currentDay": 2,
+                "previousDays": [
+                    2, 2, 2, 2, 2, 2, 2
+                ]
+            }
+        },
+        "averageResponse": {
+            "unauthenticated": {
+                "currentDay": 0.055,
+                "previousDays": [
+                    0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055
+                ]
+            },
+            "highPriority": {
+                "currentDay": 0.055,
+                "previousDays": [
+                    0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055
+                ]
+            },
+            "lowPriority": {
+                "currentDay": 0.055,
+                "previousDays": [
+                    0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055
+                ]
+            },
+            "unattended": {
+                "currentDay": 0.055,
+                "previousDays": [
+                    0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055
+                ]
+            },
+            "largePayload": {
+                "currentDay": 0.055,
+                "previousDays": [
+                    0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055
+                ]
+            }
+        },
+        "sessionCount": {
+            "currentDay": 3,
+            "previousDays": [
+                3, 3, 3, 3, 3, 3, 3
+            ]
+        },
+        "averageTps": {
+            "currentDay": 1.0,
+            "previousDays": [
+                1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+            ]
+        },
+        "peakTps": {
+            "currentDay": 1.0,
+            "previousDays": [
+                12.0, 12.0, 12.0, 12.0, 12.0, 12.0, 12.0
+            ]
+        },
+        "errors": {
+            "currentDay": 0,
+            "previousDays": [
+                0, 0, 0, 0, 0, 0, 0
+            ]
+        },
+        "rejections": {
+            "currentDay": 0,
+            "previousDays": [
+                0, 0, 0, 0, 0, 0, 0
+            ]
+        },
+        "customerCount": 5,
+        "recipientCount": 1
+    }
+}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

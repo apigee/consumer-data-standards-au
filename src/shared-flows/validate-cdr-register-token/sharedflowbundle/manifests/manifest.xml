@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-SetValidAudience" version="SHA-512:fc62377a5570296a8c69d72f25fbcd5d2b54e1202f2c3e85010b6a44707bceed16e520445fd7baee0ae95b8c92446f97568c9343fcc22791fb9898eb69d2eef7"/>
+        <VersionInfo resourceName="EV-GetJWTTokenFromAuthHeader" version="SHA-512:e25eaac2cb991bced7654d524a8b161dfe4555ae382e4e0a0b718fe825118887e4061e76767881bd5f05f0a0f22c852b04b8781af6f477380f4d1fe5c267c3f6"/>
+        <VersionInfo resourceName="JWT-VerifyCDRToken" version="SHA-512:a8c3354e15ac8895ba67447fc816c35d8794beab7fbc9931881800c11e0d00456bdbe6c8f10247ec95a39da9f6439576fa60b92f5b61510cd2fd954dd03123a9"/>
+        <VersionInfo resourceName="LC-JTIHasBeenSeen" version="SHA-512:283c49e12654058c7cd239800dbba564bba95736f2ba5ca3652886ccbb9ba87cd2c550039ef3b760bce5f761464bc3717ce7127b2b0b23b48d239ed80ee8e4f7"/>
+        <VersionInfo resourceName="PC-RemeberJTI" version="SHA-512:8eb502cd6aad90c3cf152be78cf9936d13507f1439bd8a37f1aa5278cd7a6283a3ff589775b3de15701f94627980b370c74ca81f00d6020a96a708db9808369c"/>
+        <VersionInfo resourceName="RF-MissingEXPClaim" version="SHA-512:ece03824711e7ab0f85035f3022bcdfc6a83a2462cf55885a4210e6583434450b9ed2c552e36919d2036a016223dc8d18a6850a13eba88e64dfc8daa1f447b89"/>
+        <VersionInfo resourceName="RF-MissingJTIClaim" version="SHA-512:c379cc80a54b3cd128f1437081915d20728eaf5cde0a18b2281418b401ecae02905f76e4b3228f68cd8822a290542bd86ac723992cc0ef6f09c53d4f3c049efb"/>
+        <VersionInfo resourceName="RF-MissingJWTToken" version="SHA-512:e2b1575b1c913d3e55254f8184e97d78ed46abca16ccf68fde2fce7bcff6741d3c4dc5e7febcc461f368906b0aaebd4a8dff0d07cdd59a9eae9ef11d07d4d511"/>
+        <VersionInfo resourceName="RF-TokenNotVerified" version="SHA-512:e7e6e4f48ade15c7118478a51fcf3b863aeb293161ea12a1caa4ff52bc63d131079f807d03eb293f34cc2777b5ee57669be2d766ee10fcc39d70fa063089e78d"/>
+        <VersionInfo resourceName="RF-TokenReused" version="SHA-512:567d8fe41b95d39467d0dbe1b841c5d7937801db2acce078d1bbb9ca76178b9326f259ec350c194ba905ad491ac7be8acd88ede768c4f3e4e66846d978f1d705"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:4cbfbac29f46af7f6d0e11abbdb1a8cb9aaa8d5acacf602aaf1c69098f9023247e2f1aec6c971c87a9e62a1826631689528a7d38ade7cd97bc1c29485e4b297e"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-StoreAllMetrics">
+    <DisplayName>PC-StoreAllMetrics</DisplayName>
+    <CacheKey>
+        <Prefix>rawmetrics-</Prefix>
+        <KeyFragment>ALL</KeyFragment>
+    </CacheKey>
+    <Scope>Exclusive</Scope>
+    <!-- For testing purposes, set to a lower expiry. Eg: 30 seconds -->
+    <ExpirySettings>
+        <TimeoutInSec>30</TimeoutInSec>
+    </ExpirySettings>
+    <Source>allMetrics</Source>
+</PopulateCache>

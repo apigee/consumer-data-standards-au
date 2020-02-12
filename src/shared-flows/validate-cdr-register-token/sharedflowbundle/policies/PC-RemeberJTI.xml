@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-RemeberJTI">
+    <DisplayName>PC-RemeberJTI</DisplayName>
+    <Source>jwt.JWT-VerifyCDRToken.claim.id</Source>
+    <Scope>Application</Scope>
+    <CacheKey>
+        <Prefix>jwt-</Prefix>
+        <KeyFragment ref="jwt.JWT-VerifyCDRToken.claim.id"/>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSec ref="jwt.JWT-VerifyCDRToken.seconds_remaining"/>
+    </ExpirySettings>
+</PopulateCache>

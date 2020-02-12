@@ -58,8 +58,13 @@ cd ../oidc-mock-provider
 echo Undeploying oidc-mock-provider Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
 
+# Undeploy CDS-Admin proxy
+cd ../admin/CDS-Admin
+echo Undeploying CDS-Admin Apiproxy
+apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
+
 # Undeploy Shared flows
-cd ../../shared-flows
+cd ../../../shared-flows
 for sf in $(ls .) 
 do 
     echo Undeploying $sf Shared Flow 

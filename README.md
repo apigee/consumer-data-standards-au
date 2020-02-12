@@ -27,11 +27,15 @@ as well as the required security endpoints:
 - Introspection
 - OpenID Provider Configuration
 
+and administration endpoints:
+- Metadata Update
+- Get Metrics
+
 Other APIs will be gradually added.
 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
-2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts
+2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts and best practices such as caching of (mock) responses
 3. An API proxy (*oidc-mock-provider*) that implements a standalone Open ID Connect Identity Provider, based on the open source package [oidc-provider](https://github.com/panva/node-oidc-provider)
 3. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens
 
@@ -85,16 +89,23 @@ You can publish APIs into the portal using the OpenAPI specifications found in [
 You can see and try out an actual instance of such a portal at [https://live-cds-au-sandbox.devportal.apigee.io](https://live-cds-au-sandbox.devportal.apigee.io)
 
 
+## A note on Admin APIs
+This reference implementation includes Admin endpoints, *Metadata Update* and *Get Metrics*. These endpoints are meant to be called by the CDR Register only. In order to be able to test these endpoints, the deployment script generates a set of private/public keys for a *Mock* CDR Register. The public keys are used to verify JWT tokens included in requests to these endpoints. If you want to test these endpoints, you'll need to generate a JWT token using the generated private key, found in *./setup/certs/MockCDRRegister_rsa_private.pem*. 
+
+The standards mandate that a token be used only once, so you'll need to generate a new token for each request. The Postman collection includes a helper request to generate a compliant JWT header and body. You can use your own scripts or public tools to generate the JWT Token. 
+
+
 ## Shared Flows
 
-There are 7 shared flows that implement common functionality required by the Banking APIs.
+There are 8 shared flows that implement common functionality required by the Banking and Admin APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
-3. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
-4. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
-5. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
-6. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
-7. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
-8. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO.
+2. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
+3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
+4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
+5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
+6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO.
+8. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
 
 There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints

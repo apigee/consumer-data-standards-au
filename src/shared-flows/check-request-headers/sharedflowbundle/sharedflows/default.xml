@@ -25,7 +25,7 @@
         <Name>RF-Invalid-Version</Name>
     </Step>
     <Step>
-        <Condition>(request.header.accept != null) and (request.header.accept != "application/json")</Condition>
+        <Condition>(proxy.basepath != "/cds-au/v1/admin" or proxy.pathsuffix != "/register/metadata" ) and (request.header.accept != null) and (request.header.accept != "application/json")</Condition>
         <FaultRules/>
         <Name>RF-Invalid-Accept-Header</Name>
     </Step>
@@ -35,12 +35,12 @@
         <Name>RF-Invalid-Content-Type-Header</Name>
     </Step>
     <Step>
-        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (request.header.x-fapi-auth-date = null)</Condition>
+        <Condition>( (not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (proxy.basepath != "/cds-au/v1/admin")) and (request.header.x-fapi-auth-date = null)</Condition>
         <FaultRules/>
         <Name>RF-Missing-Authdate-Header</Name>
     </Step>
     <Step>
-        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (request.header.x-fapi-customer-ip-address != null) and ( (request.header.x-cds-client-headers = null) or (not (request.header.x-cds-client-headers JavaRegex "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$")))</Condition>
+        <Condition>( (not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (proxy.basepath != "/cds-au/v1/admin")) and (request.header.x-fapi-customer-ip-address != null) and ( (request.header.x-cds-client-headers = null) or (not (request.header.x-cds-client-headers JavaRegex "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$")))</Condition>
         <FaultRules/>
         <Name>RF-Missing-Invalid-cdsClientHeaders-Header</Name>
     </Step>

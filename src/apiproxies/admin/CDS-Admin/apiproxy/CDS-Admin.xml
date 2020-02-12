@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="5" name="CDS-Admin">
+    <Basepaths>/cds-au/v1/admin</Basepaths>
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1580773921732</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Admin APIs</Description>
+    <DisplayName>CDS-Admin</DisplayName>
+    <LastModifiedAt>1581034198576</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:70640edd50bbe51e56470fcb364a1f1371385b5cafcbfc8a76b0530268f257707a519cc9cc933e07e2b325fd72d95cc8640eb439f91a7ac60ffbaa92c2a88e5d</ManifestVersion>
+    <Policies>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-InvalidScope</Policy>
+        <Policy>AM-MockFullMetrics</Policy>
+        <Policy>AM-SetMetricsPeriodAndRequestTime</Policy>
+        <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>EV-GetAction</Policy>
+        <Policy>EV-getErrorDetail</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>FC-ValidateRegisterToken</Policy>
+        <Policy>FC-ValidateRequestParams-MetadataUpdate</Policy>
+        <Policy>FC-ValidateRequestParams-Metrics</Policy>
+        <Policy>JS-FilterTransactionsListBasedOnRequestFilters</Policy>
+        <Policy>JS-SetRequestTime</Policy>
+        <Policy>LC-AllMetrics</Policy>
+        <Policy>LC-MetricsForPeriod</Policy>
+        <Policy>PC-StoreAllMetrics</Policy>
+        <Policy>PC-StoreMetricsForPeriod</Policy>
+        <Policy>RF-InvalidAction</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://filterMetricsListBasedOnRequestFilters.js</Resource>
+        <Resource>jsc://setRequestTime.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>
