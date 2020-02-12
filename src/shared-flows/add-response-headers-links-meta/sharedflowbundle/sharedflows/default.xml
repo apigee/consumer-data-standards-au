@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
+        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products"))</Condition>
         <FaultRules/>
         <Name>AM-Set-Content-Type-And-Version1-Headers</Name>
-        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products"))</Condition>
     </Step>
     <Step>
+        <Condition>(proxy.basepath MatchesPath "/cds-au/v1/banking/products")</Condition>
         <FaultRules/>
         <Name>AM-Set-Content-Type-And-Version2-Headers</Name>
-        <Condition>(proxy.basepath MatchesPath "/cds-au/v1/banking/products")</Condition>
     </Step>
     <Step>
         <Condition>fapiInteractionId != null</Condition>
@@ -27,5 +27,6 @@
     <Step>
         <FaultRules/>
         <Name>JS-Add-Links-Meta-To-Response</Name>
+        <Condition>proxy.basepath != "/cds-au/v1/admin" or proxy.pathsuffix != "/register/metadata"</Condition>
     </Step>
 </SharedFlow>

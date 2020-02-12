@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetMetricsPeriodAndRequestTime">
+    <DisplayName>AM-SetMetricsPeriodAndRequestTime</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>metricsPeriod</Name>
+        <Ref>request.queryparam.period</Ref>
+        <Value>ALL</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>currTimeUTC</Name>
+        <Template>{system.timestamp}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>dayFormatStr</Name>
+        <Value>yyyy-MM-dd</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>timeFormatStr</Name>
+        <Value>HH:mm:ssZ</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>currDay</Name>
+        <Template>{timeFormatMs(dayFormatStr,currTimeUTC)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>currTimeWithTZ</Name>
+        <Template>{timeFormatMs(timeFormatStr,currTimeUTC)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>requestTime</Name>
+        <Template>{currDay}T{currTimeWithTZ}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

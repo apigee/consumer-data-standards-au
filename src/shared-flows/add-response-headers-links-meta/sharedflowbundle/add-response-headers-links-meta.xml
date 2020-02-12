@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="21" name="add-response-headers-links-meta">
+<SharedFlowBundle revision="23" name="add-response-headers-links-meta">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1546489641959</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Add mandatory headers to response</Description>
     <DisplayName>add-response-headers</DisplayName>
-    <LastModifiedAt>1578455670462</LastModifiedAt>
+    <LastModifiedAt>1580949917992</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:0b4996f11280cd1c5fa5443fe857de7ef36b852c26c8403f5f981605653d9821f5f4152732533254be91a67201ca51397055bf2f4f3f8fc4a3a4635d1dceef49</ManifestVersion>
+    <ManifestVersion>SHA-512:360e45dc2f71dc952136904fa1a8b46265acbba544f54e7214be365c89cf6034167167ede66c5f6c591002b1b0c37e0362a4dd6b716a2c2102d0a7919a9937ca</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-Add-Existing-FAPI-Interaction-Id</Policy>

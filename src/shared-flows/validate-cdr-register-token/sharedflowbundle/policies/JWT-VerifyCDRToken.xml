@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="true" enabled="true" name="JWT-VerifyCDRToken">
+  <DisplayName>JWT-VerifyCDRToken</DisplayName>
+  <Algorithm>PS256,RS256</Algorithm>
+  <Source>cdrToken</Source>
+  <PublicKey>
+    <!-- Replace hardcoded value with the CDR Register JWKS URI, once it's available. Use the uri attribute in the JWKS element -->
+    <JWKS>{"placeholder": "Will be replaced by deployment script"}</JWKS>
+  </PublicKey>
+  <Subject>cdr-register</Subject>
+  <Issuer>cdr-register</Issuer>
+  <Audience ref="ValidAudience"/>
+  <IgnoreIssuedAt>false</IgnoreIssuedAt>
+</VerifyJWT>

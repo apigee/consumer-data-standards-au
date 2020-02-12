@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-CollectPerformanceSLO">
+    <DisplayName>FC-CollectPerformanceSLO</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="isPublicEndpoint">false</Parameter>
+        <Parameter name="isAuthEndpoint">false</Parameter>
+        <Parameter name="isCustomerPresent">false</Parameter>
+    </Parameters>
+    <SharedFlowBundle>collect-performance-slo</SharedFlowBundle>
+</FlowCallout>
