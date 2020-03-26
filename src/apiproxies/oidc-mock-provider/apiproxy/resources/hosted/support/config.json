@@ -91,7 +91,7 @@
 	],
 	"routes": {
 		"authorization": "/authorise",
-        "registraion": "/rego"		
+        "registration": "/register"		
 	},
 	"scopes": [
 		"openid",

@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v1.1.1** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.2.0** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -103,7 +103,7 @@ There are 8 shared flows that implement common functionality required by the Ban
 2. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
 3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
 4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
-5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagintation information, if applicable.
+5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
 6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
 7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO.
 8. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
