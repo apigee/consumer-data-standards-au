@@ -26,10 +26,6 @@ var payload = JSON.parse(context.getVariable("response.content"))
 var issuerHostname= payload.issuer;
 var fullProxyPath = payload.issuer + context.getVariable("proxy.basepath");
 
-// We also need to remove registration endpoint. Even though it is disabled
-// the OIDC provider still reports it
-delete payload["registration_endpoint"];
-
 var privateIPAddr = payload.authorization_endpoint.substring(0,payload.authorization_endpoint.indexOf("/authorise"));
 
 Object.keys(payload).forEach(function (key) {
