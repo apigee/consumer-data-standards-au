@@ -73,7 +73,6 @@ function removeMetrics(metricsObject,periodFilter) {
 // Get the period for which the metrics must be returned
 var periodFilter = context.getVariable("metricsPeriod");
 allMetrics = JSON.parse(context.getVariable("allMetrics")).data;
-print("At start, allMetrics = " + JSON.stringify(allMetrics) + " - periodFilter = " + periodFilter);
 var newResult = {};
 if (periodFilter != "ALL") {
     // We need to remove either the current metrics or metrics for previous periods
