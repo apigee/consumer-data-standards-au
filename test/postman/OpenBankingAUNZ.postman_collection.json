@@ -863,7 +863,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/products?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/products",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1040,7 +1040,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1127,7 +1127,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1192,7 +1192,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1350,7 +1350,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1458,7 +1458,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1536,7 +1536,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1602,7 +1602,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1764,7 +1764,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1868,7 +1868,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions?",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -2016,6 +2016,130 @@
 								"{{accountId}}",
 								"transactions",
 								"tx0003"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Discovery",
+			"item": [
+				{
+					"name": "Get Outages",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"type": "text",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/discovery/outages",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"outages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Status",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"type": "text",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/discovery/status",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Options for Get Status",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true,
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "OPTIONS",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/discovery/status",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"status"
 							]
 						}
 					},

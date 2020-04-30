@@ -27,9 +27,14 @@ as well as the required security endpoints:
 - Introspection
 - OpenID Provider Configuration
 
-and administration endpoints:
+... administration endpoints:
 - Metadata Update
 - Get Metrics
+
+and discovery endpoints:
+- Get Status
+- Get Outages
+
 
 Other APIs will be gradually added.
 
@@ -105,7 +110,7 @@ There are 8 shared flows that implement common functionality required by the Ban
 4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
 5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
 6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
-7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO.
+7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO. Also records type of token operations (for *customerCount* and *recipientCount* metrics)
 8. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
 
 There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints

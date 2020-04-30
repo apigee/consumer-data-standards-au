@@ -9,13 +9,13 @@
         <VersionInfo resourceName="RF-Invalid-Version" version="SHA-512:9dcb2751d53cf786311d28b440b59f3e3279903f0d79b78149ce6dc350b59252c394c98cd654906fa8e582d1e922de7b16c231e5b3acec254522373550c5a59b"/>
         <VersionInfo resourceName="RF-Missing-Authdate-Header" version="SHA-512:2816474e8ff17e6d6b21783b3c13d9b5ba019d6ed60477cae499b952a85f509385aad3c266aa2893c18587b4b105772dc18c99e7f79e671db16a3090cb1656cd"/>
         <VersionInfo resourceName="RF-Missing-Invalid-cdsClientHeaders-Header" version="SHA-512:6ecb508e9e5be366868a2b98e9bd5dc53870c1dfc88a311fe55f6c4a0c18605c1282e0acbfc65cb01f43f83dba34c0cc9bc32d5a37bc645c8532bfa3aa622bed"/>
-        <VersionInfo resourceName="RF-Missing-Version-Header" version="SHA-512:d5ec42b08dc29f77a74ff046a0c45dba621a9f58f819f64516c1b028315715f93b2fb80c94550539488fb8d6bc2223a076d94351792a9f9b90fad7455a74950e"/>
+        <VersionInfo resourceName="RF-Missing-Version-Header" version="SHA-512:64fd3985622312ce4d8229c876b2c439c581debe1dcb4db2eb2ae962eacc3bb8d73c818e4dc1a65fef92a31e358b1411e08020275fb2b7784b5aafea2244dafc"/>
         <VersionInfo resourceName="RF-Return-CORS-Headers" version="SHA-512:ab413652ae4d69d72d74009bafd780cc52521da5b335c08f11a6e08c7fb57a4f2df9bd97510c73220b8774105fd87c10d2f69fbeac92f77b060b6d16a6d18640"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources/>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:ec724c9ffe60bc98bc71398a8d4452be44129b414827b9888257d823b1c8a9f1b3451dc548431f29cc8e76ba0d2d2e61811463a78f7e53c4ef7f0ba6260d0812"/>
+        <VersionInfo resourceName="default" version="SHA-512:2d316fd85a34283db36aef852a0f29ed894ccec41e6161af6099ea0333de942314805cd6be3ffaebfce3f2c00b734ef7c4e9ff340623a064fcde3261b3bc4ae1"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>
