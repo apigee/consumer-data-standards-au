@@ -6,7 +6,6 @@
         <Name>AM-SetPerformanceTierToUnauthenticated</Name>
     </Step>
     <Step>
-        <!-- No large paylaod endpoints implemented yet -->
         <Condition>true = false</Condition>
         <FaultRules/>
         <Name>AM-SetPerformanceTierToLargePayload</Name>
@@ -27,12 +26,23 @@
         <Name>AM-SetPerformanceTierToLowPriority</Name>
     </Step>
     <Step>
+        <FaultRules/>
         <Name>AM-SetMessageSLO</Name>
     </Step>
     <Step>
+        <FaultRules/>
         <Name>JS-CheckIfRequestMeetsPerformanceSLO</Name>
     </Step>
     <Step>
+        <Name>AM-ResetCustomerPPIDIfNA</Name>
+        <Condition>(customerPPId = "n/a")</Condition>
+    </Step>
+    <Step>
+        <Name>AM-ResetTokenOpIfNA</Name>
+        <Condition>(tokenOp = "n/a")</Condition>
+    </Step>
+    <Step>
+        <FaultRules/>
         <Name>SC-AddPerformanceTierDimension</Name>
     </Step>
 </SharedFlow>

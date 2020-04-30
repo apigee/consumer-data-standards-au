@@ -8,5 +8,5 @@
         <Value>highPriority</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

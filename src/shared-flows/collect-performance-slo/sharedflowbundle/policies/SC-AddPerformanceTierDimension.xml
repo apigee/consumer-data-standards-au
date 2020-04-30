@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <StatisticsCollector async="false" continueOnError="false" enabled="true" name="SC-AddPerformanceTierDimension">
     <DisplayName>SC-AddPerformanceTierDimension</DisplayName>
+    <FaultRules/>
     <Properties/>
     <Statistics>
         <Statistic name="PerformanceTier" ref="performanceTier" type="STRING">undetermined</Statistic>
         <Statistic name="MeetsPerformanceSLO" ref="meetsPerformanceSLO" type="STRING">undetermined</Statistic>
+        <Statistic name="customerPPId" ref="customerPPId" type="STRING"/>
+        <Statistic name="tokenOp" ref="tokenOp" type="STRING"/>
     </Statistics>
 </StatisticsCollector>

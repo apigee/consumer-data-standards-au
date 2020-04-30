@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="1" name="collect-performance-slo">
+<SharedFlowBundle revision="3" name="collect-performance-slo">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1576644058184</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Stores custom analytics metric that indicates whether a request meets its performance objective (based on tiers specified by CDS)</Description>
     <DisplayName>collect-performance-slo</DisplayName>
-    <LastModifiedAt>1576807447404</LastModifiedAt>
+    <LastModifiedAt>1587516314018</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:3a5c2a743bb8210a0655977c9f1f8ba3ba854513760c1741e868ec5ea21c3f0b2b59d9797f04c1f25024c2004479e270b6efe2f4e89af99acee6b39b7b586371</ManifestVersion>
+    <ManifestVersion>SHA-512:1c8512b4099339e6c5782aa093250b9c954bee90aeaa4a72659574be4b89d0da5b1c16d82ffd9678e67f4b85f2f5e1c8fab122a1c6ad836286d1a5b07c2349c2</ManifestVersion>
     <Policies>
+        <Policy>AM-ResetCustomerPPIDIfNA</Policy>
+        <Policy>AM-ResetTokenOpIfNA</Policy>
         <Policy>AM-SetMessageSLO</Policy>
         <Policy>AM-SetPerformanceTierToHighPriority</Policy>
         <Policy>AM-SetPerformanceTierToLargePayload</Policy>

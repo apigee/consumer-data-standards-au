@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetDefaultValuesForTokenCustomDimensions">
+    <DisplayName>AM-SetDefaultValuesForTokenCustomDimensions</DisplayName>
+    <AssignVariable>
+        <Name>customerPPId</Name>
+        <Value>n/a</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>tokenOp</Name>
+        <Value>n/a</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="message"/>
+</AssignMessage>
