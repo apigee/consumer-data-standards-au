@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ValidateRegisterToken">
-    <DisplayName>FC-ValidateRegisterToken</DisplayName>
-    <FaultRules/>
-    <Properties/>
-    <SharedFlowBundle>validate-cdr-register-token</SharedFlowBundle>
-</FlowCallout>
