@@ -22,7 +22,6 @@ paths:
   /discovery/status:
     get:
       tags:
-        - Common
         - Discovery
       summary: Get Status
       description: Obtain a health check status for the implementation
@@ -65,7 +64,6 @@ paths:
   /discovery/outages:
     get:
       tags:
-        - Common
         - Discovery
       summary: Get Outages
       description: Obtain a list of scheduled outages for the implementation
