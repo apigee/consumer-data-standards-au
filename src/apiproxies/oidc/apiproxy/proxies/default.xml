@@ -2,6 +2,7 @@
 <ProxyEndpoint name="default">
     <DefaultFaultRule name="DefaultFaultRule">
         <Step>
+            <FaultRules/>
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
@@ -90,6 +91,12 @@
                     <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
+                    <Name>JWT-DecodeOIDCIdToken</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetCustomDimensionsForRefreshToken</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
@@ -138,6 +145,12 @@
                     <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
+                    <Name>JWT-DecodeOIDCIdToken</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetCustomDimensionsForAcquireToken</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
@@ -174,6 +187,10 @@
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
+                    <Name>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Name>
+                </Step>
+                <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                     <FaultRules/>
                     <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
                 </Step>
@@ -186,6 +203,10 @@
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <Name>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Name>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
@@ -329,9 +350,13 @@
                 <FaultRules/>
                 <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
             </Step>
+            <Step>
+                <Name>AM-SetDefaultValuesForTokenCustomDimensions</Name>
+            </Step>
         </Request>
         <Response>
             <Step>
+                <FaultRules/>
                 <Name>AM-Add-CORS-Headers</Name>
             </Step>
         </Response>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="44" name="oidc">
+<APIProxy revision="47" name="oidc">
     <Basepaths></Basepaths>
+    <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
@@ -13,9 +14,9 @@
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1578452131453</LastModifiedAt>
+    <LastModifiedAt>1587516273296</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:51b0c08b31756c81b9a48ce9009106553fee42f6a4dc54d456ed4c4ca08e636c8c9bcd8e91cafac9ac19d1b8a32b0428af63897cbcaac8e0976bb73b4d580225</ManifestVersion>
+    <ManifestVersion>SHA-512:e8955c12a4c101b8281e9fffe56fc03802e5cdc5049ca1d08ccdea05a57ce69cdfdaa3d49ef8f429abe03bceda788fef5af9bff40203b035b218fa0d3294ae76</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
@@ -26,6 +27,11 @@
         <Policy>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Policy>
+        <Policy>AM-SetCustomDimensionsForAcquireToken</Policy>
+        <Policy>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Policy>
+        <Policy>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Policy>
+        <Policy>AM-SetCustomDimensionsForRefreshToken</Policy>
+        <Policy>AM-SetDefaultValuesForTokenCustomDimensions</Policy>
         <Policy>AM-SetRefreshTokenAsAccessToken</Policy>
         <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
         <Policy>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Policy>
@@ -40,6 +46,7 @@
         <Policy>JS-GetOIDCTokenExpiryTime</Policy>
         <Policy>JS-RemoveOIDCProvideBasePath</Policy>
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
+        <Policy>JWT-DecodeOIDCIdToken</Policy>
         <Policy>JWT-DecodeOIDCRefreshToken</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>

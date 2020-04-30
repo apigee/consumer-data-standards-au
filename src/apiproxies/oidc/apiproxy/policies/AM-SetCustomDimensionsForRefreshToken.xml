@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetCustomDimensionsForRefreshToken">
+    <DisplayName>AM-SetCustomDimensionsForRefreshToken</DisplayName>
+    <AssignVariable>
+        <Name>customerPPId</Name>
+        <Ref>jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>tokenOp</Name>
+        <Value>refresh</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="message"/>
+</AssignMessage>

@@ -8,5 +8,6 @@
         <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
+        <Attribute display="false" name="customerPPId" ref="customerPPId"/>
     </Attributes>
 </SetOAuthV2Info>

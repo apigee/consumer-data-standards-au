@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided">
+    <DisplayName>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</DisplayName>
+    <AssignVariable>
+        <Name>customerPPId</Name>
+        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>tokenOp</Name>
+        <Value>expire</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="message"/>
+</AssignMessage>

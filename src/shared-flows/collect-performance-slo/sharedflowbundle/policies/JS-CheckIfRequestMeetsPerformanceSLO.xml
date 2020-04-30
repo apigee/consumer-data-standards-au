@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="JS-CheckIfRequestMeetsPerformanceSLO">
+<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="JS-CheckIfRequestMeetsPerformanceSLO">
     <DisplayName>JS-CheckIfRequestMeetsPerformanceSLO</DisplayName>
+    <FaultRules/>
     <Properties/>
     <ResourceURL>jsc://checkIfRequestMeetsPerformanceSLO.js</ResourceURL>
 </Javascript>

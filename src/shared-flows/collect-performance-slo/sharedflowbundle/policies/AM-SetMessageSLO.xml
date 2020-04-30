@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetMessageSLO">
     <DisplayName>AM-SetMessageSLO</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <AssignVariable>
         <Name>performanceSLOByTier</Name>
         <Value>{
@@ -21,5 +23,5 @@
         <Template>{jsonPath(jsonPathExpression,performanceSLOByTier)}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>
