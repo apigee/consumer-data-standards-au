@@ -27,6 +27,16 @@ do
     cd ..
  done
 
+ # Deploy Common Proxies
+cd ../common
+for ap in $(ls .) 
+do 
+    echo Deploying $ap Apiproxy
+    cd $ap
+    apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
+    cd ..
+ done
+
  # Deploy oidc proxy
 cd ../oidc
 echo Deploying oidc Apiproxy
@@ -37,11 +47,6 @@ apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_
  cd ../../..
 
 # Create Products required for the different APIs
-echo Creating API Product: "Products"
-apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
-   --productName "CDSProducts" --displayName "Products" --approvalType "auto" --productDesc "Get access to all of API Bank products" \
-   --environments $APIGEE_ENV --proxies CDS-Products 
-
 echo Creating API Product: "Accounts"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSAccounts" --displayName "Accounts" --approvalType "auto" --productDesc "Get access to Accounts APIs" \
@@ -64,7 +69,7 @@ apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASS
 
 # Create a test app - Store the client key and secret
 echo Creating Test App: CDSTestApp...
-APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --name CDSTestApp --apiProducts "CDSTransactions,CDSAccounts,CDSProducts,CDSOIDC" --email $CDS_TEST_DEVELOPER_EMAIL --json | jq .credentials[0])
+APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --name CDSTestApp --apiProducts "CDSTransactions,CDSAccounts,CDSOIDC" --email $CDS_TEST_DEVELOPER_EMAIL --json | jq .credentials[0])
 APP_KEY=$(echo $APP_CREDENTIALS | jq -r .consumerKey)
 APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
 

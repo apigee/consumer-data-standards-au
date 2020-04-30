@@ -26,9 +26,6 @@ echo Removing Test Developer: $CDS_TEST_DEVELOPER_EMAIL
 apigeetool deleteDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL
 
 # Remove products
-echo Removing API Product "Products"
-apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSProducts"
-
 echo Removing API Product "Accounts"
 apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSAccounts"
 
@@ -38,8 +35,18 @@ apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --pr
 echo Removing API Product "OIDC"
 apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSOIDC"
 
-# Undeploy apiproxies
+# Undeploy banking apiproxies
 cd src/apiproxies/banking
+for ap in $(ls .) 
+do 
+    echo Undeploying $ap Apiproxy
+    cd $ap
+    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
+    cd ..
+ done
+
+ # Undeploy common apiproxies
+cd ../common
 for ap in $(ls .) 
 do 
     echo Undeploying $ap Apiproxy

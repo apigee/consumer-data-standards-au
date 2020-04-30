@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockPartialFailureStatusResponse">
+    <DisplayName>AM-MockPartialFailureStatusResponse</DisplayName>
+    <Set>
+        <Payload contentType="application/json">{
+  "data": {
+    "status": "PARTIAL_FAILURE",
+    "explanation": "Some endpoints may not be available",
+    "detectionTime": "{formattedCurrTime}",
+    "expectedResolutionTime": "{formattedCurrTime}",
+    "updateTime": "{formattedCurrTime}"
+  }
+}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>
