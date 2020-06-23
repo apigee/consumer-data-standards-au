@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ResponseCache async="false" continueOnError="false" enabled="true" name="RC-MetricsForPeriod">
+    <DisplayName>RC-MetricsForPeriod</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix>metrics</Prefix>
+        <KeyFragment ref="metricsPeriod"/>
+    </CacheKey>
+    <Scope>Exclusive</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>600</TimeoutInSec>
+    </ExpirySettings>
+</ResponseCache>

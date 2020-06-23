@@ -99,6 +99,8 @@ This reference implementation includes Admin endpoints, *Metadata Update* and *G
 
 The standards mandate that a token be used only once, so you'll need to generate a new token for each request. The Postman collection includes a helper request to generate a compliant JWT header and body. You can use your own scripts or public tools to generate the JWT Token. 
 
+The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return actual metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
+
 
 ## Shared Flows
 

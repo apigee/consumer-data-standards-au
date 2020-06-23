@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <Step>
+            <FaultRules/>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description/>
+    <FaultRules>
+        <FaultRule name="Invalid Scope">
+            <Condition>(fault.name = "InsufficientScope")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-InvalidScope</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Invalid Access Token">
+            <Condition>(fault.name Matches "*access_token*") or (fault.name = "apiresource_doesnot_exist") or (fault.name = "InvalidAccessToken") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>EV-getErrorDetail</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>AM-TokenNotVerified</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="metadataUpdate">
+            <Description>Indicate that a critical update to the metadata for Accredited Data Recipients has been made and should be obtained</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-ValidateRequestParams-MetadataUpdate</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-GetAction</Name>
+                </Step>
+                <Step>
+                    <Condition>actionVar == null or actionVar != "REFRESH"</Condition>
+                    <FaultRules/>
+                    <Name>RF-InvalidAction</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-SetXVHeaderAndEmptyResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix = "/register/metadata") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="getMetrics">
+            <Description>Get Metrics</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>FC-ValidateRequestParams-Metrics</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-SetMetricsPeriodAndRequestTime</Name>
+                </Step>
+                <Step>
+                    <Name>RC-MetricsForPeriod</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>RC-MetricsForPeriod</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetResponseData</Name>
+                </Step>
+                <Step>
+                    <Condition>(lookupcache.LC-MetricsForPeriod.cachehit = "false") </Condition>
+                    <FaultRules/>
+                    <Name>FC-AddResponseHeaders-Link-Meta</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetRequestTime</Name>
+                    <Condition>responsecache.RC-MetricsForPeriod.cachehit = "true"</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix = "/metrics") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix = "/register/metadata")  or (proxy.pathsuffix = "/metrics")</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <FaultRules/>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <FaultRules/>
+                <Name>FC-ValidateRegisterToken</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>FC-CheckRequestHeaders</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>FC-TrafficThresholds</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/cds-au/v1/admin</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="metrics">
+        <Condition>(proxy.pathsuffix = "/metrics") and (request.verb = "GET")</Condition>
+        <TargetEndpoint>cds-metrics-collector</TargetEndpoint>
+    </RouteRule>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

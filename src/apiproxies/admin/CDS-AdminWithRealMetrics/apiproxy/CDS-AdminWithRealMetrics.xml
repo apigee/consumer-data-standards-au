@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="4" name="CDS-AdminWithRealMetrics">
+    <Basepaths>/cds-au/v1/admin</Basepaths>
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/admin</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1591771373511</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Admin APIs</Description>
+    <DisplayName>CDS-Admin</DisplayName>
+    <LastModifiedAt>1591771373511</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:061d738f6f058241003014bee5993427f3fd39453b5f1c3b56b2b963a5880c9406ef409717b30a735a0bf35d2d9f18cdedd2325c7c3f1b444ec4790eeb942ed6</ManifestVersion>
+    <Policies>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-InvalidScope</Policy>
+        <Policy>AM-SetMetricsPeriodAndRequestTime</Policy>
+        <Policy>AM-SetResponseData</Policy>
+        <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>EV-GetAction</Policy>
+        <Policy>EV-getErrorDetail</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>FC-ValidateRegisterToken</Policy>
+        <Policy>FC-ValidateRequestParams-MetadataUpdate</Policy>
+        <Policy>FC-ValidateRequestParams-Metrics</Policy>
+        <Policy>JS-SetRequestTime</Policy>
+        <Policy>RC-MetricsForPeriod</Policy>
+        <Policy>RF-InvalidAction</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://setRequestTime.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>cds-metrics-collector</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>
