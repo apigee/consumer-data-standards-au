@@ -36,7 +36,7 @@ Before you can run or deploy the solution, you need to do the following:
     1. [Create a new GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
     2. [Setup your project for App Engine](https://cloud.google.com/appengine/docs/standard/nodejs/console)
     1. Configure Firestore in Datastore mode: Open the [Datastore section in the Google Cloud Console](https://pantheon.corp.google.com/datastore/welcome). Create a new database. Make sure to select "Firestore in Datastore Mode". 
-	1. Configure Apigee data instance in Datastore: In the Datastore section go to entities, and click on "Create Entity". Add a new entity in namespace _cds-metrics_ and kind _apigee-config_. The entity should have 4 properties of type string: _apigee_org_, _apigee_env_, _apigee_user_ and _apigee_password_. Set their values to the Apigee instance where the CDS Reference implementation has been deployed. The apigee_user should have read only access to analytics in that instance. Use the standard _Business User_ or _Read Only Admin_ roles, or ideally, create a more restricted custom role. 
+	1. Configure Apigee data instance in Datastore: In the Datastore section go to entities, and click on "Create Entity". Add a new entity in namespace _cds_metrics_ and kind _apigee_config_. The entity should have 4 properties of type string: _apigee_org_, _apigee_env_, _apigee_user_ and _apigee_password_. Set their values to the Apigee instance where the CDS Reference implementation has been deployed. The apigee_user should have read only access to analytics in that instance. Use the standard _Business User_ or _Read Only Admin_ roles, or ideally, create a more restricted custom role. 
 
 	![Configure Apigee Data instance in Datastore](./img/ApigeeConfigEntity.png "Configure Apigee Data instance in Datastore")
 1.  Install [gcloud](https://cloud.google.com/sdk/docs#install_the_latest_cloud_tools_version_cloudsdk_current_version), the GCP command line tool 
@@ -114,5 +114,5 @@ To find which static IP addresses are associated with your Apigee instance:
 	curl https://api.enterprise.apigee.com/v1/o/$APIGEE_ORG/eips -u $APIGEE_USER:$APIGEE_PASSWORD
 
 ## Troubleshooting
-The service will add logging information as Datastore _logs_ entities (Kind: _cds-metrics_). You can see them using the [Google Cloud Console Datastore section](https://pantheon.corp.google.com/datastore/entities).
+The service will add logging information as Datastore _logs_ entities (Kind: _cds_metrics_). You can see them using the [Google Cloud Console Datastore section](https://pantheon.corp.google.com/datastore/entities).
 When an error occurs, the _logs_ entity will have severity set to ERROR and will include some error information. You can use the Google App Engine logs to troubleshoot further. To access the logs go to the [Google Cloud Console App Engine Services section](https://pantheon.corp.google.com/appengine/services), click on Tools and select Logs.
