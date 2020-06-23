@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ValidateRequestParams-MetadataUpdate">
+    <DisplayName>FC-ValidateRequestParams-MetadataUpdate</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="validateParamConfig">{
+    "Body": [{
+        "data": {
+            "Mandatory": "true"
+        }
+    }]
+}</Parameter>
+    </Parameters>
+    <SharedFlowBundle>validate-request-params</SharedFlowBundle>
+</FlowCallout>
