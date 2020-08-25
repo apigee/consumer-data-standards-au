@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-Add-Existing-FAPI-Interaction-Id" version="SHA-512:35f964d3044cd6cf5b13a07478f8408d29c272f848afed22ae595617e723baaac8eb3950228cafb319c4a5e60541e1cff556645f6733e870532822a23f913bd0"/>
+        <VersionInfo resourceName="AM-Generate-New-Fapi-Interaction-Id" version="SHA-512:e8fc485fd68f54bb4e8f870bc81ce73b1d7c1b1124a0423a863b5e475baee2b3b02159e5a180da71712ddb9e9dbe9b305211e38cc0669f66db1ccc1da7edcb6c"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:555eb7266f89ad0401dc04351a86d21a14325feb8e8d70e78fd80d107e8a9bfbb2081e1964bfdd8e93ffef47bb51422884d093631e46bffefb2fe457e793a07d"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

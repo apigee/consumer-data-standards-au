@@ -5,8 +5,8 @@
     <Properties/>
     <AssignVariable>
         <Name>metricsPeriod</Name>
-        <Ref>request.queryparam.period</Ref>
         <Value>ALL</Value>
+        <Ref>request.queryparam.period</Ref>
     </AssignVariable>
     <AssignVariable>
         <Name>currTimeUTC</Name>
@@ -33,5 +33,5 @@
         <Template>{currDay}T{currTimeWithTZ}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

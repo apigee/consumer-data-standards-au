@@ -9,7 +9,7 @@
 	{
 		"productId": "SavingsAccount1",
 		"effectiveFrom": "2015-07-01T00:00:00+10:00",
-		"lastUpdated": "2018-03-15T00:00:00+11:00",
+		"lastUpdated": "2020-06-15T00:00:00+11:00",
 		"productCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
 		"name": "Savings Account",
 		"description": "A savings account with everything you need",
@@ -19,7 +19,8 @@
 		"additionalInformation": {
 			"overviewUri": "https://apibank.com.au/savings/overview",
 			"termsUri": "https://apibank.com.au/savings/tycs",
-			"feesAndPricingUri": "https://apibank.com.au/savings/fees"
+			"feesAndPricingUri": "https://apibank.com.au/savings/fees",
+			"imageUri": "https://apibank.com.au/img/SavingsAccount1.png"
 		},
 		"features": [
 			{
@@ -42,7 +43,7 @@
 	{
 		"productId": "BasicMortgage1",
 		"effectiveFrom": "2015-07-01T00:00:00+10:00",
-		"lastUpdated": "2018-06-15T00:00:00+10:00",
+		"lastUpdated": "2020-04-15T00:00:00+10:00",
 		"productCategory": "RESIDENTIAL_MORTGAGES",
 		"name": "Basic Mortgage",
 		"description": "A low cost mortgage that will let you access your dream home",
@@ -52,7 +53,8 @@
 		"additionalInformation": {
 			"overviewUri": "https://apibank.com.au/mortgage/overview",
 			"termsUri": "https://apibank.com.au/mortgage/tycs",
-			"feesAndPricingUri": "https://apibank.com.au/mortgage/fees"
+			"feesAndPricingUri": "https://apibank.com.au/mortgage/fees",
+			"imageUri": "https://apibank.com.au/img/BasicMortgage1.png"
 		},
 		"features": [
 			{
@@ -80,13 +82,12 @@
 		"lendingRates": [
 			{
 				"lendingRateType": "VARIABLE",
-				"rate": "0.0414",
-				"additionalValue": "P1Y"
+				"rate": "0.0314"
 			}
 		]
 	}
 ]</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

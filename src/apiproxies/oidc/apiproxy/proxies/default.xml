@@ -64,6 +64,9 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
+                    <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
+                </Step>
+                <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidRefreshToken</Name>
@@ -84,16 +87,18 @@
             <Response>
                 <Step>
                     <FaultRules/>
-                    <Name>EV-getInfoReqdForIssuingAccessToken</Name>
+                    <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-SetCustomDimensionsForRefreshToken</Name>
                 </Step>
                 <Step>
@@ -138,21 +143,26 @@
             <Response>
                 <Step>
                     <FaultRules/>
-                    <Name>EV-getInfoReqdForIssuingAccessToken</Name>
+                    <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-SetCustomDimensionsForAcquireToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateCDRArrangementId</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -187,6 +197,7 @@
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
+                    <FaultRules/>
                     <Name>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Name>
                 </Step>
                 <Step>
@@ -206,6 +217,7 @@
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <FaultRules/>
                     <Name>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Name>
                 </Step>
                 <Step>
@@ -239,6 +251,9 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
+                    <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
+                </Step>
+                <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidRefreshToken</Name>
@@ -252,7 +267,15 @@
                     <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
-            <Response/>
+            <Response>
+                <Step>
+                    <Name>EV-ExtractIntrospectionResponse</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateIntrospectionResponse</Name>
+                    <Condition>isActive = "true"</Condition>
+                </Step>
+            </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token/introspection") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Userinfo">
@@ -351,6 +374,7 @@
                 <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
             </Step>
             <Step>
+                <FaultRules/>
                 <Name>AM-SetDefaultValuesForTokenCustomDimensions</Name>
             </Step>
         </Request>

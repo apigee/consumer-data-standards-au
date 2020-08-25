@@ -8,6 +8,9 @@
 			"enabled": true
 		},
 		"discovery": true,
+		"encryption": {
+			"enabled": true
+		},
 		"introspection": {
 			"enabled": true
 		},
@@ -16,7 +19,7 @@
 			"enabled": false
 		},
 		"registrationManagement": {
-			"enabled": false
+			"enabled": true
 		},
 		"revocation": {
 			"enabled": true

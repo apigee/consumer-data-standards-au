@@ -7,6 +7,9 @@
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
+            <Name>FC-AddFAPIInteractionId</Name>
+        </Step>
+        <Step>
             <FaultRules/>
             <Name>FC-CollectPerformanceSLO</Name>
         </Step>
@@ -71,14 +74,17 @@
                     <Name>AM-SetMetricsPeriodAndRequestTime</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>RC-MetricsForPeriod</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>RC-MetricsForPeriod</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-SetResponseData</Name>
                 </Step>
                 <Step>
@@ -87,8 +93,9 @@
                     <Name>FC-AddResponseHeaders-Link-Meta</Name>
                 </Step>
                 <Step>
-                    <Name>JS-SetRequestTime</Name>
                     <Condition>responsecache.RC-MetricsForPeriod.cachehit = "true"</Condition>
+                    <FaultRules/>
+                    <Name>JS-SetRequestTime</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix = "/metrics") and (request.verb = "GET")</Condition>

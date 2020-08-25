@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <Description/>
-    <FaultRules>
-    </FaultRules>
+    <Description></Description>
+    <FaultRules/>
     <Flows>
         <Flow name="Get OIDC Configuration">
-            <Description/>
+            <Description></Description>
             <Request/>
             <Response>
                 <Step>

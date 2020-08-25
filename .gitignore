@@ -17,3 +17,4 @@ src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/*
 test/postman/*environment.json
 src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients-*.json
 **/package-lock.json
+specs/Notes.txt

@@ -58,5 +58,5 @@ if (fullListOfAccountsDetails && fullListOfAccountsDetails.length > 0) {
     }
 
     context.setVariable("filteredAccountList", JSON.stringify(newAccountList));
-    print("Produced JSON String = " + JSON.stringify(newAccountList));
+    // print("Produced JSON String = " + JSON.stringify(newAccountList));
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="32" name="CDS-Accounts">
+<APIProxy revision="35" name="CDS-Accounts">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -12,9 +13,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1578456724788</LastModifiedAt>
+    <LastModifiedAt>1597820490974</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:a3ca11923fcf73b44ad3fcf46a233db7f48b7c993eb219988202eca04f0c196de823f6066f2bbcb512bec74d8c89e35799f960f221d8db914afcb54e51ffa60c</ManifestVersion>
+    <ManifestVersion>SHA-512:12d768dcc42c7a8ec8ae72d073273aca216923c7a6da36436428c810d6d34e45030d681c4c97939989cdffdf4d039a5904ff9e7bd79ad00cc9512135288131d5</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
@@ -30,6 +31,7 @@
         <Policy>EV-GetAllBalancesForCustomer</Policy>
         <Policy>EV-GetErrorDetail</Policy>
         <Policy>EV-ResultsForAccountId</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
@@ -38,10 +40,12 @@
         <Policy>FC-ValidateRequestParams</Policy>
         <Policy>JS-BuildDetailsResponse</Policy>
         <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
+        <Policy>JS-CheckAccountsFilterInAllAccounts</Policy>
         <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
         <Policy>JS-FilterResults</Policy>
         <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
         <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
+        <Policy>RF-InvalidAccountInFilter</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
     </Policies>
@@ -52,6 +56,7 @@
         <Resource>openapi://association.json</Resource>
         <Resource>jsc://buildDetailsResponse.js</Resource>
         <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
+        <Resource>jsc://checkAccountsFilterInAllAccounts.js</Resource>
         <Resource>jsc://filterAccountsListBasedOnRequestFilters.js</Resource>
         <Resource>jsc://filterResults.js</Resource>
     </Resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="5" name="CDS-Admin">
+<APIProxy revision="8" name="CDS-Admin">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -7,14 +7,15 @@
     <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
+    <Basepaths>/cds-au/v1/admin</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1580773921732</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Admin APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1581034198576</LastModifiedAt>
+    <LastModifiedAt>1597821203177</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:70640edd50bbe51e56470fcb364a1f1371385b5cafcbfc8a76b0530268f257707a519cc9cc933e07e2b325fd72d95cc8640eb439f91a7ac60ffbaa92c2a88e5d</ManifestVersion>
+    <ManifestVersion>SHA-512:cc08e7749f270ef276e0e04184ac778390195f47fe8b1b661113f934f7e9dbffe0db8bbe6090328577ccc90a3e8c1df01b8e514fc4a78375ce985c95c21e72fa</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>
@@ -24,6 +25,7 @@
         <Policy>AM-TokenNotVerified</Policy>
         <Policy>EV-GetAction</Policy>
         <Policy>EV-getErrorDetail</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>

@@ -2,6 +2,10 @@
 <SharedFlow name="default">
     <Step>
         <FaultRules/>
+        <Name>EV-Preserve-Request-Headers</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
         <Name>FC-DecideIfCustomerIsPresent</Name>
     </Step>
     <Step>
@@ -15,22 +19,25 @@
         <Name>RF-Missing-Version-Header</Name>
     </Step>
     <Step>
-        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "1")) or ( (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "2"))</Condition>
+        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "1")) or ( (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "3"))</Condition>
         <FaultRules/>
         <Name>RF-Invalid-Version</Name>
     </Step>
     <Step>
-        <Condition>(request.header.x-min-v != null) and (request.header.x-min-v != "1") and (request.header.x-min-v != "2")</Condition>
+        <Condition>(request.header.x-min-v != null) and (request.header.x-min-v != "1") and (request.header.x-min-v != "3")</Condition>
         <FaultRules/>
         <Name>RF-Invalid-Version</Name>
     </Step>
     <Step>
-        <Condition>(proxy.basepath != "/cds-au/v1/admin" or proxy.pathsuffix != "/register/metadata" ) and (request.header.accept != null) and (request.header.accept != "application/json")</Condition>
+        <Name>AM-ExtractContentTypeAndAcceptHeaders</Name>
+    </Step>
+    <Step>
+        <Condition>(proxy.basepath != "/cds-au/v1/admin" or proxy.pathsuffix != "/register/metadata" ) and (request.header.accept != null) and (not (accept-header-lc JavaRegex "((application\/json)|(\*\/\*))(\s*;\s*charset=(.)+)?"))</Condition>
         <FaultRules/>
         <Name>RF-Invalid-Accept-Header</Name>
     </Step>
     <Step>
-        <Condition>( (request.verb = "POST") or (request.verb = "PUT") ) and ( (request.header.Content-type == null) or (request.header.Content-type != "application/json") ) </Condition>
+        <Condition>( (request.verb = "POST") or (request.verb = "PUT") ) and ( (request.header.Content-type == null) or (not (content-header-lc JavaRegex "application\/json(\s*;\s*charset=(.)+)?") ) ) </Condition>
         <FaultRules/>
         <Name>RF-Invalid-Content-Type-Header</Name>
     </Step>
@@ -43,10 +50,6 @@
         <Condition>( (not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (proxy.basepath != "/cds-au/v1/admin") and (proxy.basepath != "/cds-au/v1/discovery")) and (request.header.x-fapi-customer-ip-address != null) and ( (request.header.x-cds-client-headers = null) or (not (request.header.x-cds-client-headers JavaRegex "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$")))</Condition>
         <FaultRules/>
         <Name>RF-Missing-Invalid-cdsClientHeaders-Header</Name>
-    </Step>
-    <Step>
-        <FaultRules/>
-        <Name>EV-Preserve-Request-Headers</Name>
     </Step>
     <Step>
         <FaultRules/>

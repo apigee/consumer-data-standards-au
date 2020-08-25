@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: API sets created by the Australian Consumer Data Standards to meet the needs
     of the Consumer Data Right
-  version: 1.2.0
+  version: 1.4.0
   title: Consumer Data Standards
   contact:
     name: APIBank CDS Team
@@ -22,7 +22,7 @@ paths:
   "/banking/accounts/{accountId}/transactions":
     get:
       tags:
-        - Accounts
+        - Transactions
       summary: Get Transactions For Account
       description: "Obtain transactions for a specific account.
 
@@ -41,11 +41,11 @@ paths:
         expected that the data holder will use the â€œeffectiveâ€ date/time
         which will be defined as:
 
-        \t\t- Posted date/time if available, then
+        \ - Posted date/time if available, then
 
-        \t\t- Execution date/time if available, then
+        - Execution date/time if available, then
 
-        \t\t- A reasonable date/time nominated by the data holder using
+        - A reasonable date/time nominated by the data holder using
         internal data structures
 
         - For transaction amounts it should be assumed that a negative
@@ -132,7 +132,7 @@ paths:
             is equal to or higher than the value of [x-v](#request-headers) then
             the [x-min-v](#request-headers) header should be treated as absent.
             If all versions requested are not supported then the data holder
-            should respond with a 406 Not Acceptable. See [HTTP
+            must respond with a 406 Not Acceptable. See [HTTP
             Headers](#request-headers)
           required: true
           type: string
@@ -142,101 +142,7 @@ paths:
             be set to a positive integer if provided. The data holder should
             respond with the highest supported version between
             [x-min-v](#request-headers) and [x-v](#request-headers). If all
-            versions requested are not supported then the data holder should
-            respond with a 406 Not Acceptable.
-          required: false
-          type: string
-        - name: x-fapi-interaction-id
-          in: header
-          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a
-            correlation id. If provided, the data holder must play back this
-            value in the x-fapi-interaction-id response header. If not provided
-            a [RFC4122] UUID value is required to be provided in the response
-            header to track the interaction.
-          required: false
-          type: string
-        - name: x-fapi-auth-date
-          in: header
-          description: The time when the customer last logged in to the data recipient.
-            Required for all resource calls (customer present and unattended).
-            Not to be included for unauthenticated calls.
-          required: false
-          type: string
-        - name: x-fapi-customer-ip-address
-          in: header
-          description: The customer's original IP address if the customer is currently
-            logged in to the data recipient. The presence of this header
-            indicates that the API is being called in a customer present
-            context. Not to be included for unauthenticated calls.
-          required: false
-          type: string
-        - name: Authorization
-          in: header
-          description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
-          required: true
-          type: string
-      responses:
-        "200":
-          description: Success
-          headers:
-            x-v:
-              type: string
-              description: The [version](#response-headers) of the API end point that the
-                data holder has responded with.
-            x-fapi-interaction-id:
-              type: string
-              description: An RFC4122 UUID used as a correlation id. The data holder must
-                set the response header x-fapi-interaction-id to the value
-                received from the corresponding fapi client request header or to
-                a new RFC4122 UUID value if the request header was not provided
-                to track the interaction.
-          schema:
-            $ref: "#/definitions/ResponseBankingTransactionList"
-      x-scopes:
-        - bank:transactions:read
-      x-version: "1"
-  "/banking/accounts/{accountId}/transactions/{transactionId}":
-    get:
-      tags:
-        - Accounts
-      summary: Get Transaction Detail
-      description: Obtain detailed information on a transaction for a specific account
-      operationId: getTransactionDetail
-      parameters:
-        - name: accountId
-          in: path
-          description: ID of the account to get transactions for.  Must have previously
-            been returned by one of the account list end points
-          required: true
-          type: string
-          x-cds-type: ASCIIString
-        - name: transactionId
-          in: path
-          description: ID of the transaction obtained from a previous call to one of the
-            other transaction end points
-          required: true
-          type: string
-          x-cds-type: ASCIIString
-        - name: x-v
-          in: header
-          description: Version of the API end point requested by the client. Must be set to
-            a positive integer. The data holder should respond with the highest
-            supported version between [x-min-v](#request-headers) and
-            [x-v](#request-headers). If the value of [x-min-v](#request-headers)
-            is equal to or higher than the value of [x-v](#request-headers) then
-            the [x-min-v](#request-headers) header should be treated as absent.
-            If all versions requested are not supported then the data holder
-            should respond with a 406 Not Acceptable. See [HTTP
-            Headers](#request-headers)
-          required: true
-          type: string
-        - name: x-min-v
-          in: header
-          description: Minimum version of the API end point requested by the client. Must
-            be set to a positive integer if provided. The data holder should
-            respond with the highest supported version between
-            [x-min-v](#request-headers) and [x-v](#request-headers). If all
-            versions requested are not supported then the data holder should
+            versions requested are not supported then the data holder must
             respond with a 406 Not Acceptable.
           required: false
           type: string
@@ -289,11 +195,115 @@ paths:
                 data holder has responded with.
             x-fapi-interaction-id:
               type: string
-              description: An RFC4122 UUID used as a correlation id. The data holder must
-                set the response header x-fapi-interaction-id to the value
-                received from the corresponding fapi client request header or to
-                a new RFC4122 UUID value if the request header was not provided
-                to track the interaction.
+              description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a
+                correlation id. If provided, the data holder must play back this
+                value in the x-fapi-interaction-id response header. If not
+                provided a [RFC4122] UUID value is required to be provided in
+                the response header to track the interaction.
+          schema:
+            $ref: "#/definitions/ResponseBankingTransactionList"
+      x-scopes:
+        - bank:transactions:read
+      x-version: "1"
+  "/banking/accounts/{accountId}/transactions/{transactionId}":
+    get:
+      tags:
+        - Transactions
+      summary: Get Transaction Detail
+      description: Obtain detailed information on a transaction for a specific account
+      operationId: getTransactionDetail
+      parameters:
+        - name: accountId
+          in: path
+          description: ID of the account to get transactions for.  Must have previously
+            been returned by one of the account list end points
+          required: true
+          type: string
+          x-cds-type: ASCIIString
+        - name: transactionId
+          in: path
+          description: ID of the transaction obtained from a previous call to one of the
+            other transaction end points
+          required: true
+          type: string
+          x-cds-type: ASCIIString
+        - name: x-v
+          in: header
+          description: Version of the API end point requested by the client. Must be set to
+            a positive integer. The data holder should respond with the highest
+            supported version between [x-min-v](#request-headers) and
+            [x-v](#request-headers). If the value of [x-min-v](#request-headers)
+            is equal to or higher than the value of [x-v](#request-headers) then
+            the [x-min-v](#request-headers) header should be treated as absent.
+            If all versions requested are not supported then the data holder
+            must respond with a 406 Not Acceptable. See [HTTP
+            Headers](#request-headers)
+          required: true
+          type: string
+        - name: x-min-v
+          in: header
+          description: Minimum version of the API end point requested by the client. Must
+            be set to a positive integer if provided. The data holder should
+            respond with the highest supported version between
+            [x-min-v](#request-headers) and [x-v](#request-headers). If all
+            versions requested are not supported then the data holder must
+            respond with a 406 Not Acceptable.
+          required: false
+          type: string
+        - name: x-fapi-interaction-id
+          in: header
+          description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a
+            correlation id. If provided, the data holder must play back this
+            value in the x-fapi-interaction-id response header. If not provided
+            a [RFC4122] UUID value is required to be provided in the response
+            header to track the interaction.
+          required: false
+          type: string
+        - name: x-fapi-auth-date
+          in: header
+          description: The time when the customer last logged in to the data recipient.
+            Required for all resource calls (customer present and unattended).
+            Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-fapi-customer-ip-address
+          in: header
+          description: The customer's original IP address if the customer is currently
+            logged in to the data recipient. The presence of this header
+            indicates that the API is being called in a customer present
+            context. Not to be included for unauthenticated calls.
+          required: false
+          type: string
+        - name: x-cds-client-headers
+          in: header
+          description: The customer's original standard http headers
+            [Base64](#common-field-types) encoded, including the original User
+            Agent header, if the customer is currently logged in to the data
+            recipient. Mandatory for customer present calls.  Not required for
+            unattended or unauthenticated calls.
+          required: false
+          type: string
+          x-cds-type: Base64
+        - name: Authorization
+          in: header
+          description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750.
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          headers:
+            x-v:
+              type: string
+              description: The [version](#response-headers) of the API end point that the
+                data holder has responded with.
+            x-fapi-interaction-id:
+              type: string
+              description: An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a
+                correlation id. If provided, the data holder must play back this
+                value in the x-fapi-interaction-id response header. If not
+                provided a [RFC4122] UUID value is required to be provided in
+                the response header to track the interaction.
           schema:
             $ref: "#/definitions/ResponseBankingTransactionById"
       x-scopes:
@@ -411,7 +421,8 @@ definitions:
         description: BPAY CRN for the transaction (if available)
       apcaNumber:
         type: string
-        description: 6 Digit APCA number for the initiating institution
+        description: 6 Digit APCA number for the initiating institution. The field is
+          fixed-width and padded with leading zeros if applicable.
     x-conditional:
       - transactionId
       - postingDateTime

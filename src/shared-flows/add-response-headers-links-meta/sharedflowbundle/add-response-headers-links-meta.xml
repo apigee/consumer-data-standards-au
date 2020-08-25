@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="23" name="add-response-headers-links-meta">
+<SharedFlowBundle revision="26" name="add-response-headers-links-meta">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1546489641959</CreatedAt>
+    <CreatedAt>1597820447958</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Add mandatory headers to response</Description>
     <DisplayName>add-response-headers</DisplayName>
-    <LastModifiedAt>1580949917992</LastModifiedAt>
+    <LastModifiedAt>1597820447958</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:360e45dc2f71dc952136904fa1a8b46265acbba544f54e7214be365c89cf6034167167ede66c5f6c591002b1b0c37e0362a4dd6b716a2c2102d0a7919a9937ca</ManifestVersion>
+    <ManifestVersion>SHA-512:a97ad9b3513d801b1a57e45ade3aab626defcdd0afcfd1832625955f5cecd73d07fcd1765ea2af290e20cfb2794e7c321b9e47215ada676caa49738ffdce539d</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-Add-Existing-FAPI-Interaction-Id</Policy>
-        <Policy>AM-Generate-New-Fapi-Interaction-Id</Policy>
         <Policy>AM-Set-Content-Type-And-Version1-Headers</Policy>
-        <Policy>AM-Set-Content-Type-And-Version2-Headers</Policy>
+        <Policy>AM-Set-Content-Type-And-Version3-Headers</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>JS-Add-Links-Meta-To-Response</Policy>
     </Policies>
     <Resources>

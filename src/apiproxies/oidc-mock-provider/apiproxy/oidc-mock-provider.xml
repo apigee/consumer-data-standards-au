@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="oidc-mock-provider">
+<APIProxy revision="11" name="oidc-mock-provider">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
+    <Basepaths>/mock-oidc</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1569798379469</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Mock OIDC Provider based on node-oidc-provider open source</Description>
     <DisplayName>oidc-mock-provider</DisplayName>
-    <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1569806480884</LastModifiedAt>
+    <HostedManifestVersion>SHA-512:0708e486f693af72a5da7f59a96e55836db03ae36a1aa8ee3fafbe33be3b7af32692223f1a34e1b08ce9ea6bef44160bbaadd1487a826e05acd25d78d8aeca5b:ap-southeast-2</HostedManifestVersion>
+    <LastModifiedAt>1597969440937</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:78d4747876cc97dad3530836a94554b3544b0729a861f0a4e3da3698af5a9be962403b7b209450f8a9361ce42b15cd2fd8849bfcd66540af0628b204a3d71b38</ManifestVersion>
+    <ManifestVersion>SHA-512:10305dfaa0491cdb14d5510e00c0fe1a85f0317dac079e687df2f5ca7e569d7c4dfdf175150b447b124508444929e7cbe1009cb8eb5c0ba3a29da3a3642ef73b</ManifestVersion>
     <Policies>
         <Policy>AM-BuildIntrospectionResponseActiveToken</Policy>
         <Policy>EV-IsTokenActive</Policy>
@@ -27,14 +28,18 @@
     </ProxyEndpoints>
     <Resources>
         <Resource>jsc://replaceHTPrivateIPAddrWithHostname.js</Resource>
-        <Resource>hosted://README.md</Resource>
+        <Resource>hosted://.DS_Store</Resource>
         <Resource>hosted://app.js</Resource>
         <Resource>hosted://app.yaml</Resource>
+        <Resource>hosted://package-lock.json</Resource>
         <Resource>hosted://package.json</Resource>
         <Resource>hosted://support/account.js</Resource>
+        <Resource>hosted://support/clients-withDemoPortalApps.json</Resource>
+        <Resource>hosted://support/clients-withoutDemoPortalApps.json</Resource>
         <Resource>hosted://support/clients.json</Resource>
         <Resource>hosted://support/config.json</Resource>
         <Resource>hosted://support/routes.js</Resource>
+        <Resource>hosted://views/.DS_Store</Resource>
         <Resource>hosted://views/consent.ejs</Resource>
         <Resource>hosted://views/login.ejs</Resource>
         <Resource>hosted://views/ping.ejs</Resource>

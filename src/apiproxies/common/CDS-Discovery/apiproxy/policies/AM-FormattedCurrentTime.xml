@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-FormattedCurrentTime">
     <DisplayName>AM-FormattedCurrentTime</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <AssignVariable>
         <Name>currTimeUTC</Name>
         <Template>{system.timestamp}</Template>
@@ -26,5 +28,5 @@
         <Template>{currDay}T{currTimeWithTZ}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="message"/>
+    <AssignTo transport="http" createNew="false"></AssignTo>
 </AssignMessage>

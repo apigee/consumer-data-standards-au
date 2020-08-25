@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="32" name="check-request-headers">
+<SharedFlowBundle revision="33" name="check-request-headers">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1546400695647</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1588139814454</LastModifiedAt>
+    <LastModifiedAt>1597820130240</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:51291f91166da1570c5e0d8caad95e275cdf0c840ab4d7b2c9c399a3eabf166b9250096f9fbd3dec12088916710c7a810ca44f5d075548abc60677b40d7c3c03</ManifestVersion>
+    <ManifestVersion>SHA-512:d4be2adf5737e7793f982eb9e4029ac98bc8e15bcd453a20e0925e0cce3722a197445fbac57dc0e6999f272c6e07da9d3d103fc614fd2177368952c5f690a932</ManifestVersion>
     <Policies>
         <Policy>AM-Extract-Pagination-Params</Policy>
+        <Policy>AM-ExtractContentTypeAndAcceptHeaders</Policy>
         <Policy>EV-Preserve-Request-Headers</Policy>
         <Policy>FC-DecideIfCustomerIsPresent</Policy>
         <Policy>RF-Invalid-Accept-Header</Policy>

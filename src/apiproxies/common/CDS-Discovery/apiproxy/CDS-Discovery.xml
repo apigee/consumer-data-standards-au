@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="CDS-Discovery">
+<APIProxy revision="3" name="CDS-Discovery">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
+    <Basepaths>/cds-au/v1/discovery</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1588138816207</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Discovery API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Discovery</DisplayName>
-    <LastModifiedAt>1588143174023</LastModifiedAt>
+    <LastModifiedAt>1597821069046</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:a2974fbaac9e1c6b8e773e6b87da8cf4b4aa0c56f1e3ebd150bc3645c33a604474d734a2478c3db1683fbb71b0436555beaf1a0ffca81f2e82655f8c06d794c8</ManifestVersion>
+    <ManifestVersion>SHA-512:5d87e36b78de35ce5fac515fa7a6bb8b8d5aa432665665f04019c86f6bdff6d9ed8bc877cb528c523aaec784af8144e47862668fac7af6a5fb90704415a532ea</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-FormattedCurrentTime</Policy>
@@ -20,6 +21,7 @@
         <Policy>AM-MockOKStatusResponse</Policy>
         <Policy>AM-MockOutagesResponse</Policy>
         <Policy>AM-MockPartialFailureStatusResponse</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>

@@ -11,7 +11,7 @@
     {
        "code": "406",
        "title": "Not Acceptable",
-       "detail": "Currently supported endpoint versions: 2 for Products - 1 for other Endpoints"
+       "detail": "Currently supported endpoint versions: 3 for Products - 1 for other Endpoints"
     }
   ]
 }</Payload>

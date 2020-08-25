@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidAccountInFilter">
+    <DisplayName>RF-InvalidAccountInFilter</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="application/json">{ "errors": [
+    {
+      "code": "422",
+      "title": "Unprocessable Entity",
+      "detail": "Request has invalid accountId"
+    }
+  ]
+}</Payload>
+            <Headers>
+                <Header name="x-fapi-interaction-id">{fapiInteractionId}</Header>
+            </Headers>
+            <StatusCode>422</StatusCode>
+            <ReasonPhrase>Unprocessable Entity</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

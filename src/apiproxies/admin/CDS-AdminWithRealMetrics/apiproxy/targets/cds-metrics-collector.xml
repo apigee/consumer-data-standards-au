@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TargetEndpoint name="cds-metrics-collector">
-    <Description/>
+    <Description></Description>
     <FaultRules/>
-    <PreFlow name="PreFlow">
-        <Request/>
-        <Response/>
-    </PreFlow>
+    <Flows/>
     <PostFlow name="PostFlow">
         <Request/>
         <Response/>
     </PostFlow>
-    <Flows/>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
     <HTTPTargetConnection>
-        <Properties/>
         <LoadBalancer>
-            <Server name="cds-metrics-collector"/>
+            <MaxFailures>0</MaxFailures>
+            <RetryEnabled>true</RetryEnabled>
+            <Server name="cds-metrics-collector">
+                <IsEnabled>true</IsEnabled>
+                <IsFallback>false</IsFallback>
+                <Weight>1</Weight>
+            </Server>
+            <TargetDisableSecs>300</TargetDisableSecs>
         </LoadBalancer>
         <Path>/</Path>
+        <Properties/>
     </HTTPTargetConnection>
 </TargetEndpoint>

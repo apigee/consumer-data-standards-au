@@ -7,12 +7,15 @@
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
+            <Name>FC-AddFAPIInteractionId</Name>
+        </Step>
+        <Step>
             <FaultRules/>
             <Name>FC-CollectPerformanceSLO</Name>
         </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
-    <Description></Description>
+    <Description/>
     <FaultRules/>
     <Flows>
         <Flow name="listProducts">
