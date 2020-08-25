@@ -7,12 +7,15 @@
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
+            <Name>FC-AddFAPIInteractionId</Name>
+        </Step>
+        <Step>
             <FaultRules/>
             <Name>FC-CollectPerformanceSLO</Name>
         </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
-    <Description></Description>
+    <Description/>
     <FaultRules>
         <FaultRule name="Invalid Scope">
             <Condition>(fault.name = "InsufficientScope")</Condition>
@@ -140,6 +143,13 @@
                 <Step>
                     <FaultRules/>
                     <Name>JS-BuildFilteredAccountListFromRequestBody</Name>
+                </Step>
+                <Step>
+                    <Name>JS-CheckAccountsFilterInAllAccounts</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidAccountInFilter</Name>
+                    <Condition>accountFilterOK == "false"</Condition>
                 </Step>
                 <Step>
                     <FaultRules/>

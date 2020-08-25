@@ -16,5 +16,5 @@
         <ReasonPhrase>Unauthorized</ReasonPhrase>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo transport="http" createNew="false"/>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

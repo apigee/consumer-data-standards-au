@@ -680,7 +680,7 @@
 					"response": []
 				},
 				{
-					"name": "OIDC Token Revocation",
+					"name": "OIDC Token Revocation (Access Token)",
 					"event": [
 						{
 							"listen": "test",
@@ -734,6 +734,81 @@
 								{
 									"key": "token_type_hint",
 									"value": "access_token",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/token/revocation",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"token",
+								"revocation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Token Revocation (Refresh Token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "08715706-c556-4f0e-9b52-507e9c974b5e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "token_type_hint",
+									"value": "refresh_token",
 									"type": "text"
 								}
 							]
@@ -848,7 +923,7 @@
 							{
 								"key": "x-v",
 								"type": "text",
-								"value": "2"
+								"value": "3"
 							},
 							{
 								"key": "Accept",
@@ -923,7 +998,7 @@
 							{
 								"key": "x-v",
 								"type": "text",
-								"value": "2"
+								"value": "3"
 							},
 							{
 								"key": "Accept",
@@ -963,7 +1038,13 @@
 							"type": "noauth"
 						},
 						"method": "OPTIONS",
-						"header": [],
+						"header": [
+							{
+								"key": "x-v",
+								"value": "3",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/products",
 							"protocol": "https",
@@ -1112,7 +1193,7 @@
 							{
 								"key": "Accept",
 								"type": "text",
-								"value": "application/json"
+								"value": "application/jxon;charset=UTF-8"
 							},
 							{
 								"key": "x-fapi-auth-date",
@@ -1451,6 +1532,100 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"10203040-Acc001\",\"10203040-Acc003\"\n    ]\n  },\n  \"meta\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"balances"
+							],
+							"query": [
+								{
+									"key": "page-size",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Balances For Specific Accounts - Invalid Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-v",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"type": "text",
+								"value": "2965365e-ab4d-4158-8eda-ca48f1f4f225",
+								"disabled": true
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"type": "text",
+								"value": "192.168.1.1"
+							},
+							{
+								"description": "Base64 Encoded String",
+								"key": "x-cds-client-headers",
+								"type": "text",
+								"value": "Base64EncodedString1"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"10203040-Acc001\",\"10203040-Accxxx\"\n    ]\n  },\n  \"meta\": {}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1868,7 +2043,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions?max-amount=-5",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1901,8 +2076,7 @@
 								},
 								{
 									"key": "max-amount",
-									"value": "1000",
-									"disabled": true
+									"value": "-5"
 								},
 								{
 									"key": "text",
@@ -2202,14 +2376,14 @@
 							"raw": "{{req_body}}"
 						},
 						"url": {
-							"raw": "no-endpoint?admin-endpoint=/admin/register/metadata&client_public_key_kid=MockCDRRegister",
+							"raw": "no-endpoint?admin-endpoint=/admin/metrics&client_public_key_kid=MockCDRRegister",
 							"host": [
 								"no-endpoint"
 							],
 							"query": [
 								{
 									"key": "admin-endpoint",
-									"value": "/admin/register/metadata",
+									"value": "/admin/metrics",
 									"description": "The endpoint to be accessed with the JWT token"
 								},
 								{
@@ -2231,7 +2405,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "{{register_token}}",
 									"type": "string"
 								}
 							]
@@ -2280,7 +2454,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "{{register_token}}",
 									"type": "string"
 								}
 							]
@@ -2294,8 +2468,8 @@
 							},
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"url": {

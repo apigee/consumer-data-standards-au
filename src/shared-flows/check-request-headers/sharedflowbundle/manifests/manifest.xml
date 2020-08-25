@@ -2,11 +2,12 @@
 <Manifest name="manifest">
     <Policies>
         <VersionInfo resourceName="AM-Extract-Pagination-Params" version="SHA-512:efef6ef409caa6df073d2cb968fcc0f21162b538d23d9eadb4398fbbc5d388190483a654dab4e3a207af669a5de03d5c5139d59969aa5cb0e17609cae9380e90"/>
+        <VersionInfo resourceName="AM-ExtractContentTypeAndAcceptHeaders" version="SHA-512:f113eb379b38c34195c64958661ee92f4be30209ce115e330425f34024fe15cb87ada9f6604e1285011d202268563553faa597a2a8c327f712a064429c625da7"/>
         <VersionInfo resourceName="EV-Preserve-Request-Headers" version="SHA-512:d9c82bcc3e1f0d8039ea721818b7dcec6d4944306ac34b9014d8d4f730bfd75ce415c78fc07da0d73ad11901359dc770483b9bc223738a59bdb90b1e2246ad8b"/>
         <VersionInfo resourceName="FC-DecideIfCustomerIsPresent" version="SHA-512:4e4c1d1fda4c95f19b50029f5463bd8ace2bd182a7d9f779614e583b6c3999f261f19e81cb00cea7fd8045d4e941cac67bfec71cbc99df6e9bdf5bd6f95a38d1"/>
         <VersionInfo resourceName="RF-Invalid-Accept-Header" version="SHA-512:20a2d5e93f39cef0660e9ae6f80e459d14337ad0d8af5546869619fa9b9f546538c78b7adff5199f9eebb50b8ddf5c184712d5925881f67c68e105fbd8c4bdc1"/>
         <VersionInfo resourceName="RF-Invalid-Content-Type-Header" version="SHA-512:6aeda52742ce5fad5fb2b1245318b49b78275f1b35e09daef56cc823207640774d5e3d9a17ab6eb83d2a0aab6e42177396890ca10baf56afcf1d385816c5d367"/>
-        <VersionInfo resourceName="RF-Invalid-Version" version="SHA-512:9dcb2751d53cf786311d28b440b59f3e3279903f0d79b78149ce6dc350b59252c394c98cd654906fa8e582d1e922de7b16c231e5b3acec254522373550c5a59b"/>
+        <VersionInfo resourceName="RF-Invalid-Version" version="SHA-512:0f59034e4daae59d893446c149187c42372a8a71399c7faa0a75a54a1e18630223591fc21951ccddf7265d141d9a0ea1c169a80005fda85ecb722dec1768e804"/>
         <VersionInfo resourceName="RF-Missing-Authdate-Header" version="SHA-512:2816474e8ff17e6d6b21783b3c13d9b5ba019d6ed60477cae499b952a85f509385aad3c266aa2893c18587b4b105772dc18c99e7f79e671db16a3090cb1656cd"/>
         <VersionInfo resourceName="RF-Missing-Invalid-cdsClientHeaders-Header" version="SHA-512:6ecb508e9e5be366868a2b98e9bd5dc53870c1dfc88a311fe55f6c4a0c18605c1282e0acbfc65cb01f43f83dba34c0cc9bc32d5a37bc645c8532bfa3aa622bed"/>
         <VersionInfo resourceName="RF-Missing-Version-Header" version="SHA-512:64fd3985622312ce4d8229c876b2c439c581debe1dcb4db2eb2ae962eacc3bb8d73c818e4dc1a65fef92a31e358b1411e08020275fb2b7784b5aafea2244dafc"/>
@@ -15,7 +16,7 @@
     <ProxyEndpoints/>
     <Resources/>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:2d316fd85a34283db36aef852a0f29ed894ccec41e6161af6099ea0333de942314805cd6be3ffaebfce3f2c00b734ef7c4e9ff340623a064fcde3261b3bc4ae1"/>
+        <VersionInfo resourceName="default" version="SHA-512:4da311f43d769203c10b97c647b29ff52b8937a48d23f51dd3cf134406ea106113d307ebebeea9e5a7af5d5085bfe4345b3028c619712de3554c8c750d29bbd8"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

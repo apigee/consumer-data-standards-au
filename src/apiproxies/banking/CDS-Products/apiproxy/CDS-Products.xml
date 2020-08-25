@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="23" name="CDS-Products">
+<APIProxy revision="26" name="CDS-Products">
+    <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1578451018724</CreatedAt>
+    <CreatedAt>1560831663655</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Product API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Products</DisplayName>
-    <LastModifiedAt>1578451018724</LastModifiedAt>
+    <LastModifiedAt>1597820867785</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:1c16ee12d41efeccb25991377b8a415c697699723d0c158a582d05ed3feef05856950a2d620a2d0e4ad7438b638075dbfc8167ef67b0528eef7a45c689126dd2</ManifestVersion>
+    <ManifestVersion>SHA-512:e196552010c92c9a9247aacdc2e095680961337ac35737c7fc0e7cd7952c5581f6c4669325f845439fbe9d587134d2167f99029c6ad3a2ab87e5c3c5e87ebb32</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-MockFullListOfProducts</Policy>
@@ -19,6 +20,7 @@
         <Policy>EV-GetProductFilterCriteria</Policy>
         <Policy>EV-productDetailsForProductId</Policy>
         <Policy>EV-productIdFromURL</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>

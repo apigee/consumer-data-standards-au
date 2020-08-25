@@ -32,7 +32,7 @@ for(var i = 0; i < allResults.length; i++) {
     curResult = allResults[i];
     if (filteredAccountList.includes(curResult.accountId)) {
         if (resultsType == "accounts") {
-             // Remove detailed product attributes that shouldn't be returned in getProducts
+             // Remove detailed product attributes that shouldn't be returned in getAccounts
             curAcct = filteredAccountList[i];
             delete curResult.bsb;
             delete curResult.accountNumber;

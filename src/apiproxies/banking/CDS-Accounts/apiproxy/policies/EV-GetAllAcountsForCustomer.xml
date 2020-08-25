@@ -8,6 +8,9 @@
         <Variable name="listOfAllAccountDetails">
             <JSONPath>$.[?(@.customer == {customerId})].accounts</JSONPath>
         </Variable>
+        <Variable name="listOfAllAccounts">
+            <JSONPath>$.[?(@.customer == {customerId})].accounts[*].accountId</JSONPath>
+        </Variable>
     </JSONPayload>
     <Source clearPayload="false">listOfAllAccountDetailsByCustomer</Source>
 </ExtractVariables>

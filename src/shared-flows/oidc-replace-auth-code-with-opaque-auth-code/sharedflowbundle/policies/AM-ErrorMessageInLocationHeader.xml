@@ -12,5 +12,5 @@
         <Template>{replaceAll(replaceAll(response.header.Location,'((.)+error_description\=)',''),'',''}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-    <AssignTo type="response" transport="http" createNew="false"/>
+    <AssignTo type="response" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

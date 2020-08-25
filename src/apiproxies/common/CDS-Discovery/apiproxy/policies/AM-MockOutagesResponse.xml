@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockOutagesResponse">
     <DisplayName>AM-MockOutagesResponse</DisplayName>
+    <FaultRules/>
     <Properties/>
     <Set>
         <Payload contentType="application/json">{
@@ -17,5 +18,5 @@
 }</Payload>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="response"/>
+    <AssignTo type="response" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

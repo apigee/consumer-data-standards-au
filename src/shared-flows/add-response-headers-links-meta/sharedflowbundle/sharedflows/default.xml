@@ -8,25 +8,18 @@
     <Step>
         <Condition>(proxy.basepath MatchesPath "/cds-au/v1/banking/products")</Condition>
         <FaultRules/>
-        <Name>AM-Set-Content-Type-And-Version2-Headers</Name>
+        <Name>AM-Set-Content-Type-And-Version3-Headers</Name>
     </Step>
     <Step>
-        <Condition>fapiInteractionId != null</Condition>
-        <FaultRules/>
-        <Name>AM-Add-Existing-FAPI-Interaction-Id</Name>
-    </Step>
-    <Step>
-        <Condition>fapiInteractionId = null</Condition>
-        <FaultRules/>
-        <Name>AM-Generate-New-Fapi-Interaction-Id</Name>
+        <Name>FC-AddFAPIInteractionId</Name>
     </Step>
     <Step>
         <FaultRules/>
         <Name>AM-Add-CORS-Headers</Name>
     </Step>
     <Step>
+        <Condition>proxy.basepath != "/cds-au/v1/admin" or proxy.pathsuffix != "/register/metadata"</Condition>
         <FaultRules/>
         <Name>JS-Add-Links-Meta-To-Response</Name>
-        <Condition>proxy.basepath != "/cds-au/v1/admin" or proxy.pathsuffix != "/register/metadata"</Condition>
     </Step>
 </SharedFlow>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="3" name="oidc-replace-auth-code-with-opaque-auth-code">
+<SharedFlowBundle revision="25" name="oidc-replace-auth-code-with-opaque-auth-code">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1566405433202</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Replace the auth code issued by the OIDC provider with an opaque token issued by Apigee, storing the OIDC provider token as custom attribute</Description>
     <DisplayName>oidc-replace-auth-code-with-opaque-auth-code</DisplayName>
-    <LastModifiedAt>1567146904645</LastModifiedAt>
+    <LastModifiedAt>1597903834895</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:5eee3687ed4f03ece6f22a07f8fef2f8b7a467bf27d2371a2c2be9d31effd5639deb86a917ec2c092826421be07229c8b4f9ad20463f7da54f15a2a7b91adba0</ManifestVersion>
+    <ManifestVersion>SHA-512:55a054db38de3542d7b56b076c5c67942656cd39ffeebfc90065d5fc4b27bca50936a066168f390b1e8bb6cfd6e53dc0f8ebdd81e163659da25e3cb8ec0cddd6</ManifestVersion>
     <Policies>
         <Policy>AM-ClenanupHTMLDocReturnedFromOIDCProvider</Policy>
         <Policy>AM-ErrorMessageInLocationHeader</Policy>

@@ -8,5 +8,5 @@
         <Template>{replaceAll(replaceAll(response.header.Location,'((.)+code\=)',''),'',''}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="response" transport="http" createNew="false"/>
+    <AssignTo type="response" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

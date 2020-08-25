@@ -7,6 +7,9 @@
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
+            <Name>FC-AddFAPIInteractionId</Name>
+        </Step>
+        <Step>
             <FaultRules/>
             <Name>FC-CollectPerformanceSLO</Name>
         </Step>
@@ -20,15 +23,18 @@
             <Request/>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-GenerateRandomIntLessThan1000</Name>
                 </Step>
                 <Step>
-                    <Name>AM-MockOKStatusResponse</Name>
                     <Condition>randomInt != 999</Condition>
+                    <FaultRules/>
+                    <Name>AM-MockOKStatusResponse</Name>
                 </Step>
                 <Step>
-                    <Name>AM-MockPartialFailureStatusResponse</Name>
                     <Condition>randomInt = 999</Condition>
+                    <FaultRules/>
+                    <Name>AM-MockPartialFailureStatusResponse</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/status") and (request.verb = "GET")</Condition>
@@ -38,6 +44,7 @@
             <Request/>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-MockOutagesResponse</Name>
                 </Step>
             </Response>
@@ -96,6 +103,7 @@
         </Request>
         <Response>
             <Step>
+                <FaultRules/>
                 <Name>AM-FormattedCurrentTime</Name>
             </Step>
         </Response>

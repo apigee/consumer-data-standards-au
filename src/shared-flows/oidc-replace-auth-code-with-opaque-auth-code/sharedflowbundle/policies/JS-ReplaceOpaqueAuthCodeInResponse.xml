@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="JS-ReplaceOpaqueAuthCodeInResponse">
+<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="JS-ReplaceOpaqueAuthCodeInResponse">
     <DisplayName>JS-ReplaceOpaqueAuthCodeInResponse</DisplayName>
+    <FaultRules/>
     <Properties/>
     <ResourceURL>jsc://replaceOpaqueAuthCodeInResponse.js</ResourceURL>
 </Javascript>

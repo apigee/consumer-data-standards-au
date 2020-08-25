@@ -15,7 +15,7 @@ The following  diagram illustrates the solution architecture.
 
 ![metrics-service solution architecture](./img/CDS-Metrics-SolutionArchitecture.png "metrics-service solution architecture")
 
-This solution is not implemented as an Apigee API proxy itself because invoking Apigee Management APIs from within an API proxy is considered an [antipattern](https://docs.apigee.com/api-platform/antipatterns/invoking-management), and also, because collecting the required information via the Apigee Management APIs may take a long time for implementations with large volumes of traffic, and may even require using asynchronous Apigee Analytics APIs. This is best handled via an external asynchronous service, rather than a syncrhonous API.
+This solution is not implemented as an Apigee API proxy itself because invoking Apigee Management APIs from within an API proxy is considered an [antipattern](https://docs.apigee.com/api-platform/antipatterns/invoking-management), and also, because collecting the required information via the Apigee Management APIs may take a long time for implementations with large volumes of traffic, and may even require using asynchronous Apigee Analytics APIs. This is best handled via an external asynchronous service, rather than a synchronous API.
 
 #### How the service uses the Apigee Analytics API
 When the _metrics-service_ refreshes the metrics information it invokes a series of Apigee Analytics API requests.

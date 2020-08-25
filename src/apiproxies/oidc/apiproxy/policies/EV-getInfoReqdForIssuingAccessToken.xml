@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-getInfoReqdForIssuingAccessToken">
-    <DisplayName>EV-getInfoReqdForIssuingAccessToken</DisplayName>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetInfoReqdForIssuingAccessToken">
+    <DisplayName>EV-GetInfoReqdForIssuingAccessToken</DisplayName>
     <FaultRules/>
     <Properties/>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>

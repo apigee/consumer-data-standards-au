@@ -9,5 +9,5 @@
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="response" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="message" transport="http" createNew="false"/>
 </AssignMessage>
