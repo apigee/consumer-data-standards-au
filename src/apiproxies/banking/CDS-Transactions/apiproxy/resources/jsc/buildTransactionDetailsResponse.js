@@ -25,7 +25,12 @@
 // but the transaction details response needs the transactionDetails element
 var theTransactionDetails = JSON.parse(context.getVariable("theTransactionDetails"));
 
+// Verify that the accountId this tx belongs to matches the acctId found in the request URI
+var accountMatches =  ((typeof theTransactionDetails !== 'undefined') && (theTransactionDetails.length > 0 ) && (theTransactionDetails[0].accountId == context.getVariable("theAccountId")));
+
 var txDetails = {};
-txDetails.data = theTransactionDetails[0];
+if (accountMatches) {
+    txDetails.data = theTransactionDetails[0];
+}
 context.setVariable("response.content",JSON.stringify(txDetails));
     

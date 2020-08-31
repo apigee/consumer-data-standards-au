@@ -5,6 +5,7 @@
     <Properties/>
     <Variable name="request.path">
         <Pattern ignoreCase="false">/cds-au/v1/banking/accounts/{theAccountId}/transactions</Pattern>
+        <Pattern ignoreCase="false">/cds-au/v1/banking/accounts/{theAccountId}/transactions/{theTransactionId}</Pattern>
     </Variable>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
 </ExtractVariables>
