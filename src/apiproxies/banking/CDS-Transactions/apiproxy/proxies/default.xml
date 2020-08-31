@@ -28,7 +28,7 @@
             <Condition>(fault.name Matches "*access_token*") or (fault.name = "apiresource_doesnot_exist") or (fault.name = "InvalidAccessToken") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
             <Step>
                 <FaultRules/>
-                <Name>EV-getErrorDetail</Name>
+                <Name>EV-GetErrorDetail</Name>
             </Step>
             <Step>
                 <FaultRules/>
@@ -87,7 +87,6 @@
             </Request>
             <Response>
                 <Step>
-                    <FaultRules/>
                     <Name>EV-TxDetailsForTxId</Name>
                 </Step>
                 <Step>
