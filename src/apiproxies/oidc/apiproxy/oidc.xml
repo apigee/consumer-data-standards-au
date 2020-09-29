@@ -10,14 +10,14 @@
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1597972988504</CreatedAt>
+    <CreatedAt>1566213116257</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1597972988504</LastModifiedAt>
+    <LastModifiedAt>1601361478770</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:d172f63e218029a10ecbf7cbc5c23182f2d82cfd5c94e25177e03c4d2324c8c3ccc6987c650bbf031931065e98c3358c66d6c2d29c72d51925daa23a7aa471e9</ManifestVersion>
+    <ManifestVersion>SHA-512:d3c9e167e6ba92b31556516068c25ebe01fbf86f741468d9e8af06fca6a69020d2b7760e2dd86c8c095cc740c6c12ef275555fb472dbb7416a6b0d7d0c905b70</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
@@ -35,6 +35,7 @@
         <Policy>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Policy>
         <Policy>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Policy>
         <Policy>AM-SetCustomDimensionsForRefreshToken</Policy>
+        <Policy>AM-SetDefaultValuesForPerfSLO</Policy>
         <Policy>AM-SetDefaultValuesForTokenCustomDimensions</Policy>
         <Policy>AM-SetRefreshTokenAsAccessToken</Policy>
         <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>

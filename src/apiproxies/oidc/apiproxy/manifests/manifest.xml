@@ -17,6 +17,7 @@
         <VersionInfo resourceName="AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided" version="SHA-512:b6a93909e251771df13acfceb75dc8ad5221da7d19ff534bcf21258545d8b0e022143307765442d471808eae47e8a63253c24c134e21edd412ba76c3f9a12d0b"/>
         <VersionInfo resourceName="AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided" version="SHA-512:490d1664bd016d7086d7ded11dbcd4ba03fd9052b95db962b8498e1f6de7abe2e815b6ef8fd0f8434a49bf1707b241815ae4eaf3af58967f4d9adcdae77f8789"/>
         <VersionInfo resourceName="AM-SetCustomDimensionsForRefreshToken" version="SHA-512:d31c57aa0eb8094e61184256b3c5e3341aad9c9ca830f1bb3a2ced1cbc7e938722a8d4e82321d737e37ebf6cb4664e792adcc9cc21d2f0baa1605d9f49093e62"/>
+        <VersionInfo resourceName="AM-SetDefaultValuesForPerfSLO" version="SHA-512:d564e14f5bde204d4923e5d041ee3518478c326fdd0793f286ffb61bb246d3fed9160ef973126734ca30682d89b74fa11e204523fe86318ae7dcb0e380fd2ec5"/>
         <VersionInfo resourceName="AM-SetDefaultValuesForTokenCustomDimensions" version="SHA-512:34a1b5af2de8b4c1270e7596f188ed8230a8d27b44759191f1169ef15970fe8ce0c9234c42626afea32369fff1660e53c4900bc7314a8f0e36c63e5b4d95f157"/>
         <VersionInfo resourceName="AM-SetRefreshTokenAsAccessToken" version="SHA-512:b38a0a280f6bd4d02b7e7b6c90a5fca7e6ae12410885df704147e8121a7127d1aaee81e6fd7e9bd13d08803bb998107a224ddb64d94a631cffc0535b380fe1f1"/>
         <VersionInfo resourceName="EV-ExtractAccessTokenFromAuthHdr" version="SHA-512:830139f578a050b682dfb492d9f23f88cf560a05aec98970fba77096befc7569c162eb2ef8669779a087b39e58e080f27c45deafea61656e32d307de140714fe"/>
@@ -49,7 +50,7 @@
         <VersionInfo resourceName="RF-UnsupportedTokenType" version="SHA-512:dc6de6ad5a3c2dc5886281ebf3c02ced13987df4df65cf13854bbd81012f417f8b2ccb517317874e47035ae4b65f9738db2ad67f07e317491da6e257431b26a8"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:7a368be190a382fcb0689dbcea8c884a0e706d7702ea2f0cde0a5b3f77ae96be5d652deb41a6f4a9fd05d6ad81d4d4020523dc1bdcb465e9f6d1debf3f33c912"/>
+        <VersionInfo resourceName="default" version="SHA-512:df8572b082b5484d4d56d31a5eb72becc155a4ba5bfaf89368ea98ef514a03bf57d2fabe602587c10b88b75d1833810ace17dec54d1c4b60b0d43d888ccd7c05"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://getOIDCTokenExpiryTime.js" version="SHA-512:afce450d00aa5e77ccb25d5e946e22b109b8ebfa182bfadba43d530a67c03f20fcd421f82666ff50daed494ce23179cd8bf5bf61a90efeb898022e9ac6859c92"/>
