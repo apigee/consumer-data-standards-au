@@ -28,7 +28,7 @@
         <VersionInfo resourceName="EV-StoreTokenRequestDetails" version="SHA-512:6246354bf1737cb304c5263f9a091c9004490a96a1ed22100a9c724ab152130201c9696d619c36fade2245e344568be65a58c68c782cd42ab3d26f1cc9056fed"/>
         <VersionInfo resourceName="FC-CollectPerformanceSLO" version="SHA-512:d56d2f1060d3a189ba26b2fa476935e03bb0a33aa52dfb43c6778a6df5f0b278d37a0f12f97b37b8b40e6c0f17f641b2ca47dfb3d09556953aa022578926eb9c"/>
         <VersionInfo resourceName="FC-DecideIfCustomerIsPresent" version="SHA-512:4e4c1d1fda4c95f19b50029f5463bd8ace2bd182a7d9f779614e583b6c3999f261f19e81cb00cea7fd8045d4e941cac67bfec71cbc99df6e9bdf5bd6f95a38d1"/>
-        <VersionInfo resourceName="FC-GeneralTrafficThresholdsForAuthEndpoints" version="SHA-512:96dc0822915d3cabea2dd91e892a17688332d87c57b7b0dd38b80b07b072bf66066d52c57bb42b59c34c2773d8c5f80ff543be3a7f78d79236177d6be49495d6"/>
+        <VersionInfo resourceName="FC-GeneralTrafficThresholdsForAuthEndpoints" version="SHA-512:6e1a692879c15a17eaa4aafc0d1afab609850f6fdda5ff7da9dfa752fc5b134a75fe866b74e38886f965a786dd04075746347c37ebd9600ee9b37595141190cd"/>
         <VersionInfo resourceName="FC-ReplaceAuthCodeWithOpaqueAuthCode" version="SHA-512:b8f75c348cd5359d11b473685b6822706fcc4acd6a1cd9c467555d599e43296ea6d8741754a8ff3219c02a447c7f16401399ce73ec3bf8fc4efb53c37615617b"/>
         <VersionInfo resourceName="FC-TrafficThresholdsWhenRefreshTokenIsPresent" version="SHA-512:5f54a8c1c598ceb67071faf8cccbece40a2abb9d024ca7cdbc900b61f772b71f51e5faf6e4c9af1c917ca35aba6bfb3b351666f6aa307850c15babc176efeb99"/>
         <VersionInfo resourceName="JS-GetOIDCTokenExpiryTime" version="SHA-512:90fd5b0388d9265e2687004be0803aee5649f94ddd2ca80d0e8be0f040a982feccb0bcbd719d95b99c67515028a1b073304ebfc1ab0c9758b11df9bf5f664aff"/>
@@ -55,7 +55,7 @@
     <Resources>
         <VersionInfo resourceName="jsc://getOIDCTokenExpiryTime.js" version="SHA-512:afce450d00aa5e77ccb25d5e946e22b109b8ebfa182bfadba43d530a67c03f20fcd421f82666ff50daed494ce23179cd8bf5bf61a90efeb898022e9ac6859c92"/>
         <VersionInfo resourceName="jsc://removeOIDCProvideBasePath.js" version="SHA-512:0df660b39b488fe87550bf54fc2d4f5c68ae2b507abefd5504647a1400af1f66f848c22a4a45f20f9007a8875290f6ba93254e5e40d079499492e24b65ef5275"/>
-        <VersionInfo resourceName="jsc://substituteWithOpaqueAccessTokenInResponse.js" version="SHA-512:88722a49cd635fd8313184aa0ead1a6f9dcf86ca009d1456255d9b56f86e5eed424244b861465f51e6b9d00b3f2d15154c81c1cfd2d9afa89b3729398fd6373b"/>
+        <VersionInfo resourceName="jsc://substituteWithOpaqueAccessTokenInResponse.js" version="SHA-512:f7db2c4c17ce680f313db0a447061a5ebc6dad1f0e0bf808adcf8ab669152a78129e19d16afb91df6081eb221a3248bcdf5a9a99451cb20c772fe1e5022e40cd"/>
     </Resources>
     <SharedFlows/>
     <TargetEndpoints>
