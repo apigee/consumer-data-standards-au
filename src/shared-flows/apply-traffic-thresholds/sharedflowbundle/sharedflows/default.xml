@@ -15,9 +15,9 @@
         <Name>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Name>
     </Step>
     <Step>
-        <Condition>((isPublicEndpoint = "false") and (isCustomerPresent = "false")) or (isAuthEndpoint = "true")</Condition>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false")</Condition>
         <FaultRules/>
-        <Name>Q-RequestsPerSessionForUnattendedAndAuthTraffic</Name>
+        <Name>Q-RequestsPerSessionForUnattendedTraffic</Name>
     </Step>
     <Step>
         <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false")</Condition>
@@ -30,7 +30,7 @@
         <Name>RF-TooManyRequests</Name>
     </Step>
     <Step>
-        <Condition>ratelimit.Q-RequestsPerSessionForUnattendedAndAuthTraffic.failed = "true"</Condition>
+        <Condition>ratelimit.Q-RequestsPerSessionForUnattendedTraffic.failed = "true"</Condition>
         <FaultRules/>
         <Name>RF-QuotaExceededForSessionWithUnattendedTraffic</Name>
     </Step>
