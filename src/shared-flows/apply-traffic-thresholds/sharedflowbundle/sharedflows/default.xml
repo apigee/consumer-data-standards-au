@@ -15,7 +15,7 @@
         <Name>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Name>
     </Step>
     <Step>
-        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false")</Condition>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "false") and (isAuthEndpoint = "false")</Condition>
         <FaultRules/>
         <Name>Q-RequestsPerSessionForUnattendedTraffic</Name>
     </Step>
