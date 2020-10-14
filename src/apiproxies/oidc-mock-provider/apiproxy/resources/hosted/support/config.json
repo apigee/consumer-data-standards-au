@@ -16,10 +16,11 @@
 		},
 		"request": true,
 		"registration": {
-			"enabled": false
+			"enabled": true
 		},
 		"registrationManagement": {
-			"enabled": true
+			"enabled": true,
+			"rotateRegistrationAccessToken": false
 		},
 		"revocation": {
 			"enabled": true
@@ -36,8 +37,10 @@
 		"grant_types": [
 			"authorization_code",
 			"client_credentials",
-			"implicit"
-		]
+			"implicit",
+			"refresh_token"
+		],
+		"token_endpoint_auth_method": "private_key_jwt"
 	},
 	"claims": {
 		"openid": [
@@ -105,7 +108,8 @@
 		"bank:transactions:read",
 		"bank:regular_payments:read",
 		"common:customer.basic:read",
-		"common:customer.detail:read"
+		"common:customer.detail:read",
+		"cdr:registration"
 	],
 	"subjectTypes": [
 		"pairwise"

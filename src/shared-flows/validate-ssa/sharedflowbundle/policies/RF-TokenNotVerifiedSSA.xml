@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-TokenNotVerifiedSSA">
+    <DisplayName>RF-TokenNotVerifiedSSA</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <AssignVariable>
+            <Name>errorMsg</Name>
+            <Ref>jwt.JWT-VerifyCDRSSAToken.error</Ref>
+        </AssignVariable>
+        <AssignVariable>
+            <Name>searchStrRegex</Name>
+            <Value>: policy\(JWT-VerifyCDRSSAToken\)</Value>
+        </AssignVariable>
+        <AssignVariable>
+            <Name>replaceStr</Name>
+            <Value>...</Value>
+        </AssignVariable>
+        <Set>
+            <Payload contentType="application/json">{
+ "error": "invalid_software_statement",
+ "error_description": "{replaceAll(errorMsg,searchStrRegex,replaceStr)}",
+ "debug": "{fault.name} - {fault.cause}"
+}</Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

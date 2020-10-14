@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidRedirectURIs">
+    <DisplayName>RF-InvalidRedirectURIs</DisplayName>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="application/json">{
+ "error": "invalid_redirect_uri",
+ "error_description": "{messageForErrorInRedirectURIs}"
+}</Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

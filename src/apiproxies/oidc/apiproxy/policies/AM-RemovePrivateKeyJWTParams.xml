@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RemovePrivateKeyJWTParams">
+    <DisplayName>AM-RemovePrivateKeyJWTParams</DisplayName>
+    <Remove>
+        <FormParams>
+            <FormParam name="client_id"/>
+            <FormParam name="client_assertion_type"/>
+            <FormParam name="client_assertion"/>
+        </FormParams>
+    </Remove>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

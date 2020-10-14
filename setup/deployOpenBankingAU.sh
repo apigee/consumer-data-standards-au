@@ -16,6 +16,26 @@
 # limitations under the License.
 #
 
+#### Utility functions
+
+function replace_with_jwks_uri {
+ POLICY_FILE=$1
+ JWKS_PATH_SUFFIX=$2
+ POLICY_BEFORE_JWKS_ELEM=$(sed  '/<JWKS/,$d' $POLICY_FILE)
+ POLICY_AFTER_JWKS_ELEM=$(sed  '1,/<JWKS/d' $POLICY_FILE)
+ echo $POLICY_BEFORE_JWKS_ELEM'<JWKS uri="https://'$APIGEE_ORG-$APIGEE_ENV'.apigee.net'$JWKS_PATH_SUFFIX'" />'$POLICY_AFTER_JWKS_ELEM > temp.xml
+ # The following step is for pretty printing the resulting edited xml, we don't care if it fails. If failed, just use the original file
+ xmllint --format temp.xml 1> temp2.xml 2> /dev/null
+ if [ $? -eq 0 ]; then
+    cp temp2.xml $POLICY_FILE
+ else
+    cp temp.xml $POLICY_FILE
+ fi
+ rm temp.xml temp2.xml 
+}
+
+###### End Utility functions
+
 
  # Deploy banking apiproxies
 cd src/apiproxies/banking
@@ -42,6 +62,15 @@ cd ../oidc
 echo Deploying oidc Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
 
+# Deploy Client Dynamic Registration proxy and the required mock-register and mock-adr-client proxies
+cd ../dynamic-client-registration
+for ap in $(ls .) 
+do 
+    echo Deploying $ap Apiproxy
+    cd $ap
+    apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
+    cd ..
+ done
 
  # Revert to original directory
  cd ../../..
@@ -61,6 +90,12 @@ echo Creating API Product: "OIDC"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSOIDC" --displayName "OIDC" --approvalType "auto" --productDesc "Get access to authentication and authorisation requests" \
    --environments $APIGEE_ENV --proxies oidc --scopes "openid, profile"
+
+# Create product for dynamic client registration
+echo Creating API Product: "DynamicClientRegistration"
+apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
+   --productName "CDSDynamicClientRegistration" --displayName "DynamicClientRegistration" --approvalType "auto" --productDesc "Dynamically register a client" \
+   --environments $APIGEE_ENV --proxies CDS-DynamicClientRegistration --scopes "cdr:registration"
 
 # Create a test developer who will own the test app
 
@@ -109,7 +144,7 @@ echo $APP_JWK > ./CDSTestApp.jwk
 # Create a new entry in the OIDC provider client configuration for this TestApp,
 # so that it is recognised by the OIDC provider as a client
 echo "Creating new entry in OIDC Provider configuration for CDSTestApp"
-APP_CLIENT_ENTRY=$(echo '{ "client_id": "'$APP_KEY'", "client_secret": "'$APP_SECRET'", "redirect_uris": ["https://httpbin.org/post"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"],"jwks": {"keys": ['$APP_JWK']}}')
+APP_CLIENT_ENTRY=$(echo '{ "client_id": "'$APP_KEY'", "client_secret": "'$APP_SECRET'", "redirect_uris": ["https://httpbin.org/post"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"], "token_endpoint_auth_method": "client_secret_basic","jwks": {"keys": ['$APP_JWK']}}')
 OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
 # Write the JQ Filter that we're going to use to a file
 echo '. + ['$APP_CLIENT_ENTRY']' > ./tmpJQFilter
@@ -129,22 +164,39 @@ echo "----"
 MOCKREGISTER_JWK=$(pem-jwk ./MockCDRRegister_rsa_public.pem  | jq '{"keys": [. + { "kid": "MockCDRRegister" } + { "use": "sig" }]}')  
 echo $MOCKREGISTER_JWK > ./MockCDRRegister.jwks
 
-# Replace the existing <JWKS> element in the JWT-VerifyCDRToken policy of validate-cdr-register-token shared flow
-echo "Adding generated JWKS keys for Mock CDR Register to policy used to validate CDR JWT Token"
-POLICY_BEFORE_JWKS_ELEM=$(sed  '/<JWKS>/,$d' ../../src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml)
-POLICY_AFTER_JWKS_ELEM=$(sed  '1,/<\/JWKS>/d' ../../src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml)
-echo $POLICY_BEFORE_JWKS_ELEM"<JWKS>"$MOCKREGISTER_JWK"</JWKS>"$POLICY_AFTER_JWKS_ELEM > temp.xml
-# The following step is for pretty printing the resulting edited xml, we don't care if it fails. If failed, just use the original file
-xmllint --format temp.xml 1> temp2.xml 2> /dev/null
-if [ $? -eq 0 ]; then
-    cp temp2.xml ../../src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml
-else
-    cp temp.xml ../../src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml
-fi
-rm temp.xml temp2.xml
+# Create KVMs that will hold the JWKS and private Key for both the mock cdr register, and the mock adr client
+echo Creating KVM mockCDRRegister...
+apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName mockCDRRegister --encrypted
+echo Adding entries to mockCDRRegister...
+MOCKREGISTER_PRIVATE_KEY=`cat ./MockCDRRegister_rsa_private.pem`
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName mockCDRRegister --entryName jwks --entryValue "$MOCKREGISTER_JWK" 1> /dev/null | echo Added entry for jwks
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName mockCDRRegister --entryName privateKey --entryValue "$MOCKREGISTER_PRIVATE_KEY"  1> /dev/null | echo Added entry for private key
+
+echo Creating KVM mockADRClient...
+apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName mockADRClient --encrypted
+echo Adding entries to mockADRClient...
+MOCKCLIENT_JWKS='{"keys": ['$APP_JWK']}'
+MOCKCLIENT_PRIVATE_KEY=`cat ./CDSTestApp_rsa_private.pem`
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName mockADRClient --entryName jwks --entryValue "$MOCKCLIENT_JWKS"  1> /dev/null | echo Added entry for jwks
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName mockADRClient --entryName privateKey --entryValue "$MOCKCLIENT_PRIVATE_KEY"   1> /dev/null | echo Added entry for private key
+
+# Create KVM that will hold Apigee credentials (necessary for dynamic client registration operations)
+echo Creating KVM ApigeeAPICredentials...
+apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeAPICredentials --encrypted
+echo Adding entries to ApigeeAPICredentials...
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeAPICredentials --entryName apigeeUser --entryValue $APIGEE_USER
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeAPICredentials --entryName apigeePassword --entryValue $APIGEE_PASSWORD 1> /dev/null | echo Added entry for password
+
 
 # Revert to original directory
  cd ../..
+
+# Replace the existing <JWKS> element in the JWT-VerifyCDRToken policy of validate-cdr-register-token shared flow, and JWT-VerifyCDRSSAToken policy in validate-ssa shared flow
+# so that they point to the mock-cdr jwks endpoint
+echo "Adding Mock CDR Register JWKS uri to policy used to validate CDR JWT Token"
+replace_with_jwks_uri src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml /mock-cdr-register/jwks
+echo "Adding Mock CDR Register JWKS uri to policy used to validate SSA Token"
+replace_with_jwks_uri src/shared-flows/validate-ssa/sharedflowbundle/policies/JWT-VerifyCDRSSAToken.xml /mock-cdr-register/jwks
 
  # Deploy Shared flows
 cd src/shared-flows
@@ -161,7 +213,6 @@ do
 cd ../apiproxies/admin/CDS-Admin
 echo Deploying CDS-Admin Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
-
 
 # Deploy oidc-mock-provider proxy
 cd ../../oidc-mock-provider

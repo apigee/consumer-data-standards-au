@@ -31,23 +31,31 @@ as well as the required security endpoints:
 - Metadata Update
 - Get Metrics
 
-and discovery endpoints:
+... discovery endpoints:
 - Get Status
 - Get Outages
 
+and dynamic client registration endpoints:
+- Register a client using a CDR Register issued Software Statement Assertion
+- Get/Update/Delete a Client Registration for a given Client ID
 
-Other APIs will be gradually added, as well as support for Pushed Authorisation Requests (PARs), Holder of Key (HoK) verification and dynamic client registration.
+
+Other APIs will be gradually added, as well as support for Pushed Authorisation Requests (PARs) and Holder of Key (HoK) verification.
 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
 2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts and best practices such as caching of (mock) responses
 3. An API proxy (*oidc-mock-provider*) that implements a standalone Open ID Connect Identity Provider, based on the open source package [oidc-provider](https://github.com/panva/node-oidc-provider)
-3. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens
+4. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens
+5. An API Proxy (*CDS-DynamicClientRegistration*) that leverages Apigee client management capabilities to allow Data Recipients to dynamically register with the reference implementation.
+6. An API Proxy (*mock-cdr-register*) that mocks the CDR register role in dynamic client registration: Issuing Software Statement Assertions (SSAs) and providing a JWKS to verify these SSAs. 
+7. An API Proxy (*mock-adr-client*) that mocks the functionality a client being registered dynamically needs to include: provide a JWKS that can be used to verify a registration request. In addition, to make testing easier, it also has a helper facility to automatically generate such registration requests.
 
 The reference implementation can accelerate Open Banking implementation in multiple ways:
 - Quick delivery of a sandbox API environment, returning mock data.
 - Reusable artefacts (implemented as shared flows) can be included in real API implementations.
 - Leverage the implemented Apigee/Standalone OIDC Provider interaction to kickstart the interaction between Apigee and a real OIDC Provider.
+- The Dynamic Client Registration functionality can be reused as is, with perhaps minor changes to adapt to the way dynamic clients are registered with a real OIDC provider.
 
 **This is not an officially supported Google product.**
 
@@ -94,17 +102,19 @@ You can publish APIs into the portal using the OpenAPI specifications found in [
 You can see and try out an actual instance of such a portal at [https://live-cds-au-sandbox.devportal.apigee.io](https://live-cds-au-sandbox.devportal.apigee.io)
 
 
-## A note on Admin APIs
-This reference implementation includes Admin endpoints, *Metadata Update* and *Get Metrics*. These endpoints are meant to be called by the CDR Register only. In order to be able to test these endpoints, the deployment script generates a set of private/public keys for a *Mock* CDR Register. The public keys are used to verify JWT tokens included in requests to these endpoints. If you want to test these endpoints, you'll need to generate a JWT token using the generated private key, found in *./setup/certs/MockCDRRegister_rsa_private.pem*. 
+## Admin APIs
+This reference implementation includes Admin endpoints, *Metadata Update* and *Get Metrics*. These endpoints are meant to be called by the CDR Register only. In order to be able to test these endpoints, the deployment script generates a *Mock* implementation of the Register. The Mock implementation includes a facility to generate such an Admin API request (which is essentially a JWT token signed by the mock CDR register). 
 
-The standards mandate that a token be used only once, so you'll need to generate a new token for each request. The Postman collection includes a helper request to generate a compliant JWT header and body. You can use your own scripts or public tools to generate the JWT Token. 
+The standards mandate that a token be used only once, so you'll need to generate a new token for each request. 
 
-The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return actual metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
+The Postman collection includes a request to the helper endpoint in the Mock CDR Register (*/mock-cdr-register/adminrequest*) to generate a compliant request.
+
+The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return **actual** metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
 
 
 ## Shared Flows
 
-There are 9 shared flows that implement common functionality required by the Banking and Admin APIs.
+There are 13 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
 2. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
@@ -112,8 +122,13 @@ There are 9 shared flows that implement common functionality required by the Ban
 4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
 5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
 6. *add-response-fapi-interaction-id*: Includes *x-fapi-interaction-id* header in responses and error messages
-6. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
-7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO. Also records type of token operations (for *customerCount* and *recipientCount* metrics)
-8. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
+7. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+8. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO. Also records type of token operations (for *customerCount* and *recipientCount* metrics)
+9. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
+10. *validate-ssa*: Validates a Software Statement Assertion included in a dynamic client registration request, as specified in Section [Dynamic Client Registration](https://cdr-register.github.io/register/#dynamic-client-registration) of the CDR Register standards
+11. *check-token-not-reused*: Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time. Used in Register token validation shared flows, as well as dynamic client registration.
+12. *get-jwks-from-dynamic-uri*: Retrieves (and caches) a JWKS from a URI. 
+13. *authenticate-with-private-key-jwt*: Implements *private_key_jwt*  client authentication method.
+
 
 There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ExtractRegInfoAndSSAFromAccessEntityResult">
+    <DisplayName>EV-ExtractRegInfoAndSSAFromAccessEntityResult</DisplayName>
+    <Source clearPayload="false">AccessEntity.AE-GetApp</Source>
+    <XMLPayload stopPayloadProcessing="false">
+        <Variable name="registrationInfo">
+            <XPath>/App/Attributes/Attribute[Name='RegistrationInfo']/Value</XPath>
+        </Variable>
+        <Variable name="SSA">
+            <XPath>/App/Attributes/Attribute[Name='SSA']/Value</XPath>
+        </Variable>
+        <Variable name="clientIssuedAt" type="long">
+            <XPath>/App/LastModifiedAt</XPath>
+        </Variable>
+    </XMLPayload>
+</ExtractVariables>

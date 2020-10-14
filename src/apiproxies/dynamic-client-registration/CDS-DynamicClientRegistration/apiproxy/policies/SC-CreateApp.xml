@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-CreateApp">
+    <DisplayName>SC-CreateApp</DisplayName>
+    <Request clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{private.apigeeAuth}</Header>
+            </Headers>
+            <Verb>POST</Verb>
+            <Payload contentType="application/json">{
+
+  "attributes" : [ 
+  {
+   "name" : "DisplayName",
+   "value" : "{ADRDetailsFromSSA.client_name}"
+  },
+  {
+   "name" : "Notes",
+   "value" : "{ADRDetailsFromSSA.client_description}"
+  },
+  {
+   "name" : "RegistrationInfo",
+   "value" : "{escapeJSON(registrationInfo)}"
+  },
+  {
+   "name" : "SSA",
+   "value" : "{SSA}"
+  },
+  {
+   "name": "IDP_registration_access_token",
+   "value": "{OIDCCredentials.IDP_registration_access_token}"
+  }
+ ],
+ "apiProducts": {productList},  
+ "name" : "{ADRDetailsFromSSA.software_id}",
+ "callbackUrl" : "{redirectURIInRequest}",
+ "scopes": {scopeList}
+}
+</Payload>
+        </Set>
+    </Request>
+    <Response>apigeeAPIAppResponse</Response>
+    <HTTPTargetConnection>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

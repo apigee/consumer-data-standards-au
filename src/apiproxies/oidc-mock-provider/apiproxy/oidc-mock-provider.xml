@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="11" name="oidc-mock-provider">
+<APIProxy revision="13" name="oidc-mock-provider">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/mock-oidc</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1569798379469</CreatedAt>
+    <CreatedAt>1602632377087</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Mock OIDC Provider based on node-oidc-provider open source</Description>
     <DisplayName>oidc-mock-provider</DisplayName>
-    <HostedManifestVersion>SHA-512:0708e486f693af72a5da7f59a96e55836db03ae36a1aa8ee3fafbe33be3b7af32692223f1a34e1b08ce9ea6bef44160bbaadd1487a826e05acd25d78d8aeca5b:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1597969440937</LastModifiedAt>
+    <HostedManifestVersion>SHA-512:ce17bc3e38dd2a8c2943ccdd8783d05bbc5f634b14ad1e78c03d239cf5cd3598a9a027be5aac06eb0800878a164218315e24d9a71e82d55f96c7edb14822359c:ap-southeast-2</HostedManifestVersion>
+    <LastModifiedAt>1602632377087</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:10305dfaa0491cdb14d5510e00c0fe1a85f0317dac079e687df2f5ca7e569d7c4dfdf175150b447b124508444929e7cbe1009cb8eb5c0ba3a29da3a3642ef73b</ManifestVersion>
+    <ManifestVersion>SHA-512:5002244711434c4f5e461d623b4d6be275307565328be46d12c205d985e0f752bd519a4e9dd22b0cfaadfb48d0733c88781a770b3f19c3886add45377d81c02f</ManifestVersion>
     <Policies>
         <Policy>AM-BuildIntrospectionResponseActiveToken</Policy>
         <Policy>EV-IsTokenActive</Policy>
         <Policy>EV-TokenExpiryTime</Policy>
         <Policy>JS-ReplaceHTPrivateIPAddrWithHostname</Policy>
+        <Policy>RF-InvocationFromProxyChainingOnly</Policy>
         <Policy>RF-OIDCProviderError</Policy>
         <Policy>RF-OIDCProviderTimeout</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>

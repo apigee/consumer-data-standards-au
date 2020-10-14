@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-SetMockJWKSInfo" version="SHA-512:abcaff716cacf239aa9d0b7c2fbcb61c442e5b3cfbab613a0e1fa16afffa6f5a83131e61f77b26cffcaddda06c3729f5348624d568fb34cbbfeb71ec12777a11"/>
+        <VersionInfo resourceName="AM-SetResponse" version="SHA-512:bd625691b797d40fc287f82767e5f197b8959a3fedd48c9d7eec2fb7ae0d659722d14d71b5b2a278bce3448d117dc590651b2afb0710cb8609e8d0fb59578f1a"/>
+        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults" version="SHA-512:838508b4c9813522c7689ec524879440708e9f6c142b0eba834f8afe2b011b28bf646af24fe3977fb0119025f9041313b882c8e7f12ddc211f246637bfbb2955"/>
+        <VersionInfo resourceName="EV-SWIdFromURIParam" version="SHA-512:796f56eefede30c57d44839b81d77a9c082b9475d241980ebd78ca3f930f0e216d874b5ae15da30c79391af992e9b35d9bec32a3da5556f7d1933119a3af6688"/>
+        <VersionInfo resourceName="JS-SetRedirectURIs" version="SHA-512:ab905740383412a410c423dfa989479248c81fd7a25a8e70e6ccf33a717d28b0ed6275f52a8f827f7fa854215156676fad61c93d37962624c170db6359cbfde0"/>
+        <VersionInfo resourceName="JWT-GenerateAdminRequest" version="SHA-512:69f33514761c9f5f2928fe1fb4c1c4521d23290c3c1fc555a0ad15ea7ee1039e98017fc0e18ee11a4f5530f2244f777cdbb11db4e7e2b0b2a4366fdbd05c5558"/>
+        <VersionInfo resourceName="JWT-GenerateMockSSAForSWId" version="SHA-512:2f0750bc87b765f14235edf89b5005d9c1ed5b068ae8656526a43aeb498b081d5e87339b6b699cf6dc2fb6d175e581707f304224677543908ec5e8e6510fb6d6"/>
+        <VersionInfo resourceName="KVM-GetMockCDRRegisterKeys" version="SHA-512:8c4186fe0e1420f4c363cf974eda37b67f1586db29da4fe9e7cff69fdae5ec8deb710c3fa420a117a8c77ce227f265434bec11be6fd5372f84b5e99246b310d2"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:bf7edec9b2f76f7a537310b85cb06191319de6b7e1fa7d869e61dcfc176a751b734c134761e175001a1fed7d0e688ec1af3a3f96024ba12e0c1c75ee6a365e0b"/>
+        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:cf0a6fbc7379dee68546fa58b7bc7d2532bb0b165a3c87c3e79cd9993fba21ac2b553e1da0e6a4d7af18a0f60919a29285abfa8978a2a7dacb3fcbb265b9db03"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:1df45b274acf3df8cc28cf08db5a1c3c539a04ef9d0ba4feecca374a38ff99a3682db6c7155e5260ed296f8e42647345899139dfb0acbf29bfbe3abcf0e24165"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="jsc://setRedirectURIs.js" version="SHA-512:717ab64e43b3354021970cdbed4091a2d56e4fa0ea6c820effaabb38f00add001b57b1d07a002b3d3faa290cd5dc9f754fc0fb7d620dd37164f3ded8d06a37da"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints/>
+</Manifest>

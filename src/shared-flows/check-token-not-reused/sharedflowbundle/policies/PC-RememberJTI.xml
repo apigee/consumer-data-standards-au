@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-RememberJTI">
+    <DisplayName>PC-RememberJTI</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <CacheKey>
+        <Prefix>jwt</Prefix>
+        <KeyFragment ref="jwtType"/>
+        <KeyFragment ref="jti"/>
+    </CacheKey>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <TimeoutInSeconds ref="cacheTime"/>
+    </ExpirySettings>
+    <Source>jti</Source>
+</PopulateCache>

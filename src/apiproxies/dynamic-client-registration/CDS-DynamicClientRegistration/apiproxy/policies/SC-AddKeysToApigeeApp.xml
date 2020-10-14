@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-AddKeysToApigeeApp">
+    <DisplayName>SC-AddKeysToApigeeApp</DisplayName>
+    <Request clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{private.apigeeAuth}</Header>
+            </Headers>
+            <Verb>POST</Verb>
+            <Payload contentType="application/json"> {
+  "consumerKey": "{OIDCCredentials.client_id}",
+  "consumerSecret": "{OIDCCredentials.client_secret}"
+}
+</Payload>
+        </Set>
+    </Request>
+    <Response>apigeeAPIAddKeysResponse</Response>
+    <HTTPTargetConnection>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps/{ADRDetailsFromSSA.software_id}/keys/create</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

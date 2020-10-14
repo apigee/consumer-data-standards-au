@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetKeysToAddToApp">
+    <DisplayName>AM-SetKeysToAddToApp</DisplayName>
+    <AssignVariable>
+        <Name>OIDCCredentials.client_id</Name>
+        <Ref>theClientId</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>OIDCCredentials.client_secret</Name>
+        <Ref>theExistingAppSecret</Ref>
+    </AssignVariable>
+</AssignMessage>

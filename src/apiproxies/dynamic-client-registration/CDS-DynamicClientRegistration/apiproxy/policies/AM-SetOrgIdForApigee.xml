@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetOrgIdForApigee">
+    <DisplayName>AM-SetOrgIdForApigee</DisplayName>
+    <AssignVariable>
+        <Name>orgIdInApigee</Name>
+        <Template>{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

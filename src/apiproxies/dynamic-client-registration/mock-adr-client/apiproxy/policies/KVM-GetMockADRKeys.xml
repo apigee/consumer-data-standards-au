@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetMockADRKeys" mapIdentifier="mockADRClient">
+    <DisplayName>KVM-GetMockADRKeys</DisplayName>
+    <Get assignTo="private.mockADRPrivateKey">
+        <Key>
+            <Parameter>privateKey</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.mockADRJWKS">
+        <Key>
+            <Parameter>jwks</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

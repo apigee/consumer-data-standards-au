@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults">
+    <DisplayName>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults</DisplayName>
+    <AssignVariable>
+        <Name>defaultOrgId</Name>
+        <Template>ORG-{xeger('[0-9]{3}')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>orgId</Name>
+        <Template>{firstnonnull(request.queryparam.org_id,defaultOrgId)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>baseURI</Name>
+        <Ref>request.queryparam.recipient_base_uri</Ref>
+        <Value>https://mockcompany.com.au</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultJWKSURI</Name>
+        <Template>{baseURI}/jwks</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jwksURI</Name>
+        <Template>{firstnonnull(request.queryparam.jwks_uri,defaultJWKSURI)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>logoURI</Name>
+        <Template>{baseURI}/img/mock-logo.png</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>tosURI</Name>
+        <Template>{baseURI}/mock-tos.html</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>policyURI</Name>
+        <Template>{baseURI}/mock-policy.html</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>revocationURI</Name>
+        <Template>{baseURI}/revocation</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

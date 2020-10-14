@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-MissingEXPClaim">
     <DisplayName>RF-MissingEXPClaim</DisplayName>
-    <Properties/>
     <FaultResponse>
         <Set>
             <Payload contentType="application/json">{
  "errors": [
     {
-      "code": "401",
-      "title": "Unauthorized",
+      "code": "400",
+      "title": "Bad Request",
       "detail": "Missing claim: exp"
     }
   ]
 }</Payload>
-            <StatusCode>401</StatusCode>
-            <ReasonPhrase>Unauthorized</ReasonPhrase>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>
     </FaultResponse>
-    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </RaiseFault>

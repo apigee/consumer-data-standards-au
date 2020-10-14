@@ -16,7 +16,7 @@
         <Name>AM-SetPerformanceTierToUnattended</Name>
     </Step>
     <Step>
-        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true") and ( (isAuthEndpoint = "true") or ((proxy.basepath = "/cds-au/v1/banking/accounts") and (proxy.pathsuffix MatchesPath "/") ) )</Condition>
+        <Condition>(isAuthEndpoint = "true")  or (proxy.basepath = "/register") or (proxy.basepath = "/cds-au/v1/discovery") or ( (isCustomerPresent = "true") and (proxy.basepath = "/cds-au/v1/banking/accounts") and (proxy.pathsuffix MatchesPath "/") ) </Condition>
         <FaultRules/>
         <Name>AM-SetPerformanceTierToHighPriority</Name>
     </Step>
@@ -34,12 +34,14 @@
         <Name>JS-CheckIfRequestMeetsPerformanceSLO</Name>
     </Step>
     <Step>
-        <Name>AM-ResetCustomerPPIDIfNA</Name>
         <Condition>(customerPPId = "n/a")</Condition>
+        <FaultRules/>
+        <Name>AM-ResetCustomerPPIDIfNA</Name>
     </Step>
     <Step>
-        <Name>AM-ResetTokenOpIfNA</Name>
         <Condition>(tokenOp = "n/a")</Condition>
+        <FaultRules/>
+        <Name>AM-ResetTokenOpIfNA</Name>
     </Step>
     <Step>
         <FaultRules/>

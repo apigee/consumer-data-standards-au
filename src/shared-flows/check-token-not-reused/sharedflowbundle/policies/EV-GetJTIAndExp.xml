@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetJTIAndExp">
+    <DisplayName>EV-GetJTIAndExp</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="jti">
+            <JSONPath>$.jti</JSONPath>
+        </Variable>
+        <Variable name="exp">
+            <JSONPath>$.exp</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">jwtPayload</Source>
+</ExtractVariables>

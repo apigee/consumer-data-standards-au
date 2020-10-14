@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AE-GetAppDetails" version="SHA-512:0d7a3c86de472cef901c7f926deeaa2e75e01e3f19c6e0cbcdac62657724c6b5ba40ac83fba98704edb4b85909c0616826822d4e66a2f279f27d1570b57e210c"/>
+        <VersionInfo resourceName="AM-SetValidAudience" version="SHA-512:736ea27aa7caa4ca8e0b538a84b152917395dc1d02d329319b6449a9139ebab5898f19bd4c9b7e40671f6fcfed49dfacf9759873af9d4f7c98ead245d0adf8de"/>
+        <VersionInfo resourceName="BA-GenerateBasicEquivalentAuthHeader" version="SHA-512:c5cd57e9a14cb22096b473b46044370e59eb40d3472d2a0e7152a6b377cc85400ba58f74375597f875e3ba402de1891f62c26300dc036c791623b3ed4eb21f0e"/>
+        <VersionInfo resourceName="EV-ExtractAppRegInfoAndClientSecret" version="SHA-512:c68603f4053e87b26768c143acbcb8b36501cfa3caa6f24542d0c8c4631e71df23d64046462df333d3434e810940b277b30c7acc80e9bed5632d830d255c4f5b"/>
+        <VersionInfo resourceName="EV-ExtractClientJWKSURIFromRegoInfo" version="SHA-512:899d6266eace0ef8fad736fe1690401749c92d3a3df945b432ca5064b1dfd72ac07bc117e5a724d08f6ad2584fd26c414882a3f17df74d6fb1c47f04ab6d2bd7"/>
+        <VersionInfo resourceName="FC-GetClientJWKS" version="SHA-512:73df61518b3a393da7a5ff1755dc3158ad25c1cce215b0ac21aa29766191d1e334786db82b58943f7d5e83f9ee1cb5741150c02a42cc4a70370129286e73bd5e"/>
+        <VersionInfo resourceName="JWT-VerifyPrivateKeyJWT" version="SHA-512:fd9431b8a282156ddffffff63395eb048f5d3557bb609548afb12780b6a13e6139a57dd76e7ca1c93c3db30da8e06798096ffa2f28480d622cec31b4a5c3af75"/>
+        <VersionInfo resourceName="RF-InvalidJWT" version="SHA-512:7bec8cd7ec59812b4a39898db1cc6d98d9c314dec39fc6eea8461d61c734ab776b7a1ba257a10147ff49a9f02741bbd8371a16130ba181edf22c4d962eeb587f"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:c296d0c318b2e89dc439517dc7b4c688d896d3df1d2526955e1fd8be3d9de976f37698dbdb81b2630cbbcccc9dcfcd24ddbb860b4cb9f117d817bdc6139ad4c2"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

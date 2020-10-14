@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>KVM-GetMockCDRRegisterKeys</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Get JWKS">
+            <Description>Return hardcoded JWKS info. Necessary for verifying JTW token and/or SSA signed by CDR Register</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>AM-SetMockJWKSInfo</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/jwks") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Get SSA">
+            <Description>Get a Software Statement Assertion (SSA) for a software product on the CDR Register to be used for Dynamic Registration with a Data Holder (based on mock data)</Description>
+            <Request>
+                <Step>
+                    <Name>EV-SWIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetRedirectURIs</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GenerateMockSSAForSWId</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{industry}/data-recipients/brands/{dataRecipientBrandId}/software-products/{softwareProductId}/ssa") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Get Admin API Request">
+            <Description>Generate an admin API request. This can be used to invoke the Admin APIs: metrics and metadata update</Description>
+            <Request>
+                <Step>
+                    <Name>JWT-GenerateAdminRequest</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/adminrequest") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix = "/jwks")  and (not ((request.verb = "GET")))</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/mock-cdr-register</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "OIDC - Authorise and Obtain Token (Hybrid Flow)",
+			"name": "OIDC - Authorise and Obtain Token (Hybrid Flow) - Basic Auth",
 			"item": [
 				{
 					"name": "OIDC Authorise - Step 1 (Hybrid) - /authorise",
@@ -379,7 +379,7 @@
 					"response": []
 				},
 				{
-					"name": "OIDC Acquire Token - Step 4 (Hybrid)",
+					"name": "OIDC Acquire Token - Step 4 (Hybrid) - Basic Auth",
 					"event": [
 						{
 							"listen": "test",
@@ -469,7 +469,531 @@
 					"response": []
 				}
 			],
-			"description": "These 4 requests automate the steps of obtaining an authorisation code by navigating through the mock login and consent screens and obtaining a token using the authorisation code"
+			"description": "These 4 requests automate the steps of obtaining an authorisation code by navigating through the mock login and consent screens and obtaining a token using the authorisation code\n Use this approach when testing a client that has been added during the initial setup, as those client are persisted in the mock oidc provider and have been defined as accepting basic client auth.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "68708adf-ea39-4899-901e-dd8151a04944",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f89f025c-3f7a-45bc-a70b-6a49e1d57a8a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "OIDC - Authorise and Obtain Token (Hybrid Flow)  - Private Key JWT",
+			"item": [
+				{
+					"name": "OIDC Authorise - Step 1 (Hybrid) - /authorise",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff4d4e1e-9501-48da-9f98-8aa9779ff652",
+								"exec": [
+									"// Store html interaction  and uuid to use in subsequent calls",
+									"",
+									"var html = cheerio(responseBody);",
+									"var nextInteraction1 = html.find('#loginForm').attr('action');",
+									"var uuid = html.find('#uuid').attr('value');",
+									"var acr = html.find('#acr').attr('value');",
+									"",
+									"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
+									"pm.environment.set(\"uuid\", uuid);",
+									"pm.environment.set(\"acr\", acr);",
+									"",
+									"// If the auth code had already been issued and was still valid, this",
+									"// invocation would directly return it (no necessary login)",
+									"// if that's the case, store the resulting auth_code ",
+									"",
+									"var auth_code = html.find('[name=\"code\"]').val();",
+									"",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8957957d-af1d-43b0-b0b7-336a1f37d9eb",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{dynamic_client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldkla&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"authorise"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "{{dynamic_client_id}}",
+									"description": "If you want to change this value, always do it by altering the corresponding env variable. IMPORTANT: This client_id, as well as its redirect uri and public key needs to be registered with the OIDC provider included in the reference implementation (Manual edit of client configuration file)"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{client_redirect_uri}}",
+									"description": "If you want to change this value, always do it by altering the corresponding env variable"
+								},
+								{
+									"key": "response_type",
+									"value": "code%20id_token"
+								},
+								{
+									"key": "scope",
+									"value": "openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read",
+									"description": "Add the required scopes, separated by %20"
+								},
+								{
+									"key": "state",
+									"value": "af0ifjsldkla",
+									"description": "For test purposes, any string will do"
+								},
+								{
+									"key": "nonce",
+									"value": "n-0S6_WzA2Mj2",
+									"description": "For test purposes, any string will do"
+								},
+								{
+									"key": "max_age",
+									"value": "600"
+								},
+								{
+									"key": "acr_values",
+									"value": "urn:cds.au:cdr:3",
+									"description": "One of the valid authentication types the OIDC provider accepts"
+								},
+								{
+									"key": "response_mode",
+									"value": "form_post",
+									"description": "This response mode allows automation in Postman in the Step to get the authorisation code"
+								},
+								{
+									"key": "jti",
+									"value": "37747cd1-c105-4569-9f75-4adf28b73e32",
+									"description": "For test purposes, any jti will do"
+								},
+								{
+									"key": "exp",
+									"value": "1596692638",
+									"description": "Epoch timestamp. Any value in the future will work"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Authorise - Step 2 (Hybrid) - Submit login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "074d2f83-8d30-42a3-9ac7-63baf93541b8",
+								"exec": [
+									"// Store html interaction  and uuid to use in subsequent calls",
+									"",
+									"var html = cheerio(responseBody);",
+									"var nextInteraction2 = html.find('#consentForm').attr('action');",
+									"var uuid = html.find('#uuid').attr('value');",
+									"var acr = html.find('#acr').attr('value');",
+									"var account = html.find('#account').attr('value');",
+									"var consentResponse = html.find('#consent').attr('value');",
+									"",
+									"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
+									"pm.environment.set(\"uuid\", uuid);",
+									"pm.environment.set(\"acr\", acr);",
+									"pm.environment.set(\"account\", account);",
+									"pm.environment.set(\"consentResponse\", consentResponse);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "uuid",
+									"value": "{{uuid}}",
+									"type": "text"
+								},
+								{
+									"key": "login",
+									"value": "10203040",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "anyPasswordWillDo",
+									"type": "text"
+								},
+								{
+									"key": "acr",
+									"value": "{{acr}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net{{nextInteraction1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2d37c59-e97c-43c4-abfb-2399021ec98f",
+								"exec": [
+									"// Store authorisation code to use in subsequent calls",
+									"",
+									"const html_response = cheerio(responseBody);",
+									"var auth_code = html_response.find('[name=\"code\"]').val();",
+									"",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "uuid",
+									"value": "{{uuid}}",
+									"type": "text"
+								},
+								{
+									"key": "account",
+									"value": "{{account}}",
+									"type": "text"
+								},
+								{
+									"key": "acr",
+									"value": "{{acr}}",
+									"type": "text"
+								},
+								{
+									"key": "bank:accounts.basic:read",
+									"value": "bank:accounts.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text"
+								},
+								{
+									"key": "bank:accounts.detail:read",
+									"value": "bank:accounts.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text"
+								},
+								{
+									"key": "bank:transactions:read",
+									"value": "bank:transactions:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text"
+								},
+								{
+									"key": "bank:payees:read",
+									"value": "bank:payees:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:regular_payments:read",
+									"value": "bank:regular_payments:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.basic:read",
+									"value": "common:customer.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.detail:read",
+									"value": "common:customer.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net{{nextInteraction2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Acquire Token - Step 4.1 - Generate Private Key JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32322c96-20a8-411c-9956-4c1b86f3e0cc",
+								"exec": [
+									"// Store private_key_jwt to reuse in next call",
+									"pm.environment.set(\"private_key_jwt\", pm.response.text());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-adr-client",
+								"privatekeyjwt"
+							],
+							"query": [
+								{
+									"key": "aud",
+									"value": "http://pirulo.com",
+									"disabled": true
+								},
+								{
+									"key": "client_id",
+									"value": "{{dynamic_client_id}}"
+								}
+							]
+						},
+						"description": "Use Mock ADR client capabilities to generate the client_assertion required in the next step"
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Acquire Token - Step 4.2 (Hybrid) - Private Key JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f7a8b54-b5a6-4d04-bf0a-c4ebbf9d4516",
+								"exec": [
+									"// Store scope, access token and id token to reuse in subsequent calls",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"access_token\", jsonData.access_token);",
+									"pm.environment.set(\"id_token\", jsonData.id_token);",
+									"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+									"pm.environment.set(\"scope\", jsonData.scope);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "{{auth_code}}",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{client_redirect_uri}}",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{dynamic_client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion_type",
+									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion",
+									"value": "{{private_key_jwt}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/token",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "These 4 requests automate the steps of obtaining an authorisation code by navigating through the mock login and consent screens and obtaining a token using the authorisation code.\n When obtaining the token, it uses private key jwt authentication method. \n Use this approach when testing a client that has been added using Dynamic Client Registration (Bear in mind that mock-oidc-provider does NOT persist new clients, so after a while they may no longer work)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "096fc4ba-dfcb-4962-ac2d-fa40939d5e4d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0576d5e5-295a-469a-99ea-a2c429c0a0b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "OIDC - Other requests",
@@ -2326,74 +2850,42 @@
 			"name": "Admin",
 			"item": [
 				{
-					"name": "0 - Generate JWT Header and Body - This will result in an error",
+					"name": "0 - Mock Register Get Admin Request JWT",
 					"event": [
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
-								"id": "e9a8675c-4c5b-49e5-a970-13a5825dfee7",
+								"id": "e3cdbbac-09be-4326-a352-a3fc32761728",
 								"exec": [
-									"// Build JWT header and body based on params",
-									"",
-									"jwt_header = {};",
-									"jwt_header.alg = \"PS256\";",
-									"jwt_header.typ = \"JWT\";",
-									"jwt_header.kid = pm.request.url.query.get(\"client_public_key_kid\");",
-									"",
-									"jwt_body = {};",
-									"jwt_body.iss = \"cdr-register\";",
-									"jwt_body.sub = \"cdr-register\";",
-									"admin_base_path =  \"https://\" + pm.environment.get(\"org\") + \"-\" + pm.environment.get(\"env\") + \".apigee.net/cds-au/v1\" ;",
-									"jwt_body.aud = admin_base_path + pm.request.url.query.get(\"admin-endpoint\");",
-									"var uuid = require('uuid'); ",
-									"// Generate a unique UUID",
-									"jwt_body.jti =  uuid.v4();",
-									"var timestamp = Math.floor(Date.now() / 1000); // exp and iat claims are expressed in seconds",
-									"jwt_body.iat = timestamp;",
-									"jwt_body.exp = timestamp + 300; // Set expiry in 5 minutes",
-									"",
-									"instructions = \"This is not really and error, but instructions: Use the jwt_header and jwt_body to generate a JWT Token. Make sure to sign using the private key stored in <<your_cloned_repo>>/setup/certs/MockCDRREgsiter_rsa_private.pem\";",
-									"",
-									"",
-									"throw new Error(instructions + \" - JWT_Header = \" + JSON.stringify(jwt_header) + \" - JWT_Body = \" + JSON.stringify(jwt_body)); "
+									"// Store private_key_jwt to reuse in next call",
+									"pm.environment.set(\"register_token\", pm.response.text());"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{{req_body}}"
-						},
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "no-endpoint?admin-endpoint=/admin/metrics&client_public_key_kid=MockCDRRegister",
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics",
+							"protocol": "https",
 							"host": [
-								"no-endpoint"
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-cdr-register",
+								"adminrequest"
 							],
 							"query": [
 								{
 									"key": "admin-endpoint",
-									"value": "/admin/metrics",
-									"description": "The endpoint to be accessed with the JWT token"
-								},
-								{
-									"key": "client_public_key_kid",
-									"value": "MockCDRRegister",
-									"description": "The pubick key id identifying the key to be used to verify the JWT"
+									"value": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics"
 								}
 							]
-						},
-						"description": "Executing this pseudo request will generate an Error message including a JWT header and body that you can then use to generate an actual JWT token, using the private key corresponding to the Mock CDR register (Generated by deploy script and stored in .../setup/certs).\nSet the generated JWT as the bearer token in the actual admin request to execute"
+						}
 					},
 					"response": []
 				},
@@ -2490,6 +2982,647 @@
 								{
 									"key": "period",
 									"value": "ALL"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dynamic Client Registration",
+			"item": [
+				{
+					"name": "OIDC - Obtain token for Registration Operations (Get/Update/Delete)",
+					"item": [
+						{
+							"name": "Step 1 - Mock ADR Client - Get Private Key JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f3bc1fa8-4c1f-4cbd-991a-9ad1f606fc14",
+										"exec": [
+											"// Store private_key_jwt to reuse in next call",
+											"pm.environment.set(\"private_key_jwt\", pm.response.text());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"mock-adr-client",
+										"privatekeyjwt"
+									],
+									"query": [
+										{
+											"key": "aud",
+											"value": "http://pirulo.com",
+											"disabled": true
+										},
+										{
+											"key": "client_id",
+											"value": "{{dynamic_client_id}}"
+										}
+									]
+								},
+								"description": "Obtain Private Key JWT required to request an access token using the private key JWT authentication method"
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2 - OIDC Acquire Token for Client Registration Management Operations (Private Key JWT)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c29d1074-b67f-46c4-a162-34f6d42563b9",
+										"exec": [
+											"// Store scope, access token and id token to reuse in subsequent calls",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_token\", jsonData.access_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+											"pm.environment.set(\"scope\", jsonData.scope);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "cdr:registration",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dynamic_client_id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{private_key_jwt}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Generate Request for Register/Update Dynamic Client (Uses Mock ADR Client)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b78e51f-a65b-4617-9562-e661c6321c07",
+								"exec": [
+									"// Store dcr request to reuse in next call",
+									"pm.environment.set(\"dcr_request_jwt\", pm.response.text());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-adr-client",
+								"dcrrequest"
+							],
+							"query": [
+								{
+									"key": "org_id",
+									"value": "AAA"
+								},
+								{
+									"key": "recipient_base_uri",
+									"value": "https://mycompany.com",
+									"disabled": true
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{client_redirect_uri}}"
+								},
+								{
+									"key": "software_id",
+									"value": "SomeSWID2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba9a943d-5843-4149-961f-fb8f8f2270fc",
+								"exec": [
+									"// Store client_id and client_secret to reuse in subsequent calls",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"dynamic_client_id\", jsonData.client_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/jwt",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{dcr_request_jwt}}"
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/register",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "916f94d9-8d8d-4d56-9267-f11dc56f07a0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/jwt"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"register",
+								"{{dynamic_client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b8a6417f-d370-4340-9bdd-1709945ae96e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/jwt"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{dcr_request_jwt}}"
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"register",
+								"{{dynamic_client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "649b6e21-3840-4729-b279-745ca1dc3447",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "{{access_token}}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/jwt"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"register",
+								"{{dynamic_client_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Mock CDR Register",
+			"item": [
+				{
+					"name": "Mock Register Get JWKS Certs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/jwks",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-cdr-register",
+								"jwks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mock Register Get SSA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/banking/data-recipients/brands/amybrand/software-products/{{softwareProductId}}/ssa?recipient_base_uri=https://{{org}}-{{env}}.apigee.net/mock-adr-client&redirect_uri={{client_redirect_uri}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-cdr-register",
+								"banking",
+								"data-recipients",
+								"brands",
+								"amybrand",
+								"software-products",
+								"{{softwareProductId}}",
+								"ssa"
+							],
+							"query": [
+								{
+									"key": "org_id",
+									"value": "ORG-521",
+									"disabled": true
+								},
+								{
+									"key": "recipient_base_uri",
+									"value": "https://{{org}}-{{env}}.apigee.net/mock-adr-client"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "{{client_redirect_uri}}"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://mycompany.com/redirect2",
+									"disabled": true
+								},
+								{
+									"key": "jwks_uri",
+									"value": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/jwks",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mock Register Get Admin Request JWT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-cdr-register",
+								"adminrequest"
+							],
+							"query": [
+								{
+									"key": "admin-endpoint",
+									"value": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Mock ADR Client",
+			"item": [
+				{
+					"name": "Mock ADR Client Get JWKS Certs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/jwks",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-adr-client",
+								"jwks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mock ADR Client - Get Dynamic Client Registration Request JWT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&recipient_base_uri=https://pirulo.com&redirect_uri=https://mycompany.com/redirect1&software_id=swid2",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-adr-client",
+								"dcrrequest"
+							],
+							"query": [
+								{
+									"key": "org_id",
+									"value": "AAA"
+								},
+								{
+									"key": "recipient_base_uri",
+									"value": "https://pirulo.com"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://mycompany.com/redirect1"
+								},
+								{
+									"key": "software_id",
+									"value": "swid2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mock ADR Client - Get Private Key JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38ea76f0-f852-4b8c-89f0-8f036b551798",
+								"exec": [
+									"// Store private_key_jwt to reuse in next call",
+									"pm.environment.set(\"private_key_jwt\", pm.response.text());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"mock-adr-client",
+								"privatekeyjwt"
+							],
+							"query": [
+								{
+									"key": "aud",
+									"value": "http://pirulo.com",
+									"disabled": true
+								},
+								{
+									"key": "client_id",
+									"value": "{{dynamic_client_id}}"
 								}
 							]
 						}

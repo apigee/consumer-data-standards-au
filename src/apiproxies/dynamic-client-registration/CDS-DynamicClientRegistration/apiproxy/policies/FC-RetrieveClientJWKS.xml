@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-RetrieveClientJWKS">
+    <DisplayName>FC-RetrieveClientJWKS</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <Parameters>
+        <Parameter name="jwksURI" ref="ADRDetailsFromSSA.jwks_uri"/>
+    </Parameters>
+    <SharedFlowBundle>get-jwks-from-dynamic-uri</SharedFlowBundle>
+</FlowCallout>

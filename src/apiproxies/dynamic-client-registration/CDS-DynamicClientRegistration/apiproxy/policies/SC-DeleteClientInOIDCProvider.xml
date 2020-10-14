@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-DeleteClientInOIDCProvider">
+    <DisplayName>SC-DeleteClientInOIDCProvider</DisplayName>
+    <Request>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Verb>DELETE</Verb>
+            <Headers>
+                <Header name="Authorization">Bearer {app.IDP_registration_access_token}</Header>
+            </Headers>
+            <Payload/>
+        </Set>
+    </Request>
+    <Response>OIDCProviderResponse</Response>
+    <LocalTargetConnection>
+        <Properties>
+            <!-- Ignore any errors in OIDC Provider. The client in Mock OIDC provider is transient anyway -->
+            <Property name="success.codes">1xx,2xx,3xx,404,5xx</Property>
+        </Properties>
+        <Path>/mock-oidc/register/{theClientId}</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

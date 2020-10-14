@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <Description></Description>
+    <Description/>
     <FaultRules/>
     <Flows>
         <Flow name="Get OIDC Configuration">
-            <Description></Description>
+            <Description/>
             <Request/>
             <Response>
                 <Step>
@@ -43,7 +43,12 @@
         </Flow>
     </Flows>
     <PreFlow name="PreFlow">
-        <Request/>
+        <Request>
+            <Step>
+                <Name>RF-InvocationFromProxyChainingOnly</Name>
+                <Condition>virtualhost.ip != "127.0.0.1"</Condition>
+            </Step>
+        </Request>
         <Response/>
     </PreFlow>
     <HTTPProxyConnection>

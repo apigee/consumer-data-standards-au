@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-StoreJWKS">
+    <DisplayName>PC-StoreJWKS</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix>jwks</Prefix>
+        <KeyFragment ref="jwksURI"/>
+    </CacheKey>
+    <Scope>Application</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>300</TimeoutInSec>
+    </ExpirySettings>
+    <Source>jwksVar</Source>
+</PopulateCache>

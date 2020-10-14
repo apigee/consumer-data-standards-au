@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RemoveProtocolFromJWKSURI">
+    <DisplayName>AM-RemoveProtocolFromJWKSURI</DisplayName>
+    <AssignVariable>
+        <Name>searchStrRegex1</Name>
+        <Value>https:\/\/</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>searchStrRegex2</Name>
+        <Value>https:\/\/[^\/]+\/</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>searchStrRegex3</Name>
+        <Value>\/(.)*</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jwksURINoProtocol</Name>
+        <Template>{replaceFirst(jwksURI,searchStrRegex1, '')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jwksEndpoint</Name>
+        <Template>{replaceFirst(jwksURI,searchStrRegex2, '')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jwksHostname</Name>
+        <Template>{replaceFirst(jwksURINoProtocol,searchStrRegex3, '')}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

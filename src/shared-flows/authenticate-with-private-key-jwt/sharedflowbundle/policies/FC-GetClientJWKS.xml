@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-GetClientJWKS">
+    <DisplayName>FC-GetClientJWKS</DisplayName>
+    <SharedFlowBundle>get-jwks-from-dynamic-uri</SharedFlowBundle>
+    <Parameters>
+        <Parameter name="jwksURI" ref="clientJWKSUri"/>
+    </Parameters>
+</FlowCallout>

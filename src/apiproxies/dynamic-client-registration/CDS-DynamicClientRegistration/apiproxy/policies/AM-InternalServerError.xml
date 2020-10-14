@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-InternalServerError">
+    <DisplayName>AM-InternalServerError</DisplayName>
+    <Set>
+        <Payload>{  "error": "Internal error",
+    "error_description": "Cannot process request"
+   }</Payload>
+        <StatusCode>500</StatusCode>
+        <ReasonPhrase>Internal server error</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="message"/>
+</AssignMessage>

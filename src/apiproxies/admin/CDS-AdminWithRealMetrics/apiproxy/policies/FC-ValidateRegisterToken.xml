@@ -4,4 +4,8 @@
     <FaultRules/>
     <Properties/>
     <SharedFlowBundle>validate-cdr-register-token</SharedFlowBundle>
+    <Parameters>
+        <Parameter name="cdrToken" ref="cdrToken"/>
+        <Parameter name="jwtType">Bearer</Parameter>
+    </Parameters>
 </FlowCallout>

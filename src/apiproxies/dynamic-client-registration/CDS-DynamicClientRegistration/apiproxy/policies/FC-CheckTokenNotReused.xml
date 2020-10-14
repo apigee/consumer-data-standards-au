@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-CheckTokenNotReused">
+    <DisplayName>FC-CheckTokenNotReused</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>check-token-not-reused</SharedFlowBundle>
+    <Parameters>
+        <Parameter name="jwtPayload" ref="jwt.JWT-VerifyJWTInRequestBody.payload-json"/>
+        <Parameter name="jwtType">Dynamic Client Registration</Parameter>
+        <Parameter name="cacheTime" ref="jwt.JWT-VerifyJWTInRequestBody.seconds_remaining"/>
+    </Parameters>
+</FlowCallout>

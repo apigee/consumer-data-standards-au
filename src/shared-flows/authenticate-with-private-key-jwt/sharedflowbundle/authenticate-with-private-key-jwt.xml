@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="2" name="authenticate-with-private-key-jwt">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1602460875658</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed</Description>
+    <DisplayName>authenticate-with-private-key-jwt</DisplayName>
+    <LastModifiedAt>1602478677208</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:5ee4d3815541aef52d2eede50d2bedc4be5dae4be8016611fdeb9d84deeea30f54d8c550396391043ea65bb4f747a1712d8ef2ae6567f53810e2032aa894e427</ManifestVersion>
+    <Policies>
+        <Policy>AE-GetAppDetails</Policy>
+        <Policy>AM-SetValidAudience</Policy>
+        <Policy>BA-GenerateBasicEquivalentAuthHeader</Policy>
+        <Policy>EV-ExtractAppRegInfoAndClientSecret</Policy>
+        <Policy>EV-ExtractClientJWKSURIFromRegoInfo</Policy>
+        <Policy>FC-GetClientJWKS</Policy>
+        <Policy>JWT-VerifyPrivateKeyJWT</Policy>
+        <Policy>RF-InvalidJWT</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

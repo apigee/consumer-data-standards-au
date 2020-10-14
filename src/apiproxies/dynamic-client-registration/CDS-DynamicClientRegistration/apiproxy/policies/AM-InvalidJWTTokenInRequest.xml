@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-InvalidJWTTokenInRequest">
+    <DisplayName>AM-InvalidJWTTokenInRequest</DisplayName>
+    <Properties/>
+    <FaultRules/>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json">{  "error": "invalid_client_metadata",
+    "error_description": "{jwt.JWT-VerifyJWTInRequestBody.error:Invalid-token-in-request}"
+   }</Payload>
+        <StatusCode>400</StatusCode>
+        <ReasonPhrase>Bad Request</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

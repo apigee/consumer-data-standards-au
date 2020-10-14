@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="8" name="CDS-Admin">
+<APIProxy revision="9" name="CDS-Admin">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -13,9 +13,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Admin APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1597821203177</LastModifiedAt>
+    <LastModifiedAt>1600657661156</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:cc08e7749f270ef276e0e04184ac778390195f47fe8b1b661113f934f7e9dbffe0db8bbe6090328577ccc90a3e8c1df01b8e514fc4a78375ce985c95c21e72fa</ManifestVersion>
+    <ManifestVersion>SHA-512:1c790aa2046b1dc560eab4e423583abdaab07836af2e65438bcc75303e6dcf2b2d9c9767a128d79ca8b7b9f190edef1f0531f8e36f7732fa51514952ecf65622</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>
@@ -24,6 +24,7 @@
         <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
         <Policy>AM-TokenNotVerified</Policy>
         <Policy>EV-GetAction</Policy>
+        <Policy>EV-GetJWTTokenFromAuthHeader</Policy>
         <Policy>EV-getErrorDetail</Policy>
         <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>

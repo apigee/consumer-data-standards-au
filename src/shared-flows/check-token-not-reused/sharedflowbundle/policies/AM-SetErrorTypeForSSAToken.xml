@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetErrorTypeForSSAToken">
+    <DisplayName>AM-SetErrorTypeForSSAToken</DisplayName>
+    <AssignVariable>
+        <Name>errorType</Name>
+        <Value>invalid_software_statement</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>TokenReusedMessage</Name>
+        <Template>Reused SSA token</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

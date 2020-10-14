@@ -1,38 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
-        <Name>EV-GetJWTTokenFromAuthHeader</Name>
-    </Step>
-    <Step>
-        <Name>RF-MissingJWTToken</Name>
         <Condition>(cdrToken = null) or (cdrToken = "")</Condition>
+        <FaultRules/>
+        <Name>RF-MissingJWTTokenBearer</Name>
     </Step>
     <Step>
-        <Name>AM-SetValidAudience</Name>
+        <FaultRules/>
+        <Name>AM-SetValidAudienceWhenBearerToken</Name>
     </Step>
     <Step>
+        <FaultRules/>
         <Name>JWT-VerifyCDRToken</Name>
     </Step>
     <Step>
-        <Name>RF-TokenNotVerified</Name>
         <Condition>JWT.failed = "true"</Condition>
-    </Step>
-    <Step>
-        <Name>RF-MissingJTIClaim</Name>
-        <Condition>(jwt.JWT-VerifyCDRToken.decoded.claim.jti = null) or (jwt.JWT-VerifyCDRToken.decoded.claim.jti = "")</Condition>
+        <FaultRules/>
+        <Name>RF-TokenNotVerifiedBearer</Name>
     </Step>
     <Step>
         <Name>RF-MissingEXPClaim</Name>
-        <Condition>(jwt.JWT-VerifyCDRToken.decoded.claim.exp = null) or (jwt.JWT-VerifyCDRToken.decoded.claim.exp = "")</Condition>
+        <Condition>(jwt.JWT-VerifyCDRToken.decoded.claim.exp == "") or (jwt.JWT-VerifyCDRToken.decoded.claim.exp == null)</Condition>
     </Step>
     <Step>
-        <Name>LC-JTIHasBeenSeen</Name>
-    </Step>
-    <Step>
-        <Name>RF-TokenReused</Name>
-        <Condition>(cachedJTI != null)</Condition>
-    </Step>
-    <Step>
-        <Name>PC-RemeberJTI</Name>
+        <Name>FC-CheckTokenNotReused</Name>
     </Step>
 </SharedFlow>

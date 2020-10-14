@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="EV-GetADRDetailsFromSSA" version="SHA-512:9ca8253c45e39241c8fffd58d38d3a9d46299b6395a37015ae0d4372a0be6d9257749470d4daf7ea564e59f093d7187a9c4941f8d747abee0d6fb8aab8cff4fb"/>
+        <VersionInfo resourceName="FC-CheckTokenNotReused" version="SHA-512:699e6843edd021b4139e58b0cf5cf7ac0a64f7316c9ec32634739a97c4d891aeccfd9c7c7f84aa9b5caed563c846859717299b1ca08aa95195111106c9e4a9a8"/>
+        <VersionInfo resourceName="JWT-VerifyCDRSSAToken" version="SHA-512:661e63076545201056196f118785e5144ac7da4949c49453270ad0db3f329194218015760c85cea07dab62dc58453a6595f0f3285bdf05c2db7d61d65ba87969"/>
+        <VersionInfo resourceName="RF-MissingEXPClaim" version="SHA-512:4709e4fbf08ed2ad797d79a1a82b8c35194b2c341a6066d2f0c02a60a65ee8dd1edec2a367012b16e0b83a53d5e29f070ab1bfc31bcb35f4e3cfc7c830200433"/>
+        <VersionInfo resourceName="RF-MissingJWTTokenSSA" version="SHA-512:88848ff1840cc8563285f208f381dddd3f00f6f114a4b4790f081c7e30d8545b1708863b62fe9b3064b0de7dae56a1d50abf4d43a8ced130a3e0c27c617b49c9"/>
+        <VersionInfo resourceName="RF-TokenNotVerifiedSSA" version="SHA-512:cadedd8b83aaa51c59e21dd444945172831fc4b2df1802df27d5f4f6a1b264df1cea259f7808ab6dd80d20acd1dbd9f6ea7538b3fb5ef8ef52b73ae66d6e8b05"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:63ec40d6e661b73bef30427ad47b3589572441692440491692e5c1b2006373aedc7e1c2b553168545f9abc08959112801ec1187bcfe58f4767f5bf0e9ab48c57"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

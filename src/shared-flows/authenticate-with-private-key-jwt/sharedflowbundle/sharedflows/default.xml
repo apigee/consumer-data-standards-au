@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>AE-GetAppDetails</Name>
+    </Step>
+    <Step>
+        <Name>EV-ExtractAppRegInfoAndClientSecret</Name>
+    </Step>
+    <Step>
+        <Name>EV-ExtractClientJWKSURIFromRegoInfo</Name>
+    </Step>
+    <Step>
+        <Name>AM-SetValidAudience</Name>
+    </Step>
+    <Step>
+        <Name>FC-GetClientJWKS</Name>
+    </Step>
+    <Step>
+        <Name>JWT-VerifyPrivateKeyJWT</Name>
+    </Step>
+    <Step>
+        <Name>RF-InvalidJWT</Name>
+        <Condition>JWT.failed = true</Condition>
+    </Step>
+    <Step>
+        <Name>BA-GenerateBasicEquivalentAuthHeader</Name>
+    </Step>
+</SharedFlow>

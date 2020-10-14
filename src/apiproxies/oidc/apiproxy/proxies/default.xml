@@ -124,8 +124,8 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "refresh_token")</Condition>
         </Flow>
-        <Flow name="Acquire Token">
-            <Description>Acquire Token</Description>
+        <Flow name="Acquire Token - Auth Code">
+            <Description>Acquire Token Authorization Code Grant Type</Description>
             <Request>
                 <Step>
                     <FaultRules/>
@@ -138,6 +138,10 @@
                 <Step>
                     <FaultRules/>
                     <Name>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Name>
+                </Step>
+                <Step>
+                    <Name>AM-RemovePrivateKeyJWTParams</Name>
+                    <Condition>(request.formparam.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" ) and (request.formparam.client_assertion != "") and (request.formparam.client_id != "")</Condition>
                 </Step>
             </Request>
             <Response>
@@ -177,7 +181,25 @@
                     <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "authorization_code")</Condition>
+        </Flow>
+        <Flow name="Acquire Token - Client Cred">
+            <Description>Acquire Token Client Credentials Grant Type</Description>
+            <Request>
+                <Step>
+                    <Name>RF-InvalidScope</Name>
+                    <Condition>(request.formparam.scope != "cdr:registration")</Condition>
+                </Step>
+                <Step>
+                    <Name>OA-IssueAccessTokenClientCreds</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAccessTokenResponse-ClientCred</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>
         </Flow>
         <Flow name="Revoke Token">
             <Description>Get Token Info</Description>
@@ -380,6 +402,10 @@
                 <FaultRules/>
                 <Name>AM-SetDefaultValuesForTokenCustomDimensions</Name>
             </Step>
+            <Step>
+                <Name>FC-AuthenticateWithPrivateKeyJWT</Name>
+                <Condition>(request.formparam.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" ) and (request.formparam.client_assertion != "") and (request.formparam.client_id != "")</Condition>
+            </Step>
         </Request>
         <Response>
             <Step>
@@ -393,6 +419,9 @@
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
+    <RouteRule name="noroute">
+        <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>
+    </RouteRule>
     <RouteRule name="sandbox">
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>

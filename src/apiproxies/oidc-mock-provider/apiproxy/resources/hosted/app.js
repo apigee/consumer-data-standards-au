@@ -1,13 +1,14 @@
 /* eslint no-console:off */
 const express = require('express')
 const Provider = require('oidc-provider')
-const configuration = require('./support/config')
+var configuration = require('./support/config')
 const clients = require('./support/clients')
 const routes = require('./support/routes')
 const account = require('./support/account');
 const path = require('path')
-const app = express()
-	// Determine whether to run in local mode
+const app = express();
+
+// Determine whether to run in local mode
 localTest = !(process.env.APIGEE_ORGANIZATION);
 
 const oidcURL = (localTest) ? "http://localhost:9000" : process.env.OIDC_URL || ("https://" + process.env.APIGEE_ORGANIZATION + "-" + process.env.APIGEE_ENVIRONMENT + ".apigee.net");
@@ -15,6 +16,11 @@ const oidcURL = (localTest) ? "http://localhost:9000" : process.env.OIDC_URL || 
 // Add required user info claims. These are hardcoded in this function
 configuration.findAccount = account.findAccount;
 configuration.findById = account.findById;
+
+// Add function that allows to set secret during dynamic client registration
+configuration.features.registration.secretFactory = function secretFactory() {
+	return "someMean1ngLessPwdForAClientThatWillN0tBePersisted";
+}
 
 
 const oidc = new Provider(oidcURL, configuration)
@@ -25,7 +31,7 @@ Provider.useRequest()
 
 let server
 
-	(async() => {
+(async () => {
 	await oidc.initialize({
 		clients
 	})
@@ -35,9 +41,9 @@ let server
 	app.enable('trust proxy')
 	oidc.proxy = true
 
-	server = app.listen(process.env.PORT || 9000, function() {
+	server = app.listen(process.env.PORT || 9000, function () {
 		console.log('Listening on port %d', server.address().port)
-		
+
 	})
 
 })().catch((err) => {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-RegisterClientInOIDCProvider">
+    <DisplayName>SC-RegisterClientInOIDCProvider</DisplayName>
+    <Properties/>
+    <Request>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Verb>POST</Verb>
+            <Payload contentType="application/json">{   
+   "redirect_uris": ["{redirectURIInRequest}"],
+   "grant_types":[
+      "client_credentials",
+      "authorization_code",
+      "refresh_token",
+      "implicit"
+   ],
+   "response_types":["code id_token"],
+   "response_modes": [
+      "form_post"
+    ],
+    "token_endpoint_auth_method": "client_secret_basic"
+   }</Payload>
+        </Set>
+    </Request>
+    <Response>OIDCProviderResponse</Response>
+    <LocalTargetConnection>
+        <Path>/mock-oidc/register</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

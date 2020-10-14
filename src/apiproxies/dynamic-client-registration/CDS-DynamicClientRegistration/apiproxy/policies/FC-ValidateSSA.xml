@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ValidateSSA">
+    <DisplayName>FC-ValidateSSA</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>validate-ssa</SharedFlowBundle>
+    <Parameters>
+        <Parameter name="cdrToken">{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.software_statement}</Parameter>
+    </Parameters>
+</FlowCallout>

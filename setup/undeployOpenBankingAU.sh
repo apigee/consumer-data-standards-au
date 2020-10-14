@@ -35,6 +35,17 @@ apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --pr
 echo Removing API Product "OIDC"
 apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSOIDC"
 
+echo Removing API Product "DynamicClientRegistration"
+apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSDynamicClientRegistration"
+
+# Remove KVMs
+echo Removing KVM ApigeeAPICredentials
+apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName ApigeeAPICredentials
+echo Removing KVM mockCDRRegister
+apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName mockCDRRegister
+echo Removing KVM mockADRClient
+apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName mockADRClient
+
 # Undeploy banking apiproxies
 cd src/apiproxies/banking
 for ap in $(ls .) 
@@ -70,8 +81,18 @@ cd ../admin/CDS-Admin
 echo Undeploying CDS-Admin Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
 
+# Undeploy Client Dynamic Registration proxy and the accompanying mock-register and mock-adr-client proxies
+cd ../../dynamic-client-registration
+for ap in $(ls .) 
+do 
+    echo Undeploying $ap Apiproxy
+    cd $ap
+    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
+    cd ..
+ done
+
 # Undeploy Shared flows
-cd ../../../shared-flows
+cd ../../shared-flows
 for sf in $(ls .) 
 do 
     echo Undeploying $sf Shared Flow 

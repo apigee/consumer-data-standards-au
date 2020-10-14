@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>KVM-GetMockADRKeys</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Get JWKS">
+            <Description>Return hardcoded JWKS info. Necessary for verifying request token in Dynamic Client registration request</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>AM-SetMockJWKSInfo</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/jwks") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Get Private Key JWT">
+            <Description>Return a private key JWT. Necessary for obtaining access token for Dynamic Client management operations</Description>
+            <Request>
+                <Step>
+                    <Name>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GeneratePrivateKeyJWT</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/privatekeyjwt") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Get Dyn Client Reg Request token">
+            <Description>Generate a request token to be used in Register/Update dynamic client </Description>
+            <Request>
+                <Step>
+                    <Name>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest</Name>
+                </Step>
+                <Step>
+                    <Name>SC-GetSSAFromCDRRegister</Name>
+                </Step>
+                <Step>
+                    <Name>JS-SetRedirectURIs</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GenerateDynamicClientRegistrationRequest</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/dcrrequest") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix = "/jwks")  and (not ((request.verb = "GET")))</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/mock-adr-client</BasePath>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

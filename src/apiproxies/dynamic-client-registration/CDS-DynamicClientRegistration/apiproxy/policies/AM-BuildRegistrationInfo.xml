@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-BuildRegistrationInfo">
+    <DisplayName>AM-BuildRegistrationInfo</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>registrationInfo</Name>
+        <Template>{ "client_name": "{ADRDetailsFromSSA.client_name}", "client_description": "{ADRDetailsFromSSA.client_description}", "client_uri": "{ADRDetailsFromSSA.client_uri}", "org_id": "{ADRDetailsFromSSA.org_id}", "org_name": "{ADRDetailsFromSSA.org_name}", "redirect_uris": {jwt.JWT-DecodeJWTInRequestBody.decoded.claim.redirect_uris}, "logo_uri": "{ADRDetailsFromSSA.logo_uri}", "tos_uri": "{ADRDetailsFromSSA.tos_uri}", "policy_uri": "{ADRDetailsFromSSA.policy_uri}", "jwks_uri": "{ADRDetailsFromSSA.jwks_uri}", "revocation_uri": "{ADRDetailsFromSSA.revocation_uri}", "recipient_base_uri": "{ADRDetailsFromSSA.recipient_base_uri}", "token_endpoint_auth_method": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.token_endpoint_auth_method}", "token_endpoint_auth_signing_alg": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.token_endpoint_auth_signing_alg}", "grant_types": {jwt.JWT-DecodeJWTInRequestBody.decoded.claim.grant_types}, "response_types":{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.response_types}, "application_type": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.application_type}", "id_token_signed_response_alg": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.id_token_signed_response_alg}", "id_token_encrypted_response_alg": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.id_token_encrypted_response_alg}", "id_token_encrypted_response_enc": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.id_token_encrypted_response_enc}", "request_object_signing_alg": "{jwt.JWT-DecodeJWTInRequestBody.decoded.claim.request_object_signing_alg}", "software_id": "{ADRDetailsFromSSA.software_id}", "software_roles": "{ADRDetailsFromSSA.software_roles}","scope": "{ADRDetailsFromSSA.scope}" }</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>SSA</Name>
+        <Ref>jwt.JWT-DecodeJWTInRequestBody.decoded.claim.software_statement</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateMockSSAForSWId">
+    <DisplayName>JWT-GenerateMockSSAForSWId</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <PrivateKey>
+        <Value ref="private.mockCDRRegisterPrivateKey"/>
+        <Id>MockCDRRegister</Id>
+    </PrivateKey>
+    <Issuer>cdr-register</Issuer>
+    <ExpiresIn>30m</ExpiresIn>
+    <Id/>
+    <AdditionalClaims>
+        <Claim name="org_id" ref="orgId"/>
+        <Claim name="org_name">Mock Company</Claim>
+        <Claim name="client_name">Mock Software</Claim>
+        <Claim name="client_description">A mock software product for testing SSA, issued by a mock register</Claim>
+        <Claim name="client_uri" ref="baseURI"/>
+        <Claim name="redirect_uris" ref="redirectURIs" array="true"/>
+        <Claim name="logo_uri" ref="logoURI"/>
+        <Claim name="tos_uri" ref="tosURI"/>
+        <Claim name="policy_uri" ref="policyURI"/>
+        <Claim name="jwks_uri" ref="jwksURI"/>
+        <Claim name="recipient_base_uri" ref="baseURI"/>
+        <Claim name="revocation_uri" ref="revocationURI"/>
+        <Claim name="software_id" ref="softwareProductId"/>
+        <Claim name="software_roles">data-recipient-software-product</Claim>
+        <Claim name="scope">openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration</Claim>
+    </AdditionalClaims>
+    <OutputVariable>theJWT</OutputVariable>
+</GenerateJWT>
