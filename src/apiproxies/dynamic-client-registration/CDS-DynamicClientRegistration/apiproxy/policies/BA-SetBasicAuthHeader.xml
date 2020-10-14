@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication async="false" continueOnError="false" enabled="true" name="BA-SetBasicAuthHeader">
+    <DisplayName>BA-SetBasicAuthHeader</DisplayName>
+    <Operation>Encode</Operation>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <User ref="private.apigeeUser"/>
+    <Password ref="private.apigeePassword"/>
+    <AssignTo createNew="true">private.apigeeAuth</AssignTo>
+</BasicAuthentication>

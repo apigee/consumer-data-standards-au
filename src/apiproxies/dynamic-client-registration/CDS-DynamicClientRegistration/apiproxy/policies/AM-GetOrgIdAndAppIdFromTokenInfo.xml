@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-GetOrgIdAndAppIdFromTokenInfo">
+    <DisplayName>AM-GetAppOwnerAndAppIdFromTokenInfo</DisplayName>
+    <AssignVariable>
+        <Name>ADRDetailsFromToken.software_id</Name>
+        <Ref>developer.app.name</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>ADRDetailsFromSSA.software_id</Name>
+        <Ref>developer.app.name</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>ADRDetailsFromToken.app_owner</Name>
+        <Ref>developer.email</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>ADRDetailsFromSSA.app_owner</Name>
+        <Ref>developer.email</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>clientIdFromToken</Name>
+        <Ref>client_id</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>ADRDetailsFromToken.rat</Name>
+        <Ref>app.IDP_registration_access_token</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>ADRDetailsFromToken.rat2</Name>
+        <Ref>oauthv2authcode.OA-VerifyTokenForDCROperations.app.IDP_registration_access_token</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>ADRDetailsFromToken.debug_scopes</Name>
+        <Ref>app.scopes</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

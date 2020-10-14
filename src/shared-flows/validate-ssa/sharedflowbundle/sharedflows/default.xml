@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Condition>(cdrToken = null) or (cdrToken = "") </Condition>
+        <Name>RF-MissingJWTTokenSSA</Name>
+    </Step>
+    <Step>
+        <Name>JWT-VerifyCDRSSAToken</Name>
+    </Step>
+    <Step>
+        <Condition>(JWT.failed = "true")</Condition>
+        <Name>RF-TokenNotVerifiedSSA</Name>
+    </Step>
+    <Step>
+        <Name>RF-MissingEXPClaim</Name>
+        <Condition>(jwt.JWT-VerifyCDRSSAToken.decoded.claim.exp == "") or (jwt.JWT-VerifyCDRSSAToken.decoded.claim.exp == null)</Condition>
+    </Step>
+    <Step>
+        <Name>FC-CheckTokenNotReused</Name>
+    </Step>
+    <Step>
+        <Name>EV-GetADRDetailsFromSSA</Name>
+    </Step>
+</SharedFlow>

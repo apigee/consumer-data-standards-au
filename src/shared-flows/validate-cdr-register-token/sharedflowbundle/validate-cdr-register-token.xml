@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="2" name="validate-cdr-register-token">
+<SharedFlowBundle revision="9" name="validate-cdr-register-token">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1581460401607</CreatedAt>
+    <CreatedAt>1581030769627</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Validates the CDR register JWT token according to CDS requirements</Description>
     <DisplayName>validate-cdr-register-token</DisplayName>
-    <LastModifiedAt>1581460401607</LastModifiedAt>
+    <LastModifiedAt>1601263893973</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:636f6038fa413b391b7c5b5e84316a9d2fca62fcdc239f9719a6b3dc0b21bc029e8f9335e75aa1da2c07cf7f2556a476acceb0a3328bf74ef4c214f8feaaa107</ManifestVersion>
+    <ManifestVersion>SHA-512:df867aba6a75522bd6f469e13dbe1d070af94f62a57a71f0af174413054e8f0b7c78d579d9aff9cd701382dd2ee9b490adc9a331d05141ffc9b32bde1813e7b8</ManifestVersion>
     <Policies>
-        <Policy>AM-SetValidAudience</Policy>
-        <Policy>EV-GetJWTTokenFromAuthHeader</Policy>
+        <Policy>AM-SetValidAudienceWhenBearerToken</Policy>
+        <Policy>FC-CheckTokenNotReused</Policy>
         <Policy>JWT-VerifyCDRToken</Policy>
-        <Policy>LC-JTIHasBeenSeen</Policy>
-        <Policy>PC-RemeberJTI</Policy>
         <Policy>RF-MissingEXPClaim</Policy>
-        <Policy>RF-MissingJTIClaim</Policy>
-        <Policy>RF-MissingJWTToken</Policy>
-        <Policy>RF-TokenNotVerified</Policy>
-        <Policy>RF-TokenReused</Policy>
+        <Policy>RF-MissingJWTTokenBearer</Policy>
+        <Policy>RF-TokenNotVerifiedBearer</Policy>
     </Policies>
     <Resources/>
     <Spec></Spec>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ExtractJWKSFromResponse">
+    <DisplayName>AM-ExtractJWKSFromResponse</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>jwksVar</Name>
+        <Ref>jwksResponse.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

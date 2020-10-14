@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Condition>message.status.code != "200"</Condition>
+            <FaultRules/>
+            <Name>AM-Add-CORS-Headers</Name>
+        </Step>
+        <Step>
+            <Name>FC-AddFAPIInteractionId</Name>
+        </Step>
+        <Step>
+            <FaultRules/>
+            <Name>FC-CollectPerformanceSLO</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <Description/>
+    <FaultRules>
+        <FaultRule name="Invalid JWT in Request">
+            <Condition>JWT.failed = "true"</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-InvalidJWTTokenInRequest</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Invalid Scope">
+            <Condition>(fault.name = "InsufficientScope")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-InvalidScope</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Invalid Access Token">
+            <Condition>(fault.name Matches "*access_token*") or (fault.name = "apiresource_doesnot_exist") or (fault.name = "InvalidAccessToken") or (fault.name = "InvalidAPICallAsNoApiProductMatchFound")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>EV-GetErrorDetail</Name>
+            </Step>
+            <Step>
+                <FaultRules/>
+                <Name>AM-TokenNotVerified</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Callout Failed">
+            <Condition>fault.name Matches "ExecutionFailed"</Condition>
+            <Step>
+                <Name>AM-InternalServerError</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <Flows>
+        <Flow name="Register Client">
+            <Description>Register a client using a CDR Register issued Software Statement Assertion</Description>
+            <Request>
+                <Step>
+                    <Name>FC-TrafficThresholdsForClientRegistration</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidContentType</Name>
+                    <Condition>request.header.content-type != "application/jwt"</Condition>
+                </Step>
+                <Step>
+                    <Name>JWT-DecodeJWTInRequestBody</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidRequest</Name>
+                    <Condition>JWT.failed = true</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateSSA</Name>
+                </Step>
+                <Step>
+                    <Name>FC-RetrieveClientJWKS</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetValidAudience</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-VerifyJWTInRequestBody</Name>
+                </Step>
+                <Step>
+                    <Name>RF-MissingEXPClaim</Name>
+                    <Condition>(jwt.JWT-VerifyJWTInRequestBody.decoded.claim.exp == "") or (jwt.JWT-VerifyJWTInRequestBody.decoded.claim.exp == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyRedirectURIClaim</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidRedirectURIs</Name>
+                    <Condition>errorInRedirectURIs = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-CheckTokenNotReused</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetOrgIdForApigee</Name>
+                </Step>
+                <Step>
+                    <Name>AE-GetDeveloper</Name>
+                </Step>
+                <Step>
+                    <Name>SC-CreateDeveloper</Name>
+                    <Condition>(AccessEntity.AE-GetDeveloper = null) or (AccessEntity.AE-GetDeveloper = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AE-GetApp</Name>
+                    <Condition>(AccessEntity.AE-GetDeveloper != null) and (AccessEntity.AE-GetDeveloper != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-DuplicateRegistration</Name>
+                    <Condition>(AccessEntity.AE-GetApp != null) and (AccessEntity.AE-GetApp != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRegistrationInfo</Name>
+                </Step>
+                <Step>
+                    <Name>JS-AssignProductsBasedOnScope</Name>
+                </Step>
+                <Step>
+                    <Name>SC-RegisterClientInOIDCProvider</Name>
+                </Step>
+                <Step>
+                    <Name>EV-GetKeySecretFromOIDCResponse</Name>
+                </Step>
+                <Step>
+                    <Name>SC-CreateApp</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractClientSecretFromUpdateAppResponse</Name>
+                </Step>
+                <Step>
+                    <Name>SC-AddKeysToApigeeApp</Name>
+                </Step>
+                <Step>
+                    <Name>SC-AssociateProductsWithKey</Name>
+                </Step>
+                <Step>
+                    <Name>SC-DeleteAppKeyJustCreated</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-BuildResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Get Client Registration">
+            <Description>Get a Client Registration for a given Client ID</Description>
+            <Request>
+                <Step>
+                    <Name>EV-GetClientIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>FC-TrafficThresholds</Name>
+                </Step>
+                <Step>
+                    <Name>OA-VerifyTokenForDCROperations</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GetOrgIdAndAppIdFromTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ClientIdDoesNotMatch</Name>
+                    <Condition>theClientId != clientIdFromToken</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractOrgIdFromAppOwner</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetOrgIdForApigee</Name>
+                </Step>
+                <Step>
+                    <Name>AE-GetApp</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ClientIdDoesNotMatch</Name>
+                    <Condition>(AccessEntity.AE-GetApp = null) or (AccessEntity.AE-GetApp = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractRegInfoAndSSAFromAccessEntityResult</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-BuildResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{clientId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Update Client Registration">
+            <Description>Update a Client Registration for a given Client ID</Description>
+            <Request>
+                <Step>
+                    <Name>EV-GetClientIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>FC-TrafficThresholds</Name>
+                </Step>
+                <Step>
+                    <Name>OA-VerifyTokenForDCROperations</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GetOrgIdAndAppIdFromTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ClientIdDoesNotMatch</Name>
+                    <Condition>theClientId != clientIdFromToken</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidContentType</Name>
+                    <Condition>request.header.content-type != "application/jwt"</Condition>
+                </Step>
+                <Step>
+                    <Name>JWT-DecodeJWTInRequestBody</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidRequest</Name>
+                    <Condition>JWT.failed = true</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateSSA</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractOrgIdFromAppOwnerInToken</Name>
+                </Step>
+                <Step>
+                    <Name>RF-SWIdOrOrgIdDoesNotMatch</Name>
+                    <Condition>(ADRDetailsFromToken.software_id != ADRDetailsFromSSA.software_id) or (ADRDetailsFromToken.org_id != ADRDetailsFromSSA.org_id)</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-RetrieveClientJWKS</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetValidAudience</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-VerifyJWTInRequestBody</Name>
+                </Step>
+                <Step>
+                    <Name>RF-MissingEXPClaim</Name>
+                    <Condition>(jwt.JWT-VerifyJWTInRequestBody.decoded.claim.exp == "") or (jwt.JWT-VerifyJWTInRequestBody.decoded.claim.exp == null)</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-VerifyRedirectURIClaim</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidRedirectURIs</Name>
+                    <Condition>errorInRedirectURIs = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-CheckTokenNotReused</Name>
+                </Step>
+                <Step>
+                    <Name>AM-BuildRegistrationInfo</Name>
+                </Step>
+                <Step>
+                    <Name>JS-AssignProductsBasedOnScope</Name>
+                </Step>
+                <Step>
+                    <Name>SC-UpdateApp</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractClientSecretFromUpdateAppResponse</Name>
+                </Step>
+                <Step>
+                    <Name>JS-CheckIfProductsHaveChanged</Name>
+                </Step>
+                <Step>
+                    <Name>SC-DeleteAppKeyJustCreated</Name>
+                </Step>
+                <Step>
+                    <Name>SC-DeleteClientKeySoItCanBeRecreated</Name>
+                    <Condition>changedProducts = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetKeysToAddToApp</Name>
+                    <Condition>changedProducts = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>SC-AddKeysToApigeeApp</Name>
+                    <Condition>changedProducts = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>SC-AssociateProductsWithKey</Name>
+                    <Condition>changedProducts = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>SC-UpdateClientInOIDCProvider</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>JS-BuildResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{clientId}") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="Delete Client Registration">
+            <Description>Delete a Client Registration for a given Client ID</Description>
+            <Request>
+                <Step>
+                    <Name>EV-GetClientIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>FC-TrafficThresholds</Name>
+                </Step>
+                <Step>
+                    <Name>OA-VerifyTokenForDCROperations</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GetOrgIdAndAppIdFromTokenInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-ClientIdDoesNotMatch</Name>
+                    <Condition>theClientId != clientIdFromToken</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractOrgIdFromAppOwner</Name>
+                </Step>
+                <Step>
+                    <Name>SC-DeleteApp</Name>
+                </Step>
+                <Step>
+                    <Name>SC-DeleteClientInOIDCProvider</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAppDeletedResponseCode</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{clientId}") and (request.verb = "DELETE")</Condition>
+        </Flow>
+        <Flow name="unsupportedMethod">
+            <Description>Method Not Allowed</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-UnsupportedMethod</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/")  or (proxy.pathsuffix = "/{clientId}")</Condition>
+        </Flow>
+        <Flow name="notFound">
+            <Description>Not Found</Description>
+            <Request>
+                <Step>
+                    <FaultRules/>
+                    <Name>RF-NotFound</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <FaultRules/>
+                <Name>FC-CollectPerformanceSLO</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>AM-SetApigeeAPIEndpoint</Name>
+            </Step>
+            <Step>
+                <Name>KVM-GetApigeeAPICredentials</Name>
+            </Step>
+            <Step>
+                <Name>BA-SetBasicAuthHeader</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/register</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

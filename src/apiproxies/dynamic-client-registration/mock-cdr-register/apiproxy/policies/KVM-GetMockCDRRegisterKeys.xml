@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetMockCDRRegisterKeys" mapIdentifier="mockCDRRegister">
+    <DisplayName>KVM-GetMockCDRRegisterKeys</DisplayName>
+    <Get assignTo="private.mockCDRRegisterPrivateKey">
+        <Key>
+            <Parameter>privateKey</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.mockCDRRegisterJWKS">
+        <Key>
+            <Parameter>jwks</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

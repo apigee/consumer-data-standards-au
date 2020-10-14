@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>LC-RetrieveJWKSFromCache</Name>
+    </Step>
+    <Step>
+        <Name>AM-RemoveProtocolFromJWKSURI</Name>
+        <Condition>(lookupcache.LC-RetrieveJWKSFromCache.cachehit = "false")</Condition>
+    </Step>
+    <Step>
+        <Name>SC-RetrieveJWKSFromURI</Name>
+        <Condition>(lookupcache.LC-RetrieveJWKSFromCache.cachehit = "false")</Condition>
+    </Step>
+    <Step>
+        <Name>AM-ExtractJWKSFromResponse</Name>
+        <Condition>(lookupcache.LC-RetrieveJWKSFromCache.cachehit = "false")</Condition>
+    </Step>
+    <Step>
+        <Name>PC-StoreJWKS</Name>
+        <Condition>(lookupcache.LC-RetrieveJWKSFromCache.cachehit = "false")</Condition>
+    </Step>
+</SharedFlow>

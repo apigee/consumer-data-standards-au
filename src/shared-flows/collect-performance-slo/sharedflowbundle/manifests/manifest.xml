@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
-        <VersionInfo resourceName="AM-ResetCustomerPPIDIfNA" version="SHA-512:47d73863578491e6cdbed151ca62112497461819f7a1355a1a5f253c8495b261acdbd617f3e5f4c66403286c56428fe823b4cbb7a7d5961df789f24349e682a2"/>
-        <VersionInfo resourceName="AM-ResetTokenOpIfNA" version="SHA-512:5a8086cb29359c3c09f43bd32de0ebf9a69b90a3d44e80860d1f3dd3034871d2ad3915ed374173386d37be355615e3b60076ca64a5308563f30062660681fe5d"/>
+        <VersionInfo resourceName="AM-ResetCustomerPPIDIfNA" version="SHA-512:06335e4f4e6bea3ffef932b95bd0e0e8d428eabc680b796e45d2a83ce959163ac3499a98222fcb4530ab5f774a94b5464de1a0dfd43d4d178044be211f5e4415"/>
+        <VersionInfo resourceName="AM-ResetTokenOpIfNA" version="SHA-512:5c38edc3126c1e3d2ef6c57eac8863635422dcfaacc41fb04637dc3a8635f9c030647bf29615e1c83dc195d33310bb36f96109a8b79924f5447faf44aa6d54a8"/>
         <VersionInfo resourceName="AM-SetMessageSLO" version="SHA-512:ec830b4e8c0c914d61af278f819e15405749535376f623c59cb5f1ff303bd6f23467851ebfd494c4f792355f65671cdedc7a8c8cbdd17af4b3b2b8c4d4d4bc84"/>
         <VersionInfo resourceName="AM-SetPerformanceTierToHighPriority" version="SHA-512:30be808bf89d158cd757af9c0004ed7b997cb31c30ffb23c7efd9e0d8b59f21b6273fee988782beba53805daa712d6231ef6b1800b2732889d184ee778d8997b"/>
         <VersionInfo resourceName="AM-SetPerformanceTierToLargePayload" version="SHA-512:56e461d461ff2fa867b5a2a94326e89a814ec1ec3972540cf39b1ec2142efeacc0606f73e3791d0f73c223abf7decbfa60a8cd06b469a9ff9b4eb1463ab44dd1"/>
@@ -10,14 +10,14 @@
         <VersionInfo resourceName="AM-SetPerformanceTierToUnattended" version="SHA-512:9246aef56ab68dda033ae32676d9cea13543d4d85124907255a7bad55331e1d955bd017bba9ebb208210382ed5a0110116c221bacf256af6a2df8b5d65c828e9"/>
         <VersionInfo resourceName="AM-SetPerformanceTierToUnauthenticated" version="SHA-512:9d995550ebae66dae0807930a8e7781ecadc2885e5b415c8eedb2f738c35e0ca5c38fdcf908fb393c7b1314d2dade4be4aa62c62ffd485681d4bffe0f3e7b963"/>
         <VersionInfo resourceName="JS-CheckIfRequestMeetsPerformanceSLO" version="SHA-512:6bcfdfcdbbd8d9759729cf02207d44279560ab590a0794533be7e1bae4ba49a2e199e9f043661e2df737d78814bd5ef13e4d8ef02f49a8302682d10dfc9168b1"/>
-        <VersionInfo resourceName="SC-AddPerformanceTierDimension" version="SHA-512:7e2549e433dff777c3d729b8750b62b8842af35a3a0e030b9f4f2d2d67c88c59d00d7a644299c43e571d9bd573146dc3ca08714fb1706a89153d9a133bfdc1bd"/>
+        <VersionInfo resourceName="SC-AddPerformanceTierDimension" version="SHA-512:8fe279dedb6017607bab07524000b7910df7c2010f075daf68a15c062356ed2e4f4c43400b30eae3dd9c629a751a4162ff9a03d084820195c6543c9480678ec3"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources>
         <VersionInfo resourceName="jsc://checkIfRequestMeetsPerformanceSLO.js" version="SHA-512:e787b42da3744081d01cd53ad03220838f18efddbcd680fbbfb2e3619a0663b49bd7ab4a2fe3c8c9c0de54e49156f7da9c13404f0500336b9d6a1b2518ef3026"/>
     </Resources>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:2dd4106f37582b6465da49738414fcade636de2d1a2c1ff6860f39488a6461b2acd33d39a6b3fb505be164b6938f67e6733eeb38832f412fb44270916682e0c8"/>
+        <VersionInfo resourceName="default" version="SHA-512:60bc7f7d57477753973086b4fc5796803a75206ac9a3ab759a9f7ea3e5127880287828e993e11d3bab7adba9e287fa04750d5dc717bac5c0f7850d496d6649c5"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

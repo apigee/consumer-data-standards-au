@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-CreateDeveloper">
+    <DisplayName>SC-CreateDeveloper</DisplayName>
+    <Request clearPayload="true">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{private.apigeeAuth}</Header>
+            </Headers>
+            <Verb>POST</Verb>
+            <Payload contentType="application/json"> {
+                   "email" : "{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net",
+   "firstName" : "{ADRDetailsFromSSA.org_name}",
+   "lastName" : ".",
+   "userName" : "{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net"}</Payload>
+        </Set>
+    </Request>
+    <Response>apigeeAPICreateDeveloperResponse</Response>
+    <HTTPTargetConnection>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

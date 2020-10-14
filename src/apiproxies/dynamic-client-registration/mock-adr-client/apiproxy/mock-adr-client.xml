@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="4" name="mock-adr-client">
+    <Basepaths>/mock-cdr-register</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1600924797750</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Mock proxy that emulates endpoints and ADR who wants to register a client needs to provide. Required for dynamic client registration</Description>
+    <DisplayName>mock-adr-client</DisplayName>
+    <LastModifiedAt>1602640908169</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:461f76a02af715102dcd1afd1c1ea95d016a6491e7ca21d8e38e55b68ceba49e6f5d08feb633fa7eeb3474e88709c9f905c7732fcc08dcccc894404f265dd994</ManifestVersion>
+    <Policies>
+        <Policy>AM-SetMockJWKSInfo</Policy>
+        <Policy>AM-SetResponse</Policy>
+        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest</Policy>
+        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT</Policy>
+        <Policy>JS-SetRedirectURIs</Policy>
+        <Policy>JWT-GenerateDynamicClientRegistrationRequest</Policy>
+        <Policy>JWT-GeneratePrivateKeyJWT</Policy>
+        <Policy>KVM-GetMockADRKeys</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>SC-GetSSAFromCDRRegister</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://setRedirectURIs.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

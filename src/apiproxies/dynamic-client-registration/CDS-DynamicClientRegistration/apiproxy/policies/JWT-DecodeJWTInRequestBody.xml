@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DecodeJWT async="false" continueOnError="false" enabled="true" name="JWT-DecodeJWTInRequestBody">
+    <DisplayName>JWT-DecodeJWTInRequestBody</DisplayName>
+    <Source>request.content</Source>
+</DecodeJWT>

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <VerifyJWT async="false" continueOnError="true" enabled="true" name="JWT-VerifyCDRToken">
   <DisplayName>JWT-VerifyCDRToken</DisplayName>
+  <FaultRules/>
+  <Properties/>
+  <Type>Signed</Type>
   <Algorithm>PS256,RS256</Algorithm>
-  <Source>cdrToken</Source>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
   <PublicKey>
-    <!-- Replace hardcoded value with the CDR Register JWKS URI, once it's available. Use the uri attribute in the JWKS element -->
-    <JWKS>{"placeholder": "Will be replaced by deployment script"}</JWKS>
+    <JWKS uri="https://openbank-aunz-dev.apigee.net/mock-cdr-register/jwks"/>
   </PublicKey>
-  <Subject>cdr-register</Subject>
-  <Issuer>cdr-register</Issuer>
+  <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
+  <Source>cdrToken</Source>
   <Audience ref="ValidAudience"/>
   <IgnoreIssuedAt>false</IgnoreIssuedAt>
+  <Issuer>cdr-register</Issuer>
+  <Subject>cdr-register</Subject>
 </VerifyJWT>

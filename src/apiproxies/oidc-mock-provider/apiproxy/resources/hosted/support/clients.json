@@ -17,6 +17,7 @@
       "refresh_token",
       "implicit"
     ],
+    "token_endpoint_auth_method": "client_secret_basic",
     "jwks": {
       "keys": [
         {

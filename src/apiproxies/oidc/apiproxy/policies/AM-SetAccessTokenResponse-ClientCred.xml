@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAccessTokenResponse-ClientCred">
+    <Set>
+        <Payload contentType="application/json">{
+  "access_token": "{oauthv2accesstoken.OA-IssueAccessTokenClientCreds.access_token}",
+  "expires_in": {oauthv2accesstoken.OA-IssueAccessTokenClientCreds.expires_in},
+  "scope": "{oauthv2accesstoken.OA-IssueAccessTokenClientCreds.scope}"
+}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

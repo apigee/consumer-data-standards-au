@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-RetrieveJWKSFromURI">
+    <DisplayName>SC-RetrieveJWKSFromURI</DisplayName>
+    <Properties/>
+    <Response>jwksResponse</Response>
+    <HTTPTargetConnection>
+        <URL>https://{jwksHostname}/{jwksEndpoint}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

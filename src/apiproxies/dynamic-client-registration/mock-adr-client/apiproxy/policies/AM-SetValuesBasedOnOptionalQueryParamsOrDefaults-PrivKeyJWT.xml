@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT">
+    <DisplayName>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT</DisplayName>
+    <AssignVariable>
+        <Name>defaultAud</Name>
+        <Template>https://{organization.name}-{environment.name}.apigee.net/token</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>audVar</Name>
+        <Template>{firstnonnull(request.queryparam.aud,defaultAud)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="true" enabled="true" name="JWT-VerifyPrivateKeyJWT">
+    <DisplayName>JWT-VerifyPrivateKeyJWT</DisplayName>
+    <Type>Signed</Type>
+    <Algorithm>PS256,RS256</Algorithm>
+    <Source>thePrivateKeyJWT</Source>
+    <PublicKey>
+        <JWKS ref="jwksVar"/>
+    </PublicKey>
+    <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
+    <IgnoreIssuedAt>false</IgnoreIssuedAt>
+    <Audience ref="validAudience"/>
+    <Subject ref="theClientId"/>
+    <Issuer ref="theClientId"/>
+</VerifyJWT>

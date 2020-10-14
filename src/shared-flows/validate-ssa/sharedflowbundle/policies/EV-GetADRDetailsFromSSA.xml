@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetADRDetailsFromSSA">
+    <DisplayName>EV-GetADRDetailsFromSSA</DisplayName>
+    <JSONPayload>
+        <Variable name="org_id">
+            <JSONPath>$.org_id</JSONPath>
+        </Variable>
+        <Variable name="org_name">
+            <JSONPath>$.org_name</JSONPath>
+        </Variable>
+        <Variable name="client_name">
+            <JSONPath>$.client_name</JSONPath>
+        </Variable>
+        <Variable name="client_description">
+            <JSONPath>$.client_description</JSONPath>
+        </Variable>
+        <Variable name="client_uri">
+            <JSONPath>$.client_uri</JSONPath>
+        </Variable>
+        <Variable name="redirect_uris">
+            <JSONPath>$.redirect_uris</JSONPath>
+        </Variable>
+        <Variable name="logo_uri">
+            <JSONPath>$.logo_uri</JSONPath>
+        </Variable>
+        <Variable name="tos_uri">
+            <JSONPath>$.tos_uri</JSONPath>
+        </Variable>
+        <Variable name="policy_uri">
+            <JSONPath>$.policy_uri</JSONPath>
+        </Variable>
+        <Variable name="jwks_uri">
+            <JSONPath>$.jwks_uri</JSONPath>
+        </Variable>
+        <Variable name="revocation_uri">
+            <JSONPath>$.revocation_uri</JSONPath>
+        </Variable>
+        <Variable name="recipient_base_uri">
+            <JSONPath>$.recipient_base_uri</JSONPath>
+        </Variable>
+        <Variable name="software_id">
+            <JSONPath>$.software_id</JSONPath>
+        </Variable>
+        <Variable name="software_roles">
+            <JSONPath>$.software_roles</JSONPath>
+        </Variable>
+        <Variable name="scope">
+            <JSONPath>$.scope</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">jwt.JWT-VerifyCDRSSAToken.payload-json</Source>
+    <VariablePrefix>ADRDetailsFromSSA</VariablePrefix>
+</ExtractVariables>

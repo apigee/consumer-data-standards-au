@@ -134,6 +134,9 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <Name>EV-GetJWTTokenFromAuthHeader</Name>
+            </Step>
+            <Step>
                 <FaultRules/>
                 <Name>FC-ValidateRegisterToken</Name>
             </Step>

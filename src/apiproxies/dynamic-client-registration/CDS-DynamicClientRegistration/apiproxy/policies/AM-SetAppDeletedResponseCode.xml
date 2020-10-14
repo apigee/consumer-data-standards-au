@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAppDeletedResponseCode">
+    <DisplayName>AM-SetAppDeletedResponseCode</DisplayName>
+    <Set>
+        <Headers/>
+        <Payload/>
+        <StatusCode>204</StatusCode>
+        <ReasonPhrase>No Content</ReasonPhrase>
+    </Set>
+    <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LC-RetrieveJWKSFromCache">
+    <DisplayName>LC-RetrieveJWKSFromCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix>jwks</Prefix>
+        <KeyFragment ref="jwksURI"/>
+    </CacheKey>
+    <Scope>Application</Scope>
+    <AssignTo>jwksVar</AssignTo>
+</LookupCache>

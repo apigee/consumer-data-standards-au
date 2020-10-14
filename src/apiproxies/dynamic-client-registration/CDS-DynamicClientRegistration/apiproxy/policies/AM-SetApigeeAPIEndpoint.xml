@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetApigeeAPIEndpoint">
+    <DisplayName>AM-SetApigeeAPIEndpoint</DisplayName>
+    <AssignVariable>
+        <Name>apigeeAPIEndpoint</Name>
+        <Value>api.enterprise.apigee.com</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

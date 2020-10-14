@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvocationFromProxyChainingOnly">
+    <DisplayName>RF-InvocationFromProxyChainingOnly</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Payload/>
+            <StatusCode>403</StatusCode>
+            <ReasonPhrase>Forbidden </ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

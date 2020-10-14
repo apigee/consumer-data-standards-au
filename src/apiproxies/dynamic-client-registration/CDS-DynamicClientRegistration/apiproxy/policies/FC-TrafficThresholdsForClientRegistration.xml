@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-TrafficThresholdsForClientRegistration">
+    <DisplayName>FC-TrafficThresholdsForClientRegistration</DisplayName>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="isPublicEndpoint">false</Parameter>
+        <Parameter name="isAuthEndpoint">true</Parameter>
+        <Parameter name="isCustomerPresent">false</Parameter>
+        <Parameter name="customerId"/>
+        <Parameter name="clientId"/>
+        <Parameter name="sessionId">DynamicClientRegistrationSession</Parameter>
+    </Parameters>
+    <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>
+</FlowCallout>

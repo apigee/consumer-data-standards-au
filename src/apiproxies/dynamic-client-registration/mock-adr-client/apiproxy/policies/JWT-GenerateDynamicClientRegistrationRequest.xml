@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateDynamicClientRegistrationRequest">
+    <DisplayName>JWT-GenerateDynamicClientRegistrationRequest</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <PrivateKey>
+        <Value ref="private.mockADRPrivateKey"/>
+        <Id>CDSTestApp</Id>
+    </PrivateKey>
+    <Issuer ref="softwareId"/>
+    <Audience ref="audience"/>
+    <ExpiresIn>30m</ExpiresIn>
+    <Id/>
+    <AdditionalClaims>
+        <Claim name="redirect_uris" ref="redirectURIs" array="true"/>
+        <Claim name="token_endpoint_auth_method">private_key_jwt</Claim>
+        <Claim name="token_endpoint_auth_signing_alg">RS256</Claim>
+        <Claim name="grant_types" array="true">client_credentials, authorization_code, refresh_token, urn:ietf:params:oauth:grant-type:jwtbearer</Claim>
+        <Claim name="response_types" array="true">code id_token</Claim>
+        <Claim name="application_type">web</Claim>
+        <Claim name="id_token_signed_response_alg">RS256</Claim>
+        <Claim name="id_token_encrypted_response_alg">RSA-OAEP</Claim>
+        <Claim name="id_token_encrypted_response_enc">A256GCM</Claim>
+        <Claim name="request_object_signing_alg">RS256</Claim>
+        <Claim name="software_statement" ref="SSAResponse.content"/>
+    </AdditionalClaims>
+    <OutputVariable>theJWT</OutputVariable>
+</GenerateJWT>

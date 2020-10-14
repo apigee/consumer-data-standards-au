@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>AM-SetErrorTypeForDynClientRegToken</Name>
+        <Condition>jwtType = "Dynamic Client Registration"</Condition>
+    </Step>
+    <Step>
+        <Name>AM-SetErrorTypeForSSAToken</Name>
+        <Condition>jwtType = "SSA"</Condition>
+    </Step>
+    <Step>
+        <Name>EV-GetJTIAndExp</Name>
+    </Step>
+    <Step>
+        <Condition>((jti = null) or (jti = "") ) and (jwtType ="Bearer")</Condition>
+        <FaultRules/>
+        <Name>RF-MissingJTIClaimBearer</Name>
+    </Step>
+    <Step>
+        <Condition>((jti = null) or (jti = "") ) and (jwtType != "Bearer")</Condition>
+        <FaultRules/>
+        <Name>RF-MissingJTIClaim</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>LC-JTIHasBeenSeen</Name>
+    </Step>
+    <Step>
+        <Condition>(jwtType = "Bearer") and (lookupcache.LC-JTIHasBeenSeen.cachehit = "true")</Condition>
+        <FaultRules/>
+        <Name>RF-TokenReusedBearer</Name>
+    </Step>
+    <Step>
+        <Condition>(jwtType != "Bearer") and (lookupcache.LC-JTIHasBeenSeen.cachehit = "true")</Condition>
+        <FaultRules/>
+        <Name>RF-TokenReused</Name>
+    </Step>
+    <Step>
+        <FaultRules/>
+        <Name>PC-RememberJTI</Name>
+    </Step>
+</SharedFlow>

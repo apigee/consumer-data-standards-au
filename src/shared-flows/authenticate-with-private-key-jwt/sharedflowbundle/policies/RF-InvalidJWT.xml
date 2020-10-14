@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidJWT">
+    <DisplayName>RF-InvalidJWT</DisplayName>
+    <FaultResponse>
+        <AssignVariable>
+            <Name>errorMsg</Name>
+            <Ref>jwt.JWT-VerifyPrivateKeyJWT.error</Ref>
+        </AssignVariable>
+        <AssignVariable>
+            <Name>searchStrRegex</Name>
+            <Value>: policy\(JWT-VerifyPrivateKeyJWT\)</Value>
+        </AssignVariable>
+        <AssignVariable>
+            <Name>replaceStr</Name>
+            <Value>...</Value>
+        </AssignVariable>
+        <Set>
+            <Payload contentType="application/json">{ "errors": [
+    {
+      "code": "401",
+      "title": "Unauthorized",
+      "detail": "{replaceAll(errorMsg,searchStrRegex,replaceStr)}"
+    }
+  ]
+}</Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>Unauthorized</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

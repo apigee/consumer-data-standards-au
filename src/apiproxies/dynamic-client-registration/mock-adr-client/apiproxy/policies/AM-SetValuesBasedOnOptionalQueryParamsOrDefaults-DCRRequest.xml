@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest">
+    <DisplayName>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest</DisplayName>
+    <AssignVariable>
+        <Name>industry</Name>
+        <Template>{request.queryparam.industry:banking}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultOrgId</Name>
+        <Template>ORG-{xeger('[0-9]{3}')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>orgId</Name>
+        <Template>{firstnonnull(request.queryparam.org_id,defaultOrgId)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultSoftwareId</Name>
+        <Template>mySWId</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>softwareId</Name>
+        <Template>{firstnonnull(request.queryparam.software_id,defaultSoftwareId)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultBaseURI</Name>
+        <Template>https://{organization.name}-{environment.name}.apigee.net/mock-adr-client</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>baseURI</Name>
+        <Template>{firstnonnull(request.queryparam.recipient_base_uri,defaultBaseURI)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultRedirectURI</Name>
+        <Template>{baseURI}/redirect</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>redirectURI</Name>
+        <Template>{firstnonnull(request.queryparam.redirect_uri,defaultRedirectURI)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>jwksURI</Name>
+        <Template>{defaultBaseURI}/jwks</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>audience</Name>
+        <Template>{client.scheme}://{request.header.host}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

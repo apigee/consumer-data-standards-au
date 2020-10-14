@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="50" name="oidc">
+<APIProxy revision="53" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
@@ -10,14 +10,14 @@
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1566213116257</CreatedAt>
+    <CreatedAt>1602558717308</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1601442487207</LastModifiedAt>
+    <LastModifiedAt>1602558717308</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:ab219891d3cf443939f068d3222d727a103f9f02f2c56062d32e87b1b1ba2cedacd2c19dd7f3370a3fb7ec9a9b262a7a9e3ff6958e9b99c29d5477d14c563db4</ManifestVersion>
+    <ManifestVersion>SHA-512:c96c926d73182c13ba9dcbb230b5f150c93dbb2d425ae5213b6a4abcca993cb2583b50ecbafe545f5055fa8a1fc71050c82274f74582d6caa0f6799857154a85</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
@@ -26,11 +26,13 @@
         <Policy>AM-GetCDRArrangementIdFromRefreshToken</Policy>
         <Policy>AM-InvalidAuthCode</Policy>
         <Policy>AM-ReinstateAuthHeaderInResponse</Policy>
+        <Policy>AM-RemovePrivateKeyJWTParams</Policy>
         <Policy>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Policy>
+        <Policy>AM-SetAccessTokenResponse-ClientCred</Policy>
         <Policy>AM-SetCustomDimensionsForAcquireToken</Policy>
         <Policy>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Policy>
         <Policy>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Policy>
@@ -44,6 +46,7 @@
         <Policy>EV-ExtractRefreshTokenFromTokenFormParam</Policy>
         <Policy>EV-GetInfoReqdForIssuingAccessToken</Policy>
         <Policy>EV-StoreTokenRequestDetails</Policy>
+        <Policy>FC-AuthenticateWithPrivateKeyJWT</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
         <Policy>FC-DecideIfCustomerIsPresent</Policy>
         <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
@@ -54,6 +57,7 @@
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
         <Policy>JWT-DecodeOIDCIdToken</Policy>
         <Policy>JWT-DecodeOIDCRefreshToken</Policy>
+        <Policy>OA-IssueAccessTokenClientCreds</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>
         <Policy>OA-RevokeAccessToken</Policy>
@@ -64,6 +68,7 @@
         <Policy>OAInfoSet-ForceUpdateOfAttributes</Policy>
         <Policy>RF-InvalidAccessToken</Policy>
         <Policy>RF-InvalidRefreshToken</Policy>
+        <Policy>RF-InvalidScope</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>
     </Policies>

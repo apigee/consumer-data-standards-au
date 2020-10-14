@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-DeleteApp">
+    <DisplayName>SC-DeleteApp</DisplayName>
+    <Request clearPayload="false">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{private.apigeeAuth}</Header>
+            </Headers>
+            <Verb>DELETE</Verb>
+        </Set>
+    </Request>
+    <Response>apigeeAPIAppResponse</Response>
+    <HTTPTargetConnection>
+        <Properties>
+            <Property name="success.codes">2xx</Property>
+        </Properties>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps/{ADRDetailsFromSSA.software_id}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

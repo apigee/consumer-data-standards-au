@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-SWIdFromURIParam">
+    <DisplayName>EV-SWIdFromURIParam</DisplayName>
+    <URIPath>
+        <Pattern ignoreCase="false">/*/data-recipients/brands/*/software-products/{softwareProductId}/ssa</Pattern>
+    </URIPath>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</ExtractVariables>

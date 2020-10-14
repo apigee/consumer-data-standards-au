@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="2" name="get-jwks-from-dynamic-uri">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1600930383701</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Retrieves (and caches) a JWKS from the provided URI</Description>
+    <DisplayName>get-jwks-from-dynamic-uri</DisplayName>
+    <LastModifiedAt>1601006379980</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:412bbef9da1fcc6ae77a4cb8f4343d80d3e6179d72dbb498aaf703bea7a9e25fa804c6d146c2700406916564ec142d7d48bfbe05543cc5458bf3761f4d1e06be</ManifestVersion>
+    <Policies>
+        <Policy>AM-ExtractJWKSFromResponse</Policy>
+        <Policy>AM-RemoveProtocolFromJWKSURI</Policy>
+        <Policy>LC-RetrieveJWKSFromCache</Policy>
+        <Policy>PC-StoreJWKS</Policy>
+        <Policy>SC-RetrieveJWKSFromURI</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>
