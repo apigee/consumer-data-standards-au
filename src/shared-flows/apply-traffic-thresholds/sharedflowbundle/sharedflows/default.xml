@@ -25,7 +25,7 @@
         <Name>SA-ThresholdForUnattendedSecureTrafficPerSession</Name>
     </Step>
     <Step>
-        <Condition>(ratelimit.SA-ThresholdForSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForCustomerPresentSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true")</Condition>
+        <Condition>(ratelimit.SA-ThresholdForSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForCustomerPresentSecureTrafficPerClientId.failed = "true") or (ratelimit.SA-ThresholdForUnattendedSecureTrafficPerSession.failed = "true") or (ratelimit.SA-GlobalTrafficThreshold.failed = "true")</Condition>
         <FaultRules/>
         <Name>RF-TooManyRequests</Name>
     </Step>
