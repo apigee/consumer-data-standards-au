@@ -19,12 +19,12 @@
         <Name>RF-Missing-Version-Header</Name>
     </Step>
     <Step>
-        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "1")) or ( (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "3"))</Condition>
+        <Condition>( (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "3")) or ( (proxy.basepath MatchesPath "/cds-au/v1/admin") and (proxy.pathsuffix = "/metrics") and (request.header.x-v != "2")) or ( (not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (not (proxy.basepath MatchesPath "/cds-au/v1/admin") or ((proxy.pathsuffix != "/metrics")) ) and (request.header.x-v != "1"))</Condition>
         <FaultRules/>
         <Name>RF-Invalid-Version</Name>
     </Step>
     <Step>
-        <Condition>(request.header.x-min-v != null) and (request.header.x-min-v != "1") and (request.header.x-min-v != "3")</Condition>
+        <Condition>(request.header.x-min-v != null) and (request.header.x-min-v != "1") and (request.header.x-min-v != "2") and (request.header.x-min-v != "3")</Condition>
         <FaultRules/>
         <Name>RF-Invalid-Version</Name>
     </Step>

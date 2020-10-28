@@ -41,7 +41,7 @@ exports.defaultMetricsValues = {
         performance: 1,
         errors: 0,
         invocations: { largePayload: 0, highPriority: 0, lowPriority: 0, unattended: 0, unauthenticated: 0 },
-        rejections: 0,
+        rejections: { authenticated: 0, unauthenticated: 0},
         sessionCount: 0
     },
     monthly: {
@@ -99,7 +99,7 @@ exports.sessionCountRequestOptions = {
 }
 
 exports.errorAndRejectionRequestOptions = {
-    apiPathSuffix: '/stats/response_status_code',
+    apiPathSuffix: '/stats/response_status_code,performancetier',
     method: 'GET',
     body: null,
     json: true,
@@ -107,7 +107,8 @@ exports.errorAndRejectionRequestOptions = {
         tsAscending: false,
         tzo: exports.defaultOptions.tzo,
         select: 'sum(message_count)',
-        timeUnit: 'day'
+        timeUnit: 'day',
+        filter: "(meetsperformanceslo ne '(not set)' and ( response_status_code eq 429 or response_status_code ge 500) )"
     }
 }
 

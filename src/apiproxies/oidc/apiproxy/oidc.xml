@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="53" name="oidc">
+<APIProxy revision="54" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
@@ -10,14 +10,14 @@
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1602558717308</CreatedAt>
+    <CreatedAt>1566213116257</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1602558717308</LastModifiedAt>
+    <LastModifiedAt>1603682544098</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:c96c926d73182c13ba9dcbb230b5f150c93dbb2d425ae5213b6a4abcca993cb2583b50ecbafe545f5055fa8a1fc71050c82274f74582d6caa0f6799857154a85</ManifestVersion>
+    <ManifestVersion>SHA-512:310f5d6d963a2e9f9a8440ff4139184c396510c01dd740083270cd7d441285cf4beedcaa0861568693714f00335a0a144e26613ac755ed0f56f118ee0a953643</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>

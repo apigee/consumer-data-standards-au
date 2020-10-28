@@ -40,7 +40,13 @@ exports.addLogEntry = async function (severity, category, logMsg) {
   logEntry.category = category;
   logEntry.message = logMsg.toString()
   if (severity == "ERROR") {
-    logEntry.error_details = logMsg.stack.toString().substring(0,1500); // Truncate to 1,500 chars, max propterty length allowed in Datastore;
+    if (logMsg.hasOwnProperty('stack')) {
+      logEntry.error_details = logMsg.stack.toString().substring(0,1500); // Truncate to 1,500 chars, max propterty length allowed in Datastore;
+    }
+    else {
+      // Treat it as a string
+      logEntry.error_details = logMsg.toString().substring(0,1500); 
+    }
   }
   // Prepare the entries in the format expected by Datastore for an insert
   var newEntry = {};

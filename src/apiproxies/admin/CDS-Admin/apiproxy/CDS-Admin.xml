@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="9" name="CDS-Admin">
+<APIProxy revision="10" name="CDS-Admin">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -13,9 +13,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Admin APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1600657661156</LastModifiedAt>
+    <LastModifiedAt>1603688489276</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:1c790aa2046b1dc560eab4e423583abdaab07836af2e65438bcc75303e6dcf2b2d9c9767a128d79ca8b7b9f190edef1f0531f8e36f7732fa51514952ecf65622</ManifestVersion>
+    <ManifestVersion>SHA-512:55b8798b75392bedc73c698edbdc70fabd669042c1ce050e995144face89070c1d58090db09e4564d1e0feca07ec0043e61c70cb398b09dd2322d53180f8e83a</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>

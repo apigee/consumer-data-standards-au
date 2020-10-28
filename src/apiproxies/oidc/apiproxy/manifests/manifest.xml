@@ -4,8 +4,8 @@
         <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:137c9e693b4cf876950521cf5678622976ae5f993f37ae9980dde5c04fd360c729829f2cc97360c34e9044ca876001a8b7192b1a67a3b1580fbb1fa056389091"/>
         <VersionInfo resourceName="AM-BuildIntrospectionResponseInactiveToken" version="SHA-512:870644d935c985594311c81f3e5824e909a958730460170a586bb8e5ba86f3b4776b86614de9561c041e7e6c9bd3df8d670c97556b2390bf6d71a455046103f2"/>
         <VersionInfo resourceName="AM-GenerateCDRArrangementId" version="SHA-512:09484e49f97326e4396f4cc6e6130f8b5a4f7eeb91fcd4335c93c3fe28a07bf8f72bc4bbea23c95deda2bcf31e0efefef896484a90d15c805624da14449f98f9"/>
-        <VersionInfo resourceName="AM-GenerateIntrospectionResponse" version="SHA-512:72f656f7b34157cc2e6d310ccf5f2fe977244a630db1cc364b3359f05f039736b62b75a6641ada0c7b91356bba0489df415e831b4baa314766c25b0666a32e9b"/>
-        <VersionInfo resourceName="AM-GetCDRArrangementIdFromRefreshToken" version="SHA-512:1e9e218e81c9b4169cd4d305572c4f359e00628738536f30284ef1f5f31f9a03585d8a9e6321fb86d5aeb8dfcc0359daadf833fa06fa9b18650f5d9f0de23c56"/>
+        <VersionInfo resourceName="AM-GenerateIntrospectionResponse" version="SHA-512:cccee54647df23f7fedd7632ce169e98cfb0c206aa2f69d613b7a8f7ba160f55e3a95165934c9abe9eb826db056284edf83fe807d2940c8f60818b71517db3e3"/>
+        <VersionInfo resourceName="AM-GetCDRArrangementIdFromRefreshToken" version="SHA-512:738145eba03f04383505e643cfd8f45e03ff1a8692f1f8ff118efafa3bbac0c5d855baa9e38aee40b150127a5be842670ec555ca6d6eba8d9e4536a711730b74"/>
         <VersionInfo resourceName="AM-InvalidAuthCode" version="SHA-512:4a86996d861d2b962121c88c989306ae1e2cdba314551bd9b59089a78d9aa97e4830aced1d30d2bc1a3737b8f478b98197c37cbe2564777bb6a3e585eea882a8"/>
         <VersionInfo resourceName="AM-ReinstateAuthHeaderInResponse" version="SHA-512:7b4a6a554db70b06a0376a689ca17130f9ace931810b1ccae3c8616a7245c351d46de974a80e63ca27f83663f14fee81be2d0b38a1d2e77b5db5d68b695fd00f"/>
         <VersionInfo resourceName="AM-RemovePrivateKeyJWTParams" version="SHA-512:87cd37636a6cb2c8e44600a0824d20ccab0105b09cbea2dcd34df2a9a8e66b3ed08b99e48ae5b191103f8950dfab204292077b7811cf12e83f7b6cec126124e2"/>
@@ -60,7 +60,7 @@
     <Resources>
         <VersionInfo resourceName="jsc://getOIDCTokenExpiryTime.js" version="SHA-512:afce450d00aa5e77ccb25d5e946e22b109b8ebfa182bfadba43d530a67c03f20fcd421f82666ff50daed494ce23179cd8bf5bf61a90efeb898022e9ac6859c92"/>
         <VersionInfo resourceName="jsc://removeOIDCProvideBasePath.js" version="SHA-512:0df660b39b488fe87550bf54fc2d4f5c68ae2b507abefd5504647a1400af1f66f848c22a4a45f20f9007a8875290f6ba93254e5e40d079499492e24b65ef5275"/>
-        <VersionInfo resourceName="jsc://substituteWithOpaqueAccessTokenInResponse.js" version="SHA-512:f7db2c4c17ce680f313db0a447061a5ebc6dad1f0e0bf808adcf8ab669152a78129e19d16afb91df6081eb221a3248bcdf5a9a99451cb20c772fe1e5022e40cd"/>
+        <VersionInfo resourceName="jsc://substituteWithOpaqueAccessTokenInResponse.js" version="SHA-512:3b3f683d6d005fe2548508eb27dc9b6f1b1263c567a83af21919f62069e464fa1e0bcd8bbcb609ad83b04e2a38ba593726c32953d9d009673bd23a80e1d89b95"/>
     </Resources>
     <SharedFlows/>
     <TargetEndpoints>

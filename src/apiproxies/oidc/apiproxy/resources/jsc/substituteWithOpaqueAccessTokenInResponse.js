@@ -30,6 +30,7 @@ var thePayload =  JSON.parse(context.getVariable("response.content"));
 thePayload.access_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".access_token");
 thePayload.refresh_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token");
 thePayload.refresh_token_expirest_at = context.getVariable("jwt.JWT-DecodeOIDCRefreshToken.decoded.claim.exp");
+thePayload.sharing_expires_at = thePayload.refresh_token_expirest_at;
 thePayload.cdr_arrangement_id = context.getVariable("cdrArrangementId");
 context.setVariable("response.content", JSON.stringify(thePayload));
 

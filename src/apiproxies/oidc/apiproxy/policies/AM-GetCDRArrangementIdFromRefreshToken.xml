@@ -6,6 +6,10 @@
         <Name>cdrArrangementId</Name>
         <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.cdrArrangementId</Ref>
     </AssignVariable>
+    <AssignVariable>
+        <Name>tokenScope</Name>
+        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.scope</Ref>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type=",essage"/>
 </AssignMessage>

@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: API sets created by the Australian Consumer Data Standards to meet the needs
     of the Consumer Data Right
-  version: 1.4.0
+  version: 1.5.1
   title: Consumer Data Standards
   contact:
     name: APIBank CDS Team
@@ -150,6 +150,7 @@ definitions:
         description: Flag that indicates, if present and set to true, that the outage is
           only partial meaning that only a subset of normally available end
           points will be affected by the outage
+        x-cds-type: Boolean
       explanation:
         type: string
         description: Provides an explanation of the current outage that can be displayed to
@@ -179,8 +180,8 @@ definitions:
         enum:
           - OK
           - PARTIAL_FAILURE
-          - UNAVAILABLE
           - SCHEDULED_OUTAGE
+          - UNAVAILABLE
       explanation:
         type: string
         description: Provides an explanation of the current outage that can be displayed to

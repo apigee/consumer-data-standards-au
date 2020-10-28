@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: API sets created by the Australian Consumer Data Standards to meet the needs
     of the Consumer Data Right
-  version: 1.4.0
+  version: 1.5.1
   title: Consumer Data Standards
   contact:
     name: APIBank CDS Team
@@ -22,41 +22,24 @@ paths:
   "/banking/accounts/{accountId}/transactions":
     get:
       tags:
-        - Transactions
+        - Accounts
       summary: Get Transactions For Account
-      description: "Obtain transactions for a specific account.
+      description: >-
+        Obtain transactions for a specific account.
 
 
-        Some general notes that apply to all end points that retrieve
-        transactions:
+        Some general notes that apply to all end points that retrieve transactions:
 
 
-        - Where multiple transactions are returned, transactions should
-        be ordered according to effective date in descending order
+        - Where multiple transactions are returned, transactions should be ordered according to effective date in descending order
 
-        - As the date and time for a transaction can alter depending on
-        status and transaction type two separate date/times are included in the
-        payload. There are still some scenarios where neither of these time
-        stamps is available. For the purpose of filtering and ordering it is
-        expected that the data holder will use the â€œeffectiveâ€ date/time
-        which will be defined as:
+        - As the date and time for a transaction can alter depending on status and transaction type two separate date/times are included in the payload. There are still some scenarios where neither of these time stamps is available. For the purpose of filtering and ordering it is expected that the data holder will use the “effective” date/time which will be defined as:
+          - Posted date/time if available, then
+          - Execution date/time if available, then
+          - A reasonable date/time nominated by the data holder using internal data structures
+        - For transaction amounts it should be assumed that a negative value indicates a reduction of the available balance on the account while a positive value indicates an increase in the available balance on the account
 
-        \ - Posted date/time if available, then
-
-        - Execution date/time if available, then
-
-        - A reasonable date/time nominated by the data holder using
-        internal data structures
-
-        - For transaction amounts it should be assumed that a negative
-        value indicates a reduction of the available balance on the account
-        while a positive value indicates an increase in the available balance on
-        the account
-
-        - For aggregated transactions (ie. groups of sub transactions
-        reported as a single entry for the account) only the aggregated
-        information, with as much consistent information accross the subsidiary
-        transactions as possible, is required to be shared"
+        - For aggregated transactions (ie. groups of sub transactions reported as a single entry for the account) only the aggregated information, with as much consistent information accross the subsidiary transactions as possible, is required to be shared
       operationId: getTransactions
       parameters:
         - name: accountId
@@ -208,7 +191,7 @@ paths:
   "/banking/accounts/{accountId}/transactions/{transactionId}":
     get:
       tags:
-        - Transactions
+        - Accounts
       summary: Get Transaction Detail
       description: Obtain detailed information on a transaction for a specific account
       operationId: getTransactionDetail
@@ -354,13 +337,13 @@ definitions:
         type: string
         description: The type of the transaction
         enum:
+          - DIRECT_DEBIT
           - FEE
           - INTEREST_CHARGED
           - INTEREST_PAID
+          - PAYMENT
           - TRANSFER_OUTGOING
           - TRANSFER_INCOMING
-          - PAYMENT
-          - DIRECT_DEBIT
           - OTHER
       status:
         type: string
