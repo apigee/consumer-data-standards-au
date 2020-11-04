@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetEndpointVersionTo3">
+    <DisplayName>AM-SetEndpointVersionTo3</DisplayName>
+    <AssignVariable>
+        <Name>currentEndpointVersion</Name>
+        <Value>3</Value>
+    </AssignVariable>
+</AssignMessage>
