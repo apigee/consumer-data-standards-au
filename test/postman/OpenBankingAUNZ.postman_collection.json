@@ -2882,7 +2882,7 @@
 							"query": [
 								{
 									"key": "admin-endpoint",
-									"value": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics"
+									"value": "https://{{org}}-{{env}}.apigee.net"
 								}
 							]
 						}
@@ -3511,7 +3511,7 @@
 							"query": [
 								{
 									"key": "admin-endpoint",
-									"value": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics"
+									"value": "https://{{org}}-{{env}}.apigee.net"
 								}
 							]
 						}
