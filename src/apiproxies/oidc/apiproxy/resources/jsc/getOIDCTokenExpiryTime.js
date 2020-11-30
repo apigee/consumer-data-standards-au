@@ -32,8 +32,3 @@
 // in the refresh token issued by the OIDC provider
  var tokenExpiryTime = String(context.getVariable("OIDCTokenResponse.expires_in")) + "000";
  context.setVariable("OIDCTokenExpiryTimeInMillis", tokenExpiryTime);
-  // Tmp calculations
-var refreshTokenExpiryEpochMillis = Number(context.getVariable("jwt.JWT-DecodeOIDCRefreshToken.decoded.claim.exp") + "000");
-var refreshTokenExpiryAsDate = new Date(refreshTokenExpiryEpochMillis);
-var refreshTokenExpiresInMillis = refreshTokenExpiryAsDate - (new Date());
-context.setVariable("refreshTokenExpiresInMillis", String(refreshTokenExpiresInMillis));

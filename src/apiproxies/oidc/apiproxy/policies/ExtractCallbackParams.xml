@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractCallbackParams">
+    <DisplayName>ExtractCallbackParams</DisplayName>
+    <Properties/>
+    <FormParam name="code">
+        <Pattern>{code}</Pattern>
+    </FormParam>
+    <FormParam name="id_token">
+        <Pattern>{id_token}</Pattern>
+    </FormParam>
+    <FormParam name="state">
+        <Pattern>{stateStr}</Pattern>
+    </FormParam>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

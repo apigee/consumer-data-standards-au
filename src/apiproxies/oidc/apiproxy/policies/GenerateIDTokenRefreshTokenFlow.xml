@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="GenerateIDTokenRefreshTokenFlow">
+    <DisplayName>GenerateIDTokenRefreshTokenFlow</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <PrivateKey>
+        <Value ref="private.privatekey"/>
+        <Id>ApigeeJWTGenerator</Id>
+    </PrivateKey>
+    <Subject ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId"/>
+    <Issuer ref="issuer"/>
+    <Audience ref="oauthv2accesstoken.OA-RefreshOpaqueAccessToken.client_id"/>
+    <ExpiresIn>1h</ExpiresIn>
+    <AdditionalClaims>
+        <Claim name="name" type="string" ref="jwt.Decode-OIDC-ID-Token.decoded.claim.name"/>
+        <Claim name="given_name" type="string" ref="jwt.Decode-OIDC-ID-Token.decoded.claim.firstName"/>
+        <Claim name="family_name" type="string" ref="jwt.Decode-OIDC-ID-Token.decoded.claim.lastName"/>
+        <Claim name="auth_time" type="number" ref="jwt.Decode-OIDC-ID-Token.decoded.claim.auth_time"/>
+        <Claim name="acr" type="string" ref="acr"/>
+        <Claim name="at_hash" type="string" ref="at_hash"/>
+    </AdditionalClaims>
+    <OutputVariable>apigee-id-token</OutputVariable>
+</GenerateJWT>

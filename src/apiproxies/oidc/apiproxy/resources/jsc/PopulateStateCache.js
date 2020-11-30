@@ -1,0 +1,2 @@
+var stateCache = context.getVariable("client_id") + "&" + context.getVariable("redirect_uri") + "&" + context.getVariable("scope") + "&" + context.getVariable("nonce");
+context.setVariable("StateCache",stateCache);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-1">
+    <DisplayName>Assign Message-1</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>name</Name>
+        <Template>{sha256Base64('sghetgeryebheewthberhthdgbdgb')}</Template>
+    </AssignVariable>
+</AssignMessage>
