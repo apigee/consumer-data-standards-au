@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="GenerateIDToken">
+    <DisplayName>GenerateIDToken</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <PrivateKey>
+        <Value ref="private.privatekey"/>
+        <Id>ApigeeJWTGenerator</Id>
+    </PrivateKey>
+    <Subject ref="customerPPID"/>
+    <Issuer ref="issuer"/>
+    <Audience ref="client_id"/>
+    <ExpiresIn>1h</ExpiresIn>
+    <AdditionalClaims>
+        <Claim name="name" type="string" ref="jwt.Verify-OIDC-ID-Token.decoded.claim.name"/>
+        <Claim name="given_name" type="string" ref="jwt.Verify-OIDC-ID-Token.decoded.claim.given_name"/>
+        <Claim name="family_name" type="string" ref="jwt.Verify-OIDC-ID-Token.decoded.claim.family_name"/>
+        <Claim name="updated_at" type="number" ref="jwt.Verify-OIDC-ID-Token.decoded.claim.updated_at"/>
+        <Claim name="auth_time" type="number" ref="jwt.Verify-OIDC-ID-Token.decoded.claim.auth_time"/>
+        <Claim name="acr" type="string" ref="acr"/>
+        <Claim name="nonce" type="string" ref="nonce"/>
+        <Claim name="c_hash" type="string" ref="c_hash"/>
+        <Claim name="s_hash" type="string" ref="s_hash"/>
+    </AdditionalClaims>
+    <OutputVariable>apigee-id-token</OutputVariable>
+</GenerateJWT>

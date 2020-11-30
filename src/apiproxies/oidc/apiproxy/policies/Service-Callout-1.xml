@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="Service-Callout-1">
+    <DisplayName>Service Callout-1</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myRequest">
+        <Set>
+            <Headers>
+                <Header name="Content-Type">application/json</Header>
+                <Header name="User-Agent">Apigee/1.0</Header>
+            </Headers>
+            <Payload contentType="application/json">
+                {"data":"eyJraWQiOiJDRFNUZXN0QXBwIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ5dEFMYmlyN3lQRnJ1aUw5N3NHYkFHMGV4SU1pckdZeCIsImF1ZCI6Imh0dHBzOlwvXC9zYXRoaXNoYXBpZ2VlLWV2YWwtdGVzdC5hcGlnZWUubmV0XC90b2tlbiIsImlzcyI6Inl0QUxiaXI3eVBGcnVpTDk3c0diQUcwZXhJTWlyR1l4IiwiZXhwIjoxNjA1NzQ1MTA5LCJpYXQiOjE2MDU3NDMzMDksImp0aSI6IjhiY2RjYjNmLTkxZTMtNDk0ZC04NDhjLTBkMWVlOGUwNTQyYSJ9.ETWG_wr7PdfWlYWjOeGluB0pTeowMvj-gGCm2jqj_Q__kwB658kdUaYWJbsst6Hl8KeB0tOq6WSqji2Zwj1YYVhGSYcw8yeRX-LV7LUsQthztlV9E-2hCkzARqpWEjz24YH4z6jf19hU-Rn8l6MD0jsBhUyW-NBJ74nW_nT9iNyBvU4q8e9-OLd6utC9s5QgjO3ujtCW50d_fCbQ2TKOkopnLPkZkapfS9RRaUnjIIBRXTQ1rqGYYun5JgLPw0EDZ8_6dbiDS8Ug7xPfGQGYDvLI-6M0A9LAPHYbR2GsZroCOQGmsTZehoDu692Zj1Itnd9MkD3yTP8v3FXCzPi3Cw"}
+            </Payload>
+            <Verb>POST</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>calloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://tokenhash.glitch.me/hash-data</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

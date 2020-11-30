@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="5" name="oidc-generate-opaque-auth-code-and-id-token">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1605408281186</CreatedAt>
+    <CreatedBy>sathishapigee@gmail.com</CreatedBy>
+    <Description>undefined</Description>
+    <DisplayName>oidc-generate-opaque-auth-code-and-id-token</DisplayName>
+    <LastModifiedAt>1606688003185</LastModifiedAt>
+    <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:9a95574da8c4c4d915dee695fccde940157e45e7ba39553cd10cefe144a8d8291037ed8b3d14824018b262ae12164a9d230961e4f4f290129668b75baea62ca5:ap-southeast-2</ManifestVersion>
+    <Policies>
+        <Policy>Assign-Message-1</Policy>
+        <Policy>AssignIssuer</Policy>
+        <Policy>ExtractAMRClaim</Policy>
+        <Policy>ExtractCodeHash</Policy>
+        <Policy>ExtractStateHash</Policy>
+        <Policy>GenerateCodeHash</Policy>
+        <Policy>GenerateCodeHashHostedTarget</Policy>
+        <Policy>GenerateIDToken</Policy>
+        <Policy>GeneratePPID</Policy>
+        <Policy>GenerateStateHash</Policy>
+        <Policy>GenerateStateHashHostedTarget</Policy>
+        <Policy>GetJWTSigningKey</Policy>
+        <Policy>OA-IssueOpaqueAuthCode</Policy>
+        <Policy>SetResponseType</Policy>
+        <Policy>Verify-OIDC-ID-Token</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://ExtractAMRClaim.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

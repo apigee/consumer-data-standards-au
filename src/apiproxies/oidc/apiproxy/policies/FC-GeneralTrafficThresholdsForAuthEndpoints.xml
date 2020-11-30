@@ -9,7 +9,7 @@
         <Parameter name="isCustomerPresent" ref="isCustomerPresent">false</Parameter>
         <Parameter name="customerId">generalAuthTraffic</Parameter>
         <Parameter name="clientId">generalAuthTraffic</Parameter>
-        <Parameter name="sessionId"/>
+        <Parameter name="sessionId"></Parameter>
     </Parameters>
     <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>
 </FlowCallout>

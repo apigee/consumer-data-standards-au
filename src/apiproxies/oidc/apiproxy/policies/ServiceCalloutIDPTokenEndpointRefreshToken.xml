@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="ServiceCalloutIDPTokenEndpointRefreshToken">
+    <DisplayName>ServiceCalloutIDPTokenEndpointRefreshToken</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="IDPTokenRequest">
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+            </Headers>
+            <FormParams>
+                <FormParam name="grant_type">{TokenRequestParams.grant_type}</FormParam>
+                <FormParam name="redirect_uri">https://{organization.name}-{environment.name}.apigee.net/callback</FormParam>
+                <FormParam name="scope">offline_access openid profile</FormParam>
+                <FormParam name="refresh_token">{oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.OIDCRefreshToken}</FormParam>
+                <FormParam name="client_id">{private.apigee_client_id}</FormParam>
+                <FormParam name="client_secret">{private.apigee_client_secret}</FormParam>
+            </FormParams>
+            <Verb>POST</Verb>
+        </Set>
+    </Request>
+    <Response>IDPTokenResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://cdr.okta.com/oauth2/default/v1/token</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

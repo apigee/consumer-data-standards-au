@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-GetCDRArrangementIdFromRefreshToken">
     <DisplayName>AM-GetCDRArrangementIdFromRefreshToken</DisplayName>
+    <FaultRules/>
     <Properties/>
     <AssignVariable>
         <Name>cdrArrangementId</Name>
         <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.cdrArrangementId</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type=",essage"/>
+    <AssignTo transport="http" createNew="false"></AssignTo>
 </AssignMessage>

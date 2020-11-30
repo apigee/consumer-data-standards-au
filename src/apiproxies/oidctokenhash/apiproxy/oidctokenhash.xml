@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="oidctokenhash">
+    <Basepaths>/oidctokenhash</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1605182138224</CreatedAt>
+    <CreatedBy>sathishapigee@gmail.com</CreatedBy>
+    <Description>oidctokenhash</Description>
+    <DisplayName>oidctokenhash</DisplayName>
+    <HostedManifestVersion>SHA-512:b27d8a0d225ed6da1c7a75dcf0d30568f38286489e513d85ab10dfd7e7118a098a55b8cafe89740ee23629e09f02fd5238c9d5ffc907d639f816aa1b6762c525:ap-southeast-2</HostedManifestVersion>
+    <LastModifiedAt>1606523981088</LastModifiedAt>
+    <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:fddbf34d546c41914715493b6a9a61a8d054cb7dbb65c2fe1f38291f31a131776d8ba068dd2398359fc9a0f38c7c2abaf7e37ca38e03fbf78e252a870d086ac8:ap-southeast-2</ManifestVersion>
+    <Policies/>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>hosted://app.yaml</Resource>
+        <Resource>hosted://index.js</Resource>
+        <Resource>hosted://package.json</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

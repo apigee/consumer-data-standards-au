@@ -3,9 +3,9 @@
     <DisplayName>FC-AuthenticateWithPrivateKeyJWT</DisplayName>
     <FaultRules/>
     <Properties/>
-    <SharedFlowBundle>authenticate-with-private-key-jwt</SharedFlowBundle>
-    <Parameters>
-        <Parameter name="theClientId" ref="request.formparam.client_id"/>
-        <Parameter name="thePrivateKeyJWT" ref="request.formparam.client_assertion"/>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="theClientId" ref="request.formparam.client_id"></Parameter>
+        <Parameter name="thePrivateKeyJWT" ref="request.formparam.client_assertion"></Parameter>
     </Parameters>
+    <SharedFlowBundle>authenticate-with-private-key-jwt</SharedFlowBundle>
 </FlowCallout>

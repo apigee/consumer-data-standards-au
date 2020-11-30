@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LookupStateCache">
+    <DisplayName>LookupStateCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix/>
+        <KeyFragment ref="stateStr"/>
+    </CacheKey>
+    <CacheResource>OIDCState</CacheResource>
+    <Scope>Global</Scope>
+    <AssignTo>stateCache</AssignTo>
+</LookupCache>
