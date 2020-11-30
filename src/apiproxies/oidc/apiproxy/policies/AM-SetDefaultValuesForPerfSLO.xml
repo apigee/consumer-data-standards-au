@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetDefaultValuesForPerfSLO">
     <DisplayName>AM-SetDefaultValuesForPerfSLO</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <AssignVariable>
         <Name>tokenOp</Name>
         <Value>n/a</Value>
@@ -9,5 +11,6 @@
         <Name>customerPPId</Name>
         <Value>n/a</Value>
     </AssignVariable>
-    <AssignTo createNew="false" transport="http" type="request"/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

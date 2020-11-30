@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractAuthorizeParams">
+    <DisplayName>ExtractAuthorizeParams</DisplayName>
+    <Properties/>
+    <QueryParam name="client_id">
+        <Pattern ignoreCase="true">{client_id}</Pattern>
+    </QueryParam>
+    <QueryParam name="redirect_uri">
+        <Pattern ignoreCase="true">{redirect_uri}</Pattern>
+    </QueryParam>
+    <QueryParam name="scope">
+        <Pattern ignoreCase="true">{scope}</Pattern>
+    </QueryParam>
+    <QueryParam name="state">
+        <Pattern ignoreCase="true">{stateStr}</Pattern>
+    </QueryParam>
+    <QueryParam name="nonce">
+        <Pattern ignoreCase="true">{nonce}</Pattern>
+    </QueryParam>
+    <QueryParam name="max_age">
+        <Pattern ignoreCase="true">{max_age}</Pattern>
+    </QueryParam>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

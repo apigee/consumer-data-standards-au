@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RemoveRefreshToken">
+    <DisplayName>AM-RemoveRefreshToken</DisplayName>
+    <Properties/>
+    <Remove>
+        <FormParams>
+            <FormParam name="refresh_token"/>
+        </FormParams>
+    </Remove>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo type="request" transport="http" createNew="false"/>
+</AssignMessage>

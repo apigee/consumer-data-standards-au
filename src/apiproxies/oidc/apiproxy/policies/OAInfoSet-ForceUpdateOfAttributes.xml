@@ -5,10 +5,10 @@
     <Properties/>
     <AccessToken ref="oauthv2accesstoken.OA-RefreshOpaqueAccessToken.access_token"/>
     <Attributes>
-        <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
+        <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
-        <Attribute display="false" name="customerPPId" ref="customerPPId"/>
-        <Attribute display="false" name="cdrArrangementId" ref="cdrArrangementId"/>
+        <Attribute display="false" name="customerPPId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId"/>
+        <Attribute display="false" name="cdrArrangementId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.cdrArrangementId"/>
     </Attributes>
 </SetOAuthV2Info>

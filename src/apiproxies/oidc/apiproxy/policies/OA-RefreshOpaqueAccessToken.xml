@@ -4,23 +4,23 @@
     <FaultRules/>
     <Properties/>
     <Attributes>
-        <Attribute display="false" name="OIDCAccessCode" ref="OIDCTokenResponse.access_token"/>
+        <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
-        <Attribute display="false" name="customerPPId" ref="customerPPId"/>
-        <Attribute display="false" name="cdrArrangementId" ref="cdrArrangementId"/>
+        <Attribute display="false" name="customerPPId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId"/>
+        <Attribute display="false" name="cdrArrangementId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.cdrArrangementId"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>
     <GrantType>TokenRequestParams.grant_type</GrantType>
     <Operation>RefreshAccessToken</Operation>
     <RefreshToken>theRefreshToken</RefreshToken>
-    <RefreshTokenExpiresIn ref="refreshTokenExpiresInMillis">3600000</RefreshTokenExpiresIn>
+    <RefreshTokenExpiresIn>3600000</RefreshTokenExpiresIn>
     <GenerateResponse enabled="false">
         <Format>FORM_PARAM</Format>
     </GenerateResponse>
     <ReuseRefreshToken>false</ReuseRefreshToken>
-    <Scope>OIDCTokenResponse.scope</Scope>
+    <Scope>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.scope</Scope>
     <SupportedGrantTypes/>
     <Tokens/>
 </OAuthV2>

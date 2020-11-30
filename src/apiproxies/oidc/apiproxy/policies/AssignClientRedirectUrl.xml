@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignClientRedirectUrl">
+    <DisplayName>AssignClientRedirectUrl</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>target.url</Name>
+        <Ref>redirect_uri</Ref>
+    </AssignVariable>
+</AssignMessage>

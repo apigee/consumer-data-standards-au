@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetAccessTokenResponse-ClientCred">
+    <DisplayName>AM-SetAccessTokenResponse-ClientCred</DisplayName>
+    <FaultRules/>
+    <Properties/>
     <Set>
         <Payload contentType="application/json">{
   "access_token": "{oauthv2accesstoken.OA-IssueAccessTokenClientCreds.access_token}",
@@ -8,5 +11,5 @@
 }</Payload>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="response"/>
+    <AssignTo type="response" transport="http" createNew="false"></AssignTo>
 </AssignMessage>

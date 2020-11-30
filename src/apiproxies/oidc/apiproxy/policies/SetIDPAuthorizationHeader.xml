@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication async="false" continueOnError="false" enabled="true" name="SetIDPAuthorizationHeader">
+    <DisplayName>SetIDPAuthorizationHeader</DisplayName>
+    <Operation>Encode</Operation>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <User ref="private.apigee_client_id"/>
+    <Password ref="private.apigee_client_secret"/>
+    <AssignTo createNew="true">request.header.Authorization</AssignTo>
+</BasicAuthentication>

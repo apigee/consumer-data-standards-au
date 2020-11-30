@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractATHash">
+    <DisplayName>ExtractATHash</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="at_hash">
+            <JSONPath>$.hash</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="true">calloutResponse</Source>
+</ExtractVariables>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="GenerateCodeHash">
+    <DisplayName>GenerateCodeHash</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myRequest">
+        <Set>
+            <Headers>
+                <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+                <Header name="User-Agent">Apigee/1.0</Header>
+            </Headers>
+            <Payload contentType="application/json">
+                {"data":"{oauthv2authcode.OA-IssueOpaqueAuthCode.code}"}
+            </Payload>
+            <Verb>POST</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>calloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://tokenhash.glitch.me</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

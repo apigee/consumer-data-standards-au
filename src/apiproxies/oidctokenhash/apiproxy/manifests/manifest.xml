@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies/>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:bbb51898d32355a71f83369d1aec4839493ee3213c6cb58ec470f53b1232bc150d16acf81c33b26c1bbd5b4faa759ea349172451c0b7e050d0414196c058ab0e"/>
+    </ProxyEndpoints>
+    <Resources>
+        <VersionInfo resourceName="hosted://app.yaml" version="SHA-512:ffea9d02990823d702147f5bf6692649e7a979b9af450db341ed96b125cb4410ac83100ed6053011b657ae03d1244a844474edaf08f2f09213f4b8a434452048"/>
+        <VersionInfo resourceName="hosted://index.js" version="SHA-512:17f17a0d6ed2c2853d739fa1f4b493f0c2fe35e4a0a8188e31601ee15115db4c7d0ab7886ad1ed5a3a1fa49311d0849be8ca2483016bc4621da12fc9f3d43c53"/>
+        <VersionInfo resourceName="hosted://package.json" version="SHA-512:5009989397af51262211125033ad3265d60368524052af7d92af74fff52f21f436b755e4344133c44767e77b2243cbdb8c9e6b4c99c6bd001c379165d090b804"/>
+    </Resources>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:b33331e833e2d00ac0d5f8ddafa52b5cc668e662b6b106d7b448e355fb8de9de7712a945950b0a9c53402435709dae8893dc44f9e1cd495f9125ecc9bbc7f1d4"/>
+    </TargetEndpoints>
+</Manifest>
