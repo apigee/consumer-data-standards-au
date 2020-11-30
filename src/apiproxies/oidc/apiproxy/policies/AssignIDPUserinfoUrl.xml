@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignIDPUserinfoUrl">
+    <DisplayName>AssignIDPUserinfoUrl</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>target.url</Name>
+        <Template>{target.url}/userinfo</Template>
+    </AssignVariable>
+</AssignMessage>

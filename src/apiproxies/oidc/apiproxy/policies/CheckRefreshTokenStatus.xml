@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="CheckRefreshTokenStatus">
+    <DisplayName>CheckRefreshTokenStatus</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>refreshTokenStatus</Name>
+        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.refresh_token_status</Ref>
+    </AssignVariable>
+</AssignMessage>

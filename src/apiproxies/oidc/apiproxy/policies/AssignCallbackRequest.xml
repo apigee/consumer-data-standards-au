@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignCallbackRequest">
+    <DisplayName>AssignCallbackRequest</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+        </Headers>
+        <FormParams>
+            <FormParam name="code">{oauthv2authcode.OA-IssueOpaqueAuthCode.code}</FormParam>
+            <FormParam name="id_token">{apigee-id-token}</FormParam>
+            <FormParam name="state">{stateStr}</FormParam>
+        </FormParams>
+        <Verb>POST</Verb>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

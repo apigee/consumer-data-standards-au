@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractStateHash">
+    <DisplayName>ExtractStateHash</DisplayName>
+    <Properties/>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="s_hash">
+            <JSONPath>$.hash</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="true">calloutResponse</Source>
+</ExtractVariables>

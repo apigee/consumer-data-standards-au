@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="RedirectToOkta">
+    <DisplayName>RedirectToOkta</DisplayName>
+    <Properties/>
+    <Set>
+        <Headers>
+            <Header name="Location">{redirectURL}</Header>
+        </Headers>
+        <StatusCode>302</StatusCode>
+    </Set>
+</AssignMessage>

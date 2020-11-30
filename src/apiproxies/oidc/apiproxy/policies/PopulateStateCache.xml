@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PopulateStateCache">
+    <DisplayName>PopulateStateCache</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <Prefix/>
+        <KeyFragment ref="stateStr"/>
+    </CacheKey>
+    <CacheResource>OIDCState</CacheResource>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>600</TimeoutInSec>
+    </ExpirySettings>
+    <Source>StateCache</Source>
+</PopulateCache>

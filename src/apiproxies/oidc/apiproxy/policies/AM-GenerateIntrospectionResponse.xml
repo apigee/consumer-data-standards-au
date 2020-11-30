@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-GenerateIntrospectionResponse">
     <DisplayName>AM-GenerateIntrospectionResponse</DisplayName>
+    <FaultRules/>
     <Properties/>
-    <AssignVariable>
-        <Name>OIDCProviderIntrospectionResponse</Name>
-        <Ref>response.content</Ref>
-    </AssignVariable>
     <Set>
         <Payload contentType="application/json">{
  "active": {isActive},
- "exp": "{tokenExp}",
+ "exp": {tokenExp},
  "cdr_arrangement_id": "{cdrArrangementId}" 
 }    
       </Payload>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="response"/>
+    <AssignTo type="response" transport="http" createNew="false"/>
 </AssignMessage>
