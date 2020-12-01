@@ -7,6 +7,9 @@
             <Step>
                 <Name>DisablePathCopy</Name>
             </Step>
+            <Step>
+                <Name>ReadApigeeOIDCCreds</Name>
+            </Step>
         </Request>
         <Response/>
     </PreFlow>
@@ -38,6 +41,6 @@
     </Flows>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://cdr.okta.com/oauth2/default/v1</URL>
+        <URL>https://dummyorg.okta.com/oauth2/default/v1</URL>
     </HTTPTargetConnection>
 </TargetEndpoint>

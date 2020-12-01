@@ -29,6 +29,7 @@ responseObj.access_token = context.getVariable("oauthv2accesstoken." + executedO
 responseObj.token_type = "Bearer";
 responseObj.refresh_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token");
 responseObj.refresh_token_expires_at = Math.trunc(Date.now()/1000) + Number(context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token_expires_in"));
+responseObj.sharing_expires_at = responseObj.refresh_token_expires_at;
 responseObj.cdr_arrangement_id = context.getVariable("cdrArrangementId");
 responseObj.id_token = context.getVariable("apigee-id-token");
 responseObj.scope = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".scope");
@@ -43,6 +44,7 @@ context.setVariable("response.content", JSON.stringify(responseObj));
 //thePayload.access_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".access_token");
 //thePayload.refresh_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token");
 //thePayload.refresh_token_expirest_at = context.getVariable("jwt.JWT-DecodeOIDCRefreshToken.decoded.claim.exp");
+//thePayload.sharing_expires_at = thePayload.refresh_token_expirest_at;
 //thePayload.cdr_arrangement_id = context.getVariable("cdrArrangementId");
 //context.setVariable("response.content", JSON.stringify(thePayload));
 

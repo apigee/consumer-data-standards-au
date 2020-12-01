@@ -4,6 +4,11 @@
     <Properties/>
     <ExclusiveCache>false</ExclusiveCache>
     <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Get assignTo="private.okta_org">
+        <Key>
+            <Parameter>okta_org</Parameter>
+        </Key>
+    </Get>
     <Get assignTo="private.apigee_client_id">
         <Key>
             <Parameter>client_id</Parameter>

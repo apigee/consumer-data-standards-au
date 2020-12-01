@@ -115,6 +115,8 @@ APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
 
 
 # Update app attributes
+# Sathish - changes to set RegistrationInfo custom attribute
+export JWKS_URL=https://$APIGEE_ORG-$APIGEE_ENV.apigee.net/mock-adr-client/jwks
 curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$CDS_TEST_DEVELOPER_EMAIL/apps/CDSTestApp \
   -u $APIGEE_USER:$APIGEE_PASSWORD \
   -H 'Accept: */*' \
@@ -128,6 +130,10 @@ curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$
     {
       "name": "DisplayName",
       "value": "CDSTestApp"
+    },
+    {
+      "name": "RegistrationInfo",
+      "value": "{\"jwks_uri\": [\"'"$JWKS_URL"'\"]}"
     }
   ],
   "callbackUrl": "https://httpbin.org/post"
@@ -220,6 +226,7 @@ apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $A
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeOIDCCreds --entryName client_id --entryValue $OKTA_CLIENT_ID
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeOIDCCreds --entryName client_secret --entryValue $OKTA_CLIENT_SECRET
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeOIDCCreds --entryName redirect_uri --entryValue $OKTA_REDIRECT_URI
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName ApigeeOIDCCreds --entryName okta_org --entryValue $OKTA_ORG
 
 # Revert to original directory
  cd ../..

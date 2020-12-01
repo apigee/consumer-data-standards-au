@@ -54,6 +54,9 @@
             </Request>
             <Response>
                 <Step>
+                    <Name>ReadApigeeOIDCCreds</Name>
+                </Step>
+                <Step>
                     <Name>SetLocationHeader</Name>
                 </Step>
                 <Step>

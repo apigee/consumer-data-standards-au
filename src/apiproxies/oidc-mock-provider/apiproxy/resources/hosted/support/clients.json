@@ -59,5 +59,36 @@
         }
       ]
     }
+  },
+  {
+    "client_id": "GybCGmDo6PXQiMZRPTtubIG2SnWVznJp",
+    "client_secret": "A1mYP9tkwGxlM0oE",
+    "redirect_uris": [
+      "https://httpbin.org/post"
+    ],
+    "response_modes": [
+      "form_post"
+    ],
+    "response_types": [
+      "code id_token"
+    ],
+    "grant_types": [
+      "authorization_code",
+      "client_credentials",
+      "refresh_token",
+      "implicit"
+    ],
+    "token_endpoint_auth_method": "client_secret_basic",
+    "jwks": {
+      "keys": [
+        {
+          "kty": "RSA",
+          "n": "u6ei6XuhGP97mNQObbm3_ew1drYxHh8-CMbF0AR8ErQ0BoiFLduJS8zp83V4zsC8rSiNVdSVm0fxOlV9eidQaoa8sq0-uWDJDOP364P50t7Sgk1RXdIZTaD41x7WFOn1oJ3BJSXVFDgIWo_P3qyVwFG8sgAoZctCsowjEzCdqbCUptcxek9UeA0aSF_zK8eL1k1Iser5_q_q1KUJIc7luRAyLhuYVRLcprdKVHtqebTAMVi9nblh2hVJ_X03Ua3BhYYxJR8a1LA-MMUa8Zq9ogFn69rqf1OQbdz6lYyX5-ZlrYb7ij33ucmCHztkAPd1Skl35llIFeM9lT9QHBQUHQ",
+          "e": "AQAB",
+          "kid": "CDSTestApp",
+          "use": "sig"
+        }
+      ]
+    }
   }
 ]

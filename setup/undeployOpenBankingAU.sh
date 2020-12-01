@@ -51,8 +51,6 @@ apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE
 echo Removing KVM JWTKeys
 apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName JWTKeys
 
-#Sathish - Remove cache
-apigeetool deletecache -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -z OIDCState
 
 # Undeploy banking apiproxies
 cd src/apiproxies/banking
@@ -78,6 +76,9 @@ do
 cd ../oidc
 echo Undeploying oidc Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
+
+#Sathish - Remove cache
+apigeetool deletecache -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -z OIDCState
 
 # Undeploy oidc-mock-provider proxy
 cd ../oidc-mock-provider
