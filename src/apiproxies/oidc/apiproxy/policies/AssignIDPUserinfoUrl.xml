@@ -4,6 +4,6 @@
     <Properties/>
     <AssignVariable>
         <Name>target.url</Name>
-        <Template>{target.url}/userinfo</Template>
+        <Template>https://{private.okta_org}/oauth2/default/v1/userinfo</Template>
     </AssignVariable>
 </AssignMessage>

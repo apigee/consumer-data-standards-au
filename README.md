@@ -1,4 +1,4 @@
-# [![https://cloud.google.com/apigee/](http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png)](https://cloud.google.com/apigee/)  Consumer Data Standards Australia - Open Banking Reference Implementation
+# [![https://cloud.google.com/apigee/](https://www.gstatic.com/images/branding/product/1x/google_cloud_48dp.png)](https://cloud.google.com/apigee/)  Consumer Data Standards Australia - Open Banking Reference Implementation
 
 ## Overview
 
@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v1.4** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.5.1** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -82,6 +82,7 @@ export APIGEE_ENV=<your-env-name>
 export APIGEE_USER=<your-user-name>
 export APIGEE_PASSWORD='<your-password>'   # Make sure to surround your password in single quotes, in case it includes special characters such as '$'
 export CDS_TEST_DEVELOPER_EMAIL=<your-email-address>
+export OKTA_ORG=<name-of-okta-org> # Without the https, for example, if your Okta org is https://cdr.okta.com, this will be cdr.okta.com
 export OKTA_CLIENT_ID=<client-id-issued-by-okta-to-apigee>
 export OKTA_CLIENT_SECRET=<client-secret-issued-by-okta-to-apigee>
 export OKTA_REDIRECT_URI=<apigee-redirect-uri-to-which-okta-issues-authorization-code>

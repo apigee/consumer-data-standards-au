@@ -21,6 +21,6 @@
     <Response>IDPTokenResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://cdr.okta.com/oauth2/default/v1/token</URL>
+        <URL>https://{private.okta_org}/oauth2/default/v1/token</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

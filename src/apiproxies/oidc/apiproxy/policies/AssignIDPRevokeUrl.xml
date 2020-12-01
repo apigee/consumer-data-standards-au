@@ -4,6 +4,6 @@
     <Properties/>
     <AssignVariable>
         <Name>target.url</Name>
-        <Template>{target.url}/revoke</Template>
+        <Template>https://{private.okta_org}/oauth2/default/v1/revoke</Template>
     </AssignVariable>
 </AssignMessage>
