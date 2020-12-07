@@ -34,6 +34,9 @@
             <Request/>
             <Response>
                 <Step>
+                    <Name>KVM-GetMTLSHostname</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>JS-RemoveOIDCProvideBasePath</Name>
                 </Step>
@@ -62,6 +65,9 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyHoK-RefreshToken</Name>
                 </Step>
                 <Step>
                     <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
@@ -128,6 +134,9 @@
             <Description>Acquire Token Authorization Code Grant Type</Description>
             <Request>
                 <Step>
+                    <Name>FC-VerifyMTLSOnly</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveOIDCAuthCode</Name>
                 </Step>
@@ -187,6 +196,9 @@
             <Description>Acquire Token Client Credentials Grant Type</Description>
             <Request>
                 <Step>
+                    <Name>FC-VerifyMTLSOnly</Name>
+                </Step>
+                <Step>
                     <Name>RF-InvalidScope</Name>
                     <Condition>(request.formparam.scope != "cdr:registration")</Condition>
                 </Step>
@@ -211,6 +223,10 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyHoK-RefreshToken</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
@@ -244,6 +260,10 @@
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <Name>FC-VerifyHoK-AccessToken</Name>
+                </Step>
+                <Step>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>OA-RevokeAccessToken</Name>
                 </Step>
@@ -271,6 +291,9 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyHoK-RefreshToken</Name>
                 </Step>
                 <Step>
                     <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
@@ -310,6 +333,9 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyHoK-AccessToken</Name>
                 </Step>
                 <Step>
                     <Condition>(oauthV2.OAInfo-RetrieveAccessTokenDetails.failed = "true")</Condition>
@@ -418,6 +444,10 @@
         <BasePath>/</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
+        <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
+             The secure-mtls virtual host must already be configured to support mTLS with propagateTLSInformation
+             This proxy has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
+        <!-- <VirtualHost>secure-mtls</VirtualHost> -->
     </HTTPProxyConnection>
     <RouteRule name="noroute">
         <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>

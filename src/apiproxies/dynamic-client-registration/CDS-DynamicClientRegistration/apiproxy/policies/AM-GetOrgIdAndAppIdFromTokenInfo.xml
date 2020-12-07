@@ -29,10 +29,6 @@
         <Name>ADRDetailsFromToken.rat2</Name>
         <Ref>oauthv2authcode.OA-VerifyTokenForDCROperations.app.IDP_registration_access_token</Ref>
     </AssignVariable>
-    <AssignVariable>
-        <Name>ADRDetailsFromToken.debug_scopes</Name>
-        <Ref>app.scopes</Ref>
-    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>

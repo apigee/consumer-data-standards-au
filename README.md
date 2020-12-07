@@ -39,8 +39,9 @@ and dynamic client registration endpoints:
 - Register a client using a CDR Register issued Software Statement Assertion
 - Get/Update/Delete a Client Registration for a given Client ID
 
+It optionally supports mutual TLS (mTLS) with Holder of Key (HoK) verification. For details on how to enable that feature, see [README.md](./src/shared-flows/verify-mtls-and-hok/README.md) 
 
-Other APIs will be gradually added, as well as support for Pushed Authorisation Requests (PARs) and Holder of Key (HoK) verification.
+Other APIs will be gradually added, as well as support for Pushed Authorisation Requests (PARs).
 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
@@ -89,6 +90,7 @@ export CDS_TEST_DEVELOPER_EMAIL=<your-email-address>
 ```
 This script deploys all the required artefacts and also creates a sample test app (registered to the developer provided by the *CDS_TEST_DEVELOPER_EMAIL* variable). 
 
+See [README.md](./src/shared-flows/verify-mtls-and-hok/README.md) for details on how to enable support for mutual TLS (mTLS) with Holder of Key (HoK) verification. 
 ### Testing the Installation
 A Postman collection includes sample requests for the implemented APIs, and for obtaining an access token (including navigating through the mock login and consent pages)
 
@@ -114,7 +116,7 @@ The reference implementation also includes an optional solution that utilises Ap
 
 ## Shared Flows
 
-There are 13 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
+There are 14 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
 2. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
@@ -129,6 +131,7 @@ There are 13 shared flows that implement common functionality required by the Ba
 11. *check-token-not-reused*: Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time. Used in Register token validation shared flows, as well as dynamic client registration.
 12. *get-jwks-from-dynamic-uri*: Retrieves (and caches) a JWKS from a URI. 
 13. *authenticate-with-private-key-jwt*: Implements *private_key_jwt*  client authentication method.
+14. *verify-mtls-and-hok*: Can be configured to check that mTLS is used on a given request, and, if mTLS is used, that the client certificate being presented is the same used for acquiring a token (Holder of Key verification)
 
 
 There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="RF-CertificateFingerprintDoesNotMatch" version="SHA-512:6c38581d00a2e2f315f6d18db04ee6654a88d707283032f4881f5921bed456fde9f7d6d778fb7dd31182c740ff9102c837dba4cb835471c6248650e95eede26a"/>
+        <VersionInfo resourceName="RF-NonMTLS" version="SHA-512:31725e39dae57cf4039079eed27c59bc221010c8540d25aa89e95e10845b5bf85e44dfadf064c26d37fb6ddbc88262a0863063f2752ea770ee743423933aefb8"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:5b2dd428e1de4129ab99c50e02f95decaf5acc6fc0abc0dbff9daf101476ab24a6a75b27e088506ef97be39c380330a29819bef3c9c4435af68e5a3f0a4bb9a4"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

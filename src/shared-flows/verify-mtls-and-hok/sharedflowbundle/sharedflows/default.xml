@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>RF-NonMTLS</Name>
+        <!-- Certain proxies (eg: oidc) need to have both tls and mtls virtualhosts,
+             as some of its endpoints require mtls, while others don't.
+             In a production environment modify the following condition to ensure that
+             this check is always enforced.
+        -->
+        <Condition>(dummyVarWithNoValue = "some value") and (virtualhost.name != "secure-mtls")</Condition>
+    </Step>
+    <Step>
+        <Name>RF-CertificateFingerprintDoesNotMatch</Name>
+        <!--  Check enforced only when using an mtls enabled virtual host. In production, endpoints protected by HoK should ONLY be associated with this virtual host.
+              In non-production environments, endpoints are also associated with the default "secure" virtualhost, and that enables a test environment without HoK enforcement 
+        -->
+        <Condition>(verifyHok = "true") and (virtualhost.name = "secure-mtls") and (tls.client.cert.fingerprint != certFingerprintBoundToToken)</Condition>
+    </Step>
+</SharedFlow>

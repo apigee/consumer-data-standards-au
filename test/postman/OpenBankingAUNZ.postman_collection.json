@@ -2783,6 +2783,12 @@
 								"key": "x-v",
 								"type": "text",
 								"value": "1"
+							},
+							{
+								"key": "x-min-v",
+								"value": "2",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -2868,7 +2874,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics",
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -2917,7 +2923,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"data\": {\n    \"action\": \"REFRESH\"\n  },\n  \"meta\": {}\n}"
+							"raw": "{\n  \"data\": {\n    \"action\": \"REFRESH\"\n  },\n  \"meta\": {}\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/register/metadata",
@@ -3416,6 +3425,1601 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "HoK Verification",
+			"item": [
+				{
+					"name": "OIDC - Authorise and Obtain Token - Using mTLS",
+					"item": [
+						{
+							"name": "OIDC Authorise - Step 1 (Hybrid) - /authorise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d4201b4a-e8af-47c1-8be6-5acf1478dea7",
+										"exec": [
+											"// Store html interaction  and uuid to use in subsequent calls",
+											"",
+											"var html = cheerio(responseBody);",
+											"var nextInteraction1 = html.find('#loginForm').attr('action');",
+											"var uuid = html.find('#uuid').attr('value');",
+											"var acr = html.find('#acr').attr('value');",
+											"",
+											"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
+											"pm.environment.set(\"uuid\", uuid);",
+											"pm.environment.set(\"acr\", acr);",
+											"",
+											"// If the auth code had already been issued and was still valid, this",
+											"// invocation would directly return it (no necessary login)",
+											"// if that's the case, store the resulting auth_code ",
+											"",
+											"var auth_code = html.find('[name=\"code\"]').val();",
+											"",
+											"pm.environment.set(\"auth_code\", auth_code);",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "81c449b8-3a24-40ef-9d44-e6314f5adb89",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldkl&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"authorise"
+									],
+									"query": [
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"description": "If you want to change this value, always do it by altering the corresponding env variable. IMPORTANT: This client_id, as well as its redirect uri and public key needs to be registered with the OIDC provider included in the reference implementation (Manual edit of client configuration file)"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{client_redirect_uri}}",
+											"description": "If you want to change this value, always do it by altering the corresponding env variable"
+										},
+										{
+											"key": "response_type",
+											"value": "code%20id_token"
+										},
+										{
+											"key": "scope",
+											"value": "openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read",
+											"description": "Add the required scopes, separated by %20"
+										},
+										{
+											"key": "state",
+											"value": "af0ifjsldkl",
+											"description": "For test purposes, any string will do"
+										},
+										{
+											"key": "nonce",
+											"value": "n-0S6_WzA2Mj2",
+											"description": "For test purposes, any string will do"
+										},
+										{
+											"key": "max_age",
+											"value": "600"
+										},
+										{
+											"key": "acr_values",
+											"value": "urn:cds.au:cdr:3",
+											"description": "One of the valid authentication types the OIDC provider accepts"
+										},
+										{
+											"key": "response_mode",
+											"value": "form_post",
+											"description": "This response mode allows automation in Postman in the Step to get the authorisation code"
+										},
+										{
+											"key": "jti",
+											"value": "37747cd1-c105-4569-9f75-4adf28b73e32",
+											"description": "For test purposes, any jti will do"
+										},
+										{
+											"key": "exp",
+											"value": "1596692638",
+											"description": "Epoch timestamp. Any value in the future will work"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Authorise - Step 2 (Hybrid) - Submit login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca21aad1-9ad0-40f6-8b38-e723ecc09bba",
+										"exec": [
+											"// Store html interaction  and uuid to use in subsequent calls",
+											"",
+											"var html = cheerio(responseBody);",
+											"var nextInteraction2 = html.find('#consentForm').attr('action');",
+											"var uuid = html.find('#uuid').attr('value');",
+											"var acr = html.find('#acr').attr('value');",
+											"var account = html.find('#account').attr('value');",
+											"var consentResponse = html.find('#consent').attr('value');",
+											"",
+											"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
+											"pm.environment.set(\"uuid\", uuid);",
+											"pm.environment.set(\"acr\", acr);",
+											"pm.environment.set(\"account\", account);",
+											"pm.environment.set(\"consentResponse\", consentResponse);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "uuid",
+											"value": "{{uuid}}",
+											"type": "text"
+										},
+										{
+											"key": "login",
+											"value": "10203040",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "anyPasswordWillDo",
+											"type": "text"
+										},
+										{
+											"key": "acr",
+											"value": "{{acr}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net{{nextInteraction1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4237d309-cadb-4eeb-a6ea-04bfbf26908b",
+										"exec": [
+											"// Store authorisation code to use in subsequent calls",
+											"",
+											"const html_response = cheerio(responseBody);",
+											"var auth_code = html_response.find('[name=\"code\"]').val();",
+											"",
+											"pm.environment.set(\"auth_code\", auth_code);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "uuid",
+											"value": "{{uuid}}",
+											"type": "text"
+										},
+										{
+											"key": "account",
+											"value": "{{account}}",
+											"type": "text"
+										},
+										{
+											"key": "acr",
+											"value": "{{acr}}",
+											"type": "text"
+										},
+										{
+											"key": "bank:accounts.basic:read",
+											"value": "bank:accounts.basic:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text"
+										},
+										{
+											"key": "bank:accounts.detail:read",
+											"value": "bank:accounts.detail:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text"
+										},
+										{
+											"key": "bank:transactions:read",
+											"value": "bank:transactions:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text"
+										},
+										{
+											"key": "bank:payees:read",
+											"value": "bank:payees:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:regular_payments:read",
+											"value": "bank:regular_payments:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "common:customer.basic:read",
+											"value": "common:customer.basic:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "common:customer.detail:read",
+											"value": "common:customer.detail:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net{{nextInteraction2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Acquire Token - Step 4 (Hybrid) - Basic Auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1f0b3dd3-ec0e-4a04-bfd2-b81d4ca357ba",
+										"exec": [
+											"// Store scope, access token and id token to reuse in subsequent calls",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_token\", jsonData.access_token);",
+											"pm.environment.set(\"id_token\", jsonData.id_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+											"pm.environment.set(\"scope\", jsonData.scope);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "code",
+											"value": "{{auth_code}}",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{client_redirect_uri}}",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/token",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These 4 requests automate the steps of obtaining an authorisation code by navigating through the mock login and consent screens and obtaining a token using the authorisation code\n Use this approach when testing a client that has been added during the initial setup, as those client are persisted in the mock oidc provider and have been defined as accepting basic client auth.\n The last step uses an MTLS protected endpoint, and the client certificate presented will be associated with the issued token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "176688c1-7503-4d24-bcaa-b5476b31a6af",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8535995-befd-4e1d-ae37-db93f7055f16",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "OIDC - Other requests - Using mTLS",
+					"item": [
+						{
+							"name": "OIDC Get Config",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/.well-known/openid-configuration",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										".well-known",
+										"openid-configuration"
+									]
+								},
+								"description": "The response should show the mtls enabled hostname for the userinfo, introspection, token, registration and revocation endpoints"
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Token Refresh",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f28eee90-0fbf-4ca7-b6c7-673b3c211130",
+										"exec": [
+											"// Store access token, id token and refresh token to reuse in subsequent calls",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_token\", jsonData.access_token);",
+											"pm.environment.set(\"id_token\", jsonData.id_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "192.168.1.1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "{{scope}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client_secret}}",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/token",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Token Introspection",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ee0be91c-b95b-421a-a189-f6ab2e49553f",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "token_type_hint",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/token/introspection",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"token",
+										"introspection"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Token Revocation (Access Token)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4369b2db-c644-48b1-a3d0-4437065cdbf8",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "text"
+										},
+										{
+											"key": "token_type_hint",
+											"value": "access_token",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/token/revocation",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"token",
+										"revocation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Token Revocation (Refresh Token)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "71f9eb2b-126f-4ceb-aefc-42926b671a4d",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "token_type_hint",
+											"value": "refresh_token",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}.apigee.net/token/revocation",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"token",
+										"revocation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC UserInfo",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/me",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Requests to the other oidc endpoints (eg: .well-known/configuration, refresh token, revoke token ,etc)",
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Dynamic Client Registration - Using mTLS",
+					"item": [
+						{
+							"name": "OIDC - Obtain token for Registration Operations (Get/Update/Delete)",
+							"item": [
+								{
+									"name": "Step 1 - Mock ADR Client - Get Private Key JWT",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "eac698cc-2f70-42c7-86f9-d1c9a4a5ab73",
+												"exec": [
+													"// Store private_key_jwt to reuse in next call",
+													"pm.environment.set(\"private_key_jwt\", pm.response.text());"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?aud=https://{{mtls-endpoint}}/token&client_id={{dynamic_client_id}}",
+											"protocol": "https",
+											"host": [
+												"{{org}}-{{env}}",
+												"apigee",
+												"net"
+											],
+											"path": [
+												"mock-adr-client",
+												"privatekeyjwt"
+											],
+											"query": [
+												{
+													"key": "aud",
+													"value": "https://{{mtls-endpoint}}/token"
+												},
+												{
+													"key": "client_id",
+													"value": "{{dynamic_client_id}}"
+												}
+											]
+										},
+										"description": "Obtain Private Key JWT required to request an access token using the private key JWT authentication method"
+									},
+									"response": []
+								},
+								{
+									"name": "Step 2 - OIDC Acquire Token for Client Registration Management Operations (Private Key JWT)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ab4fba7b-ae76-4265-9636-df0260ae1892",
+												"exec": [
+													"// Store scope, access token and id token to reuse in subsequent calls",
+													"var jsonData = pm.response.json();",
+													"pm.environment.set(\"access_token\", jsonData.access_token);",
+													"pm.environment.set(\"refresh_token\", jsonData.refresh_token);",
+													"pm.environment.set(\"scope\", jsonData.scope);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "cdr:registration",
+													"type": "text"
+												},
+												{
+													"key": "client_id",
+													"value": "{{dynamic_client_id}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{private_key_jwt}}",
+													"type": "text"
+												}
+											],
+											"options": {
+												"urlencoded": {}
+											}
+										},
+										"url": {
+											"raw": "https://{{mtls-endpoint}}/token",
+											"protocol": "https",
+											"host": [
+												"{{mtls-endpoint}}"
+											],
+											"path": [
+												"token"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Generate Request for Register/Update Dynamic Client (Uses Mock ADR Client)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "34baa5cc-202f-4ec2-8e46-ee5d7c587bd6",
+										"exec": [
+											"// Store dcr request to reuse in next call",
+											"pm.environment.set(\"dcr_request_jwt\", pm.response.text());"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2&aud=https://{{mtls-endpoint}}",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"mock-adr-client",
+										"dcrrequest"
+									],
+									"query": [
+										{
+											"key": "org_id",
+											"value": "AAA"
+										},
+										{
+											"key": "recipient_base_uri",
+											"value": "https://mycompany.com",
+											"disabled": true
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{client_redirect_uri}}"
+										},
+										{
+											"key": "software_id",
+											"value": "SomeSWID2"
+										},
+										{
+											"key": "aud",
+											"value": "https://{{mtls-endpoint}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register Client",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f3ee07b-5569-470b-8b29-69435d2cd8c9",
+										"exec": [
+											"// Store client_id and client_secret to reuse in subsequent calls",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"dynamic_client_id\", jsonData.client_id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/jwt",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{dcr_request_jwt}}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/register",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Client Registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "dcc3a1f1-5be3-43ad-94bb-269eefe74775",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/jwt"
+									}
+								],
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/register/{{dynamic_client_id}}",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"register",
+										"{{dynamic_client_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Client",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "40b6b5a5-c47d-4937-950d-75aff637be2f",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/jwt"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{dcr_request_jwt}}"
+								},
+								"url": {
+									"raw": "https://{{mtls-endpoint}}/register/{{dynamic_client_id}}",
+									"protocol": "https",
+									"host": [
+										"{{mtls-endpoint}}"
+									],
+									"path": [
+										"register",
+										"{{dynamic_client_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Client",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6e798ac9-f76c-484d-81fd-cd773f0c2500",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "{{access_token}}",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/jwt"
+									}
+								],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"register",
+										"{{dynamic_client_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Get Transactions For Account - With HoK Verification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"type": "text",
+								"value": "2965365e-ab4d-4158-8eda-ca48f1f4f225"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"type": "text",
+								"value": "192.168.1.1"
+							},
+							{
+								"description": "Base64 Encoded String",
+								"key": "x-cds-client-headers",
+								"type": "text",
+								"value": "Base64EncodedString1"
+							}
+						],
+						"url": {
+							"raw": "https://{{mtls-endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions",
+							"protocol": "https",
+							"host": [
+								"{{mtls-endpoint}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "oldest-time",
+									"value": "2016-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "newest-time",
+									"value": "2021-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "min-amount",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "max-amount",
+									"value": "1000",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": "pay",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page-size",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accounts- With HoK Verification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "2965365e-ab4d-4158-8eda-ca48f1f4f225",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "2019-08-01",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.168.1.1",
+								"type": "text"
+							},
+							{
+								"key": "x-cds-client-headers",
+								"value": "Base64EncodedString1",
+								"description": "Base64 Encoded String",
+								"type": "text"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{mtls-endpoint}}/cds-au/v1/banking/accounts",
+							"protocol": "https",
+							"host": [
+								"{{mtls-endpoint}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts"
+							],
+							"query": [
+								{
+									"key": "open-status",
+									"value": "ALL",
+									"disabled": true
+								},
+								{
+									"key": "product-category",
+									"value": "TRANS_AND_SAVINGS_ACCOUNTS",
+									"disabled": true
+								},
+								{
+									"key": "is-owned",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "page-size",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account Details - With HoK Verification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-v",
+								"type": "text",
+								"value": "1"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "x-cds-subject",
+								"type": "text",
+								"value": "{{cdsSubject}}"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-12-18"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"type": "text",
+								"value": "192.168.1.1"
+							},
+							{
+								"description": "Base64 Encoded String",
+								"key": "x-cds-client-headers",
+								"type": "text",
+								"value": "Base64EncodedString1"
+							}
+						],
+						"url": {
+							"raw": "https://{{mtls-endpoint}}/cds-au/v1/banking/accounts/10203040-Acc003",
+							"protocol": "https",
+							"host": [
+								"{{mtls-endpoint}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"10203040-Acc003"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Requests to sample endpoints, to demonstrate HoK verification",
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Mock CDR Register",
 			"item": [
 				{
@@ -3497,7 +5101,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics",
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",

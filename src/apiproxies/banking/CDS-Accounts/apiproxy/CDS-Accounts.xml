@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="35" name="CDS-Accounts">
+<APIProxy revision="36" name="CDS-Accounts">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -13,9 +13,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1597820490974</LastModifiedAt>
+    <LastModifiedAt>1604895059035</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:12d768dcc42c7a8ec8ae72d073273aca216923c7a6da36436428c810d6d34e45030d681c4c97939989cdffdf4d039a5904ff9e7bd79ad00cc9512135288131d5</ManifestVersion>
+    <ManifestVersion>SHA-512:d1dc1edf1cd4e96232552f30f7b97ea645b608fd561909fef08c82318fa9449cfe821f556e12a8894ed34bddf3f9737ddca4f65d90a37b075ff4822913c7036b</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
@@ -38,6 +38,7 @@
         <Policy>FC-PaginateResponse</Policy>
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>FC-VerifyHoK</Policy>
         <Policy>JS-BuildDetailsResponse</Policy>
         <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
         <Policy>JS-CheckAccountsFilterInAllAccounts</Policy>

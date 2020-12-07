@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="54" name="oidc">
+<APIProxy revision="57" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
@@ -15,9 +15,9 @@
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1603682544098</LastModifiedAt>
+    <LastModifiedAt>1604636368933</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:310f5d6d963a2e9f9a8440ff4139184c396510c01dd740083270cd7d441285cf4beedcaa0861568693714f00335a0a144e26613ac755ed0f56f118ee0a953643</ManifestVersion>
+    <ManifestVersion>SHA-512:99538669141491711c0adb397f3fe21ae832df636c61db6dcd6a77347d694b943b76890015b329b7410037c6b1327afa4b22d89f55116629d9b0a95d7066085f</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
@@ -52,11 +52,15 @@
         <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
         <Policy>FC-ReplaceAuthCodeWithOpaqueAuthCode</Policy>
         <Policy>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Policy>
+        <Policy>FC-VerifyHoK-AccessToken</Policy>
+        <Policy>FC-VerifyHoK-RefreshToken</Policy>
+        <Policy>FC-VerifyMTLSOnly</Policy>
         <Policy>JS-GetOIDCTokenExpiryTime</Policy>
         <Policy>JS-RemoveOIDCProvideBasePath</Policy>
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
         <Policy>JWT-DecodeOIDCIdToken</Policy>
         <Policy>JWT-DecodeOIDCRefreshToken</Policy>
+        <Policy>KVM-GetMTLSHostname</Policy>
         <Policy>OA-IssueAccessTokenClientCreds</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>

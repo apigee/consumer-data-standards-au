@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetMTLSHostname" mapIdentifier="ApigeeAPICredentials">
+    <DisplayName>KVM-GetMTLSHostname</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>3000</ExpiryTimeInSecs>
+    <Get assignTo="private.mtlsHostname" index="1">
+        <Key>
+            <Parameter>mtlsHostname</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

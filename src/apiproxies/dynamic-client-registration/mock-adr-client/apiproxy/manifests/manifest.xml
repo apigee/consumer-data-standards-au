@@ -3,7 +3,7 @@
     <Policies>
         <VersionInfo resourceName="AM-SetMockJWKSInfo" version="SHA-512:382ee497419248d147f39a6301e7940c7180ca7e5ad38c0af89bcbb608e171bf1e76ec9bbe76cae52e9e1610cf640c5dc9bc555bac099b6a55ac4d1ce59bb251"/>
         <VersionInfo resourceName="AM-SetResponse" version="SHA-512:bd625691b797d40fc287f82767e5f197b8959a3fedd48c9d7eec2fb7ae0d659722d14d71b5b2a278bce3448d117dc590651b2afb0710cb8609e8d0fb59578f1a"/>
-        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest" version="SHA-512:5602844f29163e1653e45ed147eef83667ba2abb56f9666a461b997a65a41b807f36ca3fa65df4a4737cb7bfa340221eb3082c3a8d49eea17aeafe4028007ce4"/>
+        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest" version="SHA-512:82c0c8fa6d0eacd37e4dcdadea3522fcac23833769ebff227cd8cf154ce00a0b782bf13200ecd262522ad5551bf497f42baba71ea683235d5b2d556193fafe0a"/>
         <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT" version="SHA-512:b42aa715a7a3b55ee0c4950b752c38a3d3f8f8a3e64f9f29f0bab3a3497b6c015b926187d9953c78288af54e2d95851892871520648fdd83bfe4e7ebe3781712"/>
         <VersionInfo resourceName="JS-SetRedirectURIs" version="SHA-512:ab905740383412a410c423dfa989479248c81fd7a25a8e70e6ccf33a717d28b0ed6275f52a8f827f7fa854215156676fad61c93d37962624c170db6359cbfde0"/>
         <VersionInfo resourceName="JWT-GenerateDynamicClientRegistrationRequest" version="SHA-512:37062a92561ca53e99465dbd170bb7e74d0b5860329b2454c61e8c49efede072c7131fff9f2c53fc7289dca3d60448f0c6096a4d27ff9fe68d1476058c3b8c9a"/>

@@ -20,6 +20,7 @@
         <VersionInfo resourceName="FC-PaginateResponse" version="SHA-512:8c19e55d5eb9514aa0990d2e5dce46d944880ddd89c6339f9d76270a6800a2ca8255e9ea062e3910e8ffb51d8bf68fce49f14042d78be7dfa2ff39eb532a5406"/>
         <VersionInfo resourceName="FC-TrafficThresholds" version="SHA-512:6224b63910e4ca49bd6937d2b42b079156f6162aee3b89e9fcb15226172dbd29e40a6d218eab366b2e9bef4f4905db1ad9f008be1aae1731f24d70e77aa44a3f"/>
         <VersionInfo resourceName="FC-ValidateRequestParams" version="SHA-512:78e4cfe0b1a9678293115c5cf47871377889aeaf44cff427809da9685101cdbc6fb934b539756a8eef02c381e45da6370f7d06cd7a5f9a72b69f08a5afe5bce1"/>
+        <VersionInfo resourceName="FC-VerifyHoK" version="SHA-512:74d1c541ac4c98558d34ddd7f34789477a5cff877fd175eeabbcc3443d20db62c119d6d4359432d543702c6f0f661dcc89a60da243de3cba6e425b784fb75a77"/>
         <VersionInfo resourceName="JS-BuildTransactionDetailsResponse" version="SHA-512:2e380ba9227299d1a2ff098a3dad3dd6113a072694b6106df90769079c44c297e09c4eba50ea7304b1ce163dfe52bd2afb8674b147d76bce22aff97315483664"/>
         <VersionInfo resourceName="JS-FilterTransactionsListBasedOnRequestFilters" version="SHA-512:0f416228dde6317e075b19a43bc568349ece85fd2ba603f073e481bedca6de3a25337f46f25b421d49ceaf9d5eb70c7589474d704b8334994dc2377d7b667d2c"/>
         <VersionInfo resourceName="JS-ModifyDatesInMockTransactions" version="SHA-512:4ddf408b4a4c45c4757f7a3bec5532a84ff9439c69df0f7a1aca102fd36242524de998ccc2699b66fa0c0b2d7e612cd4dacebfae4e10e2197daf5f6cb203093c"/>
@@ -29,7 +30,7 @@
         <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:fd39a8b1e91fbf4a7a99310707059a5a911f715861e6d0cc6204aea9fa9eda0b0d94856410fde501d89903aaaced4b4e482f5ebdc3666fc592a64b95499b3c3f"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:2ab75c2d8d9df7dd6de501eb1a1d4349da8b9ffe410086fc44d7f2a37c9989c506479d26b4930f7d991d71b5aa879f14892c05f2bad1e20073d4a735ec7cbdc7"/>
+        <VersionInfo resourceName="default" version="SHA-512:5e1ea29777f9470ebbfe31b20edbbf1a989e0fee996dda94067c7cf9daf6e71ed5fcf78d8f9559909d6f059c855106fe918c28ec39546877bf7442f3859169aa"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://buildTransactionDetailsResponse.js" version="SHA-512:4914207a8367bfd941275e8cf8bbc9c9408bde373b736fe3f23e54ab3301f4ca6a949f00a8a9f370533a69412ab751aed392ec946b0ef6b772ecd75734f992a0"/>
