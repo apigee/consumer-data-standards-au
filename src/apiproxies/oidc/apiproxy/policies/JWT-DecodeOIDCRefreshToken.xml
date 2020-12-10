@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DecodeJWT async="false" continueOnError="false" enabled="true" name="JWT-DecodeOIDCRefreshToken">
-    <DisplayName>JWT-DecodeOIDCRefreshToken</DisplayName>
-    <FaultRules/>
-    <Properties/>
-    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-    <Source>OIDCTokenResponse.refresh_token</Source>
-</DecodeJWT>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignOldClientIdtoNewAppId">
+    <DisplayName>AssignOldClientIdtoNewAppId</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>theNewAppId</Name>
+        <Ref>theClientId</Ref>
+    </AssignVariable>
+</AssignMessage>

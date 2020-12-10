@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignIDPRevokeUrl">
+    <DisplayName>AssignIDPRevokeUrl</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>target.url</Name>
+        <Template>https://{private.okta_org}/oauth2/default/v1/revoke</Template>
+    </AssignVariable>
+</AssignMessage>

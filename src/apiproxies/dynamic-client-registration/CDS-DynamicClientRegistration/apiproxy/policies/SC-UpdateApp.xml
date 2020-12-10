@@ -26,10 +26,6 @@
   {
    "name" : "SSA",
    "value" : "{SSA}"
-  },
-  {
-   "name": "IDP_registration_access_token",
-   "value": "{app.IDP_registration_access_token}"
   }
  ],
  "name" : "{ADRDetailsFromSSA.software_id}",

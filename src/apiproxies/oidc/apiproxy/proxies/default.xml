@@ -14,7 +14,7 @@
     <Description/>
     <FaultRules>
         <FaultRule name="Invalid Refresh Token in Introspection">
-            <Condition>(faultType = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/token/introspection")</Condition>
+            <Condition>(faultType = "invalid_refresh_token") and (proxy.pathsuffix MatchesPath "/introspect")</Condition>
             <Step>
                 <FaultRules/>
                 <Name>AM-BuildIntrospectionResponseInactiveToken</Name>
@@ -34,23 +34,55 @@
             <Request/>
             <Response>
                 <Step>
-                    <FaultRules/>
-                    <Name>JS-RemoveOIDCProvideBasePath</Name>
+                    <Name>AssignWellKnownConfigurationResponse</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="Authorise">
             <Description>Get Authorisation Code</Description>
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>ExtractAuthorizeParams</Name>
+                </Step>
+                <Step>
+                    <Name>FormStateCacheValue</Name>
+                </Step>
+                <Step>
+                    <Name>PopulateStateCache</Name>
+                </Step>
+            </Request>
             <Response>
                 <Step>
-                    <Condition>response.status.code = 200</Condition>
-                    <FaultRules/>
-                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
+                    <Name>ReadApigeeOIDCCreds</Name>
+                </Step>
+                <Step>
+                    <Name>SetLocationHeader</Name>
+                </Step>
+                <Step>
+                    <Name>RedirectToOkta</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/authorise") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Callback">
+            <Description>Callback</Description>
+            <Request>
+                <Step>
+                    <Name>ExtractCallbackParams</Name>
+                </Step>
+                <Step>
+                    <Name>LookupStateCache</Name>
+                </Step>
+                <Step>
+                    <Name>ExtractStateCache</Name>
+                </Step>
+                <Step>
+                    <Name>GenerateOpaqueAuthCodeAndIDToken</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/callback") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Refresh Token">
             <Description>Refresh Token</Description>
@@ -64,12 +96,13 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
-                </Step>
-                <Step>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <Condition>(oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true) or (oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.refresh_token_status != "approved")</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidRefreshToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -80,8 +113,10 @@
                     <Name>EV-StoreTokenRequestDetails</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Name>
+                    <Name>ReadApigeeOIDCCreds</Name>
+                </Step>
+                <Step>
+                    <Name>ServiceCalloutIDPTokenEndpointRefreshToken</Name>
                 </Step>
             </Request>
             <Response>
@@ -90,24 +125,11 @@
                     <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCRefreshToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCIdToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForRefreshToken</Name>
+                    <Name>Decode-OIDC-ID-Token</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>AM-ReinstateAuthHeaderInResponse</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -116,6 +138,27 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfoSet-ForceUpdateOfAttributes</Name>
+                </Step>
+                <Step>
+                    <Name>GetJWTSigningKey</Name>
+                </Step>
+                <Step>
+                    <Name>AssignIssuer</Name>
+                </Step>
+                <!--<Step>
+                    <Name>GenerateATHashRefreshTokenFlow</Name>
+                </Step>-->
+                <Step>
+                    <Name>GenerateATHashRefreshTokenFlowHostedTarget</Name>
+                </Step>
+                <Step>
+                    <Name>ExtractATHash</Name>
+                </Step>
+                <Step>
+                    <Name>ExtractAMRClaim</Name>
+                </Step>
+                <Step>
+                    <Name>GenerateIDTokenRefreshTokenFlow</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -136,12 +179,14 @@
                     <Name>EV-StoreTokenRequestDetails</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Name>
+                    <Name>RF-InvalidRedirectUri</Name>
+                    <Condition>(TokenRequestParams.redirect_uri != oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.redirect_uri)</Condition>
                 </Step>
                 <Step>
-                    <Name>AM-RemovePrivateKeyJWTParams</Name>
-                    <Condition>(request.formparam.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" ) and (request.formparam.client_assertion != "") and (request.formparam.client_id != "")</Condition>
+                    <Name>ReadApigeeOIDCCreds</Name>
+                </Step>
+                <Step>
+                    <Name>ServiceCalloutIDPTokenendpoint</Name>
                 </Step>
             </Request>
             <Response>
@@ -150,31 +195,40 @@
                     <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCRefreshToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCIdToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForAcquireToken</Name>
+                    <Name>Decode-OIDC-ID-Token</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-GenerateCDRArrangementId</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>AM-ReinstateAuthHeaderInResponse</Name>
+                    <Name>OA-IssueOpaqueAccessToken</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>OA-IssueOpaqueAccessToken</Name>
+                    <Name>GetJWTSigningKey</Name>
+                </Step>
+                <Step>
+                    <Name>AssignIssuer</Name>
+                </Step>
+                <!--<Step>
+                    <Name>GenerateATHash</Name>
+                </Step>-->
+                <Step>
+                    <Name>GenerateATHashHostedTarget</Name>
+                </Step>
+                <Step>
+                    <Name>ExtractATHash</Name>
+                </Step>
+                <Step>
+                    <Name>ExtractAMRClaim</Name>
+                </Step>
+                <Step>
+                    <Name>GenerateIDToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -187,15 +241,18 @@
             <Description>Acquire Token Client Credentials Grant Type</Description>
             <Request>
                 <Step>
-                    <Name>RF-InvalidScope</Name>
                     <Condition>(request.formparam.scope != "cdr:registration")</Condition>
+                    <FaultRules/>
+                    <Name>RF-InvalidScope</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-IssueAccessTokenClientCreds</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-SetAccessTokenResponse-ClientCred</Name>
                 </Step>
             </Response>
@@ -211,6 +268,15 @@
                 <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
+                </Step>
+                <Step>
+                    <Name>ReadApigeeOIDCCreds</Name>
+                </Step>
+                <Step>
+                    <Name>AM-RemovePrivateKeyJWTParams</Name>
+                </Step>
+                <Step>
+                    <Name>SetIDPAuthorizationHeader</Name>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
@@ -273,29 +339,31 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
-                </Step>
-                <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
+                    <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
+                    <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
-                    <Name>EV-ExtractIntrospectionResponse</Name>
+                    <Name>SetTokenIntrospectionResponse</Name>
                 </Step>
                 <Step>
+                    <FaultRules/>
                     <Name>AM-GenerateIntrospectionResponse</Name>
-                    <Condition>isActive = "true"</Condition>
+                    <Condition>(isActive = true)</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateIntrospectionResponseInactive</Name>
+                    <Condition>(isActive = false)</Condition>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token/introspection") and (request.verb = "POST")</Condition>
@@ -312,7 +380,7 @@
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Condition>(oauthV2.OAInfo-RetrieveAccessTokenDetails.failed = "true")</Condition>
+                    <Condition>(oauthV2.OAInfo-RetrieveAccessTokenDetails.failed = "true") or (oauthv2accesstoken.OAInfo-RetrieveAccessTokenDetails.status != "approved")</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidAccessToken</Name>
                 </Step>
@@ -321,49 +389,25 @@
                     <Name>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Name>
                 </Step>
             </Request>
-            <Response/>
+            <Response>
+                <Step>
+                    <Name>ReplaceUserInfoSubWithPPID</Name>
+                </Step>
+            </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/me") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="Get OIDC Public Certs">
             <Description>Get OIDC Public Certs</Description>
             <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/certs") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="LoginPage">
-            <Description> Mock login Page</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="Submit Login">
-            <Description> Submit Login</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/login") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="ConsentPage">
-            <Description> Mock consent Page</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/consent") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="Submit Consent">
-            <Description> Submit Consent</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/consent") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="FinalAuthorise">
-            <Description>Return Auth Code</Description>
-            <Request/>
             <Response>
                 <Step>
-                    <FaultRules/>
-                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
+                    <Name>GetJWTKeys</Name>
+                </Step>
+                <Step>
+                    <Name>AssignJWKS</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorise/{interactionId}") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/certs") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="Not Found">
             <Description>Not Found</Description>
@@ -388,6 +432,7 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
+                <FaultRules/>
                 <Name>AM-SetDefaultValuesForPerfSLO</Name>
             </Step>
             <Step>
@@ -403,8 +448,9 @@
                 <Name>AM-SetDefaultValuesForTokenCustomDimensions</Name>
             </Step>
             <Step>
-                <Name>FC-AuthenticateWithPrivateKeyJWT</Name>
                 <Condition>(request.formparam.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" ) and (request.formparam.client_assertion != "") and (request.formparam.client_id != "")</Condition>
+                <FaultRules/>
+                <Name>FC-AuthenticateWithPrivateKeyJWT</Name>
             </Step>
         </Request>
         <Response>
@@ -420,7 +466,11 @@
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="noroute">
-        <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>
+        <Condition>((proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")) or ((proxy.pathsuffix MatchesPath "/authorise") and (request.verb = "GET")) or ((proxy.pathsuffix MatchesPath "/certs") and (request.verb = "GET")) or ((proxy.pathsuffix MatchesPath "/token/introspection") and (request.verb = "POST")) or ((proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") and (request.verb = "GET"))</Condition>
+    </RouteRule>
+    <RouteRule name="callback">
+        <Condition>(proxy.pathsuffix MatchesPath "/callback") and (request.verb = "POST")</Condition>
+        <TargetEndpoint>callback</TargetEndpoint>
     </RouteRule>
     <RouteRule name="sandbox">
         <TargetEndpoint>default</TargetEndpoint>

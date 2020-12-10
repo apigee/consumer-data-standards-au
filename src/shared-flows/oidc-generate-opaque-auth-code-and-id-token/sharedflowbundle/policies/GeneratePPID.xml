@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="GeneratePPID">
+    <DisplayName>GeneratePPID</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>customerPPID</Name>
+        <Template>{createUuid()}</Template>
+    </AssignVariable>
+</AssignMessage>

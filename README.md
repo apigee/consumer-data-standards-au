@@ -1,4 +1,4 @@
-# [![https://cloud.google.com/apigee/](http://apigee.com/about/sites/all/themes/apigee_themes/apigee_mktg/images/logo.png)](https://cloud.google.com/apigee/)  Consumer Data Standards Australia - Open Banking Reference Implementation
+# [![https://cloud.google.com/apigee/](https://www.gstatic.com/images/branding/product/1x/google_cloud_48dp.png)](https://cloud.google.com/apigee/)  Consumer Data Standards Australia - Open Banking Reference Implementation
 
 ## Overview
 
@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v1.4** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.5.1** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -45,8 +45,8 @@ Other APIs will be gradually added, as well as support for Pushed Authorisation 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
 2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts and best practices such as caching of (mock) responses
-3. An API proxy (*oidc-mock-provider*) that implements a standalone Open ID Connect Identity Provider, based on the open source package [oidc-provider](https://github.com/panva/node-oidc-provider)
-4. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens
+3. Integration with Okta as the OpenID Connect provider
+4. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, Apigee receives ID, Access and Refresh tokens from Okta and issues its own JWT ID token along with opaque access and refresh tokens
 5. An API Proxy (*CDS-DynamicClientRegistration*) that leverages Apigee client management capabilities to allow Data Recipients to dynamically register with the reference implementation.
 6. An API Proxy (*mock-cdr-register*) that mocks the CDR register role in dynamic client registration: Issuing Software Statement Assertions (SSAs) and providing a JWKS to verify these SSAs. 
 7. An API Proxy (*mock-adr-client*) that mocks the functionality a client being registered dynamically needs to include: provide a JWKS that can be used to verify a registration request. In addition, to make testing easier, it also has a helper facility to automatically generate such registration requests.
@@ -54,7 +54,7 @@ This repository includes:
 The reference implementation can accelerate Open Banking implementation in multiple ways:
 - Quick delivery of a sandbox API environment, returning mock data.
 - Reusable artefacts (implemented as shared flows) can be included in real API implementations.
-- Leverage the implemented Apigee/Standalone OIDC Provider interaction to kickstart the interaction between Apigee and a real OIDC Provider.
+- Showcase integration with Okta, a market-leading standards-based Identity Provider.
 - The Dynamic Client Registration functionality can be reused as is, with perhaps minor changes to adapt to the way dynamic clients are registered with a real OIDC provider.
 
 **This is not an officially supported Google product.**
@@ -75,13 +75,17 @@ The reference implementation can accelerate Open Banking implementation in multi
 ```
 npm install --global apigeetool
 ```
-2. Configure environment variables specifying the Apigee organisation and environment where the artefacts will be deployed
+2. Configure environment variables specifying the Apigee organisation and environment where the artefacts will be deployed and the Okta org details. (Refer to https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard_OIDC.htm for the steps to register an OIDC app in Okta using the authorization code grant type to get the OKTA_CLIENT_ID and OKTA_CLIENT_SECRET. To register for an Okta developer tenant that is forever-free, go to https://developer.okta.com/signup. The OKTA_REDIRECT_URI is https://{your apigee org name}-{your apigee env name}.apigee.net/callback. Create a user in Okta with username 10203040, as the API proxies return mock data for this username)
 ```
 export APIGEE_ORG=<your-org-name>
 export APIGEE_ENV=<your-env-name>
 export APIGEE_USER=<your-user-name>
 export APIGEE_PASSWORD='<your-password>'   # Make sure to surround your password in single quotes, in case it includes special characters such as '$'
 export CDS_TEST_DEVELOPER_EMAIL=<your-email-address>
+export OKTA_ORG=<name-of-okta-org> # Without the https, for example, if your Okta org is https://cdr.okta.com, this will be cdr.okta.com
+export OKTA_CLIENT_ID=<client-id-issued-by-okta-to-apigee>
+export OKTA_CLIENT_SECRET=<client-secret-issued-by-okta-to-apigee>
+export OKTA_REDIRECT_URI=<apigee-redirect-uri-to-which-okta-issues-authorization-code>
 ```
 3. Run the following script from the root folder of the cloned repo.
 ```
@@ -131,4 +135,4 @@ There are 13 shared flows that implement common functionality required by the Ba
 13. *authenticate-with-private-key-jwt*: Implements *private_key_jwt*  client authentication method.
 
 
-There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints
+There are additional shared flows, *oidc-replace-auth-code-with-opaque-auth-code* and *oidc-generate-opaque-auth-code-and-id-token*, that implements logic reused in two different oidc endpoints

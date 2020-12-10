@@ -8,7 +8,7 @@
         <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"/>
-        <Attribute display="false" name="customerPPId" ref="customerPPId"/>
+        <Attribute display="false" name="customerPPId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerPPID"/>
         <Attribute display="false" name="cdrArrangementId" ref="cdrArrangementId"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
@@ -16,12 +16,12 @@
     <GrantType>TokenRequestParams.grant_type</GrantType>
     <Operation>GenerateAccessToken</Operation>
     <RedirectUri>TokenRequestParams.redirect_uri</RedirectUri>
-    <RefreshTokenExpiresIn ref="refreshTokenExpiresInMillis">3600000</RefreshTokenExpiresIn>
+    <RefreshTokenExpiresIn>3600000</RefreshTokenExpiresIn>
     <GenerateResponse enabled="false">
         <Format>FORM_PARAM</Format>
     </GenerateResponse>
     <ReuseRefreshToken>false</ReuseRefreshToken>
-    <Scope>OIDCTokenResponse.scope</Scope>
+    <Scope>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.scope</Scope>
     <SupportedGrantTypes>
         <GrantType>authorization_code</GrantType>
     </SupportedGrantTypes>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="ReadApigeeOIDCCreds" mapIdentifier="ApigeeOIDCCreds">
+    <DisplayName>ReadApigeeOIDCCreds</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Get assignTo="private.okta_org">
+        <Key>
+            <Parameter>okta_org</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.apigee_client_id">
+        <Key>
+            <Parameter>client_id</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.apigee_client_secret">
+        <Key>
+            <Parameter>client_secret</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.apigee_redirect_uri">
+        <Key>
+            <Parameter>redirect_uri</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

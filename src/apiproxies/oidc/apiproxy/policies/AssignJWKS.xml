@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignJWKS">
+    <DisplayName>AssignJWKS</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json">{private.jwks}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

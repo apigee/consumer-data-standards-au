@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-IssueOpaqueAuthCode">
+    <DisplayName>OA-IssueOpaqueAuthCode</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ClientId>client_id</ClientId>
+    <Attributes>
+        <Attribute display="false" name="OIDCAuthCode" ref="code"/>
+        <Attribute display="false" name="customerId" ref="jwt.Verify-OIDC-ID-Token.decoded.claim.preferred_username"/>
+        <Attribute display="false" name="customerPPID" ref="customerPPID"/>
+    </Attributes>
+    <ExpiresIn>600000</ExpiresIn>
+    <ExternalAuthorization>false</ExternalAuthorization>
+    <Operation>GenerateAuthorizationCode</Operation>
+    <RedirectUri>redirect_uri</RedirectUri>
+    <GenerateResponse enabled="false">
+        <Format>FORM_PARAM</Format>
+    </GenerateResponse>
+    <ResponseType>message.header.response_type</ResponseType>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <Scope>scope</Scope>
+    <SupportedGrantTypes/>
+    <Tokens/>
+</OAuthV2>

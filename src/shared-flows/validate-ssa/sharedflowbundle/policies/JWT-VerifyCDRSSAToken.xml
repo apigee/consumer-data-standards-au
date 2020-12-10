@@ -7,7 +7,7 @@
   <Algorithm>PS256,RS256</Algorithm>
   <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
   <PublicKey>
-    <JWKS uri="https://demo-au01-prod.apigee.net/mock-cdr-register/jwks"/>
+    <JWKS uri="https://sathishoktase-eval-test.apigee.net/mock-cdr-register/jwks"/>
   </PublicKey>
   <AdditionalClaims>
     <Claim name="software_roles">data-recipient-software-product</Claim>

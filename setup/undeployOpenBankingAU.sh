@@ -45,6 +45,12 @@ echo Removing KVM mockCDRRegister
 apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName mockCDRRegister
 echo Removing KVM mockADRClient
 apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName mockADRClient
+#Sathish - Remove KVMs
+echo Removing KVM ApigeeOIDCCreds
+apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName ApigeeOIDCCreds
+echo Removing KVM JWTKeys
+apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName JWTKeys
+
 
 # Undeploy banking apiproxies
 cd src/apiproxies/banking
@@ -71,10 +77,18 @@ cd ../oidc
 echo Undeploying oidc Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
 
+#Sathish - Remove cache
+apigeetool deletecache -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -z OIDCState
+
 # Undeploy oidc-mock-provider proxy
 cd ../oidc-mock-provider
 echo Undeploying oidc-mock-provider Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
+
+# Sathish - Undeploy oidctokenhash proxy
+cd ../oidctokenhash
+echo Undeploying oidctokenhash Apiproxy
+apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidctokenhash
 
 # Undeploy CDS-Admin proxy
 cd ../admin/CDS-Admin
