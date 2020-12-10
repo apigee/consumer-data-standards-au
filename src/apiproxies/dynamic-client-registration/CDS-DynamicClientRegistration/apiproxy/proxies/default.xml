@@ -57,6 +57,9 @@
                     <Name>FC-TrafficThresholdsForClientRegistration</Name>
                 </Step>
                 <Step>
+                    <Name>FC-VerifyMTLSOnly</Name>
+                </Step>
+                <Step>
                     <Name>RF-InvalidContentType</Name>
                     <Condition>request.header.content-type != "application/jwt"</Condition>
                 </Step>
@@ -117,19 +120,19 @@
                 <Step>
                     <Name>JS-AssignProductsBasedOnScope</Name>
                 </Step>
-                <Step>
+                <!--<Step>
                     <Name>SC-RegisterClientInOIDCProvider</Name>
                 </Step>
                 <Step>
                     <Name>EV-GetKeySecretFromOIDCResponse</Name>
-                </Step>
+                </Step>-->
                 <Step>
                     <Name>SC-CreateApp</Name>
                 </Step>
                 <Step>
                     <Name>EV-ExtractClientSecretFromUpdateAppResponse</Name>
                 </Step>
-                <Step>
+                <!--<Step>
                     <Name>SC-AddKeysToApigeeApp</Name>
                 </Step>
                 <Step>
@@ -137,7 +140,7 @@
                 </Step>
                 <Step>
                     <Name>SC-DeleteAppKeyJustCreated</Name>
-                </Step>
+                </Step>-->
             </Request>
             <Response>
                 <Step>
@@ -157,6 +160,9 @@
                 </Step>
                 <Step>
                     <Name>OA-VerifyTokenForDCROperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyHoK</Name>
                 </Step>
                 <Step>
                     <Name>AM-GetOrgIdAndAppIdFromTokenInfo</Name>
@@ -200,6 +206,9 @@
                 </Step>
                 <Step>
                     <Name>OA-VerifyTokenForDCROperations</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyHoK</Name>
                 </Step>
                 <Step>
                     <Name>AM-GetOrgIdAndAppIdFromTokenInfo</Name>
@@ -286,8 +295,11 @@
                     <Name>SC-AssociateProductsWithKey</Name>
                     <Condition>changedProducts = "true"</Condition>
                 </Step>
-                <Step>
+                <!--<Step>
                     <Name>SC-UpdateClientInOIDCProvider</Name>
+                </Step>-->
+                <Step>
+                    <Name>AssignOldClientIdtoNewAppId</Name>
                 </Step>
             </Request>
             <Response>
@@ -310,6 +322,9 @@
                     <Name>OA-VerifyTokenForDCROperations</Name>
                 </Step>
                 <Step>
+                    <Name>FC-VerifyHoK</Name>
+                </Step>
+                <Step>
                     <Name>AM-GetOrgIdAndAppIdFromTokenInfo</Name>
                 </Step>
                 <Step>
@@ -322,9 +337,9 @@
                 <Step>
                     <Name>SC-DeleteApp</Name>
                 </Step>
-                <Step>
+                <!--<Step>
                     <Name>SC-DeleteClientInOIDCProvider</Name>
-                </Step>
+                </Step>-->
             </Request>
             <Response>
                 <Step>
@@ -382,6 +397,10 @@
         <BasePath>/register</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
+        <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
+             The secure-mtls virtual host must already be configured to support mTLS with propagateTLSInformation
+             This proxy has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
+        <!-- <VirtualHost>secure-mtls</VirtualHost> -->
     </HTTPProxyConnection>
     <RouteRule name="noroute"/>
 </ProxyEndpoint>

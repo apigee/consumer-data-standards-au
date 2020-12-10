@@ -40,7 +40,7 @@
  if (context.getVariable("request.verb") == "POST") {
     // If client has just been registered, client_id will be available  as part of the OIDC provider
     // Also make sure response code is 201 Created
-    theResponse.client_id = context.getVariable("OIDCCredentials.client_id");
+    theResponse.client_id = context.getVariable("theNewAppId");
     context.setVariable("response.status.code",201);
     context.setVariable("response.reason.phrase", "Created");
  }

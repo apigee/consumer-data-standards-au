@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="12" name="CDS-DynamicClientRegistration">
+<APIProxy revision="2" name="CDS-DynamicClientRegistration">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -9,13 +9,13 @@
     <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1598417656250</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
+    <CreatedAt>1603794288759</CreatedAt>
+    <CreatedBy>sathishapigee@gmail.com</CreatedBy>
     <Description>Implement Client Registration Management APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1602571288167</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:330c335311685ad5992f8e9c57e2c4d7e9be84b74c0e1900bf124c7d3c36f5cbf19e48ff56fa9f7d0d0a4cadcb9511aa6a4ecf92daf306b202414f9c3fb0d558</ManifestVersion>
+    <LastModifiedAt>1607582248318</LastModifiedAt>
+    <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:4a62cbe62ac53d7669815a0a67e2270712b4b2a117002d91f3b684c4565b8eece5dc000d38bc0e4c462daff69d6da1ca9140007f487b6d5c122ab47ec827137a:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AE-GetApp</Policy>
         <Policy>AE-GetDeveloper</Policy>
@@ -31,6 +31,7 @@
         <Policy>AM-SetOrgIdForApigee</Policy>
         <Policy>AM-SetValidAudience</Policy>
         <Policy>AM-TokenNotVerified</Policy>
+        <Policy>AssignOldClientIdtoNewAppId</Policy>
         <Policy>BA-SetBasicAuthHeader</Policy>
         <Policy>EV-ExtractClientSecretFromUpdateAppResponse</Policy>
         <Policy>EV-ExtractOrgIdFromAppOwner</Policy>
@@ -46,6 +47,8 @@
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-TrafficThresholdsForClientRegistration</Policy>
         <Policy>FC-ValidateSSA</Policy>
+        <Policy>FC-VerifyHoK</Policy>
+        <Policy>FC-VerifyMTLSOnly</Policy>
         <Policy>JS-AssignProductsBasedOnScope</Policy>
         <Policy>JS-BuildResponse</Policy>
         <Policy>JS-CheckIfProductsHaveChanged</Policy>
