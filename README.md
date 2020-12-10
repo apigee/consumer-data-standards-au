@@ -75,7 +75,7 @@ The reference implementation can accelerate Open Banking implementation in multi
 ```
 npm install --global apigeetool
 ```
-2. Configure environment variables specifying the Apigee organisation and environment where the artefacts will be deployed. (Refer to https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard_OIDC.htm for the steps to register an OIDC app in Okta using the authorization code grant type to get the OKTA_CLIENT_ID and OKTA_CLIENT_SECRET. To register for an Okta developer tenant that is forever-free, go to https://developer.okta.com/signup. The OKTA_REDIRECT_URI is https://{your apigee org name}-{your apigee env name}.apigee.net/callback)
+2. Configure environment variables specifying the Apigee organisation and environment where the artefacts will be deployed and the Okta org details. (Refer to https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard_OIDC.htm for the steps to register an OIDC app in Okta using the authorization code grant type to get the OKTA_CLIENT_ID and OKTA_CLIENT_SECRET. To register for an Okta developer tenant that is forever-free, go to https://developer.okta.com/signup. The OKTA_REDIRECT_URI is https://{your apigee org name}-{your apigee env name}.apigee.net/callback. Create a user in Okta with username 10203040, as the API proxies return mock data for this username)
 ```
 export APIGEE_ORG=<your-org-name>
 export APIGEE_ENV=<your-env-name>
