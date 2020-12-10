@@ -254,10 +254,6 @@ cd ../apiproxies/admin/CDS-Admin
 echo Deploying CDS-Admin Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
 
-# Deploy oidc-mock-provider proxy
-cd ../../oidc-mock-provider
-echo Deploying oidc-mock-provider Apiproxy
-apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
 
 # Sathish - Deploy oidctokenhash proxy
 cd ../../oidctokenhash

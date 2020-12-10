@@ -80,10 +80,6 @@ apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PAS
 #Sathish - Remove cache
 apigeetool deletecache -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -z OIDCState
 
-# Undeploy oidc-mock-provider proxy
-cd ../oidc-mock-provider
-echo Undeploying oidc-mock-provider Apiproxy
-apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
 
 # Sathish - Undeploy oidctokenhash proxy
 cd ../oidctokenhash
