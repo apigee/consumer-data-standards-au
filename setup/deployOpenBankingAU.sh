@@ -60,7 +60,18 @@ do
  #Create Cache - Sathish
 
 echo "Creating cache OIDCState..."
-apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState --description "Cache redirect_uri, client_id, scope and other OIDC request params against state" --cacheExpiryInSecs 600
+apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState 
+curl  -s -o /dev/null -w "%{http_code}\n" --request PUT 'https://api.enterprise.apigee.com/v1/o/demo-au01/e/test/caches/OIDCState' \
+-u $APIGEE_USER:$APIGEE_PASSWORD \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "description": "Cache redirect_uri, client_id, scope and other OIDC request params against state",
+    "expirySettings": {
+        "timeoutInSec": {
+            "value": "600"
+        }
+    }
+}'
 
  # Deploy oidc proxy
 cd ../oidc
