@@ -113,6 +113,10 @@ The Postman collection includes a request to the helper endpoint in the Mock CDR
 
 The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return **actual** metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
 
+## Integrations with specific Identity Providers
+Okta has contributed to this reference implementation by providing a modified version of the *oidc* proxy that shows how Apigee can interact with Okta as an Identity Provider. 
+You can find this version of the reference implementation in the [okta-integration](https://github.com/apigee/consumer-data-standards-au/tree/okta-integration) branch of this repository.
+
 
 ## Shared Flows
 
