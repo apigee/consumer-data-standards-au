@@ -171,17 +171,6 @@ echo Certificate CDSTestApp.crt generated and stored in ./setup/certs. You will 
 APP_JWK=$(pem-jwk ./CDSTestApp_rsa_public.pem  | jq '. + { "kid": "CDSTestApp" } + { "use": "sig" }') 
 echo $APP_JWK > ./CDSTestApp.jwk
 
-# Create a new entry in the OIDC provider client configuration for this TestApp,
-# so that it is recognised by the OIDC provider as a client
-echo "Creating new entry in OIDC Provider configuration for CDSTestApp"
-APP_CLIENT_ENTRY=$(echo '{ "client_id": "'$APP_KEY'", "client_secret": "'$APP_SECRET'", "redirect_uris": ["https://httpbin.org/post"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"], "token_endpoint_auth_method": "client_secret_basic","jwks": {"keys": ['$APP_JWK']}}')
-OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
-# Write the JQ Filter that we're going to use to a file
-echo '. + ['$APP_CLIENT_ENTRY']' > ./tmpJQFilter
-echo $OIDC_CLIENT_CONFIG | jq -f ./tmpJQFilter > ../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
-rm ./tmpJQFilter
-echo "----"
-
 # Generate RSA Private/public key pair for the mock CDR Register:
 echo "Generating RSA Private/public key pair for Mock CDR Register..."
 openssl genpkey -algorithm RSA -out ./MockCDRRegister_rsa_private.pem -pkeyopt rsa_keygen_bits:2048
