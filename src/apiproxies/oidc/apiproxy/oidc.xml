@@ -16,9 +16,9 @@
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1607924553916</LastModifiedAt>
+    <LastModifiedAt>1608022269666</LastModifiedAt>
     <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:fc70c3062f1877225b3b38b41a6f6b8535f7214da0d2e0eefbe08455b8e565e2a589a0e8d97c5f54fec4a3f35e404e794b0a535b31bb7ecd8579f6f4e19fda6d:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:f6ecac0eb580f51665b2c642bddf3f76bea239e647f6c96256bb01eba535d3a13941260dc1175607a9a1fa5e98d334ebe20ebfc9e500b9c50afc8850e6d45830:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>

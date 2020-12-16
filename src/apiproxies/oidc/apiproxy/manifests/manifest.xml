@@ -118,7 +118,7 @@
         <VersionInfo resourceName="jsc://PopulateStateCache.js" version="SHA-512:f86d19588549025eb7e33abb8fe794fbec1d0deb16886fe593c9c98d1025a008d5f5ae9cffe23a61c50461139ce9ce7dfbb6406c8f779bb210b58f88bce40ee9"/>
         <VersionInfo resourceName="jsc://ReplaceUserInfoSubWithPPID.js" version="SHA-512:3d71808ba67340733c5944e84235dc1d3bc92e4c100ca1f219d7af141916d74acdfc4af71ed0e6ea4f07f627a88fe8a64550ab359c25d411260067ab5ea1aaf7"/>
         <VersionInfo resourceName="jsc://SetIntrospectResponse.js" version="SHA-512:e79e9eaf1c319077be2588ea632552f8f6a6e764acdf1fec235672f168605c2e7efaf532c799d09620a8bf5b98eb4f0a7bdbffa5a2d68451543ac8768bc23695"/>
-        <VersionInfo resourceName="jsc://SetLocationHeader.js" version="SHA-512:ad4ea4a12e6320b5f96540fc88b909dbcd36c13f4fe2f81a2676dec77d2c24a1971fffc01086121e9b6941c967f94d2c9b62615efae94f8832f4ede28d38a219"/>
+        <VersionInfo resourceName="jsc://SetLocationHeader.js" version="SHA-512:e55d5b83f8db517da3924d8eef65ac00592bacc23237545398f95c31821751146025aea87071445d3a513672346f1432235c3327eaddd228d5458674234ae27c"/>
         <VersionInfo resourceName="jsc://getOIDCTokenExpiryTime.js" version="SHA-512:35898ba6c13d34bb1464d9c77dc91242b4acdc80550be9b3247d335f7178b3c205b191a350ad1d9a7e612980f21f454901170205ee981f1cb35d91333d835db8"/>
         <VersionInfo resourceName="jsc://removeOIDCProvideBasePath.js" version="SHA-512:0df660b39b488fe87550bf54fc2d4f5c68ae2b507abefd5504647a1400af1f66f848c22a4a45f20f9007a8875290f6ba93254e5e40d079499492e24b65ef5275"/>
         <VersionInfo resourceName="jsc://substituteWithOpaqueAccessTokenInResponse.js" version="SHA-512:9760f7fc3151ae75cb47c7a7cdd39c92d5d8b0cc021418cd190d7ecd9cc49407670996220d3e4b402b6e350180eaffcb8f536bb87aabf954170e6db54f552e10"/>
