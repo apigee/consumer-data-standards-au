@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="5" name="oidc-generate-opaque-auth-code-and-id-token">
+<SharedFlowBundle revision="7" name="oidc-generate-opaque-auth-code-and-id-token">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1605408281186</CreatedAt>
+    <CreatedAt>1608117564042</CreatedAt>
     <CreatedBy>sathishapigee@gmail.com</CreatedBy>
     <Description>undefined</Description>
     <DisplayName>oidc-generate-opaque-auth-code-and-id-token</DisplayName>
-    <LastModifiedAt>1606688003185</LastModifiedAt>
+    <LastModifiedAt>1608117564042</LastModifiedAt>
     <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:9a95574da8c4c4d915dee695fccde940157e45e7ba39553cd10cefe144a8d8291037ed8b3d14824018b262ae12164a9d230961e4f4f290129668b75baea62ca5:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:9b5641bd3e18cfc603a2003cb7db10ef2e7ae1b27b5b5800db182ec86479a969b36834f857e4d4b4d89126b8735be1066b48ff950627687b1bedeff463b65f98:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>Assign-Message-1</Policy>
         <Policy>AssignIssuer</Policy>
+        <Policy>AssignOktaIssuer</Policy>
         <Policy>ExtractAMRClaim</Policy>
         <Policy>ExtractCodeHash</Policy>
         <Policy>ExtractStateHash</Policy>
@@ -21,7 +22,9 @@
         <Policy>GenerateStateHash</Policy>
         <Policy>GenerateStateHashHostedTarget</Policy>
         <Policy>GetJWTSigningKey</Policy>
+        <Policy>GetOktaJWKS</Policy>
         <Policy>OA-IssueOpaqueAuthCode</Policy>
+        <Policy>ReadApigeeOIDCCreds</Policy>
         <Policy>SetResponseType</Policy>
         <Policy>Verify-OIDC-ID-Token</Policy>
     </Policies>

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
+        <Name>ReadApigeeOIDCCreds</Name>
+    </Step>
+    <Step>
+        <Name>AssignOktaIssuer</Name>
+    </Step>
+    <Step>
+        <Name>GetOktaJWKS</Name>
+    </Step>
+    <Step>
         <Name>Verify-OIDC-ID-Token</Name>
     </Step>
     <Step>

@@ -10,7 +10,7 @@
             </Headers>
             <FormParams>
                 <FormParam name="grant_type">{TokenRequestParams.grant_type}</FormParam>
-                <FormParam name="redirect_uri">https://{organization.name}-{environment.name}.apigee.net/callback</FormParam>
+                <FormParam name="redirect_uri">{private.apigee_redirect_uri}</FormParam>
                 <FormParam name="scope">offline_access openid profile</FormParam>
                 <FormParam name="refresh_token">{oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.OIDCRefreshToken}</FormParam>
                 <FormParam name="client_id">{private.apigee_client_id}</FormParam>

@@ -4,8 +4,8 @@
     <Algorithm>RS256</Algorithm>
     <Source>id_token</Source>
     <PublicKey>
-        <JWKS uri="https://cdr.okta.com/oauth2/default/v1/keys"/>
+        <JWKS ref="jwksResponse.content"/>
     </PublicKey>
-    <Issuer>https://cdr.okta.com/oauth2/default</Issuer>
-    <Audience>0oak9uccWdFkIY7mc5d5</Audience>
+    <Issuer ref="oktaIssuer"/>
+    <Audience ref="private.apigee_client_id"/>
 </VerifyJWT>

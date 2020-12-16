@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignOktaIssuer">
+    <DisplayName>AssignOktaIssuer</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>oktaIssuer</Name>
+        <Template>https://{private.okta_org}/oauth2/default</Template>
+    </AssignVariable>
+</AssignMessage>

@@ -3,6 +3,7 @@
     <Policies>
         <VersionInfo resourceName="Assign-Message-1" version="SHA-512:2f077bba4e07bc1ba635915d8ec73fbd6d1e78633da70d8fb7238db0810fc1966f2e4505c36fab8f2fad352e67ac91f6a9ff4913111e214a99c407efe765036a"/>
         <VersionInfo resourceName="AssignIssuer" version="SHA-512:27b4da590b33c15d65e2fa64680f544296579a97e5ffdab1c0333f7e79819ae0495bfedc6374ec109ace23e47e03817ea8c148e0b78ddbad70beb7b672a52fad"/>
+        <VersionInfo resourceName="AssignOktaIssuer" version="SHA-512:c99c0eb6a0e8185191dfb12ec33f0a09e0c706a9fd0dfa2fd2f7de6e7f6a6b2a042568159fa781695f618ead40225bcde5dfab900af45079aceeca85bab4eaba"/>
         <VersionInfo resourceName="ExtractAMRClaim" version="SHA-512:cf4cbbd7faf958dc520fbf27f80fa1fcd38557051b3e74eb369d078df7ce820d4947266ccc289db5d0453a30c7a615cebb9ebc7a08d5b0ffd236027faf9e6da7"/>
         <VersionInfo resourceName="ExtractCodeHash" version="SHA-512:8bb9db05e9105c21efc565b2b0a25f2605aff86eb4ec1eaed27858856d51ba80fd005f1f767dc463849acad1f994cd0883e48b5b9bf6b37e3ed5aa275ead4d23"/>
         <VersionInfo resourceName="ExtractStateHash" version="SHA-512:fdf8123e5d05b1c7a4d6b36c612b8778a36aebcc4864a844fe86f8eef13fb182110abe99e1acbc1878ff3092e03526d22dd3a342014325c827b6849972abbfd4"/>
@@ -13,16 +14,18 @@
         <VersionInfo resourceName="GenerateStateHash" version="SHA-512:18ad51a077d645f5cf548ad580825071e6ec3ca9a969e06827d2dba4b69387e8a7c0c46013c3ef58e09d8b11545e5995776d69c69f48ea18eb5447038bac0269"/>
         <VersionInfo resourceName="GenerateStateHashHostedTarget" version="SHA-512:bab828ea49fa56b184bb43a99e96aa4dbd4024d174c8eb8c91ef14277106d7c0cad86acdecb6c32166eaea460414c25a51ce37a377a7484b7c3a54ad32822ea4"/>
         <VersionInfo resourceName="GetJWTSigningKey" version="SHA-512:a38c9552844c9da70e41492cf5fc3f7e342e0722b7788c13f572b0417694c051a3563e5371ffd1195c0a42112f520816cd944619fa8dd925389cd555d3f821eb"/>
+        <VersionInfo resourceName="GetOktaJWKS" version="SHA-512:9c10dafad409fd7310287a126b623a4e88bf384bd563e244f9a23dfcf1366ed3352059fd37f1ca6af12eb044a6e9adf34245192ff00c99c7edc2bdb5ae32581f"/>
         <VersionInfo resourceName="OA-IssueOpaqueAuthCode" version="SHA-512:dec70f16bfa3187b8f1c3cef70119a0dc080a4caaf0620762a8cf65d5604b08cb519c77412f650ea0f6aa2761684e38972449102320e969e52a7e19648d2797a"/>
+        <VersionInfo resourceName="ReadApigeeOIDCCreds" version="SHA-512:3973875f69db770f9d7a22a93348961284ba9c4fd84c13a201f2e7ee6de5cc4383e6ec6f5ac91b4f5bc949d53b0f8b6aa2b1133baa8f82ce7458ca819c165019"/>
         <VersionInfo resourceName="SetResponseType" version="SHA-512:19480ecdb88561f22344fb16298a7df043e687dba024548d3c42a6740fb49b697e22c05f8fabc4826708dc8b7daea3a227d7b7f0df4548814814a308d9ce7762"/>
-        <VersionInfo resourceName="Verify-OIDC-ID-Token" version="SHA-512:de0cc07a9c46206f6bd0043e936c84e28f5b3a5b94109ba9e4104d495e8a677cccc72116a0b7e829dfb3202574936ce3d19a3bcbd3f47306644d448cedd5c0bb"/>
+        <VersionInfo resourceName="Verify-OIDC-ID-Token" version="SHA-512:3d72d8bd233ba0f70fb5fc72d22df22dc191a4a7ecfc0d3932e073e125d50798aad9d044aad90f8879d8994148959b37b1c5a509adbad84a98093e336f11622e"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources>
         <VersionInfo resourceName="jsc://ExtractAMRClaim.js" version="SHA-512:4eca1829f889947341422cd111bc5a6446937a9383094ceb52ca373c6e918ad3426336a3766463e9748b750775cd5bc693b4bfd126d6af9feff820072015782e"/>
     </Resources>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:f697f0c482349aac015b21879aee1ae37ed7399daac3a878f6988ea7cb05c466600c8a279b2818a53086d9687bebdea27ae05320a15b3ab92d15426992623435"/>
+        <VersionInfo resourceName="default" version="SHA-512:353140b72250cd5489118203bc1e060c64ce087b973851e3214a635f16b2a1a85975325808c17fbeb277025f93691eb059ec0a8f59dbb6285344a31514c6f2b3"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>
