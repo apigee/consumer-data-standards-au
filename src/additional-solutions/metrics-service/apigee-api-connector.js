@@ -51,10 +51,11 @@ module.exports.requestApigeeApi = function (requestOpts,apigeeConfig) {
             } else {
                 var errMsg;
                 if (body && (body.message)) {
-                    errMsg = body.message;
+                    errMsg = 'Apigee API request failed with status code: ' + res.statusCode + ' - Message: ' + body.message;
                 } else {
-                    errMsg = ' failed with status code ' + res.statusCode;
+                    errMsg = 'Apigee API request failed with status code ' + res.statusCode;
                 }
+                defaultOptions.debug && console.log("Error found - Code = " + res.statusCode + " - Msg = " + errMsg);
                 reject(errMsg);
             }
         })

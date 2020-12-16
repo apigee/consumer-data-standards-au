@@ -28,113 +28,81 @@
             "metrics": [{
                 "name": "sum(message_count)",
                 "values": [{
-                    "timestamp": 1581948000000,
-                    "value": "8.0"
+                    "timestamp": 1603720800000,
+                    "value": "4.0"
                 }, {
-                    "timestamp": 1581861600000,
-                    "value": "0.0"
-                }, {
-                    "timestamp": 1581429600000,
-                    "value": "6.0"
-                }, {
-                    "timestamp": 1581256800000,
+                    "timestamp": 1603634400000,
                     "value": "0.0"
                 }]
             }],
-            "name": "302"
+            "name": "429,highPriority"
         }, {
             "metrics": [{
                 "name": "sum(message_count)",
                 "values": [{
-                    "timestamp": 1581948000000,
-                    "value": "8.0"
+                    "timestamp": 1603720800000,
+                    "value": "3.0"
                 }, {
-                    "timestamp": 1581861600000,
-                    "value": "2201.0"
+                    "timestamp": 1603634400000,
+                    "value": "0.0"
+                }]
+            }],
+            "name": "429,unauthenticated"
+        }, {
+            "metrics": [{
+                "name": "sum(message_count)",
+                "values": [{
+                    "timestamp": 1603720800000,
+                    "value": "0.0"
                 }, {
-                    "timestamp": 1581429600000,
-                    "value": "14.0"
-                }, {
-                    "timestamp": 1581256800000,
+                    "timestamp": 1603634400000,
                     "value": "1.0"
                 }]
             }],
-            "name": "200"
+            "name": "500,unattended"
         }, {
             "metrics": [{
                 "name": "sum(message_count)",
                 "values": [{
-                    "timestamp": 1581948000000,
-                    "value": "2.0"
-                }, {
-                    "timestamp": 1581861600000,
+                    "timestamp": 1603720800000,
                     "value": "0.0"
                 }, {
-                    "timestamp": 1581429600000,
-                    "value": "0.0"
-                }, {
-                    "timestamp": 1581256800000,
-                    "value": "0.0"
+                    "timestamp": 1603634400000,
+                    "value": "1.0"
                 }]
             }],
-            "name": "400"
-        }, {
-            "metrics": [{
-                "name": "sum(message_count)",
-                "values": [{
-                    "timestamp": 1581948000000,
-                    "value": "0.0"
-                }, {
-                    "timestamp": 1581861600000,
-                    "value": "0.0"
-                }, {
-                    "timestamp": 1581429600000,
-                    "value": "13.0"
-                }, {
-                    "timestamp": 1581256800000,
-                    "value": "0.0"
-                }]
-            }],
-            "name": "401"
+            "name": "504,highPriority"
         }],
         "name": "dev"
     }],
     "metaData": {
         "errors": [],
-        "notices": ["Source:Postgres", "query served by:11ea5e9f-c78e-4a1f-ae1d-7c6ef1159c75", "PG Host:uap-aus-se1:australia-southeast1:rgsy1uappg01s", "Table used: edge.api.smbaxgroup003.agg_target"]
+        "notices": ["query served by:82562c27-3537-453b-a365-73885b9c6a32", "Source:Big Query", "Table used: uap-aus-se1.edge.edge_api_smbaxgroup003_fact"]
     }
 }
     * 
     * 
     * Sample returned metric:
-    * 
+    *  (2 arrays, one for errors, one for rejections)
     * [{
-    "date_au": "2020-02-18",
-    "value": 0.8888888888888888
+    "date_au": "2020-10-27",
+    "value": 0
 }, {
-    "date_au": "2020-02-17",
-    "value": 1
+    "date_au": "2020-10-26",
+    "value": 2
+}],
+[{
+    "date_au": "2020-10-27",
+    "value": {
+        "authenticated": 4,
+        "unauthenticated": 3
+    }
 }, {
-    "date_au": "2020-02-16",
-    "value": 1
-}, {
-    "date_au": "2020-02-15",
-    "value": 1
-}, {
-    "date_au": "2020-02-14",
-    "value": 1
-}, {
-    "date_au": "2020-02-13",
-    "value": 1
-}, {
-    "date_au": "2020-02-12",
-    "value": 1
-}, {
-    "date_au": "2020-02-11",
-    "value": 1
-}, {
-    "date_au": "2020-02-10",
-    "value": 1
+    "date_au": "2020-10-26",
+    "value": {
+        "authenticated": 0,
+        "unauthenticated": 0
+    }
 }]
     * 
     */
@@ -146,31 +114,42 @@ const metricsRequestConfig = require('./metrics-requests-config');
 const defaultOptions = metricsRequestConfig.defaultOptions;
 
 exports.parse = function (rawErrRejectMentrics, fromDate, toDate) {
-    var rejectionMetric = [];
+    var rejectionCountPerTS = {};
     var errCountPerTS = {};
     var metricEntry;
-    var dimensionsArray = rawErrRejectMentrics.environments[0].dimensions;
+    let dimensionsArray;
+    try { dimensionsArray = rawErrRejectMentrics.environments[0].dimensions }
+    catch (err) {
+        // If no data returned, set dimensionsArray array to an empty array
+        dimensionsArray = [];
+    }
     if ((dimensionsArray === null) || (typeof dimensionsArray === 'undefined')) {
         dimensionsArray = [];
     }
-    // Iterate over dimensions array. Only take into account dimensions where name is 429 or 5xx. 
-    // Aggregate the count of 5xx errors together. 
+    // Iterate over dimensions array. 
+    // Each dimension is a unique http_status_code,performancetier combination.
+    // Aggregate the count of 5xx errors together, regardless of performance tier.
+    // For 429 aggregate them by unauthenticated and authenticated (the rest)
+
     for (i = 0; i < dimensionsArray.length; i++) {
         currDimension = dimensionsArray[i].name;
-        if (currDimension == "429") {
+        const dimSplitArray = currDimension.split(',');
+        const curStatusCode = dimSplitArray[0];
+        const curPerfTier = dimSplitArray[1];
+        const curRejectionAggr = (curPerfTier == 'unauthenticated') ? 'unauthenticated' : 'authenticated'
+        if (curStatusCode == "429") {    
             for (j = 0; j < dimensionsArray[i].metrics[0].values.length; j++) {
-                currElem = dimensionsArray[i].metrics[0].values[j];
-                currTimestamp = currElem.timestamp.toString();
-                currTimestampInDefaultTZ = utcToZonedTime(new Date(parseInt(currTimestamp)), defaultOptions.timeZone);
-                curDateAU = format(currTimestampInDefaultTZ, 'yyyy-MM-dd', { timeZone: defaultOptions.timeZone });
-                currValue = Number(currElem.value);
-                metricEntry = {};
-                metricEntry.date_au = curDateAU;
-                metricEntry.value = parseInt(currElem.value);
-                rejectionMetric.push(metricEntry);
+                const currElem = dimensionsArray[i].metrics[0].values[j];
+                const currTimestamp = currElem.timestamp.toString();
+                const currValue = Number(currElem.value);
+                if (!(rejectionCountPerTS.hasOwnProperty(currTimestamp))) {
+                    // Create an entry for this timestamp, with default 0 counts in every dimension . Deep copy the default value so we can modify    
+                    rejectionCountPerTS[currTimestamp] = JSON.parse(JSON.stringify(metricsRequestConfig.defaultMetricsValues.daily.rejections));
+                }
+                rejectionCountPerTS[currTimestamp][curRejectionAggr] += currValue;
             }
         }
-        else if (currDimension.startsWith('5')) {
+        else if (curStatusCode.startsWith('5')) {
             for (j = 0; j < dimensionsArray[i].metrics[0].values.length; j++) {
                 currElem = dimensionsArray[i].metrics[0].values[j];
                 currTimestamp = currElem.timestamp.toString();
@@ -184,6 +163,7 @@ exports.parse = function (rawErrRejectMentrics, fromDate, toDate) {
             }
         }
     }
+
     var errorMetric = [];
     // Now iterate over all the timestamp values in errCountPerTS
     for (var curTS in errCountPerTS) {
@@ -192,9 +172,20 @@ exports.parse = function (rawErrRejectMentrics, fromDate, toDate) {
         metricEntry = {};
         metricEntry.date_au = curDateAU;
         metricEntry.value = errCountPerTS[curTS];;
-        defaultOptions.debug && console.log("-- Curr err Metric Entry = " + JSON.stringify(metricEntry));
         errorMetric.push(metricEntry);
     }
+
+    // Now iterate over all the timestamp values in rejectionCountPerTS
+    var rejectionMetric = [];
+    for (var curTS in rejectionCountPerTS) {
+        currTimestampInDefaultTZ = utcToZonedTime(new Date(parseInt(curTS)), defaultOptions.timeZone);
+        curDateAU = format(currTimestampInDefaultTZ, 'yyyy-MM-dd', { timeZone: defaultOptions.timeZone });
+        metricEntry = {};
+        metricEntry.date_au = curDateAU;
+        metricEntry.value = rejectionCountPerTS[curTS];;
+        rejectionMetric.push(metricEntry);
+    }
+
     rejectionMetric = metricsServiceUtils.fillDateGapsInMetricsArray(rejectionMetric, metricsRequestConfig.defaultMetricsValues.daily.rejections, fromDate, toDate);
     errorMetric = metricsServiceUtils.fillDateGapsInMetricsArray(errorMetric, metricsRequestConfig.defaultMetricsValues.daily.errors, fromDate, toDate);
     defaultOptions.debug && console.log("--- errorMetric = " + JSON.stringify(errorMetric));

@@ -5,7 +5,7 @@
     <Properties/>
     <AssignVariable>
         <Name>ValidAudience</Name>
-        <Template>{client.scheme}://{request.header.host}{proxy.basepath}{proxy.pathsuffix}</Template>
+        <Template>{client.scheme}://{request.header.host}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo type="request" transport="http" createNew="false"/>

@@ -14,18 +14,25 @@
         <Name>RF-Return-CORS-Headers</Name>
     </Step>
     <Step>
-        <Condition>(request.header.x-v = null)</Condition>
         <FaultRules/>
-        <Name>RF-Missing-Version-Header</Name>
+        <Name>AM-Extract-Pagination-Params</Name>
     </Step>
     <Step>
-        <Condition>(not (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "1")) or ( (proxy.basepath MatchesPath "/cds-au/v1/banking/products") and (request.header.x-v != "3"))</Condition>
-        <FaultRules/>
-        <Name>RF-Invalid-Version</Name>
+        <Name>AM-SetEndpointVersionTo1</Name>
     </Step>
     <Step>
-        <Condition>(request.header.x-min-v != null) and (request.header.x-min-v != "1") and (request.header.x-min-v != "3")</Condition>
-        <FaultRules/>
+        <Condition>(proxy.basepath MatchesPath "/cds-au/v1/admin") and (proxy.pathsuffix = "/metrics")</Condition>
+        <Name>AM-SetEndpointVersionTo2</Name>
+    </Step>
+    <Step>
+        <Condition>(proxy.basepath MatchesPath "/cds-au/v1/banking/products")</Condition>
+        <Name>AM-SetEndpointVersionTo3</Name>
+    </Step>
+    <Step>
+        <Name>JS-CheckVersionHeaders</Name>
+    </Step>
+    <Step>
+        <Condition>hdrError = "true"</Condition>
         <Name>RF-Invalid-Version</Name>
     </Step>
     <Step>
@@ -50,9 +57,5 @@
         <Condition>( (not (proxy.basepath MatchesPath "/cds-au/v1/banking/products")) and (proxy.basepath != "/cds-au/v1/admin") and (proxy.basepath != "/cds-au/v1/discovery")) and (request.header.x-fapi-customer-ip-address != null) and ( (request.header.x-cds-client-headers = null) or (not (request.header.x-cds-client-headers JavaRegex "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$")))</Condition>
         <FaultRules/>
         <Name>RF-Missing-Invalid-cdsClientHeaders-Header</Name>
-    </Step>
-    <Step>
-        <FaultRules/>
-        <Name>AM-Extract-Pagination-Params</Name>
     </Step>
 </SharedFlow>

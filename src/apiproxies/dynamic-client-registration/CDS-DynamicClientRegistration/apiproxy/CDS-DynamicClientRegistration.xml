@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="CDS-DynamicClientRegistration">
+<APIProxy revision="13" name="CDS-DynamicClientRegistration">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -13,9 +13,9 @@
     <CreatedBy>sathishapigee@gmail.com</CreatedBy>
     <Description>Implement Client Registration Management APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1607582248318</LastModifiedAt>
-    <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:4a62cbe62ac53d7669815a0a67e2270712b4b2a117002d91f3b684c4565b8eece5dc000d38bc0e4c462daff69d6da1ca9140007f487b6d5c122ab47ec827137a:ap-southeast-2</ManifestVersion>
+    <LastModifiedAt>1604636841704</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:c6c2537884940f56fec083df81c9d9633f26c116ad80751b81b303a16804e2c3a48c1c552407ac3f61da93149ba4fed2acf30a76cf00dd5525744d8b7e1bc50b</ManifestVersion>
     <Policies>
         <Policy>AE-GetApp</Policy>
         <Policy>AE-GetDeveloper</Policy>

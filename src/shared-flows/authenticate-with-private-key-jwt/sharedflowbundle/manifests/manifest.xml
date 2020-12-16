@@ -9,11 +9,12 @@
         <VersionInfo resourceName="FC-GetClientJWKS" version="SHA-512:73df61518b3a393da7a5ff1755dc3158ad25c1cce215b0ac21aa29766191d1e334786db82b58943f7d5e83f9ee1cb5741150c02a42cc4a70370129286e73bd5e"/>
         <VersionInfo resourceName="JWT-VerifyPrivateKeyJWT" version="SHA-512:fd9431b8a282156ddffffff63395eb048f5d3557bb609548afb12780b6a13e6139a57dd76e7ca1c93c3db30da8e06798096ffa2f28480d622cec31b4a5c3af75"/>
         <VersionInfo resourceName="RF-InvalidJWT" version="SHA-512:7bec8cd7ec59812b4a39898db1cc6d98d9c314dec39fc6eea8461d61c734ab776b7a1ba257a10147ff49a9f02741bbd8371a16130ba181edf22c4d962eeb587f"/>
+        <VersionInfo resourceName="RF-UnknownClientId" version="SHA-512:06aae1f81a7ba65ad8fa80e07a9a5e5513ee1840ec060e3b0be67b4aed472c6fbd8eccd50ed89912ac294374235ee516ba42174ec61c3b1fdcea6b74a201aacd"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources/>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:c296d0c318b2e89dc439517dc7b4c688d896d3df1d2526955e1fd8be3d9de976f37698dbdb81b2630cbbcccc9dcfcd24ddbb860b4cb9f117d817bdc6139ad4c2"/>
+        <VersionInfo resourceName="default" version="SHA-512:3ca8643f489eda10f4327b42f99e6d5174356591387b92e885a9750863acc3603de3816932ca0d7199d61eec2f372ebe9f7d224a61595cb1489f7c68e07a563f"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

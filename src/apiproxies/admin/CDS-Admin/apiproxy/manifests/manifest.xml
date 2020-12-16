@@ -3,7 +3,7 @@
     <Policies>
         <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:137c9e693b4cf876950521cf5678622976ae5f993f37ae9980dde5c04fd360c729829f2cc97360c34e9044ca876001a8b7192b1a67a3b1580fbb1fa056389091"/>
         <VersionInfo resourceName="AM-InvalidScope" version="SHA-512:2118c07e3ba1eab946e83329646c6fdb5ed020e61db22adae4541ed1d800930d44e8a29f6ebc29a0d9d3d0849282b4cea206e886f9b0faf44b4efc93c9fcf06f"/>
-        <VersionInfo resourceName="AM-MockFullMetrics" version="SHA-512:8b0a4fb6eb17dbb32c23df03ab8f0549adadd6ba594c24193b5e1d69bbc137757fbb61fa9e8a75399288a9cb6b49ac5dab7aec6a93a13bbb05a1970279cbfdaa"/>
+        <VersionInfo resourceName="AM-MockFullMetrics" version="SHA-512:39a35099ac42977311bab73e18669ab4033ac0e6a3b57fcf7802ce966140f8bfaca1c480de301aa4cff6840888033c729bb05e54cf37009b1ab40530fe4c3fe3"/>
         <VersionInfo resourceName="AM-SetMetricsPeriodAndRequestTime" version="SHA-512:67e67e1b1360b74c25606e41df22f30d4ab62b3cd49b38264a3cba3b4b549bb2ff78fd006296192ccc2cadb1fb9e7da4fd1727b7ffd58785aa8cefadf87b3fe9"/>
         <VersionInfo resourceName="AM-SetXVHeaderAndEmptyResponse" version="SHA-512:2dbe7fc0003f8f23361683436b0baed8a9a5094c8f1bc30e9ab701a2c4d5b2d72343316512a2d017c2082059fb3ecf57ce7c7faf78a7afec5ad1cfe64bb4e15e"/>
         <VersionInfo resourceName="AM-TokenNotVerified" version="SHA-512:5d519b41e0b290dae3c5e016cf538f6e44574abc42f6d942036ddb5a856cf33d034882ff35da88771884b4bb7279b687913934246cb387d823f26c2e26c7b599"/>

@@ -16,5 +16,7 @@
     <SupportedGrantTypes>
         <GrantType>client_credentials</GrantType>
     </SupportedGrantTypes>
-    <Tokens/>
+    <Attributes>
+        <Attribute display="false" name="certFingerprint" ref="tls.client.cert.fingerprint"/>
+    </Attributes>
 </OAuthV2>

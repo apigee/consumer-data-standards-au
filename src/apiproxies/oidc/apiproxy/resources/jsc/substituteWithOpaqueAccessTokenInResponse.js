@@ -36,18 +36,7 @@ responseObj.scope = context.getVariable("oauthv2accesstoken." + executedOAuthV2P
 responseObj.expires_in = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".expires_in");
 context.setVariable("response.content", JSON.stringify(responseObj));
 
-//var theGrantType = context.getVariable("TokenRequestParams.grant_type");
-// Extract access and refresh tokens from the result of executing the corresponding OAuthV2 policy: generate or refresh token
-//var executedOAuthV2PolicyName = (theGrantType === "authorization_code")? "OA-IssueOpaqueAccessToken" : "OA-RefreshOpaqueAccessToken";
-//var thePayload =  JSON.parse(context.getVariable("response.content"));
-
-//thePayload.access_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".access_token");
-//thePayload.refresh_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token");
-//thePayload.refresh_token_expirest_at = context.getVariable("jwt.JWT-DecodeOIDCRefreshToken.decoded.claim.exp");
-//thePayload.sharing_expires_at = thePayload.refresh_token_expirest_at;
-//thePayload.cdr_arrangement_id = context.getVariable("cdrArrangementId");
-//context.setVariable("response.content", JSON.stringify(thePayload));
 
 // Also remove the temporarily reinstated authorization header (required for OAuthV2 policy)
-//context.removeVariable("response.header.authorization");
+context.removeVariable("response.header.authorization");
  

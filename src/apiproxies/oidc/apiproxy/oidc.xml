@@ -86,6 +86,15 @@
         <Policy>JS-RemoveOIDCProvideBasePath</Policy>
         <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
         <Policy>LookupStateCache</Policy>
+        <Policy>FC-VerifyHoK-AccessToken</Policy>
+        <Policy>FC-VerifyHoK-RefreshToken</Policy>
+        <Policy>FC-VerifyMTLSOnly</Policy>
+        <Policy>JS-GetOIDCTokenExpiryTime</Policy>
+        <Policy>JS-RemoveOIDCProvideBasePath</Policy>
+        <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
+        <Policy>JWT-DecodeOIDCIdToken</Policy>
+        <Policy>JWT-DecodeOIDCRefreshToken</Policy>
+        <Policy>KVM-GetMTLSHostname</Policy>
         <Policy>OA-IssueAccessTokenClientCreds</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>

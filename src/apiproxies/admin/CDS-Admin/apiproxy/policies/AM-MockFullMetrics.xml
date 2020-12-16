@@ -109,16 +109,22 @@
             ]
         },
         "rejections": {
-            "currentDay": 0,
-            "previousDays": [
-                0, 0, 0, 0, 0, 0, 0
-            ]
-        },
-        "customerCount": 5,
-        "recipientCount": 1
+            "authenticated": {
+                "currentDay": 0,
+                "previousDays": [
+                    0, 0, 0, 0, 0, 0, 0
+                ]
+            },
+            "unauthenticated": {
+                "currentDay": 0,
+                "previousDays": [
+                    0, 0, 0, 0, 0, 0, 0
+                ]
+            }
+        }
     }
 }</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

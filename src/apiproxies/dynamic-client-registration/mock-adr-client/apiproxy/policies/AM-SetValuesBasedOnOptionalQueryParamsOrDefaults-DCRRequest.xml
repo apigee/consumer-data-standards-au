@@ -42,8 +42,12 @@
         <Template>{defaultBaseURI}/jwks</Template>
     </AssignVariable>
     <AssignVariable>
+        <Name>defaultAud</Name>
+        <Template>https://{organization.name}-{environment.name}.apigee.net/token</Template>
+    </AssignVariable>
+    <AssignVariable>
         <Name>audience</Name>
-        <Template>{client.scheme}://{request.header.host}</Template>
+        <Template>{firstnonnull(request.queryparam.aud,defaultAud)}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

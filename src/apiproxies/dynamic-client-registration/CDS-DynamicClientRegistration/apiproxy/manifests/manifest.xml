@@ -5,7 +5,7 @@
         <VersionInfo resourceName="AE-GetDeveloper" version="SHA-512:f0017c11b1dafd7463214efd118caabee24d0955bf983d8ce63c4c0bf5d623abe57678c19aa1b8a7e592483626af8156eb17fc249442677b7b6b623f92e61e2e"/>
         <VersionInfo resourceName="AM-Add-CORS-Headers" version="SHA-512:137c9e693b4cf876950521cf5678622976ae5f993f37ae9980dde5c04fd360c729829f2cc97360c34e9044ca876001a8b7192b1a67a3b1580fbb1fa056389091"/>
         <VersionInfo resourceName="AM-BuildRegistrationInfo" version="SHA-512:dd6dfa598cb8f44f3c83756e43a6d4a301d8329852dfedd340b4355cb0dd64222983db391da78393ec0c6ccf85a3535fe9d6afcc6d5056c7144f14fe9810ebaa"/>
-        <VersionInfo resourceName="AM-GetOrgIdAndAppIdFromTokenInfo" version="SHA-512:bd05e4ab6de9236d60d3fbe83332f9809c16327041e38432b2b493ada0c8f48849b0d52acdf2db995c82667d165cf780f219d58446967e498465b6c6454ab79f"/>
+        <VersionInfo resourceName="AM-GetOrgIdAndAppIdFromTokenInfo" version="SHA-512:fda06773db4064e4f13985ccf81cb3ef4428a41b516e1bb04b36c67454da3e44c30e8acbc1426feb65a69b1278298bac2f3f4fdfc3fe35ece01a3a0524977319"/>
         <VersionInfo resourceName="AM-InternalServerError" version="SHA-512:39248fd8dc81474933ab5b60ababe45479c751cf44c1f6bc7e50362ca4d5c44c20fe88e6d2840437351ae78a4001bb7e8503faca28c1f6790d7126dfe0a993e7"/>
         <VersionInfo resourceName="AM-InvalidJWTTokenInRequest" version="SHA-512:3c9dd07346b28791994d30238b9dc5c7e0687592eedca0596c3c6e2c44e4b604a31d8b92c2181b6799bfe0473b2965206d2d98f004d9a97ec4e735c4ee0b0df9"/>
         <VersionInfo resourceName="AM-InvalidScope" version="SHA-512:df7cdb68cad6ee65e740ebf023147885f4adcdd50df67c00277e485c7d4f9f7f23353abab4ac89061cfc9cafd1195b7b978c640197939ea5c09790d08b91abf8"/>
@@ -63,7 +63,7 @@
         <VersionInfo resourceName="SC-UpdateClientInOIDCProvider" version="SHA-512:00d3145f45dcddff85ab58a969e4bf9aca1bd2154f16b1e39cfc4614b8f90f41b7420676212e48d1eba21de9ab13878e7a88eebb1e6dfd9e092a1da92b959f8b"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:d53f6490a293563ae5f265c92600b825a83a5dc154d5911639dbe8428068af4fa12d186a89dc4b4f140db79ad1a58b48fd0797c001ba1445791fad4c14d72306"/>
+        <VersionInfo resourceName="default" version="SHA-512:651525dfeb4627cc58cf5b0c1f07d11e739d0461fbbc1d510bceabd46055921d2d113d881a07519071a0b4ff5129f7f34d379be6f1a65c56438294295a6d2a1f"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://assignProductsBasedOnScope.js" version="SHA-512:307b142b577c2a56cf850d7e6d5c633cfebe32aed6f799c79a48c1deffcde04fa5e1f89c157c7d00e756d9f31ca7bab6f77d4b8cfff66af04d85425e839d0553"/>

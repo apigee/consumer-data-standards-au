@@ -4,6 +4,10 @@
         <Name>AE-GetAppDetails</Name>
     </Step>
     <Step>
+        <Name>RF-UnknownClientId</Name>
+        <Condition>(AccessEntity.AE-GetAppDetails = null) or (AccessEntity.AE-GetAppDetails = "")</Condition>
+    </Step>
+    <Step>
         <Name>EV-ExtractAppRegInfoAndClientSecret</Name>
     </Step>
     <Step>

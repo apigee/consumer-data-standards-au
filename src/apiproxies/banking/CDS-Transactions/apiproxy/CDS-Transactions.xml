@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="16" name="CDS-Transactions">
+<APIProxy revision="17" name="CDS-Transactions">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -12,9 +12,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Transaction API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Transactions</DisplayName>
-    <LastModifiedAt>1598863122250</LastModifiedAt>
+    <LastModifiedAt>1604895014604</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:501ca2a6a2cfab68b52279da07c811956df6b99f079565edb4a7a972ebea681736ae37c75dd6293cb90e2129c9df48ab3a5050295353ff76d22767d151cce832</ManifestVersion>
+    <ManifestVersion>SHA-512:245df06294b237019d8f913c595a3bb169163787ae0cee8d35505abb4ef6603065d5483723704417bceaa4fecd8ffc2041d5ce90e449b9156b466d5de31c8188</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>
@@ -35,6 +35,7 @@
         <Policy>FC-PaginateResponse</Policy>
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>FC-VerifyHoK</Policy>
         <Policy>JS-BuildTransactionDetailsResponse</Policy>
         <Policy>JS-FilterTransactionsListBasedOnRequestFilters</Policy>
         <Policy>JS-ModifyDatesInMockTransactions</Policy>
