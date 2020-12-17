@@ -7,9 +7,6 @@
         <Name>AssignOktaIssuer</Name>
     </Step>
     <Step>
-        <Name>GetOktaJWKS</Name>
-    </Step>
-    <Step>
         <Name>Verify-OIDC-ID-Token</Name>
     </Step>
     <Step>

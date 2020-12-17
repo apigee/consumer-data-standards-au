@@ -34,6 +34,21 @@ function replace_with_jwks_uri {
  rm temp.xml temp2.xml 
 }
 
+function replace_okta_jwks_uri {
+ POLICY_FILE=$1
+ POLICY_BEFORE_JWKS_ELEM=$(sed  '/<JWKS/,$d' $POLICY_FILE)
+ POLICY_AFTER_JWKS_ELEM=$(sed  '1,/<JWKS/d' $POLICY_FILE)
+ echo $POLICY_BEFORE_JWKS_ELEM'<JWKS uri="https://'$OKTA_ORG'/oauth2/default/v1/keys" />'$POLICY_AFTER_JWKS_ELEM > temp.xml
+ # The following step is for pretty printing the resulting edited xml, we don't care if it fails. If failed, just use the original file
+ xmllint --format temp.xml 1> temp2.xml 2> /dev/null
+ if [ $? -eq 0 ]; then
+    cp temp2.xml $POLICY_FILE
+ else
+    cp temp.xml $POLICY_FILE
+ fi
+ rm temp.xml temp2.xml 
+}
+
 ###### End Utility functions
 
 
@@ -244,6 +259,8 @@ echo "Adding Mock CDR Register JWKS uri to policy used to validate CDR JWT Token
 replace_with_jwks_uri src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml /mock-cdr-register/jwks
 echo "Adding Mock CDR Register JWKS uri to policy used to validate SSA Token"
 replace_with_jwks_uri src/shared-flows/validate-ssa/sharedflowbundle/policies/JWT-VerifyCDRSSAToken.xml /mock-cdr-register/jwks
+echo "Adding Okta JWKS URI to policy used to validate Okta ID Token"
+replace_okta_jwks_uri src/shared-flows/oidc-generate-opaque-auth-code-and-id-token/sharedflowbundle/policies/Verify-OIDC-ID-Token.xml
 
  # Deploy Shared flows
 cd src/shared-flows

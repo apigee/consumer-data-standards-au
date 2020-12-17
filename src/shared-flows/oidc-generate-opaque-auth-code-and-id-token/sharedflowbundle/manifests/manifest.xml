@@ -18,14 +18,14 @@
         <VersionInfo resourceName="OA-IssueOpaqueAuthCode" version="SHA-512:dec70f16bfa3187b8f1c3cef70119a0dc080a4caaf0620762a8cf65d5604b08cb519c77412f650ea0f6aa2761684e38972449102320e969e52a7e19648d2797a"/>
         <VersionInfo resourceName="ReadApigeeOIDCCreds" version="SHA-512:3973875f69db770f9d7a22a93348961284ba9c4fd84c13a201f2e7ee6de5cc4383e6ec6f5ac91b4f5bc949d53b0f8b6aa2b1133baa8f82ce7458ca819c165019"/>
         <VersionInfo resourceName="SetResponseType" version="SHA-512:19480ecdb88561f22344fb16298a7df043e687dba024548d3c42a6740fb49b697e22c05f8fabc4826708dc8b7daea3a227d7b7f0df4548814814a308d9ce7762"/>
-        <VersionInfo resourceName="Verify-OIDC-ID-Token" version="SHA-512:3d72d8bd233ba0f70fb5fc72d22df22dc191a4a7ecfc0d3932e073e125d50798aad9d044aad90f8879d8994148959b37b1c5a509adbad84a98093e336f11622e"/>
+        <VersionInfo resourceName="Verify-OIDC-ID-Token" version="SHA-512:d9ccbac4c697a481d5f29ecc534bca966b17d13cba898d25bb339efbcded1c244fce0597b73cb53d83b3251edbbb1b0cd0d79699a6fd1efc54cadc7791e33188"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources>
         <VersionInfo resourceName="jsc://ExtractAMRClaim.js" version="SHA-512:4eca1829f889947341422cd111bc5a6446937a9383094ceb52ca373c6e918ad3426336a3766463e9748b750775cd5bc693b4bfd126d6af9feff820072015782e"/>
     </Resources>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:353140b72250cd5489118203bc1e060c64ce087b973851e3214a635f16b2a1a85975325808c17fbeb277025f93691eb059ec0a8f59dbb6285344a31514c6f2b3"/>
+        <VersionInfo resourceName="default" version="SHA-512:885508ef5ce1ac07616d9bae07efc6795ff1d220c3601893de6ccd79199ea5df16b2c5e186b1bb790e0773fd87ee2324270adb0fb461d91041714a27887075b3"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

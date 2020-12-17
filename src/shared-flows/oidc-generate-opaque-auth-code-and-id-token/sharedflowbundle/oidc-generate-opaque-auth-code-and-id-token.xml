@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlowBundle revision="7" name="oidc-generate-opaque-auth-code-and-id-token">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1608117564042</CreatedAt>
+    <CreatedAt>1605408281186</CreatedAt>
     <CreatedBy>sathishapigee@gmail.com</CreatedBy>
     <Description>undefined</Description>
     <DisplayName>oidc-generate-opaque-auth-code-and-id-token</DisplayName>
-    <LastModifiedAt>1608117564042</LastModifiedAt>
+    <LastModifiedAt>1608173833783</LastModifiedAt>
     <LastModifiedBy>sathishapigee@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:9b5641bd3e18cfc603a2003cb7db10ef2e7ae1b27b5b5800db182ec86479a969b36834f857e4d4b4d89126b8735be1066b48ff950627687b1bedeff463b65f98:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:2dedd0034b36b9c76205139f55d9ba77cff51bf4c66284b8933e6b168c0fc32d987d2bdeba325d188a38e09058b60f780a814f4a18e937e4226c769eb860a581:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>Assign-Message-1</Policy>
         <Policy>AssignIssuer</Policy>
