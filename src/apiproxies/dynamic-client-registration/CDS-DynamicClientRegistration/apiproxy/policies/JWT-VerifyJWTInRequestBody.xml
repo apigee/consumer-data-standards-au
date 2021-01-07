@@ -9,7 +9,6 @@
     </PublicKey>
     <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
     <IgnoreIssuedAt>false</IgnoreIssuedAt>
-    <Audience ref="ValidAudience"/>
     <AdditionalClaims>
         <Claim name="token_endpoint_auth_method" type="string">private_key_jwt</Claim>
         <Claim name="response_types" type="string">["code id_token"]</Claim>

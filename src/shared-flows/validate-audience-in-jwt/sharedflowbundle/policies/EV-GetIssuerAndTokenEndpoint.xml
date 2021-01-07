@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetIssuerAndTokenEndpoint">
+    <DisplayName>EV-GetIssuerAndTokenEndpoint</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="issuer">
+            <JSONPath>$.issuer</JSONPath>
+        </Variable>
+        <Variable name="tokenEndpoint">
+            <JSONPath>$.token_endpoint</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">OIDCConfig</Source>
+</ExtractVariables>

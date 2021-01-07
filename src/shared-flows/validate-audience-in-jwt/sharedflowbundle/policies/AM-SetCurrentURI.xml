@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetCurrentURI">
+    <DisplayName>AM-SetCurrentURI</DisplayName>
+    <AssignVariable>
+        <Name>currentURI</Name>
+        <Template>{client.scheme}://{request.header.host}{proxy.basepath}{proxy.pathsuffix}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

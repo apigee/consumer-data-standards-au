@@ -14,9 +14,6 @@
         <Name>EV-ExtractClientJWKSURIFromRegoInfo</Name>
     </Step>
     <Step>
-        <Name>AM-SetValidAudience</Name>
-    </Step>
-    <Step>
         <Name>FC-GetClientJWKS</Name>
     </Step>
     <Step>
@@ -25,6 +22,9 @@
     <Step>
         <Name>RF-InvalidJWT</Name>
         <Condition>JWT.failed = true</Condition>
+    </Step>
+    <Step>
+        <Name>FC-ValidateAudience</Name>
     </Step>
     <Step>
         <Name>BA-GenerateBasicEquivalentAuthHeader</Name>

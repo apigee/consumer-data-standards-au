@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="2" name="validate-audience-in-jwt">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1609985728142</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Validates the audience claim in an auth JWT token according to rules specified in standards v1.6</Description>
+    <DisplayName>validate-audience-in-jwt</DisplayName>
+    <LastModifiedAt>1609985728142</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:6695b1a341e95058c2de57713f13afd4938c4178ea990c5c47aa65c82db0e3f039852f992a44dc3c814fc2dc922b018d530129be7c10ea2d334f134ad69288fe:ap-southeast-2</ManifestVersion>
+    <Policies>
+        <Policy>AM-ExtractAudFromAudArray</Policy>
+        <Policy>AM-SetCurrentURI</Policy>
+        <Policy>EV-GetIssuerAndTokenEndpoint</Policy>
+        <Policy>LC-RetrieveOIDCConfig</Policy>
+        <Policy>PC-StoreOIDCConfig</Policy>
+        <Policy>RF-InvalidAudience-400Error</Policy>
+        <Policy>RF-InvalidAudience</Policy>
+        <Policy>SC-GetOIDCConfig</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

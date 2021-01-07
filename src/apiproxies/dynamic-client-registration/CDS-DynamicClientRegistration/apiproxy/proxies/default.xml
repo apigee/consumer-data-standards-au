@@ -77,9 +77,6 @@
                     <Name>FC-RetrieveClientJWKS</Name>
                 </Step>
                 <Step>
-                    <Name>AM-SetValidAudience</Name>
-                </Step>
-                <Step>
                     <Name>JWT-VerifyJWTInRequestBody</Name>
                 </Step>
                 <Step>
@@ -92,6 +89,9 @@
                 <Step>
                     <Name>RF-InvalidRedirectURIs</Name>
                     <Condition>errorInRedirectURIs = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateAudience</Name>
                 </Step>
                 <Step>
                     <Name>FC-CheckTokenNotReused</Name>
@@ -242,9 +242,6 @@
                     <Name>FC-RetrieveClientJWKS</Name>
                 </Step>
                 <Step>
-                    <Name>AM-SetValidAudience</Name>
-                </Step>
-                <Step>
                     <Name>JWT-VerifyJWTInRequestBody</Name>
                 </Step>
                 <Step>
@@ -257,6 +254,9 @@
                 <Step>
                     <Name>RF-InvalidRedirectURIs</Name>
                     <Condition>errorInRedirectURIs = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ValidateAudience</Name>
                 </Step>
                 <Step>
                     <Name>FC-CheckTokenNotReused</Name>

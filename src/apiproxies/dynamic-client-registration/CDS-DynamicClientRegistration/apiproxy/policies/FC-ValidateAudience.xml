@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ValidateAudience">
+    <DisplayName>FC-ValidateAudience</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>validate-audience-in-jwt</SharedFlowBundle>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="audClaim" ref="jwt.JWT-VerifyJWTInRequestBody.claim.audience"/>
+        <Parameter name="errorToReturn">400</Parameter>
+    </Parameters>
+</FlowCallout>

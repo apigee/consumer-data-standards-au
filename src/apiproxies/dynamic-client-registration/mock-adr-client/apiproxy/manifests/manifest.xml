@@ -3,8 +3,8 @@
     <Policies>
         <VersionInfo resourceName="AM-SetMockJWKSInfo" version="SHA-512:382ee497419248d147f39a6301e7940c7180ca7e5ad38c0af89bcbb608e171bf1e76ec9bbe76cae52e9e1610cf640c5dc9bc555bac099b6a55ac4d1ce59bb251"/>
         <VersionInfo resourceName="AM-SetResponse" version="SHA-512:bd625691b797d40fc287f82767e5f197b8959a3fedd48c9d7eec2fb7ae0d659722d14d71b5b2a278bce3448d117dc590651b2afb0710cb8609e8d0fb59578f1a"/>
-        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest" version="SHA-512:82c0c8fa6d0eacd37e4dcdadea3522fcac23833769ebff227cd8cf154ce00a0b782bf13200ecd262522ad5551bf497f42baba71ea683235d5b2d556193fafe0a"/>
-        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT" version="SHA-512:b42aa715a7a3b55ee0c4950b752c38a3d3f8f8a3e64f9f29f0bab3a3497b6c015b926187d9953c78288af54e2d95851892871520648fdd83bfe4e7ebe3781712"/>
+        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest" version="SHA-512:693cefd4fcea702d6f81a8473f344c3922b865fa42b69b730bc60a4c95760fb844f37d4beebe4986ff87f72bcf19bf683503369aafed0ccde59b046912c85e8e"/>
+        <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT" version="SHA-512:69a105f0266185b1009d996fca21e399b5a0cc780ae0bba1d80b998596fac051315ff5bc2b2e385002fbe7fd848ed69eb202f1a31b4bbb5d3c2e25a9e47bc7aa"/>
         <VersionInfo resourceName="JS-SetRedirectURIs" version="SHA-512:ab905740383412a410c423dfa989479248c81fd7a25a8e70e6ccf33a717d28b0ed6275f52a8f827f7fa854215156676fad61c93d37962624c170db6359cbfde0"/>
         <VersionInfo resourceName="JWT-GenerateDynamicClientRegistrationRequest" version="SHA-512:37062a92561ca53e99465dbd170bb7e74d0b5860329b2454c61e8c49efede072c7131fff9f2c53fc7289dca3d60448f0c6096a4d27ff9fe68d1476058c3b8c9a"/>
         <VersionInfo resourceName="JWT-GeneratePrivateKeyJWT" version="SHA-512:7b650ff54b0af7398b801180a7eaafd05903543f9ffa1747c5b5460b00c4d3962d5cfd93fb21ad95dc5afea0a3d5694637086bff60257b841895b09acc36a94b"/>

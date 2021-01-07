@@ -15,7 +15,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "909998fe-4e53-4dbe-950e-ac56784c3f53",
 								"exec": [
 									"// Store html interaction  and uuid to use in subsequent calls",
 									"",
@@ -46,7 +45,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "64a15494-e36c-4c4e-b72a-702672f68939",
 								"exec": [
 									""
 								],
@@ -160,7 +158,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "79e8fc26-4db4-4ea4-8c93-296b5423da7c",
 								"exec": [
 									"// Store html interaction  and uuid to use in subsequent calls",
 									"",
@@ -255,7 +252,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "29d7d87c-b0a9-46a7-97e8-fd727502eb88",
 								"exec": [
 									"// Store authorisation code to use in subsequent calls",
 									"",
@@ -384,7 +380,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cda15dc4-ecab-452b-a4ad-0573bdad88c9",
 								"exec": [
 									"// Store scope, access token and id token to reuse in subsequent calls",
 									"var jsonData = pm.response.json();",
@@ -438,7 +433,7 @@
 								},
 								{
 									"key": "code",
-									"value": "{{auth_code}}",
+									"value": "GYmspYcr",
 									"type": "text"
 								},
 								{
@@ -474,7 +469,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "68708adf-ea39-4899-901e-dd8151a04944",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -484,15 +478,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f89f025c-3f7a-45bc-a70b-6a49e1d57a8a",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC - Authorise and Obtain Token (Hybrid Flow)  - Private Key JWT",
@@ -503,7 +495,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ff4d4e1e-9501-48da-9f98-8aa9779ff652",
 								"exec": [
 									"// Store html interaction  and uuid to use in subsequent calls",
 									"",
@@ -534,7 +525,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "8957957d-af1d-43b0-b0b7-336a1f37d9eb",
 								"exec": [
 									""
 								],
@@ -636,7 +626,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "074d2f83-8d30-42a3-9ac7-63baf93541b8",
 								"exec": [
 									"// Store html interaction  and uuid to use in subsequent calls",
 									"",
@@ -719,7 +708,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d2d37c59-e97c-43c4-abfb-2399021ec98f",
 								"exec": [
 									"// Store authorisation code to use in subsequent calls",
 									"",
@@ -836,7 +824,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "32322c96-20a8-411c-9956-4c1b86f3e0cc",
 								"exec": [
 									"// Store private_key_jwt to reuse in next call",
 									"pm.environment.set(\"private_key_jwt\", pm.response.text());"
@@ -882,7 +869,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3f7a8b54-b5a6-4d04-bf0a-c4ebbf9d4516",
 								"exec": [
 									"// Store scope, access token and id token to reuse in subsequent calls",
 									"var jsonData = pm.response.json();",
@@ -975,7 +961,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "096fc4ba-dfcb-4962-ac2d-fa40939d5e4d",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -985,15 +970,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0576d5e5-295a-469a-99ea-a2c429c0a0b7",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC - Other requests",
@@ -1034,7 +1017,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cda15dc4-ecab-452b-a4ad-0573bdad88c9",
 								"exec": [
 									"// Store access token, id token and refresh token to reuse in subsequent calls",
 									"var jsonData = pm.response.json();",
@@ -1134,7 +1116,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "909998fe-4e53-4dbe-950e-ac56784c3f53",
 								"exec": [
 									""
 								],
@@ -1209,7 +1190,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "909998fe-4e53-4dbe-950e-ac56784c3f53",
 								"exec": [
 									""
 								],
@@ -1284,7 +1264,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "08715706-c556-4f0e-9b52-507e9c974b5e",
 								"exec": [
 									""
 								],
@@ -2392,7 +2371,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "57fa6510-fcd5-4af6-ad55-d65ae05e47d1",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2402,15 +2380,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a6e0fe3f-7ee1-41b6-bbe0-ff825f20d87a",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Transactions",
@@ -2719,8 +2695,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Discovery",
@@ -2849,8 +2824,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Admin",
@@ -2861,7 +2835,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e3cdbbac-09be-4326-a352-a3fc32761728",
 								"exec": [
 									"// Store private_key_jwt to reuse in next call",
 									"pm.environment.set(\"register_token\", pm.response.text());"
@@ -2923,10 +2896,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"data\": {\n    \"action\": \"REFRESH\"\n  },\n  \"meta\": {}\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n  \"data\": {\n    \"action\": \"REFRESH\"\n  },\n  \"meta\": {}\n}"
 						},
 						"url": {
 							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/register/metadata",
@@ -2997,8 +2967,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Dynamic Client Registration",
@@ -3012,7 +2981,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f3bc1fa8-4c1f-4cbd-991a-9ad1f606fc14",
 										"exec": [
 											"// Store private_key_jwt to reuse in next call",
 											"pm.environment.set(\"private_key_jwt\", pm.response.text());"
@@ -3058,7 +3026,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c29d1074-b67f-46c4-a162-34f6d42563b9",
 										"exec": [
 											"// Store scope, access token and id token to reuse in subsequent calls",
 											"var jsonData = pm.response.json();",
@@ -3134,9 +3101,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Generate Request for Register/Update Dynamic Client (Uses Mock ADR Client)",
@@ -3144,7 +3109,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9b78e51f-a65b-4617-9562-e661c6321c07",
 								"exec": [
 									"// Store dcr request to reuse in next call",
 									"pm.environment.set(\"dcr_request_jwt\", pm.response.text());"
@@ -3157,7 +3121,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=DebsOrg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -3171,7 +3135,7 @@
 							"query": [
 								{
 									"key": "org_id",
-									"value": "AAA"
+									"value": "DebsOrg"
 								},
 								{
 									"key": "recipient_base_uri",
@@ -3197,7 +3161,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ba9a943d-5843-4149-961f-fb8f8f2270fc",
 								"exec": [
 									"// Store client_id and client_secret to reuse in subsequent calls",
 									"var jsonData = pm.response.json();",
@@ -3246,7 +3209,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "916f94d9-8d8d-4d56-9267-f11dc56f07a0",
 								"exec": [
 									""
 								],
@@ -3305,7 +3267,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b8a6417f-d370-4340-9bdd-1709945ae96e",
 								"exec": [
 									""
 								],
@@ -3368,7 +3329,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "649b6e21-3840-4729-b279-745ca1dc3447",
 								"exec": [
 									""
 								],
@@ -3421,8 +3381,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "HoK Verification",
@@ -3436,7 +3395,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d4201b4a-e8af-47c1-8be6-5acf1478dea7",
 										"exec": [
 											"// Store html interaction  and uuid to use in subsequent calls",
 											"",
@@ -3467,7 +3425,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "81c449b8-3a24-40ef-9d44-e6314f5adb89",
 										"exec": [
 											""
 										],
@@ -3581,7 +3538,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ca21aad1-9ad0-40f6-8b38-e723ecc09bba",
 										"exec": [
 											"// Store html interaction  and uuid to use in subsequent calls",
 											"",
@@ -3676,7 +3632,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4237d309-cadb-4eeb-a6ea-04bfbf26908b",
 										"exec": [
 											"// Store authorisation code to use in subsequent calls",
 											"",
@@ -3805,7 +3760,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1f0b3dd3-ec0e-4a04-bfd2-b81d4ca357ba",
 										"exec": [
 											"// Store scope, access token and id token to reuse in subsequent calls",
 											"var jsonData = pm.response.json();",
@@ -3893,7 +3847,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "176688c1-7503-4d24-bcaa-b5476b31a6af",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3903,16 +3856,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e8535995-befd-4e1d-ae37-db93f7055f16",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "OIDC - Other requests - Using mTLS",
@@ -3954,7 +3904,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f28eee90-0fbf-4ca7-b6c7-673b3c211130",
 										"exec": [
 											"// Store access token, id token and refresh token to reuse in subsequent calls",
 											"var jsonData = pm.response.json();",
@@ -4031,10 +3980,7 @@
 											"value": "{{refresh_token}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "https://{{mtls-endpoint}}/token",
@@ -4055,7 +4001,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ee0be91c-b95b-421a-a189-f6ab2e49553f",
 										"exec": [
 											""
 										],
@@ -4106,10 +4051,7 @@
 											"value": "refresh_token",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "https://{{mtls-endpoint}}/token/introspection",
@@ -4131,7 +4073,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4369b2db-c644-48b1-a3d0-4437065cdbf8",
 										"exec": [
 											""
 										],
@@ -4182,10 +4123,7 @@
 											"value": "access_token",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "https://{{mtls-endpoint}}/token/revocation",
@@ -4207,7 +4145,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "71f9eb2b-126f-4ceb-aefc-42926b671a4d",
 										"exec": [
 											""
 										],
@@ -4258,18 +4195,13 @@
 											"value": "refresh_token",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}.apigee.net/token/revocation",
+									"raw": "https://{{mtls-endpoint}}/token/revocation",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}",
-										"apigee",
-										"net"
+										"{{mtls-endpoint}}"
 									],
 									"path": [
 										"token",
@@ -4319,9 +4251,7 @@
 							"response": []
 						}
 					],
-					"description": "Requests to the other oidc endpoints (eg: .well-known/configuration, refresh token, revoke token ,etc)",
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					"description": "Requests to the other oidc endpoints (eg: .well-known/configuration, refresh token, revoke token ,etc)"
 				},
 				{
 					"name": "Dynamic Client Registration - Using mTLS",
@@ -4335,7 +4265,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "eac698cc-2f70-42c7-86f9-d1c9a4a5ab73",
 												"exec": [
 													"// Store private_key_jwt to reuse in next call",
 													"pm.environment.set(\"private_key_jwt\", pm.response.text());"
@@ -4348,7 +4277,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?aud=https://{{mtls-endpoint}}/token&client_id={{dynamic_client_id}}",
+											"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
 											"protocol": "https",
 											"host": [
 												"{{org}}-{{env}}",
@@ -4362,7 +4291,8 @@
 											"query": [
 												{
 													"key": "aud",
-													"value": "https://{{mtls-endpoint}}/token"
+													"value": "https://{{mtls-endpoint}}",
+													"disabled": true
 												},
 												{
 													"key": "client_id",
@@ -4380,7 +4310,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "ab4fba7b-ae76-4265-9636-df0260ae1892",
 												"exec": [
 													"// Store scope, access token and id token to reuse in subsequent calls",
 													"var jsonData = pm.response.json();",
@@ -4439,10 +4368,7 @@
 													"value": "{{private_key_jwt}}",
 													"type": "text"
 												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
+											]
 										},
 										"url": {
 											"raw": "https://{{mtls-endpoint}}/token",
@@ -4457,9 +4383,7 @@
 									},
 									"response": []
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Generate Request for Register/Update Dynamic Client (Uses Mock ADR Client)",
@@ -4467,7 +4391,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "34baa5cc-202f-4ec2-8e46-ee5d7c587bd6",
 										"exec": [
 											"// Store dcr request to reuse in next call",
 											"pm.environment.set(\"dcr_request_jwt\", pm.response.text());"
@@ -4480,7 +4403,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2&aud=https://{{mtls-endpoint}}",
+									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
 									"protocol": "https",
 									"host": [
 										"{{org}}-{{env}}",
@@ -4511,7 +4434,8 @@
 										},
 										{
 											"key": "aud",
-											"value": "https://{{mtls-endpoint}}"
+											"value": "https://{{mtls-endpoint}}",
+											"disabled": true
 										}
 									]
 								}
@@ -4524,7 +4448,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3f3ee07b-5569-470b-8b29-69435d2cd8c9",
 										"exec": [
 											"// Store client_id and client_secret to reuse in subsequent calls",
 											"var jsonData = pm.response.json();",
@@ -4550,10 +4473,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{dcr_request_jwt}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{dcr_request_jwt}}"
 								},
 								"url": {
 									"raw": "https://{{mtls-endpoint}}/register",
@@ -4574,7 +4494,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "dcc3a1f1-5be3-43ad-94bb-269eefe74775",
 										"exec": [
 											""
 										],
@@ -4631,7 +4550,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "40b6b5a5-c47d-4937-950d-75aff637be2f",
 										"exec": [
 											""
 										],
@@ -4692,7 +4610,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6e798ac9-f76c-484d-81fd-cd773f0c2500",
 										"exec": [
 											""
 										],
@@ -4745,9 +4662,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Get Transactions For Account - With HoK Verification",
@@ -5016,8 +4931,7 @@
 					"response": []
 				}
 			],
-			"description": "Requests to sample endpoints, to demonstrate HoK verification",
-			"protocolProfileBehavior": {}
+			"description": "Requests to sample endpoints, to demonstrate HoK verification"
 		},
 		{
 			"name": "Mock CDR Register",
@@ -5122,8 +5036,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Mock ADR Client",
@@ -5194,7 +5107,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38ea76f0-f852-4b8c-89f0-8f036b551798",
 								"exec": [
 									"// Store private_key_jwt to reuse in next call",
 									"pm.environment.set(\"private_key_jwt\", pm.response.text());"
@@ -5233,8 +5145,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	]
 }

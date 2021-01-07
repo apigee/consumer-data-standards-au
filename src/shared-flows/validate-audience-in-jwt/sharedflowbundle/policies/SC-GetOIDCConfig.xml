@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-GetOIDCConfig">
+    <DisplayName>SC-GetOIDCConfig</DisplayName>
+    <Properties/>
+    <Response>OIDCConfig</Response>
+    <LocalTargetConnection>
+        <Path>/.well-known/openid-configuration</Path>
+    </LocalTargetConnection>
+</ServiceCallout>
