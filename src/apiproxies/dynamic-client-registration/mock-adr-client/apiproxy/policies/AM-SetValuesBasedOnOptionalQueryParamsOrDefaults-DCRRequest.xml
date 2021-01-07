@@ -43,7 +43,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>defaultAud</Name>
-        <Template>https://{organization.name}-{environment.name}.apigee.net/token</Template>
+        <Template>https://{organization.name}-{environment.name}.apigee.net</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>audience</Name>

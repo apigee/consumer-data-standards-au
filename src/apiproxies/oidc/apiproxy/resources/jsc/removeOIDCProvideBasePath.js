@@ -23,8 +23,13 @@
 **/
 
 var payload = JSON.parse(context.getVariable("response.content"));
-const mtlsHostname = context.getVariable("private.mtlsHostname");
+var mtlsHostname = context.getVariable("private.mtlsHostname");
 const standardHostname = payload.issuer;
+// If no entry is found for mtlsHostname (because mTLS is not enabled in this instance) use the standardHostname
+if ( (mtlsHostname === null) || (mtlsHostname === "") ) {
+    mtlsHostname = standardHostname;
+}
+
 // Treat mtlsEndpoints as a string because the JS interpreter does not support Array.includes 
 const mtlsEndpoints = "introspection_endpoint|registration_endpoint|revocation_endpoint|token_endpoint|userinfo_endpoint";
 
@@ -41,6 +46,3 @@ Object.keys(payload).forEach(function (key) {
 });
 
 context.setVariable("response.content", JSON.stringify(payload));
-
-
-

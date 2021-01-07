@@ -9,7 +9,6 @@
     </PublicKey>
     <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
     <IgnoreIssuedAt>false</IgnoreIssuedAt>
-    <Audience ref="validAudience"/>
     <Subject ref="theClientId"/>
     <Issuer ref="theClientId"/>
 </VerifyJWT>

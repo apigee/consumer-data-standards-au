@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>LC-RetrieveOIDCConfig</Name>
+    </Step>
+    <Step>
+        <Name>SC-GetOIDCConfig</Name>
+        <Condition>(lookupcache.LC-RetrieveOIDCConfig.cachehit = "false")</Condition>
+    </Step>
+    <Step>
+        <Name>PC-StoreOIDCConfig</Name>
+        <Condition>(lookupcache.LC-RetrieveOIDCConfig.cachehit = "false")</Condition>
+    </Step>
+    <Step>
+        <Name>EV-GetIssuerAndTokenEndpoint</Name>
+    </Step>
+    <Step>
+        <Name>AM-SetCurrentURI</Name>
+    </Step>
+    <Step>
+        <Name>AM-ExtractAudFromAudArray</Name>
+    </Step>
+    <Step>
+        <Name>RF-InvalidAudience-400Error</Name>
+        <Condition>(audAsString != issuer) and (audAsString != tokenEndpoint) and (audAsString != currentURI) and (errorToReturn = "400")</Condition>
+    </Step>
+    <Step>
+        <Name>RF-InvalidAudience</Name>
+        <Condition>(audAsString != issuer) and (audAsString != tokenEndpoint) and (audAsString != currentURI)</Condition>
+    </Step>
+</SharedFlow>

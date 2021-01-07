@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="3" name="authenticate-with-private-key-jwt">
+<SharedFlowBundle revision="5" name="authenticate-with-private-key-jwt">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1602460875658</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed</Description>
     <DisplayName>authenticate-with-private-key-jwt</DisplayName>
-    <LastModifiedAt>1606886580008</LastModifiedAt>
+    <LastModifiedAt>1609978678846</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:62874c169d0e6bdd612b916d99c7ef67944a0f09d48dcca86643668cf7ceb934d7f201b20127a52f5e804f02a45e412cbd68b9fbf398eae22f3e857e311ce0d6:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:ad1e07275a38f2a2b4b9a49d85f1f24b500ba92529e05d6e713ba4d5557fc6689c97fbc3e0cd74ee521c97916eccbf59446039b435772ba1bea3646996fcc411:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AE-GetAppDetails</Policy>
-        <Policy>AM-SetValidAudience</Policy>
         <Policy>BA-GenerateBasicEquivalentAuthHeader</Policy>
         <Policy>EV-ExtractAppRegInfoAndClientSecret</Policy>
         <Policy>EV-ExtractClientJWKSURIFromRegoInfo</Policy>
         <Policy>FC-GetClientJWKS</Policy>
+        <Policy>FC-ValidateAudience</Policy>
         <Policy>JWT-VerifyPrivateKeyJWT</Policy>
         <Policy>RF-InvalidJWT</Policy>
         <Policy>RF-UnknownClientId</Policy>

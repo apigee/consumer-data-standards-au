@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v1.5.1** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.6** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -117,10 +117,14 @@ The Postman collection includes a request to the helper endpoint in the Mock CDR
 
 The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return **actual** metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
 
+## Integrations with specific Identity Providers
+Okta has contributed to this reference implementation by providing a modified version of the *oidc* proxy that shows how Apigee can interact with Okta as an Identity Provider. 
+You can find this version of the reference implementation in the [okta-integration](https://github.com/apigee/consumer-data-standards-au/tree/okta-integration) branch of this repository.
+
 
 ## Shared Flows
 
-There are 14 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
+There are 15 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
 
 1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
 2. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
@@ -136,6 +140,7 @@ There are 14 shared flows that implement common functionality required by the Ba
 12. *get-jwks-from-dynamic-uri*: Retrieves (and caches) a JWKS from a URI. 
 13. *authenticate-with-private-key-jwt*: Implements *private_key_jwt*  client authentication method.
 14. *verify-mtls-and-hok*: Can be configured to check that mTLS is used on a given request, and, if mTLS is used, that the client certificate being presented is the same used for acquiring a token (Holder of Key verification)
+15. *validate-audience-in-jwt*: Validates the audience claim in an authorisation JWT token as specified in version 1.6
 
 
 There are additional shared flows, *oidc-replace-auth-code-with-opaque-auth-code* and *oidc-generate-opaque-auth-code-and-id-token*, that implements logic reused in two different oidc endpoints

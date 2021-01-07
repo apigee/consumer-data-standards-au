@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="13" name="CDS-DynamicClientRegistration">
+<APIProxy revision="15" name="CDS-DynamicClientRegistration">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -13,9 +13,9 @@
     <CreatedBy>sathishapigee@gmail.com</CreatedBy>
     <Description>Implement Client Registration Management APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1604636841704</LastModifiedAt>
+    <LastModifiedAt>1609977197060</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:c6c2537884940f56fec083df81c9d9633f26c116ad80751b81b303a16804e2c3a48c1c552407ac3f61da93149ba4fed2acf30a76cf00dd5525744d8b7e1bc50b</ManifestVersion>
+    <ManifestVersion>SHA-512:1f8a9c9acf89a1d4c9cce3ff60377dce19be1bcbb92b48140b6740b2c2cc6c84bbf26b5024413d67ad2e10dcd34789ffdba4f48fda1e12326178b6b8137810cf:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AE-GetApp</Policy>
         <Policy>AE-GetDeveloper</Policy>
@@ -29,7 +29,6 @@
         <Policy>AM-SetAppDeletedResponseCode</Policy>
         <Policy>AM-SetKeysToAddToApp</Policy>
         <Policy>AM-SetOrgIdForApigee</Policy>
-        <Policy>AM-SetValidAudience</Policy>
         <Policy>AM-TokenNotVerified</Policy>
         <Policy>AssignOldClientIdtoNewAppId</Policy>
         <Policy>BA-SetBasicAuthHeader</Policy>
@@ -46,6 +45,7 @@
         <Policy>FC-RetrieveClientJWKS</Policy>
         <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-TrafficThresholdsForClientRegistration</Policy>
+        <Policy>FC-ValidateAudience</Policy>
         <Policy>FC-ValidateSSA</Policy>
         <Policy>FC-VerifyHoK</Policy>
         <Policy>FC-VerifyMTLSOnly</Policy>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LC-RetrieveOIDCConfig">
+    <DisplayName>LC-RetrieveOIDCConfig</DisplayName>
+    <CacheKey>
+        <KeyFragment>OIDCConfig</KeyFragment>
+    </CacheKey>
+    <Scope>Global</Scope>
+    <AssignTo>OIDCConfig</AssignTo>
+</LookupCache>
