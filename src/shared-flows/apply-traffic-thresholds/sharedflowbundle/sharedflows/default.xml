@@ -11,6 +11,10 @@
     </Step>
     <Step>
         <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true")</Condition>
+        <Name>AM-SetQuotaBucketForCustomerPresentSession</Name>
+    </Step>
+    <Step>
+        <Condition>(isPublicEndpoint = "false") and (isCustomerPresent = "true")</Condition>
         <FaultRules/>
         <Name>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Name>
     </Step>

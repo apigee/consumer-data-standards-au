@@ -3,9 +3,9 @@
     <DisplayName>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</DisplayName>
     <FaultRules/>
     <Properties/>
-    <!--We keep track of secure traffic per customerId -->
-    <Identifier ref="customerId"/>
-    <!-- Use a smaller rate for testing purposes. Eg: 2pm -->
+    <!--We keep track of secure traffic per clientId and customerId -->
+    <Identifier ref="quotaBucketForCustomerPresentSession"/>
+    <!-- Use a smaller rate for testing purposes. Eg: 2pm -->    
     <Rate>10ps</Rate>
     <UseEffectiveCount>true</UseEffectiveCount>
 </SpikeArrest>
