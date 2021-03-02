@@ -5,12 +5,12 @@
     <Properties/>
     <AssignVariable>
         <Name>customerPPId</Name>
-        <Ref>jwt.JWT-DecodeOIDCIdToken.decoded.claim.sub</Ref>
+        <Ref>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerPPId</Ref>
     </AssignVariable>
     <AssignVariable>
         <Name>tokenOp</Name>
         <Value>acquire</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo transport="http" createNew="false"></AssignTo>
+    <AssignTo transport="http" createNew="false"/>
 </AssignMessage>

@@ -2,17 +2,7 @@
 <ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-GetSSAFromCDRRegister">
     <DisplayName>SC-GetSSAFromCDRRegister</DisplayName>
     <Properties/>
-    <Request clearPayload="true" variable="myRequest">
-        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-        <Set>
-            <Verb>GET</Verb>
-            <QueryParams>
-                <QueryParam name="org_id">{orgId}</QueryParam>
-                <QueryParam name="recipient_base_uri">{baseURI}</QueryParam>
-                <QueryParam name="redirect_uri">{redirectURI}</QueryParam>
-                <QueryParam name="jwks_uri">{jwksURI}</QueryParam>
-            </QueryParams>
-        </Set>
+    <Request clearPayload="false" variable="SSARequest">
     </Request>
     <Response>SSAResponse</Response>
     <LocalTargetConnection>

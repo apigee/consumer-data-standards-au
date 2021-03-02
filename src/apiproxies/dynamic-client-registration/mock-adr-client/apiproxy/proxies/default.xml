@@ -43,6 +43,13 @@
                     <Name>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest</Name>
                 </Step>
                 <Step>
+                    <Name>AM-SetSSARequest</Name>
+                </Step>
+                <Step>
+                    <Name>AM-AddSectorIdToSSARequest</Name>
+                    <Condition>(request.queryparam.sector_identifier_uri != null) and (request.queryparam.sector_identifier_uri != "")</Condition>
+                </Step>
+                <Step>
                     <Name>SC-GetSSAFromCDRRegister</Name>
                 </Step>
                 <Step>

@@ -7,7 +7,10 @@
         <FormParams>
             <FormParam name="token">{oauthv2accesstoken.OAInfo-RetrieveAccessTokenDetails.accesstoken.OIDCAccessToken}</FormParam>
         </FormParams>
+        <Headers>
+            <Header name="Authorization">{IdPBasicAuthHdr}</Header>
+        </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

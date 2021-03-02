@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-VerifyIdpIdToken">
+    <DisplayName>FC-VerifyIdpIdToken</DisplayName>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="IDP_ID_Token" ref="IDP_id_token"/>
+        <Parameter name="expectedNonce" ref="requested_nonce"/>
+    </Parameters>
+    <SharedFlowBundle>verify-idp-id-token</SharedFlowBundle>
+</FlowCallout>

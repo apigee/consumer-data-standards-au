@@ -38,6 +38,9 @@
         <Variable name="recipient_base_uri">
             <JSONPath>$.recipient_base_uri</JSONPath>
         </Variable>
+        <Variable name="sector_identifier_uri">
+            <JSONPath>$.sector_identifier_uri</JSONPath>
+        </Variable>
         <Variable name="software_id">
             <JSONPath>$.software_id</JSONPath>
         </Variable>
@@ -48,6 +51,7 @@
             <JSONPath>$.scope</JSONPath>
         </Variable>
     </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <Source clearPayload="false">jwt.JWT-VerifyCDRSSAToken.payload-json</Source>
     <VariablePrefix>ADRDetailsFromSSA</VariablePrefix>
 </ExtractVariables>

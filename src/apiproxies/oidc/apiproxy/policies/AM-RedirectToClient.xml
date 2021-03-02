@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RedirectToClient">
+    <DisplayName>AM-RedirectToClientViaFormPost</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="text/html">
+            <html>
+                <head>
+                    <title>Submitting Callback</title>
+                    <script>document.addEventListener('DOMContentLoaded', function () { document.forms[0].submit() });</script>
+                </head>
+                <body onload="javascript:document.forms[0].submit()">
+                    <form method="post" action="{requested_redirect_uri}">
+                        <input type="hidden" name="code" value="{oauthv2authcode.OA-IssueOpaqueAuthCode.code}"/>
+                        <input type="hidden" name="id_token" value="{theNewIdToken}"/>
+                        <input type="hidden" name="state" value="{request.formparam.state}"/>
+                    </form>
+                </body>
+            </html>
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

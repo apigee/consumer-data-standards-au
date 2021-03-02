@@ -21,6 +21,6 @@
             <JSONPath>$.id_token</JSONPath>
         </Variable>
     </JSONPayload>
-    <Source clearPayload="false">response</Source>
+    <Source clearPayload="false">IdPTokenResponse</Source>
     <VariablePrefix>OIDCTokenResponse</VariablePrefix>
 </ExtractVariables>

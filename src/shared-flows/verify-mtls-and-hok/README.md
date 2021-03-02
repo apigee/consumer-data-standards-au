@@ -60,11 +60,11 @@ curl --request POST -u $APIGEE_USER:$APIGEE_PASSWORD https://api.enterprise.apig
 ```
 
 
-#### 2. Add a KVM to store the fully qualified host alias
-This entry is used in the OIDC Configuration End Point. The *oidc* proxy extracts this value from an entry associated with the key *mtlsHostname* in a KVM named *ApigeeAPICredentials*
+#### 2. Add a KVM entry to store the fully qualified host alias
+This entry is used in the OIDC Configuration End Point. The *oidc* proxy extracts this value from an entry associated with the key *HOK_mtlsHostname* in a KVM named *CDSConfig*
 ```
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV \
- --mapName ApigeeAPICredentials --entryName mtlsHostname --entryValue https://$MTLS_HOSTNAME
+ --mapName CDSConfig --entryName HOK_mtlsHostname --entryValue https://$MTLS_HOSTNAME
 ```
 
 #### 3. Modify proxies to also use the new virtual host
@@ -91,5 +91,5 @@ The Postman collection includes a folder for testing HoK verification.
 Note that the above proxies still accept one-way TLS connections, which is fine for testing purposes, but shouldn't be the case in a production environment.
 In production, **no** *banking* proxy (Currently *CDS-Accounts* and *CDS-Transactions*) should use the *secure* virtualhost, only *secure-mtls*.
 
-However, *oidc* and *CDS-DynamicClientRegistration* apiproxies have a mixture of one way TLS and mTLS endpoints, so these two proxies should still use both endpoints.
+However, *oidc*, *mock-oidc* and *CDS-DynamicClientRegistration* apiproxies have a mixture of one way TLS and mTLS endpoints, so these proxies should still use both endpoints.
 You will need to edit the *verify-mtls-and-hok* shared flow to remove the dummy condition which prevents the enforcement of mTLS on the endpoints that should only accept mTLS.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication async="false" continueOnError="false" enabled="true" name="BA-SetBasicAuthHeader">
+    <DisplayName>BA-SetBasicAuthHeaderWithIDPCredentials</DisplayName>
+    <Operation>Encode</Operation>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <User ref="private.IDP_ClientId"/>
+    <Password ref="private.IDP_ClientSecret"/>
+    <AssignTo createNew="true">IdPBasicAuthHdr</AssignTo>
+</BasicAuthentication>

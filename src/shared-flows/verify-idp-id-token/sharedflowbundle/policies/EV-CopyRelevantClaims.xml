@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-CopyRelevantClaims">
+    <DisplayName>EV-CopyRelevantClaims</DisplayName>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="customerId">
+            <JSONPath>$.sub</JSONPath>
+        </Variable>
+        <Variable name="name">
+            <JSONPath>$.name</JSONPath>
+        </Variable>
+        <Variable name="given_name">
+            <JSONPath>$.given_name</JSONPath>
+        </Variable>
+        <Variable name="family_name">
+            <JSONPath>$.family_name</JSONPath>
+        </Variable>
+        <Variable name="updated_at">
+            <JSONPath>$.updated_at</JSONPath>
+        </Variable>
+        <Variable name="auth_time">
+            <JSONPath>$.auth_time</JSONPath>
+        </Variable>
+        <Variable name="acr">
+            <JSONPath>$.acr</JSONPath>
+        </Variable>
+        <Variable name="nonce">
+            <JSONPath>$.nonce</JSONPath>
+        </Variable>
+        <Variable name="exp">
+            <JSONPath>$.exp</JSONPath>
+        </Variable>
+        <Variable name="iat">
+            <JSONPath>$.iat</JSONPath>
+        </Variable>
+        <Variable name="s_hash">
+            <JSONPath>$.s_hash</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">jwt.JWT-VerifyIdpToken.payload-json</Source>
+    <VariablePrefix>IDPTokenClaims</VariablePrefix>
+</ExtractVariables>

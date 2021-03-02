@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-SetIDPJWKSUri" version="SHA-512:b3d19fd14a8635e2dda08af61ea79e700f491cc6171bab8b28f80b476cb8fdf55e199cb8dbfd144e191c4b7b2a2f39ba7e5f7f73a6ef431e5cd397bd6fbfb6a1"/>
+        <VersionInfo resourceName="AM-SetValidAudience" version="SHA-512:2b0b4580b201ea1f96d18e3d1760509cc553590f3a260bfc9160f51bfd8a356dd1ff47d7640fd4fa74d507613e96332442c15ee46d20e96a8d38f9fa046ac860"/>
+        <VersionInfo resourceName="EV-CopyRelevantClaims" version="SHA-512:1c8ed382df862666491767d3d28ed73ebe87d8021cb35f7566adb3d72170d4991ad2b52a7624e0aa9a07a8e4b0cda2c8ce9de134619591539ca58cd6160515c7"/>
+        <VersionInfo resourceName="FC-GetIDPJWKS" version="SHA-512:f5ab06defb1d4a11c33f51e820052789097000320ad5a3bed2654b34d39fb92d528f8b72e8614c71a5790415d5f0e4118d7e2cd8d647dd969b57c0c779c610f6"/>
+        <VersionInfo resourceName="JWT-VerifyIdpToken" version="SHA-512:2c7c6e49b48edc556005b05d87133f39b897e5137fd56f85ad8c856e32f6ac1fda4b0663ba8766a6c49e04d3dc181215145cd0d29ac93016a82bf125935e22b1"/>
+        <VersionInfo resourceName="KVM-GetIDPCredentials" version="SHA-512:b5b592331ba04aa70f5cdac9cc4915355a42a9ce1b0587f6f3f2ec3e8d221c4415d46f3e93b7599679b86e1fab9cdb55a2ac2ab64db99f9a2e5df6e99aa4c638"/>
+        <VersionInfo resourceName="RF-InvalidIdToken" version="SHA-512:128b8b6dee922579f7ec56109b055ffab722adf365c6d7ce5c33763a8c479a7c49fce8fb1e769a6280aa49c1c63a1320c639cbe5772335e3cf546e067e807d32"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:5e1d9c39d3a5b723789001b5d332434cc246f67775bff6ae7b0bafa8fc2bc1488d6cc813d534713dd29d59807fe8749b980c36b560513688608e975a9f9fd897"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

@@ -11,8 +11,7 @@
  "active": {isActive},
  "exp": "{tokenExp}",
  "cdr_arrangement_id": "{cdrArrangementId}",
- "scope": "{tokenScope}"
-}    
+ "scope": "{oauthv2accesstoken.OAInfo-RetrieveRefreshTokenDetails.scope}",
       </Payload>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

@@ -253,12 +253,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store authorisation code to use in subsequent calls",
+									"// Store callback response from IdP to use in subsequent call",
 									"",
-									"const html_response = cheerio(responseBody);",
-									"var auth_code = html_response.find('[name=\"code\"]').val();",
-									"",
-									"pm.environment.set(\"auth_code\", auth_code);",
+									"const htmlResponse = cheerio(responseBody);",
+									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+									"const $ = cheerio.load(responseBody);",
+									"var temp_cb_uri = $('form').attr('action');",
+									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+									"pm.environment.set(\"temp_id_token\", temp_id_token);",
+									"pm.environment.set(\"temp_state\", temp_state);",
+									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
 									"",
 									""
 								],
@@ -375,6 +381,73 @@
 					"response": []
 				},
 				{
+					"name": "OIDC Authorise Local - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store authorisation code to use in subsequent calls",
+									"",
+									"const html_response = cheerio(responseBody);",
+									"var auth_code = html_response.find('[name=\"code\"]').val();",
+									"",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "{{temp_auth_code}}",
+									"type": "text"
+								},
+								{
+									"key": "id_token",
+									"value": "{{temp_id_token}}",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "{{temp_state}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{temp_cb_uri}}",
+							"host": [
+								"{{temp_cb_uri}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "OIDC Acquire Token - Step 4 (Hybrid) - Basic Auth",
 					"event": [
 						{
@@ -433,7 +506,7 @@
 								},
 								{
 									"key": "code",
-									"value": "GYmspYcr",
+									"value": "{{auth_code}}",
 									"type": "text"
 								},
 								{
@@ -709,12 +782,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store authorisation code to use in subsequent calls",
+									"// Store callback response from IdP to use in subsequent call",
 									"",
-									"const html_response = cheerio(responseBody);",
-									"var auth_code = html_response.find('[name=\"code\"]').val();",
-									"",
-									"pm.environment.set(\"auth_code\", auth_code);",
+									"const htmlResponse = cheerio(responseBody);",
+									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+									"const $ = cheerio.load(responseBody);",
+									"var temp_cb_uri = $('form').attr('action');",
+									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+									"pm.environment.set(\"temp_id_token\", temp_id_token);",
+									"pm.environment.set(\"temp_state\", temp_state);",
+									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
 									"",
 									""
 								],
@@ -813,6 +892,73 @@
 								"{{org}}-{{env}}",
 								"apigee",
 								"net{{nextInteraction2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Authorise Local - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store authorisation code to use in subsequent calls",
+									"",
+									"const html_response = cheerio(responseBody);",
+									"var auth_code = html_response.find('[name=\"code\"]').val();",
+									"",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "{{temp_auth_code}}",
+									"type": "text"
+								},
+								{
+									"key": "id_token",
+									"value": "{{temp_id_token}}",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "{{temp_state}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{temp_cb_uri}}",
+							"host": [
+								"{{temp_cb_uri}}"
 							]
 						}
 					},
@@ -1395,7 +1541,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/certs",
+							"raw": "https://{{org}}-{{env}}.apigee.net/jwks",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -1403,7 +1549,7 @@
 								"net"
 							],
 							"path": [
-								"certs"
+								"jwks"
 							]
 						}
 					},
@@ -2034,12 +2180,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"10203040-Acc001\",\"10203040-Acc003\"\n    ]\n  },\n  \"meta\": {}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"10203040-Acc001\",\"10203040-Acc003\"\n    ]\n  },\n  \"meta\": {}\n}"
 						},
 						"url": {
 							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
@@ -3121,7 +3262,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=DebsOrg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=DebsOrg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID3",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -3148,7 +3289,12 @@
 								},
 								{
 									"key": "software_id",
-									"value": "SomeSWID2"
+									"value": "SomeSWID3"
+								},
+								{
+									"key": "sector_identifier_uri",
+									"value": "https://pepe.org",
+									"disabled": true
 								}
 							]
 						}
@@ -3633,12 +3779,18 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Store authorisation code to use in subsequent calls",
+											"// Store IDP issued auth code and id token to use in subsequent call",
 											"",
-											"const html_response = cheerio(responseBody);",
-											"var auth_code = html_response.find('[name=\"code\"]').val();",
-											"",
-											"pm.environment.set(\"auth_code\", auth_code);",
+											"const htmlResponse = cheerio(responseBody);",
+											"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+											"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+											"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+											"const $ = cheerio.load(responseBody);",
+											"var temp_cb_uri = $('form').attr('action');",
+											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+											"pm.environment.set(\"temp_id_token\", temp_id_token);",
+											"pm.environment.set(\"temp_state\", temp_state);",
+											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
 											"",
 											""
 										],
@@ -3749,6 +3901,73 @@
 										"{{org}}-{{env}}",
 										"apigee",
 										"net{{nextInteraction2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Authorise Local - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Store authorisation code to use in subsequent calls",
+											"",
+											"const html_response = cheerio(responseBody);",
+											"var auth_code = html_response.find('[name=\"code\"]').val();",
+											"",
+											"pm.environment.set(\"auth_code\", auth_code);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "{{temp_auth_code}}",
+											"type": "text"
+										},
+										{
+											"key": "id_token",
+											"value": "{{temp_id_token}}",
+											"type": "text"
+										},
+										{
+											"key": "state",
+											"value": "{{temp_state}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{temp_cb_uri}}",
+									"host": [
+										"{{temp_cb_uri}}"
 									]
 								}
 							},
@@ -5003,6 +5222,11 @@
 									"key": "jwks_uri",
 									"value": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/jwks",
 									"disabled": true
+								},
+								{
+									"key": "sector_identifier_uri",
+									"value": "https://pepe.org",
+									"disabled": true
 								}
 							]
 						}
@@ -5095,6 +5319,11 @@
 								{
 									"key": "software_id",
 									"value": "swid2"
+								},
+								{
+									"key": "sector_identifier_uri",
+									"value": "https://pepe.org",
+									"disabled": true
 								}
 							]
 						}

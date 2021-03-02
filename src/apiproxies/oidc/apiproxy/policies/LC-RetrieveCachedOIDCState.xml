@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LC-RetrieveCachedOIDCState">
+    <DisplayName>LC-RetrieveCachedOIDCState</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="request.formparam.state"/>
+    </CacheKey>
+    <CacheResource>OIDCState</CacheResource>
+    <Scope>Global</Scope>
+    <AssignTo>cachedStateVal</AssignTo>
+</LookupCache>

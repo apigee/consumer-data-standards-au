@@ -13,6 +13,6 @@
     </Request>
     <Response>apigeeAPIAddKeysResponse</Response>
     <HTTPTargetConnection>
-        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps/{ADRDetailsFromSSA.software_id}/keys/{theNewAppId}</URL>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps/{ADRDetailsFromSSA.software_id}/keys/{theAppId}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

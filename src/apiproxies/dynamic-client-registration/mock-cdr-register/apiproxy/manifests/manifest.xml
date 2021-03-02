@@ -7,7 +7,7 @@
         <VersionInfo resourceName="EV-SWIdFromURIParam" version="SHA-512:796f56eefede30c57d44839b81d77a9c082b9475d241980ebd78ca3f930f0e216d874b5ae15da30c79391af992e9b35d9bec32a3da5556f7d1933119a3af6688"/>
         <VersionInfo resourceName="JS-SetRedirectURIs" version="SHA-512:ab905740383412a410c423dfa989479248c81fd7a25a8e70e6ccf33a717d28b0ed6275f52a8f827f7fa854215156676fad61c93d37962624c170db6359cbfde0"/>
         <VersionInfo resourceName="JWT-GenerateAdminRequest" version="SHA-512:69f33514761c9f5f2928fe1fb4c1c4521d23290c3c1fc555a0ad15ea7ee1039e98017fc0e18ee11a4f5530f2244f777cdbb11db4e7e2b0b2a4366fdbd05c5558"/>
-        <VersionInfo resourceName="JWT-GenerateMockSSAForSWId" version="SHA-512:2f0750bc87b765f14235edf89b5005d9c1ed5b068ae8656526a43aeb498b081d5e87339b6b699cf6dc2fb6d175e581707f304224677543908ec5e8e6510fb6d6"/>
+        <VersionInfo resourceName="JWT-GenerateMockSSAForSWId" version="SHA-512:d01e5b2929a1b1ee52df23c0ae73b34e0c25871a8ecad3234fa365b99b12c82bb710a8d58dc4e546d2c545d617ac288e7bce9c0ec7b773f7f443fd0ee1d4aca6"/>
         <VersionInfo resourceName="KVM-GetMockCDRRegisterKeys" version="SHA-512:8c4186fe0e1420f4c363cf974eda37b67f1586db29da4fe9e7cff69fdae5ec8deb710c3fa420a117a8c77ce227f265434bec11be6fd5372f84b5e99246b310d2"/>
         <VersionInfo resourceName="RF-NotFound" version="SHA-512:bf7edec9b2f76f7a537310b85cb06191319de6b7e1fa7d869e61dcfc176a751b734c134761e175001a1fed7d0e688ec1af3a3f96024ba12e0c1c75ee6a365e0b"/>
         <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:cf0a6fbc7379dee68546fa58b7bc7d2532bb0b165a3c87c3e79cd9993fba21ac2b553e1da0e6a4d7af18a0f60919a29285abfa8978a2a7dacb3fcbb265b9db03"/>

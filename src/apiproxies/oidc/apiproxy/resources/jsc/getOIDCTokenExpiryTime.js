@@ -28,12 +28,6 @@
 // because the ExtractVariables policy
 // with JSONPath retuns a Long type, and that causes an error in
 // the OAuthV2 policy. 
-// Also calculate the refreshToken expiry time in millis, based on the exp claim 
-// in the refresh token issued by the OIDC provider
  var tokenExpiryTime = String(context.getVariable("OIDCTokenResponse.expires_in")) + "000";
  context.setVariable("OIDCTokenExpiryTimeInMillis", tokenExpiryTime);
-  // Tmp calculations
-var refreshTokenExpiryEpochMillis = Number(context.getVariable("jwt.JWT-DecodeOIDCRefreshToken.decoded.claim.exp") + "000");
-var refreshTokenExpiryAsDate = new Date(refreshTokenExpiryEpochMillis);
-var refreshTokenExpiresInMillis = refreshTokenExpiryAsDate - (new Date());
-context.setVariable("refreshTokenExpiresInMillis", String(refreshTokenExpiresInMillis));
+ 

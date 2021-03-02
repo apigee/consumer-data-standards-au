@@ -132,5 +132,19 @@ module.exports = (app, provider) => {
 			next(err)
 		}
 	})
+	
+	// Return oidc compliant hashes for a string
+	app.get('/oidc-token-hash/:token', (req, res) => {
+
+		const oidcTokenHash = require('oidc-token-hash');
+		const theToken = req.params.token;
+		var theAlgorithm = req.query.alg;
+		if ((typeof req.query.alg === "undefined") || (theAlgorithm === null) || (theAlgorithm == "")) {
+			theAlgorithm = 'RS256';
+		}
+		var hashedToken = oidcTokenHash.generate(theToken, theAlgorithm);
+		debug("Token = " + theToken + " - Hashed value = " + hashedToken + " - Alg = " + theAlgorithm);
+		res.status(200).send(hashedToken);
+	})
 
 }

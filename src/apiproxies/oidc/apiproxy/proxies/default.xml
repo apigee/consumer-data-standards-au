@@ -27,6 +27,20 @@
                 <Name>AM-InvalidAuthCode</Name>
             </Step>
         </FaultRule>
+        <FaultRule name="Cannot issue access token">
+            <Condition>(fault.name = "invalid_request")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-CannotIssueAccessToken</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="SC to IDP failed">
+            <Condition>(fault.name = "ExecutionFailed")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-IDPError</Name>
+            </Step>
+        </FaultRule>
     </FaultRules>
     <Flows>
         <Flow name="Get OIDC Configuration">
@@ -45,15 +59,81 @@
         </Flow>
         <Flow name="Authorise">
             <Description>Get Authorisation Code</Description>
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>VAK-VerifyClientId</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidClientId</Name>
+                    <Condition>oauthV2.VAK-VerifyClientId.failed = "true"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetStateCacheValue</Name>
+                </Step>
+                <Step>
+                    <Name>PC-CacheOIDCState</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetIDPCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>AM-InsertApigeeOIDCCredentials</Name>
+                </Step>
+            </Request>
             <Response>
                 <Step>
-                    <Condition>response.status.code = 200</Condition>
-                    <FaultRules/>
-                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
+                    <Name>AM-RedirectToMockOIDCAuthorise</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/authorise") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Authorise - Callback">
+            <Description>Implements callback to receive authcode from IdP</Description>
+            <Request>
+                <Step>
+                    <Name>EV-GetFormParams</Name>
+                </Step>
+                <Step>
+                    <Name>LC-RetrieveCachedOIDCState</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidState</Name>
+                    <Condition>lookupcache.LC-RetrieveCachedOIDCState.cachehit = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ParseCachedState</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyIdpIdToken</Name>
+                </Step>
+                <Step>
+                    <Name>JS-CalculateExpiryTimeForNewIdToken-AuthCodeStage</Name>
+                </Step>
+                <Step>
+                    <Name>FC-GetPPId</Name>
+                </Step>
+                <Step>
+                    <Name>OA-IssueOpaqueAuthCode</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetIssuer</Name>
+                </Step>
+                <Step>
+                    <Name>SC-GetOIDCTokenHash</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetJWTSigningKeys</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GenerateIdTokenForAuthCodeStep</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-RedirectToClient</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorise-cb")</Condition>
         </Flow>
         <Flow name="Refresh Token">
             <Description>Refresh Token</Description>
@@ -86,18 +166,17 @@
                     <Name>EV-StoreTokenRequestDetails</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Name>
+                    <Name>KVM-GetIDPCredentials</Name>
                 </Step>
-            </Request>
-            <Response>
+                <Step>
+                    <Name>BA-SetBasicAuthHeader</Name>
+                </Step>
+                <Step>
+                    <Name>SC-InvokeIdPRefreshTokenEndpoint</Name>
+                </Step>
                 <Step>
                     <FaultRules/>
                     <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -105,15 +184,7 @@
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForRefreshToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>AM-ReinstateAuthHeaderInResponse</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -125,7 +196,28 @@
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
+                    <Name>JS-GetInfoFromOAuth2Policy</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetIssuer</Name>
+                </Step>
+                <Step>
+                    <Name>SC-GetOIDCTokenHash</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetJWTSigningKeys</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-SetCustomDimensionsForRefreshToken</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetIssueOrRefreshTokenResponse</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "refresh_token")</Condition>
@@ -138,29 +230,28 @@
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>OAInfo-RetrieveOIDCAuthCode</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
                     <Name>EV-StoreTokenRequestDetails</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Name>
+                    <Name>OAInfo-RetrieveOIDCAuthCode</Name>
                 </Step>
                 <Step>
-                    <Name>AM-RemovePrivateKeyJWTParams</Name>
-                    <Condition>(request.formparam.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" ) and (request.formparam.client_assertion != "") and (request.formparam.client_id != "")</Condition>
+                    <Name>RF-InvalidRedirectURI</Name>
+                    <Condition>request.formparam.redirect_uri != oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.redirect_uri</Condition>
                 </Step>
-            </Request>
-            <Response>
+                <Step>
+                    <Name>KVM-GetIDPCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>BA-SetBasicAuthHeader</Name>
+                </Step>
+                <Step>
+                    <Name>SC-InvokeIdPTokenEndpoint</Name>
+                </Step>
                 <Step>
                     <FaultRules/>
                     <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCRefreshToken</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -179,15 +270,28 @@
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>AM-ReinstateAuthHeaderInResponse</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
                     <Name>OA-IssueOpaqueAccessToken</Name>
                 </Step>
                 <Step>
+                    <Name>AM-SetIssuer</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
-                    <Name>JS-SubstituteWithOpaqueAccessTokenInResponse</Name>
+                    <Name>JS-GetInfoFromOAuth2Policy</Name>
+                </Step>
+                <Step>
+                    <Name>SC-GetOIDCTokenHash</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetJWTSigningKeys</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetIssueOrRefreshTokenResponse</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "authorization_code")</Condition>
@@ -221,6 +325,9 @@
                     <Name>EV-ExtractRefreshTokenFromTokenFormParam</Name>
                 </Step>
                 <Step>
+                    <Name>KVM-GetIDPCredentials</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
@@ -237,6 +344,10 @@
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                     <FaultRules/>
                     <Name>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Name>
+                </Step>
+                <Step>
+                    <Name>BA-SetBasicAuthHeader</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
@@ -266,6 +377,10 @@
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>OA-RevokeAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>BA-SetBasicAuthHeader</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
@@ -308,6 +423,12 @@
                     <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
                 </Step>
                 <Step>
+                    <Name>KVM-GetIDPCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>BA-SetBasicAuthHeader</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Name>
                 </Step>
@@ -343,53 +464,32 @@
                     <Name>RF-InvalidAccessToken</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Name>
+                    <Name>AM-SetJWTTokenToDecode</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-DecodeOIDCIdToken</Name>
                 </Step>
             </Request>
-            <Response/>
+            <Response>
+                <Step>
+                    <Name>AM-SetUserInfoResponse</Name>
+                </Step>
+            </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/me") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="Get OIDC Public Certs">
             <Description>Get OIDC Public Certs</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/certs") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="LoginPage">
-            <Description> Mock login Page</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="Submit Login">
-            <Description> Submit Login</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/login") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="ConsentPage">
-            <Description> Mock consent Page</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/consent") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="Submit Consent">
-            <Description> Submit Consent</Description>
-            <Request/>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{interactionId}/consent") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="FinalAuthorise">
-            <Description>Return Auth Code</Description>
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>KVM-GetJWTSigningKeys</Name>
+                </Step>
+            </Request>
             <Response>
                 <Step>
-                    <FaultRules/>
-                    <Name>FC-ReplaceAuthCodeWithOpaqueAuthCode</Name>
+                    <Name>AM-SetJWKSResponse</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorise/{interactionId}") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/jwks") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="Not Found">
             <Description>Not Found</Description>
@@ -420,9 +520,11 @@
                 <FaultRules/>
                 <Name>FC-DecideIfCustomerIsPresent</Name>
             </Step>
+            <!-- Do not count internall proxy chain calls for traffic thresholds -->
             <Step>
                 <FaultRules/>
                 <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
+                <Condition>virtualhost.ip != "127.0.0.1"</Condition>
             </Step>
             <Step>
                 <FaultRules/>
@@ -449,10 +551,22 @@
              This proxy has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
         <!-- <VirtualHost>secure-mtls</VirtualHost> -->
     </HTTPProxyConnection>
-    <RouteRule name="noroute">
-        <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>
+    <RouteRule name="noroute-token">
+        <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
     </RouteRule>
-    <RouteRule name="sandbox">
+    <RouteRule name="noroute-jwks">
+        <Condition>(proxy.pathsuffix MatchesPath "/jwks") and (request.verb = "GET")</Condition>
+    </RouteRule>
+    <RouteRule name="noroute-cb">
+        <Condition>(proxy.pathsuffix MatchesPath "/authorise-cb")</Condition>
+    </RouteRule>
+    <RouteRule name="noroute-authorise">
+        <Condition>(proxy.pathsuffix MatchesPath "/authorise")</Condition>
+    </RouteRule>
+    <RouteRule name="noroute-userinfo">
+        <Condition>(proxy.pathsuffix MatchesPath "/me")</Condition>
+    </RouteRule>
+    <RouteRule name="mock-oidc">
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>
 </ProxyEndpoint>

@@ -4,10 +4,17 @@
     <Properties/>
     <FaultResponse>
         <Set>
-            <Headers/>
-            <Payload contentType="text/plain"> </Payload>
-            <StatusCode>500</StatusCode>
-            <ReasonPhrase>Server Error</ReasonPhrase>
+            <Payload contentType="application/json">{
+ "errors": [
+    {
+      "code": "400",
+      "title": "Bad Request",
+      "detail": "Invalid scope"
+    }
+  ]
+}</Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

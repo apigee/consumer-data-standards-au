@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="13" name="oidc-mock-provider">
+<APIProxy revision="17" name="oidc-mock-provider">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/mock-oidc</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1602632377087</CreatedAt>
+    <CreatedAt>1613968559642</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Mock OIDC Provider based on node-oidc-provider open source</Description>
     <DisplayName>oidc-mock-provider</DisplayName>
-    <HostedManifestVersion>SHA-512:ce17bc3e38dd2a8c2943ccdd8783d05bbc5f634b14ad1e78c03d239cf5cd3598a9a027be5aac06eb0800878a164218315e24d9a71e82d55f96c7edb14822359c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1602632377087</LastModifiedAt>
+    <HostedManifestVersion>SHA-512:3e5931efe1497c86d3acd7f284255f8db7dbd43ac2ca4826398437688c70a94dd90f457ba683d9cfc86583e264f100e0eecbeae03e01d1988c9b0d1fbf2cb006:ap-southeast-2</HostedManifestVersion>
+    <LastModifiedAt>1613968559642</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:5002244711434c4f5e461d623b4d6be275307565328be46d12c205d985e0f752bd519a4e9dd22b0cfaadfb48d0733c88781a770b3f19c3886add45377d81c02f</ManifestVersion>
+    <ManifestVersion>SHA-512:ad73d43d828d3be2cf72a6bc6bfcf66a44e36695006c521a69112109938dd6422842cd20f985df6af85c3381fd9149814f98d57292111781ee828b6e93cb4b81:ap-southeast-2</ManifestVersion>
     <Policies>
+        <Policy>AM-AddBasePathToRedirectHeader</Policy>
+        <Policy>AM-AddProxyBasePathToFormAction</Policy>
         <Policy>AM-BuildIntrospectionResponseActiveToken</Policy>
         <Policy>EV-IsTokenActive</Policy>
         <Policy>EV-TokenExpiryTime</Policy>
+        <Policy>JS-AddBasePathToCookiesPath</Policy>
         <Policy>JS-ReplaceHTPrivateIPAddrWithHostname</Policy>
-        <Policy>RF-InvocationFromProxyChainingOnly</Policy>
         <Policy>RF-OIDCProviderError</Policy>
         <Policy>RF-OIDCProviderTimeout</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>
@@ -28,6 +30,7 @@
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://addBasePathToCookiesPath.js</Resource>
         <Resource>jsc://replaceHTPrivateIPAddrWithHostname.js</Resource>
         <Resource>hosted://.DS_Store</Resource>
         <Resource>hosted://app.js</Resource>

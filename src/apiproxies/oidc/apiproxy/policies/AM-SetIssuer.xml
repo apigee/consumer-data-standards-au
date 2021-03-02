@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetIssuer">
+    <DisplayName>AM-SetIssuer</DisplayName>
+    <AssignVariable>
+        <Name>issuer</Name>
+        <Template>https://{organization.name}-{environment.name}.apigee.net</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>tokenToHash</Name>
+        <Template>{firstnonnull(oauthv2authcode.OA-IssueOpaqueAuthCode.code,oauthv2accesstoken.OA-IssueOpaqueAccessToken.access_token,oauthv2accesstoken.OA-RefreshOpaqueAccessToken.access_token)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

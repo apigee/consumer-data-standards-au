@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-AddProxyBasePathToFormAction">
+    <DisplayName>AM-AddProxyBasePathToFormAction</DisplayName>
+    <AssignVariable>
+        <Name>regexr</Name>
+        <Value>action=\"\/interaction\/</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>replacementString</Name>
+        <Template>action="{proxy.basepath}/interaction/</Template>
+    </AssignVariable>
+    <Set>
+        <Payload contentType="text/html; charset=utf-8">{replaceFirst(response.content,regexr,replacementString)}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

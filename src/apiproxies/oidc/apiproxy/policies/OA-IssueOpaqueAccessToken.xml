@@ -3,28 +3,25 @@
     <DisplayName>OA-IssueOpaqueAccessToken</DisplayName>
     <FaultRules/>
     <Properties/>
+    <Operation>GenerateAccessToken</Operation>
     <Code>TokenRequestParams.code</Code>
+    <Scope>OIDCTokenResponse.scope</Scope>
     <Attributes>
         <Attribute display="false" name="OIDCAccessToken" ref="OIDCTokenResponse.access_token"/>
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId"/>
-        <Attribute display="false" name="customerPPId" ref="customerPPId"/>
+        <Attribute display="false" name="customerPPId" ref="oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerPPId"/>
         <Attribute display="false" name="cdrArrangementId" ref="cdrArrangementId"/>
         <Attribute display="false" name="certFingerprint" ref="tls.client.cert.fingerprint"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
     <ExternalAuthorization>false</ExternalAuthorization>
     <GrantType>TokenRequestParams.grant_type</GrantType>
-    <Operation>GenerateAccessToken</Operation>
     <RedirectUri>TokenRequestParams.redirect_uri</RedirectUri>
-    <RefreshTokenExpiresIn ref="refreshTokenExpiresInMillis">3600000</RefreshTokenExpiresIn>
-    <GenerateResponse enabled="false">
-        <Format>FORM_PARAM</Format>
-    </GenerateResponse>
+    <RefreshTokenExpiresIn>2419200000</RefreshTokenExpiresIn>
+    <GenerateResponse enabled="false"/>
     <ReuseRefreshToken>false</ReuseRefreshToken>
-    <Scope>OIDCTokenResponse.scope</Scope>
     <SupportedGrantTypes>
         <GrantType>authorization_code</GrantType>
     </SupportedGrantTypes>
-    <Tokens/>
 </OAuthV2>

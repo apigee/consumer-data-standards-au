@@ -56,7 +56,7 @@ The reference implementation can accelerate Open Banking implementation in multi
 - Quick delivery of a sandbox API environment, returning mock data.
 - Reusable artefacts (implemented as shared flows) can be included in real API implementations.
 - Leverage the implemented Apigee/Standalone OIDC Provider interaction to kickstart the interaction between Apigee and a real OIDC Provider.
-- The Dynamic Client Registration functionality can be reused as is, with perhaps minor changes to adapt to the way dynamic clients are registered with a real OIDC provider.
+- The Dynamic Client Registration functionality can be reused as is, if Apigee is kept as the source of truth for API clients authentication/authorisation, or with minor changes if the API clients need to be registered in the Identity Provider as well.
 
 **This is not an officially supported Google product.**
 
@@ -120,23 +120,22 @@ You can find this version of the reference implementation in the [okta-integrati
 
 ## Shared Flows
 
-There are 15 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
+There are 17 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
 
-1. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
-2. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
-3. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
-4. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
-5. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
-6. *add-response-fapi-interaction-id*: Includes *x-fapi-interaction-id* header in responses and error messages
-7. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
-8. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO. Also records type of token operations (for *customerCount* and *recipientCount* metrics)
-9. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
-10. *validate-ssa*: Validates a Software Statement Assertion included in a dynamic client registration request, as specified in Section [Dynamic Client Registration](https://cdr-register.github.io/register/#dynamic-client-registration) of the CDR Register standards
-11. *check-token-not-reused*: Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time. Used in Register token validation shared flows, as well as dynamic client registration.
-12. *get-jwks-from-dynamic-uri*: Retrieves (and caches) a JWKS from a URI. 
-13. *authenticate-with-private-key-jwt*: Implements *private_key_jwt*  client authentication method.
-14. *verify-mtls-and-hok*: Can be configured to check that mTLS is used on a given request, and, if mTLS is used, that the client certificate being presented is the same used for acquiring a token (Holder of Key verification)
-15. *validate-audience-in-jwt*: Validates the audience claim in an authorisation JWT token as specified in version 1.6
-
-
-There is an additional shared flow, *oidc-replace-auth-code-with-opaque-auth-code*, that implements logic reused in two different oidc endpoints
+1. *add-response-fapi-interaction-id*: Includes *x-fapi-interaction-id* header in responses and error messages
+2. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
+3. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
+4. *authenticate-with-private-key-jwt*: Implements *private_key_jwt* client authentication method.
+5. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
+6. *check-token-not-reused*: Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time. Used in Register token validation shared flows, as well as dynamic client registration.
+7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO. Also records type of token operations (for *customerCount* and *recipientCount* metrics)
+8. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
+9. *get-jwks-from-dynamic-uri*: Retrieves (and caches) a JWKS from a URI.
+10. *get-ppid*: Returns a unique Pairwise Pseudonym Identifier based on a sector and a customer Id. Uses a KVM to persist the generated PPIds. The sector is an attribute of the registered app for a given data receiver, determined at registration time, according to the CDS specifications.
+11. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
+12. *validate-audience-in-jwt*: Validates the audience claim in an authorisation JWT token as specified in version 1.6
+13. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
+14. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
+15. *validate-ssa*: Validates a Software Statement Assertion included in a dynamic client registration request, as specified in Section [Dynamic Client Registration](https://cdr-register.github.io/register/#dynamic-client-registration) of the CDR Register standards
+16. *verify-idp-id-token*: Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse
+17. *verify-mtls-and-hok*: Can be configured to check that mTLS is used on a given request, and, if mTLS is used, that the client certificate being presented is the same used for acquiring a token (Holder of Key verification)    

@@ -121,25 +121,10 @@
                     <Name>JS-AssignProductsBasedOnScope</Name>
                 </Step>
                 <Step>
-                    <Name>SC-RegisterClientInOIDCProvider</Name>
-                </Step>
-                <Step>
-                    <Name>EV-GetKeySecretFromOIDCResponse</Name>
-                </Step>
-                <Step>
                     <Name>SC-CreateApp</Name>
                 </Step>
                 <Step>
                     <Name>EV-ExtractClientSecretFromUpdateAppResponse</Name>
-                </Step>
-                <Step>
-                    <Name>SC-AddKeysToApigeeApp</Name>
-                </Step>
-                <Step>
-                    <Name>SC-AssociateProductsWithKey</Name>
-                </Step>
-                <Step>
-                    <Name>SC-DeleteAppKeyJustCreated</Name>
                 </Step>
             </Request>
             <Response>
@@ -295,9 +280,6 @@
                     <Name>SC-AssociateProductsWithKey</Name>
                     <Condition>changedProducts = "true"</Condition>
                 </Step>
-                <Step>
-                    <Name>SC-UpdateClientInOIDCProvider</Name>
-                </Step>
             </Request>
             <Response>
                 <Step>
@@ -333,9 +315,6 @@
                 </Step>
                 <Step>
                     <Name>SC-DeleteApp</Name>
-                </Step>
-                <Step>
-                    <Name>SC-DeleteClientInOIDCProvider</Name>
                 </Step>
             </Request>
             <Response>

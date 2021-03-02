@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-CacheOIDCState">
+    <DisplayName>PC-CacheOIDCState</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="request.queryparam.state"/>
+    </CacheKey>
+    <CacheResource>OIDCState</CacheResource>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>600</TimeoutInSec>
+    </ExpirySettings>
+    <Source>stateCacheVal</Source>
+</PopulateCache>

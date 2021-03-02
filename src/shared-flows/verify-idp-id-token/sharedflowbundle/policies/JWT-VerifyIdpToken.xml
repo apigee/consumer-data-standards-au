@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="true" enabled="true" name="JWT-VerifyIdpToken">
+    <DisplayName>JWT-VerifyIdpIdToken</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <Source>IDP_ID_Token</Source>
+    <PublicKey>
+        <JWKS ref="jwksVar"/>
+    </PublicKey>
+    <Issuer ref="validAudience"/>
+    <Audience ref="private.IDP_ClientId"/>
+    <AdditionalClaims>
+        <Claim name="nonce" ref="expectedNonce"/>
+    </AdditionalClaims>
+</VerifyJWT>

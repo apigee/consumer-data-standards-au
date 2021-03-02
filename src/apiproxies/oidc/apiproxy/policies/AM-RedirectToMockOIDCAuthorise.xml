@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RedirectToMockOIDCAuthorise">
+    <DisplayName>AM-RedirectToMockOIDCAuthorise</DisplayName>
+    <Set>
+        <Headers>
+            <Header name="Location">{client.scheme}://{request.header.host}/mock-oidc/authorise?{request.querystring}</Header>
+        </Headers>
+        <StatusCode>302</StatusCode>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

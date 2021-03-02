@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="JS-GetInfoFromOAuth2Policy">
+    <DisplayName>JS-GetInfoFromOAuth2Policy</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <ResourceURL>jsc://getInfoFromOAuth2Policy.js</ResourceURL>
+</Javascript>

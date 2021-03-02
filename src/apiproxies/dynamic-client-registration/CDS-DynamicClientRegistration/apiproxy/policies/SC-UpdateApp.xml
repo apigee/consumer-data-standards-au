@@ -28,8 +28,8 @@
    "value" : "{SSA}"
   },
   {
-   "name": "IDP_registration_access_token",
-   "value": "{app.IDP_registration_access_token}"
+   "name": "SectorIdentifier",
+   "value": "{sectorIdentifierHostname}"
   }
  ],
  "name" : "{ADRDetailsFromSSA.software_id}",

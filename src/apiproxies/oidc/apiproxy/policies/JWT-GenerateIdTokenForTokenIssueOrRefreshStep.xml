@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateIdTokenForTokenIssueOrRefreshStep">
+    <DisplayName>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <PrivateKey>
+        <Value ref="private.JWTSignKeys_privateKey"/>
+        <Id>CDSRefImpl</Id>
+    </PrivateKey>
+    <Subject ref="customerPPId"/>
+    <Issuer ref="issuer"/>
+    <Audience ref="apigee.client_id"/>
+    <ExpiresIn ref="OIDCTokenExpiryTimeInMillis"/>
+    <AdditionalClaims>
+        <Claim name="name" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.name"/>
+        <Claim name="given_name" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.given_name"/>
+        <Claim name="family_name" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.family_name"/>
+        <Claim name="updated_at" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.updated_at" type="number"/>
+        <Claim name="auth_time" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.auth_time" type="number"/>
+        <Claim name="acr" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.acr"/>
+        <Claim name="nonce" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.nonce"/>
+        <Claim name="at_hash" ref="hashResponse.content"/>
+        <Claim name="refresh_token_expires_at" ref="refreshTokenExpiresAt" type="number"/>
+        <Claim name="sharing_expires_at" ref="refreshTokenExpiresAt" type="number"/>
+    </AdditionalClaims>
+    <OutputVariable>theNewIdToken</OutputVariable>
+</GenerateJWT>

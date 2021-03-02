@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-AddSectorIdToSSARequest">
+    <DisplayName>AM-AddSectorIdToSSARequest</DisplayName>
+    <Set>
+        <QueryParams>
+            <QueryParam name="sector_identifier_uri">{request.queryparam.sector_identifier_uri}</QueryParam>
+        </QueryParams>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request">SSARequest</AssignTo>
+</AssignMessage>

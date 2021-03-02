@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="3" name="get-ppid">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1612840469976</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Returns a unique Pairwise Pseudonym Identifier based on a sector and a customer Id. Uses a KVM to persist the generated PPIds</Description>
+    <DisplayName>get-ppid</DisplayName>
+    <LastModifiedAt>1613954945631</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:a8fb253d45945a39af0a57de2255a9edcbfc7616efe694cbe5f8ba94e1901c2b374944069fc7a335d4215de1cbbcdaf2e92bb1c0c4812f39a7adf454bc70fbe7:ap-southeast-2</ManifestVersion>
+    <Policies>
+        <Policy>AM-CopyExistingPPId</Policy>
+        <Policy>AM-GenerateNewPPId</Policy>
+        <Policy>KVM-LookupPPId</Policy>
+        <Policy>KVM-StoreNewPPId</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

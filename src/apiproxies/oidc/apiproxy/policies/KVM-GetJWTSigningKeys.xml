@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetJWTSigningKeys" mapIdentifier="CDSConfig">
+    <DisplayName>KVM-GetJWTSigningKeys</DisplayName>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>600</ExpiryTimeInSecs>
+    <Get assignTo="private.JWTSignKeys_privateKey">
+        <Key>
+            <Parameter>JWTSignKeys_privateKey</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.JWTSignKeys_jwks">
+        <Key>
+            <Parameter>JWTSignKeys_jwks</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

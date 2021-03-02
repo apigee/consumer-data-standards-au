@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
+        <VersionInfo resourceName="AM-AddSectorIdToSSARequest" version="SHA-512:57a32f59f10cd34cf4a7a6900f11d8f727e994c7ef6bc88ec38269cb128a7160c756217cb761e7021714c7c5d8a3aca62c7176677272ba5cd82dc5744d6b6326"/>
         <VersionInfo resourceName="AM-SetMockJWKSInfo" version="SHA-512:382ee497419248d147f39a6301e7940c7180ca7e5ad38c0af89bcbb608e171bf1e76ec9bbe76cae52e9e1610cf640c5dc9bc555bac099b6a55ac4d1ce59bb251"/>
         <VersionInfo resourceName="AM-SetResponse" version="SHA-512:bd625691b797d40fc287f82767e5f197b8959a3fedd48c9d7eec2fb7ae0d659722d14d71b5b2a278bce3448d117dc590651b2afb0710cb8609e8d0fb59578f1a"/>
+        <VersionInfo resourceName="AM-SetSSARequest" version="SHA-512:bf31cf7552604ba9f348ca356e0b4620932e926768a3be338d0c91dae65a505eed8b17750d90ffe9b25856b015971b2e204cc9060cc65bc4d6694c12a0b41c3e"/>
         <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest" version="SHA-512:693cefd4fcea702d6f81a8473f344c3922b865fa42b69b730bc60a4c95760fb844f37d4beebe4986ff87f72bcf19bf683503369aafed0ccde59b046912c85e8e"/>
         <VersionInfo resourceName="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT" version="SHA-512:69a105f0266185b1009d996fca21e399b5a0cc780ae0bba1d80b998596fac051315ff5bc2b2e385002fbe7fd848ed69eb202f1a31b4bbb5d3c2e25a9e47bc7aa"/>
         <VersionInfo resourceName="JS-SetRedirectURIs" version="SHA-512:ab905740383412a410c423dfa989479248c81fd7a25a8e70e6ccf33a717d28b0ed6275f52a8f827f7fa854215156676fad61c93d37962624c170db6359cbfde0"/>
@@ -11,10 +13,10 @@
         <VersionInfo resourceName="KVM-GetMockADRKeys" version="SHA-512:20daaca52d184d0a09a5874ee7531101e358df0aa2cae1061ad3d6bc1dc2d98007f594db8199be7230c6315d152bc40b96ca585d6da4a13d39ca81e70686e332"/>
         <VersionInfo resourceName="RF-NotFound" version="SHA-512:bf7edec9b2f76f7a537310b85cb06191319de6b7e1fa7d869e61dcfc176a751b734c134761e175001a1fed7d0e688ec1af3a3f96024ba12e0c1c75ee6a365e0b"/>
         <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:cf0a6fbc7379dee68546fa58b7bc7d2532bb0b165a3c87c3e79cd9993fba21ac2b553e1da0e6a4d7af18a0f60919a29285abfa8978a2a7dacb3fcbb265b9db03"/>
-        <VersionInfo resourceName="SC-GetSSAFromCDRRegister" version="SHA-512:7943df3523819271fbef9d4a6333bfc97d8b3c9adaabe484cee3429bd4ae68103d02778e9e0e7df72acb821673649eebdf92e7f72ed15790d126ab31b6b7d314"/>
+        <VersionInfo resourceName="SC-GetSSAFromCDRRegister" version="SHA-512:4b72ec09f1b42b3d3f7ea965c5b5ab2327faa95986ac470e313b9f7ce33839c87bac66aada46663dba317ff3a05cffec4542fc3357dc3b9b08d93531085243b6"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:b728c31e9a065a448db6121a0fa25805e602d2fe7d42d67254ed54f07d91c2b49a0fc5f5611cce06f3cee68278e5a4894722b3e57f61e52b0b9f1ff45efa8a50"/>
+        <VersionInfo resourceName="default" version="SHA-512:cae9eb8b76eb132060b193b4001b52a7b01f7f4cd378c1352ba541754f256b536cecc2147ccf0b4e5d6f23387cea91fb4fda07cb737215ba3e7ac2f418efc7b3"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://setRedirectURIs.js" version="SHA-512:717ab64e43b3354021970cdbed4091a2d56e4fa0ea6c820effaabb38f00add001b57b1d07a002b3d3faa290cd5dc9f754fc0fb7d620dd37164f3ded8d06a37da"/>

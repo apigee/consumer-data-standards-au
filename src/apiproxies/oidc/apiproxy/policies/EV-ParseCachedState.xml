@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ParseCachedState">
+    <DisplayName>EV-ParseCachedState</DisplayName>
+    <Variable name="cachedStateVal">
+        <Pattern>{requested_client_id}||{requested_redirect_uri}||{requested_scope}||{requested_nonce}||{requested_response_type} id_token||{request_sector_id}</Pattern>
+    </Variable>
+</ExtractVariables>

@@ -7,8 +7,8 @@
         <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.cdrArrangementId</Ref>
     </AssignVariable>
     <AssignVariable>
-        <Name>tokenScope</Name>
-        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.scope</Ref>
+        <Name>customerPPId</Name>
+        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type=",essage"/>

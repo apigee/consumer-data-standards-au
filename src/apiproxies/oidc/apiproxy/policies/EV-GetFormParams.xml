@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetFormParams">
+    <DisplayName>EV-GetFormParams</DisplayName>
+    <FormParam name="code">
+        <Pattern>{IDP_auth_code}</Pattern>
+    </FormParam>
+    <FormParam name="id_token">
+        <Pattern>{IDP_id_token}</Pattern>
+    </FormParam>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">request</Source>
+</ExtractVariables>

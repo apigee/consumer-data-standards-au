@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-GetIDPJWKS">
+    <DisplayName>FC-GetIDPJWKS</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>get-jwks-from-dynamic-uri</SharedFlowBundle>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="jwksURI" ref="IDPJwksURI"/>
+    </Parameters>
+</FlowCallout>

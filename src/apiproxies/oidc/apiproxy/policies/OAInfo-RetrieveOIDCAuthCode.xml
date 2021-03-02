@@ -3,6 +3,5 @@
     <DisplayName>OAInfo-RetrieveOIDCAuthCode</DisplayName>
     <FaultRules/>
     <Properties/>
-    <AuthorizationCode ref="request.formparam.code"></AuthorizationCode>
-    <IgnoreAccessTokenStatus>false</IgnoreAccessTokenStatus>
+    <AuthorizationCode ref="request.formparam.code"/>
 </GetOAuthV2Info>

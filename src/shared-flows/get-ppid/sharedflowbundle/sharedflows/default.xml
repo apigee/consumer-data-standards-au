@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>KVM-LookupPPId</Name>
+    </Step>
+    <Step>
+        <Name>AM-GenerateNewPPId</Name>
+        <Condition>(private.PPId = null) or (private.PPId = "")</Condition>
+    </Step>
+    <Step>
+        <Name>KVM-StoreNewPPId</Name>
+        <Condition>(private.PPId = null) or (private.PPId = "")</Condition>
+    </Step>
+    <Step>
+        <Name>AM-CopyExistingPPId</Name>
+        <Condition>(private.PPId != null) and (private.PPId != "")</Condition>
+    </Step>
+</SharedFlow>

@@ -10,6 +10,26 @@
         <Name>SSA</Name>
         <Ref>jwt.JWT-DecodeJWTInRequestBody.decoded.claim.software_statement</Ref>
     </AssignVariable>
+    <AssignVariable>
+        <Name>sectorIdentifierFullyQualifiedURI</Name>
+        <Template>{firstnonnull(ADRDetailsFromSSA.sector_identifier_uri,redirectURIInRequest)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>searchStrRegex1</Name>
+        <Value>https:\/\/</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>searchStrRegex2</Name>
+        <Value>\/(.)*</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>sectorIdentifierNoProtocol</Name>
+        <Template>{replaceFirst(sectorIdentifierFullyQualifiedURI,searchStrRegex1, '')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>sectorIdentifierHostname</Name>
+        <Template>{replaceFirst(sectorIdentifierNoProtocol,searchStrRegex2, '')}</Template>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>

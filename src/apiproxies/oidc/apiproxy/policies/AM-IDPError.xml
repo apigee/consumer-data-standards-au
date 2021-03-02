@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-IDPError">
+    <DisplayName>AM-IDPError</DisplayName>
+    <Set>
+        <Payload contentType="application/json">{IdPTokenResponse.content}</Payload>
+        <StatusCode>{IdPTokenResponse.status.code}</StatusCode>
+        <ReasonPhrase>{IdPTokenResponse.reason.phrase}</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

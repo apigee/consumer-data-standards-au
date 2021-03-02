@@ -7,7 +7,7 @@
   <Algorithm>PS256,RS256</Algorithm>
   <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
   <PublicKey>
-    <JWKS uri="https://openbank-aunz-dev.apigee.net/mock-cdr-register/jwks"/>
+    <JWKS uri="https://demo-au01-test.apigee.net/mock-cdr-register/jwks"/>
   </PublicKey>
   <IgnoreCriticalHeaders>false</IgnoreCriticalHeaders>
   <Source>cdrToken</Source>

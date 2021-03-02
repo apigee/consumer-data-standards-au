@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DecodeJWT async="false" continueOnError="false" enabled="true" name="JWT-DecodeOIDCAuthCode">
-    <DisplayName>JWT-DecodeOIDCAuthCode</DisplayName>
-    <FaultRules/>
-    <Properties/>
-    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-    <Source>OIDCAuthCode</Source>
-</DecodeJWT>

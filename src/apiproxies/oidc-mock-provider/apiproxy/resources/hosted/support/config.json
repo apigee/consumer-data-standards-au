@@ -1,20 +1,24 @@
 {
 	"features": {
-		"alwaysIssueRefresh": true,
 		"claimsParameter": {
 			"enabled": true
 		},
 		"clientCredentials": {
 			"enabled": true
 		},
-		"discovery": true,
 		"encryption": {
 			"enabled": true
+		},
+		"fapiRW": {
+			"enabled": true,
+			"ack": "implementers-draft-02"
 		},
 		"introspection": {
 			"enabled": true
 		},
-		"request": true,
+		"requestObjects": {
+			"request": true
+		},
 		"registration": {
 			"enabled": true
 		},
@@ -68,11 +72,15 @@
 	"conformIdTokenClaims": {
 			"enabled": false
 	},
+	"cookies" : {
+		"short" : {
+			"sameSite": "none"
+		}
+	},
 	"formats": {
-		"AccessToken": "jwt",
+		"AccessToken": "opaque",
 		"ClientCredentials": "opaque",
-		"RefreshToken": "jwt",
-		"default": "jwt"
+		"RefreshToken": "opaque"
 	},
 	"jwks": {
 		"keys": [
@@ -112,7 +120,7 @@
 		"cdr:registration"
 	],
 	"subjectTypes": [
-		"pairwise"
+		"public"
 	],
 	"tokenEndpointAuthMethods": [
 		"client_secret_basic",

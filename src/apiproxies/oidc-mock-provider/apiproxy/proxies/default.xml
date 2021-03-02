@@ -44,12 +44,21 @@
     </Flows>
     <PreFlow name="PreFlow">
         <Request>
-            <Step>
-                <Name>RF-InvocationFromProxyChainingOnly</Name>
-                <Condition>virtualhost.ip != "127.0.0.1"</Condition>
-            </Step>
         </Request>
-        <Response/>
+        <Response>
+            <Step>
+                <Name>AM-AddBasePathToRedirectHeader</Name>
+                <Condition>(response.status.code = "302") and (response.header.Location != "null") and (response.header.Location != "")</Condition>
+            </Step>
+            <Step>
+                <Name>JS-AddBasePathToCookiesPath</Name>
+                <Condition>(response.status.code = "302") and (message.header.Set-Cookie.values.count &gt; 0)</Condition>
+            </Step>
+            <Step>
+                <Name>AM-AddProxyBasePathToFormAction</Name>
+                <Condition>(response.status.code = "200") and (proxy.pathsuffix Matches "/interaction*")</Condition>
+            </Step>
+        </Response>
     </PreFlow>
     <HTTPProxyConnection>
         <BasePath>/mock-oidc</BasePath>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="57" name="oidc">
+<APIProxy revision="68" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
@@ -10,27 +10,27 @@
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1566213116257</CreatedAt>
+    <CreatedAt>1614314844897</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1604636368933</LastModifiedAt>
+    <LastModifiedAt>1614314844897</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:99538669141491711c0adb397f3fe21ae832df636c61db6dcd6a77347d694b943b76890015b329b7410037c6b1327afa4b22d89f55116629d9b0a95d7066085f</ManifestVersion>
+    <ManifestVersion>SHA-512:098f222fcdb778b31938246454f6f868d1484cc38f482e4547c9e0cf6df742f927106bf6b3dbf4f73e4e584d77aeb9d3ab8748b8bf23ead042ec45076db299dd:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
+        <Policy>AM-CannotIssueAccessToken</Policy>
         <Policy>AM-GenerateCDRArrangementId</Policy>
         <Policy>AM-GenerateIntrospectionResponse</Policy>
         <Policy>AM-GetCDRArrangementIdFromRefreshToken</Policy>
+        <Policy>AM-IDPError</Policy>
+        <Policy>AM-InsertApigeeOIDCCredentials</Policy>
         <Policy>AM-InvalidAuthCode</Policy>
-        <Policy>AM-ReinstateAuthHeaderInResponse</Policy>
-        <Policy>AM-RemovePrivateKeyJWTParams</Policy>
-        <Policy>AM-ReplaceAccessTokenInAuthHdrInRequestSentToOIDCProvider</Policy>
+        <Policy>AM-RedirectToClient</Policy>
+        <Policy>AM-RedirectToMockOIDCAuthorise</Policy>
         <Policy>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Policy>
-        <Policy>AM-ReplaceAuthCodeInRequestSentToOIDCProvider</Policy>
-        <Policy>AM-ReplaceRefreshTokenInRefreshRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Policy>
         <Policy>AM-SetAccessTokenResponse-ClientCred</Policy>
         <Policy>AM-SetCustomDimensionsForAcquireToken</Policy>
@@ -39,30 +39,46 @@
         <Policy>AM-SetCustomDimensionsForRefreshToken</Policy>
         <Policy>AM-SetDefaultValuesForPerfSLO</Policy>
         <Policy>AM-SetDefaultValuesForTokenCustomDimensions</Policy>
+        <Policy>AM-SetIssueOrRefreshTokenResponse</Policy>
+        <Policy>AM-SetIssuer</Policy>
+        <Policy>AM-SetJWKSResponse</Policy>
+        <Policy>AM-SetJWTTokenToDecode</Policy>
         <Policy>AM-SetRefreshTokenAsAccessToken</Policy>
+        <Policy>AM-SetStateCacheValue</Policy>
+        <Policy>AM-SetUserInfoResponse</Policy>
+        <Policy>BA-SetBasicAuthHeader</Policy>
         <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
         <Policy>EV-ExtractIntrospectionResponse</Policy>
         <Policy>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Policy>
         <Policy>EV-ExtractRefreshTokenFromTokenFormParam</Policy>
+        <Policy>EV-GetFormParams</Policy>
         <Policy>EV-GetInfoReqdForIssuingAccessToken</Policy>
+        <Policy>EV-ParseCachedState</Policy>
         <Policy>EV-StoreTokenRequestDetails</Policy>
         <Policy>FC-AuthenticateWithPrivateKeyJWT</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
         <Policy>FC-DecideIfCustomerIsPresent</Policy>
         <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
-        <Policy>FC-ReplaceAuthCodeWithOpaqueAuthCode</Policy>
+        <Policy>FC-GetPPId</Policy>
         <Policy>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Policy>
         <Policy>FC-VerifyHoK-AccessToken</Policy>
         <Policy>FC-VerifyHoK-RefreshToken</Policy>
+        <Policy>FC-VerifyIdpIdToken</Policy>
         <Policy>FC-VerifyMTLSOnly</Policy>
+        <Policy>JS-CalculateExpiryTimeForNewIdToken-AuthCodeStage</Policy>
+        <Policy>JS-GetInfoFromOAuth2Policy</Policy>
         <Policy>JS-GetOIDCTokenExpiryTime</Policy>
         <Policy>JS-RemoveOIDCProvideBasePath</Policy>
-        <Policy>JS-SubstituteWithOpaqueAccessTokenInResponse</Policy>
         <Policy>JWT-DecodeOIDCIdToken</Policy>
-        <Policy>JWT-DecodeOIDCRefreshToken</Policy>
+        <Policy>JWT-GenerateIdTokenForAuthCodeStep</Policy>
+        <Policy>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Policy>
+        <Policy>KVM-GetIDPCredentials</Policy>
+        <Policy>KVM-GetJWTSigningKeys</Policy>
         <Policy>KVM-GetMTLSHostname</Policy>
+        <Policy>LC-RetrieveCachedOIDCState</Policy>
         <Policy>OA-IssueAccessTokenClientCreds</Policy>
         <Policy>OA-IssueOpaqueAccessToken</Policy>
+        <Policy>OA-IssueOpaqueAuthCode</Policy>
         <Policy>OA-RefreshOpaqueAccessToken</Policy>
         <Policy>OA-RevokeAccessToken</Policy>
         <Policy>OA-RevokeRefreshToken</Policy>
@@ -70,19 +86,28 @@
         <Policy>OAInfo-RetrieveOIDCAuthCode</Policy>
         <Policy>OAInfo-RetrieveRefreshTokenDetails</Policy>
         <Policy>OAInfoSet-ForceUpdateOfAttributes</Policy>
+        <Policy>PC-CacheOIDCState</Policy>
         <Policy>RF-InvalidAccessToken</Policy>
+        <Policy>RF-InvalidClientId</Policy>
+        <Policy>RF-InvalidRedirectURI</Policy>
         <Policy>RF-InvalidRefreshToken</Policy>
         <Policy>RF-InvalidScope</Policy>
+        <Policy>RF-InvalidState</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>
+        <Policy>SC-GetOIDCTokenHash</Policy>
+        <Policy>SC-InvokeIdPRefreshTokenEndpoint</Policy>
+        <Policy>SC-InvokeIdPTokenEndpoint</Policy>
+        <Policy>VAK-VerifyClientId</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://calculateOIDCTokenRemainingTime.js</Resource>
+        <Resource>jsc://getInfoFromOAuth2Policy.js</Resource>
         <Resource>jsc://getOIDCTokenExpiryTime.js</Resource>
         <Resource>jsc://removeOIDCProvideBasePath.js</Resource>
-        <Resource>jsc://substituteWithOpaqueAccessTokenInResponse.js</Resource>
     </Resources>
     <Spec></Spec>
     <TargetServers/>

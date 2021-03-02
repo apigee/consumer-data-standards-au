@@ -2,7 +2,7 @@
 <GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateMockSSAForSWId">
     <DisplayName>JWT-GenerateMockSSAForSWId</DisplayName>
     <Algorithm>RS256</Algorithm>
-    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <PrivateKey>
         <Value ref="private.mockCDRRegisterPrivateKey"/>
         <Id>MockCDRRegister</Id>
@@ -23,6 +23,7 @@
         <Claim name="jwks_uri" ref="jwksURI"/>
         <Claim name="recipient_base_uri" ref="baseURI"/>
         <Claim name="revocation_uri" ref="revocationURI"/>
+        <Claim name="sector_identifier_uri" ref="request.queryparam.sector_identifier_uri"/>
         <Claim name="software_id" ref="softwareProductId"/>
         <Claim name="software_roles">data-recipient-software-product</Claim>
         <Claim name="scope">openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration</Claim>

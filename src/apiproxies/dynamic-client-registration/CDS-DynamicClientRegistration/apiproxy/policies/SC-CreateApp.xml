@@ -28,10 +28,10 @@
    "value" : "{SSA}"
   },
   {
-   "name": "IDP_registration_access_token",
-   "value": "{OIDCCredentials.IDP_registration_access_token}"
+   "name": "SectorIdentifier",
+   "value": "{sectorIdentifierHostname}"
   }
- ],
+  ],
  "apiProducts": {productList},  
  "name" : "{ADRDetailsFromSSA.software_id}",
  "callbackUrl" : "{redirectURIInRequest}",

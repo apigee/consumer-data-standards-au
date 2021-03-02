@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-InvokeIdPRefreshTokenEndpoint">
+    <DisplayName>SC-InvokeIdPRefreshTokenEndpoint</DisplayName>
+    <Request clearPayload="true">
+        <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+        <Set>
+            <Headers>
+                <Header name="Authorization">{IdPBasicAuthHdr}</Header>
+            </Headers>
+            <FormParams>
+                <FormParam name="grant_type">refresh_token</FormParam>
+                <FormParam name="scope">{request.formparam.scope}</FormParam>
+                <FormParam name="client_id">{private.IDP_ClientId}</FormParam>
+                <FormParam name="client_secret">{private.IDP_ClientSecret}</FormParam>
+                <FormParam name="refresh_token">{oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.OIDCRefreshToken}</FormParam>
+            </FormParams>
+            <Verb>{request.verb}</Verb>
+        </Set>
+    </Request>
+    <Response>IdPTokenResponse</Response>
+    <LocalTargetConnection>
+        <Path>/mock-oidc/token</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetUserInfoResponse">
+    <DisplayName>AM-SetUserInfoResponse</DisplayName>
+    <Set>
+        <Payload contentType="application/json">{
+    "sub": "{oauthv2accesstoken.OAInfo-RetrieveAccessTokenDetails.accesstoken.customerPPId}",
+    "name": "{jwt.JWT-DecodeOIDCIdToken.decoded.claim.name}",
+    "given_name": "{jwt.JWT-DecodeOIDCIdToken.decoded.claim.given_name}",
+    "family_name": "{jwt.JWT-DecodeOIDCIdToken.decoded.claim.family_name}",
+    "updated_at": {jwt.JWT-DecodeOIDCIdToken.decoded.claim.updated_at}
+}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

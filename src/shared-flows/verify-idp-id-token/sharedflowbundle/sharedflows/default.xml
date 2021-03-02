@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>AM-SetIDPJWKSUri</Name>
+    </Step>
+    <Step>
+        <Name>FC-GetIDPJWKS</Name>
+    </Step>
+    <Step>
+        <Name>KVM-GetIDPCredentials</Name>
+    </Step>
+    <Step>
+        <Name>AM-SetValidAudience</Name>
+    </Step>
+    <Step>
+        <Name>JWT-VerifyIdpToken</Name>
+    </Step>
+    <Step>
+        <Name>RF-InvalidIdToken</Name>
+        <Condition>JWT.failed = "true"</Condition>
+    </Step>
+    <Step>
+        <Name>EV-CopyRelevantClaims</Name>
+    </Step>
+</SharedFlow>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetSSARequest">
+    <DisplayName>AM-SetSSARequest</DisplayName>
+    <Properties/>
+    <Set>
+        <Verb>GET</Verb>
+        <QueryParams>
+            <QueryParam name="org_id">{orgId}</QueryParam>
+            <QueryParam name="recipient_base_uri">{baseURI}</QueryParam>
+            <QueryParam name="redirect_uri">{redirectURI}</QueryParam>
+            <QueryParam name="jwks_uri">{jwksURI}</QueryParam>
+        </QueryParams>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="true" transport="http" type="request">SSARequest</AssignTo>
+</AssignMessage>
