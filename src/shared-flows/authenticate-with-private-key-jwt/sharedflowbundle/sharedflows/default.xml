@@ -28,5 +28,26 @@
     </Step>
     <Step>
         <Name>BA-GenerateBasicEquivalentAuthHeader</Name>
+        <Condition>injectBasicAuth = "true"</Condition>
+    </Step>
+    <Step>
+        <Name>EV-GetAdditionalClaimsInJwt</Name>
+        <Condition>getAdditionalClaims = "true"</Condition>
+    </Step>
+    <Step>
+        <Name>RF-InvalidSharingDuration</Name>
+        <Condition>(getAdditionalClaims = "true") and  (PARInfo.requestedSharingDuration != null) and (PARInfo.requestedSharingDuration != "") and ( (PARInfo.requestedSharingDuration LesserThan 0))</Condition>
+    </Step>
+    <Step>
+        <Name>AM-SetDefaultCDRArrangementId</Name>
+        <Condition>(getAdditionalClaims = "true")  and ( (PARInfo.requestedCDRArrangementId = "") or (PARInfo.requestedCDRArrangementId = null))</Condition>
+    </Step>
+    <Step>
+        <Name>AM-SetDefaultSharingDuration</Name>
+        <Condition>(getAdditionalClaims = "true")  and ( (PARInfo.requestedSharingDuration = "") or (PARInfo.requestedSharingDuration = null))</Condition>
+    </Step>
+    <Step>
+        <Name>AM-SetMaxSharingDurationTo1Year</Name>
+        <Condition>(getAdditionalClaims = "true") and (PARInfo.requestedSharingDuration GreaterThan 31536000)</Condition>
     </Step>
 </SharedFlow>

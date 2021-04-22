@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-CreateUpdateCDRArrangement">
+    <DisplayName>SC-CreateUpdateCDRArrangement</DisplayName>
+    <Properties/>
+    <Request>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+        <Set>
+            <Payload contentType="application/json">{consentRequest}</Payload>
+            <Verb>PUT</Verb>
+        </Set>
+    </Request>
+    <Response>calloutResponse</Response>
+    <LocalTargetConnection>
+        <Path>/consent/{cdrArrangementId}</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

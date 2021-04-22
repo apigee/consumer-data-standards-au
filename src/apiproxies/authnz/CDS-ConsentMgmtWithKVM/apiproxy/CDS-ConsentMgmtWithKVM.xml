@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="CDS-ConsentMgmtWithKVM">
+    <Basepaths>/consent</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1617685715397</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Provides basic consent management functionality (Get, Create, Update, Revoke) using KVMs. The key to a consent is always a consent_id (So no functionality to retrieve all consents associated with a given end user or client)</Description>
+    <DisplayName>CDS-ConsentMgmtWithKVM</DisplayName>
+    <LastModifiedAt>1617946798610</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:454d1af1f075df326f8be831bd9c18aab67958f2739275ba04ebf1c60e00ae02131c8ec7da3b0474b0d736ac3c7e2436f0e7ec358019afac32279a0c56b138b7:ap-southeast-2</ManifestVersion>
+    <Policies>
+        <Policy>AM-SetConsentStatusToInactive</Policy>
+        <Policy>AM-SetCreateUpdateResponseBody</Policy>
+        <Policy>AM-SetCurrentTimeAsEpochSeconds</Policy>
+        <Policy>AM-SetGetConsentResponse</Policy>
+        <Policy>AM-SetNewConsentInfo</Policy>
+        <Policy>AM-SetResponse204NoContent</Policy>
+        <Policy>AM-SetResponseCode201Created</Policy>
+        <Policy>AM-SetResponseCode202Accepted</Policy>
+        <Policy>EV-ExtractConsentIdFromURIParam</Policy>
+        <Policy>EV-ParseExistingConsentInfo</Policy>
+        <Policy>EV-ParseRequestedConsentInfo</Policy>
+        <Policy>KVM-GetExistingConsent</Policy>
+        <Policy>KVM-PutNewOrUpdatedConsent</Policy>
+        <Policy>OA-RevokeAccessToken</Policy>
+        <Policy>OA-RevokeRefreshToken</Policy>
+        <Policy>RF-InvalidConsent</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

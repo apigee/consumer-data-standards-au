@@ -12,9 +12,9 @@ setup/service-accounts/*
 specs/*Full.yaml
 specs/Older/
 specs/Older/*
-src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/
-src/apiproxies/oidc/apiproxy/resources/hosted/node_modules/*
+src/apiproxies/authnz/oidc/apiproxy/resources/hosted/node_modules/
+src/apiproxies/authnz/oidc/apiproxy/resources/hosted/node_modules/*
 test/postman/*environment.json
-src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients-*.json
+src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients-*.json
 **/package-lock.json
 specs/Notes.txt

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidConsent">
+    <DisplayName>RF-InvalidConsent</DisplayName>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">{
+ "errors": [
+    {
+      "code": "422",
+      "title": "Unprocessable Entity",
+      "detail": "Invalid CDR Arrangement Id or not active or not associated with client_id or customer"
+    }
+  ]
+}</Payload>
+            <StatusCode>422</StatusCode>
+            <ReasonPhrase>Unprocessable Entity</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
+</RaiseFault>

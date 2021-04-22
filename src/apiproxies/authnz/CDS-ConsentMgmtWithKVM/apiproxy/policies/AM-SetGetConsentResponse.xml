@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetGetConsentResponse">
+    <DisplayName>AM-SetGetConsentResponse</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json">{ 
+    "consent_id": "{theConsentId}",
+    "client_id": "{existingConsentInfo.client_id}",
+    "customer_id": "{existingConsentInfo.customer_id}",
+    "customer_ppid": "{existingConsentInfo.customer_ppid}",
+    "access_token": "{existingConsentInfo.access_token}",
+    "refresh_token": "{existingConsentInfo.refresh_token}",
+    "status": "{existingConsentInfo.status}",
+    "expires_at": {existingConsentInfo.expires_at},
+    "created_at": "{existingConsentInfo.created_at}",
+    "updated_at": "{existingConsentInfo.updated_at}"
+}
+        </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

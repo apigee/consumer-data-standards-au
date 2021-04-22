@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PAR">
+    <DisplayName>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PAR</DisplayName>
+    <AssignVariable>
+        <Name>defaultAud</Name>
+        <Template>https://{organization.name}-{environment.name}.apigee.net</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>audVar</Name>
+        <Template>{firstnonnull(request.queryparam.aud,defaultAud)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultRespType</Name>
+        <Value>code id_token</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>respTypeVar</Name>
+        <Template>{firstnonnull(request.queryparam.response_type,defaultRespType)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultState</Name>
+        <Template>{xeger('([a-z]|[A-Z]|[0-9]){16}')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>stateVar</Name>
+        <Template>{firstnonnull(request.queryparam.state,defaultState)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>defaultNonce</Name>
+        <Template>{randomLong()}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>nonceVar</Name>
+        <Template>{firstnonnull(request.queryparam.nonce,defaultNonce)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>additionalClaimsVar</Name>
+        <Template>{
+            "client_id": "{request.queryparam.client_id}",
+            "redirect_uri": "{request.queryparam.redirect_uri}",
+            "response_type": "{respTypeVar}",
+            "scope": "{request.queryparam.scope}",
+            "state": "{stateVar}",
+            "nonce": "{nonceVar}",
+            "claims": {
+               "id_token": {
+                  "acr": {
+                    "essential": true,
+                    "values": ["urn:cds.au:cdr:3"]
+                  }
+                },
+                "userinfo": {
+                  "given_name": null,
+                  "family_name": null
+                }
+            }
+}
+        </Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

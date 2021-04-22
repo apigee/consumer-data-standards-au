@@ -26,6 +26,8 @@ as well as the required security endpoints:
 - UserInfo
 - Introspection
 - OpenID Provider Configuration
+- Pushed Authorisation Requests (PARs)
+- CDR Arrangment Revocation (Consent revocation)
 
 ... administration endpoints:
 - Metadata Update
@@ -41,16 +43,17 @@ and dynamic client registration endpoints:
 
 It optionally supports mutual TLS (mTLS) with Holder of Key (HoK) verification. For details on how to enable that feature, see [README.md](./src/shared-flows/verify-mtls-and-hok/README.md) 
 
-Other APIs will be gradually added, as well as support for Pushed Authorisation Requests (PARs).
+Other APIs will be gradually added.
 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
 2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts and best practices such as caching of (mock) responses
 3. An API proxy (*oidc-mock-provider*) that implements a standalone Open ID Connect Identity Provider, based on the open source package [oidc-provider](https://github.com/panva/node-oidc-provider)
-4. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens
+5. An API Proxy (*CDS-ConsentMgmtWithKVM*) that provides basic consent management capabilities, including revocation by CDR Arrangement ID
+6. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens. It also interacts with the *CDS-ConsentMgmtWithKVM* proxy to create/modify/revoke consents.
 5. An API Proxy (*CDS-DynamicClientRegistration*) that leverages Apigee client management capabilities to allow Data Recipients to dynamically register with the reference implementation.
 6. An API Proxy (*mock-cdr-register*) that mocks the CDR register role in dynamic client registration: Issuing Software Statement Assertions (SSAs) and providing a JWKS to verify these SSAs. 
-7. An API Proxy (*mock-adr-client*) that mocks the functionality a client being registered dynamically needs to include: provide a JWKS that can be used to verify a registration request. In addition, to make testing easier, it also has a helper facility to automatically generate such registration requests.
+7. An API Proxy (*mock-adr-client*) that mocks the functionality a client needs being registered dynamically needs to include: provide a JWKS that can be used to verify a registration request. In addition, to make testing easier, it also has a helper facility to automatically generate such registration requests and create Pushed Authorisation Requests (PARs)
 
 The reference implementation can accelerate Open Banking implementation in multiple ways:
 - Quick delivery of a sandbox API environment, returning mock data.
@@ -125,7 +128,7 @@ There are 17 shared flows that implement common functionality required by the Ba
 1. *add-response-fapi-interaction-id*: Includes *x-fapi-interaction-id* header in responses and error messages
 2. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
 3. *apply-traffic-thresholds*: Implements [traffic threshold requirements](https://consumerdatastandardsaustralia.github.io/standards/#traffic-thresholds) for the different types of API requests: public, customer present, and unattended.
-4. *authenticate-with-private-key-jwt*: Implements *private_key_jwt* client authentication method.
+4. *authenticate-with-private-key-jwt*: Implements *private_key_jwt* client authentication method. It can also be used to verify JWT tokens that contain Pushed Authorisation Requests (PARs)
 5. *check-request-headers*: Makes sure mandatory headers are included in a request, and that headers have acceptable values. 
 6. *check-token-not-reused*: Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time. Used in Register token validation shared flows, as well as dynamic client registration.
 7. *collect-performance-slo*: Collects analytics information about the performance tier a request belongs to, and whether it meets its performance SLO. Also records type of token operations (for *customerCount* and *recipientCount* metrics)

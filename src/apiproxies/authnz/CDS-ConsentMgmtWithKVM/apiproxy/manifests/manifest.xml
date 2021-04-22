@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-SetConsentStatusToInactive" version="SHA-512:163dd718b7d8a972d386fd54274ee1bf55773a2572efbe27049151eb4695ccc78185a4497bb17cf58940b5a19b7f5b37032d8389d29a9c9dec9bdeee214e8143"/>
+        <VersionInfo resourceName="AM-SetCreateUpdateResponseBody" version="SHA-512:403fa5a61d0fef95d72b62428c59deb298af7e3f5f12278b98892ec7790e39e137ece81663342035b5ffa45b99d0f89dc4db02fc87fb6d90b3c285e64fbb215c"/>
+        <VersionInfo resourceName="AM-SetCurrentTimeAsEpochSeconds" version="SHA-512:eb697775b4d2ad6f1e841cf22f265eaa8f4316a6b9160486381b9a404d2cfe3cf778d80b69c208bee482a922f7ce4bfbcb78eeea92f52e714ac316721515c83f"/>
+        <VersionInfo resourceName="AM-SetGetConsentResponse" version="SHA-512:12305fb656c1ffb433ddc1a911c98df757fcf9e4b5159bf09701610b324480e5d3351f48b4357993b2d0b2b00081a1e260de4fb522ee33af69f0b762ce6ba8f9"/>
+        <VersionInfo resourceName="AM-SetNewConsentInfo" version="SHA-512:62950e014349501d0c6a02af20dcb34a4c57b90179b5ac45562316e1459132e2c90548604579b471527601c2cfe1aace147a2d23f63a270c9c04c57e14340e6f"/>
+        <VersionInfo resourceName="AM-SetResponse204NoContent" version="SHA-512:69f749cca09e31083fa3986b4f2ae717c1aedac6c346fc9d70eb47787374179c4819ff420bc8e1aafaca4673e8a314fa4e3e745f08fac5add000b8e0dd8a8bb9"/>
+        <VersionInfo resourceName="AM-SetResponseCode201Created" version="SHA-512:126eddb5152574afd4dc8b241cb0c6e61ef448c2203fa7bf1c20e8aec3c07257c2d0e4818e885094ca2bcd87a1a24a61fc15e71d462f5c567f1c474b3b3ed10c"/>
+        <VersionInfo resourceName="AM-SetResponseCode202Accepted" version="SHA-512:10e65d66f23b8ce32b821c515ed25eb6df49a45cae4947728d38cd59137434bbbd9d99a17e425fb15c263eeeeaf0fe30dca11f83924bf05a06f81b85163f4184"/>
+        <VersionInfo resourceName="EV-ExtractConsentIdFromURIParam" version="SHA-512:b7dc586e4e5a2cb223e7836d36cc403a2ae1e468394b4cd2144af9f84f8069b835818ed768fb1e49be0687aea9dca5ba17e62bf1516b49670b3a018c710c1c45"/>
+        <VersionInfo resourceName="EV-ParseExistingConsentInfo" version="SHA-512:a43e3812484afbcc40973b205c6bd2853498f308dac0dac249349819199c3862027e7f92f3dc0092c1ed3ff2782f75032f9f102f9e6b7bd6986ec5b48773ec5f"/>
+        <VersionInfo resourceName="EV-ParseRequestedConsentInfo" version="SHA-512:636706b29b298f082ef317ac9bff9783fa071f5848dc8dc10f05dfc7f341451b601876803eb3bd60b544ed91a90c06e5dedb3709ef3ef7ae4ce6a1f29238de8b"/>
+        <VersionInfo resourceName="KVM-GetExistingConsent" version="SHA-512:f1a993675d4c814c3ee5532e1030646fec79dbecd3b9491e91ee0e6e9888e76930b5ff047d0aa6aa6d251a19a93ccac3b7a3beac88d779868316f381f54fc86d"/>
+        <VersionInfo resourceName="KVM-PutNewOrUpdatedConsent" version="SHA-512:3b0572361954a2b2e35dae466d7f1040acbc8113a9fbaf8b2a6fee2a9d2fa9e05f7669c24fa51fa6e9b5cf6e1ccd731ae2861fa952b230afa849287acc55d338"/>
+        <VersionInfo resourceName="OA-RevokeAccessToken" version="SHA-512:d161af850e1a76cb206d92e2007c8e2ec5078ba30538cd1a66564bac9d02ca0a881a46db358c5fe7993e304ba6f190bf7fc0a44f12386978274282c6fdd8e723"/>
+        <VersionInfo resourceName="OA-RevokeRefreshToken" version="SHA-512:859f6d0713b62613607fe362609a0df4ddb3a42d2b2175beffa1d3f3126f0ed80bfd965d438aed1fff2c146ea93fb02947b91fcdec31ad5d48c745f4ab830f28"/>
+        <VersionInfo resourceName="RF-InvalidConsent" version="SHA-512:a4d0160a3b1f7121a9284acec79ca992ce08c9843a29842f388368dbb9cf9ded3bdc997f3d66f7e5800dcdfc63841df465121b774cc947822c3809c2b37410fc"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:0cfe0a61a50f452156d6896fe635d18c3f6ea097cf465ee879e667425a4259b1e4010d031ff0c0adb3989451e9494beb66674a139ca6418d4a75e0972b35b196"/>
+    </ProxyEndpoints>
+    <Resources/>
+    <SharedFlows/>
+    <TargetEndpoints/>
+</Manifest>

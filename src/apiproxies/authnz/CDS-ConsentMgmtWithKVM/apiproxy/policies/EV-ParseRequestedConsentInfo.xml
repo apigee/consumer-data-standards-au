@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ParseRequestedConsentInfo">
+    <DisplayName>EV-ParseRequestedConsentInfo</DisplayName>
+    <JSONPayload>
+        <Variable name="consent_id">
+            <JSONPath>$.consent_id</JSONPath>
+        </Variable>
+        <Variable name="client_id">
+            <JSONPath>$.client_id</JSONPath>
+        </Variable>
+        <Variable name="customer_id">
+            <JSONPath>$.customer_id</JSONPath>
+        </Variable>
+        <Variable name="customer_ppid">
+            <JSONPath>$.customer_ppid</JSONPath>
+        </Variable>
+        <Variable name="new_access_token">
+            <JSONPath>$.new_access_token</JSONPath>
+        </Variable>
+        <Variable name="new_refresh_token">
+            <JSONPath>$.new_refresh_token</JSONPath>
+        </Variable>
+        <Variable name="expires_at" type="integer">
+            <JSONPath>$.expires_at</JSONPath>
+        </Variable>
+        <Variable name="revoke_existing_tokens">
+            <JSONPath>$.revoke_existing_tokens</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <VariablePrefix>requestedConsentInfo</VariablePrefix>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source>request</Source>
+</ExtractVariables>

@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="5" name="authenticate-with-private-key-jwt">
+<SharedFlowBundle revision="6" name="authenticate-with-private-key-jwt">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1602460875658</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
-    <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed</Description>
+    <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed. This shared flow can also be used to do a basic verification of a PAR object, in which case, no basic auth header is inserted</Description>
     <DisplayName>authenticate-with-private-key-jwt</DisplayName>
-    <LastModifiedAt>1609978678846</LastModifiedAt>
+    <LastModifiedAt>1617858820796</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:ad1e07275a38f2a2b4b9a49d85f1f24b500ba92529e05d6e713ba4d5557fc6689c97fbc3e0cd74ee521c97916eccbf59446039b435772ba1bea3646996fcc411:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:df9e8ca8c61852ad18b9cda7cba3025bac3c658e5c9bcf056d8776581dd838011d4f051bb310a1d78e15100118cbce77159436e041a917c61189129a872a614b:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AE-GetAppDetails</Policy>
+        <Policy>AM-SetDefaultCDRArrangementId</Policy>
+        <Policy>AM-SetDefaultSharingDuration</Policy>
+        <Policy>AM-SetMaxSharingDurationTo1Year</Policy>
         <Policy>BA-GenerateBasicEquivalentAuthHeader</Policy>
         <Policy>EV-ExtractAppRegInfoAndClientSecret</Policy>
         <Policy>EV-ExtractClientJWKSURIFromRegoInfo</Policy>
+        <Policy>EV-GetAdditionalClaimsInJwt</Policy>
         <Policy>FC-GetClientJWKS</Policy>
         <Policy>FC-ValidateAudience</Policy>
         <Policy>JWT-VerifyPrivateKeyJWT</Policy>
         <Policy>RF-InvalidJWT</Policy>
+        <Policy>RF-InvalidSharingDuration</Policy>
         <Policy>RF-UnknownClientId</Policy>
     </Policies>
     <Resources/>

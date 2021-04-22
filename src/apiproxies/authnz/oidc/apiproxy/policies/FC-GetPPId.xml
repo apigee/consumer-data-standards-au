@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-GetPPId">
+    <DisplayName>FC-GetPPId</DisplayName>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="sectorId" ref="requested_sector_id"/>
+        <Parameter name="customerId" ref="IDPTokenClaims.customerId"/>
+    </Parameters>
+    <SharedFlowBundle>get-ppid</SharedFlowBundle>
+</FlowCallout>

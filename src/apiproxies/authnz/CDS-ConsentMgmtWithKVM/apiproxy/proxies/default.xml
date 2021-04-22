@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>EV-ExtractConsentIdFromURIParam</Name>
+            </Step>
+            <Step>
+                <Name>KVM-GetExistingConsent</Name>
+            </Step>
+            <Step>
+                <Name>EV-ParseExistingConsentInfo</Name>
+                <Condition>(private.existingConsent != null) and (private.existingConsent != "")</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Create / Update consent">
+            <Description>Creates a new consent entry or updates an existing one. If existing, it checks that it matches the provided client and end user</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ParseRequestedConsentInfo</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.client_id != null) and (existingConsentInfo.client_id != "") and (existingConsentInfo.client_id != requestedConsentInfo.client_id)</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.customer_id != null) and (existingConsentInfo.customer_id != "") and (existingConsentInfo.customer_id != requestedConsentInfo.customer_id)</Condition>
+                </Step>
+                <Step>
+                    <Name>OA-RevokeAccessToken</Name>
+                    <Condition>(requestedConsentInfo.revoke_existing_tokens = "true") and (existingConsentInfo.access_token != null) and (existingConsentInfo.access_token != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>OA-RevokeRefreshToken</Name>
+                    <Condition>(requestedConsentInfo.revoke_existing_tokens = "true") and (existingConsentInfo.refresh_token != null) and (existingConsentInfo.refresh_token != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetNewConsentInfo</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-PutNewOrUpdatedConsent</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetCreateUpdateResponseBody</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetResponseCode201Created</Name>
+                    <Condition>(existingConsentInfo.customer_id = null) or (existingConsentInfo.customer_id = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetResponseCode202Accepted</Name>
+                    <Condition>(existingConsentInfo.customer_id != null) and (existingConsentInfo.customer_id != "")</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{consentId}") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="Get consent">
+            <Description>Returns the consentId. Validates that the consent is associated with the given client_id and that it is still active and hasn't expired</Description>
+            <Request>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetCurrentTimeAsEpochSeconds</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.client_id != request.queryparam.expected_client_id) or (existingConsentInfo.status != "active") or (existingConsentInfo.expires_at LesserThanOrEquals nowInEpochSeconds)</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetGetConsentResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{consentId}") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Revoke consent">
+            <Description>Logically deletes a consent (by setting its status to inactive)</Description>
+            <Request>
+                <Step>
+                    <Name>AM-SetConsentStatusToInactive</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-PutNewOrUpdatedConsent</Name>
+                </Step>
+                <Step>
+                    <Name>OA-RevokeAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>OA-RevokeRefreshToken</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse204NoContent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/{theConsentId}") and (request.verb = "DELETE")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/consent</BasePath>
+        <VirtualHost>secure</VirtualHost>
+          <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
+             The secure-mtls virtual host must already be configured to support mTLS with propagateTLSInformation
+             This proxy is proxy chained from another proxy that has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
+        <!-- <VirtualHost>secure-mtls</VirtualHost> -->
+    </HTTPProxyConnection>
+    <RouteRule name="noroute"/>
+</ProxyEndpoint>

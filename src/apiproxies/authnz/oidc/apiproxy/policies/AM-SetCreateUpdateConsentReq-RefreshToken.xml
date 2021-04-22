@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetCreateUpdateConsentReq-RefreshToken">
+    <DisplayName>AM-SetCreateUpdateConsentReq-RefreshToken</DisplayName>
+    <AssignVariable>
+        <Name>consentRequest</Name>
+        <Template>{
+    "client_id": "{apigee.client_id}",
+    "customer_id": "{oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId}",
+    "customer_ppid": "{customerPPId}",
+    "new_access_token": "{theAccessToken}",
+    "new_refresh_token": "{theRefreshToken}",
+    "expires_at": {refreshTokenExpiresAt},
+    "revoke_existing_tokens": false
+}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

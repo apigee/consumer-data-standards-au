@@ -66,6 +66,26 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/dcrrequest") and (request.verb = "GET")</Condition>
         </Flow>
+        <Flow name="Get Authorisation Request JWT">
+            <Description>Generate a request JWT token to be used in Pushed Authorisations Request </Description>
+            <Request>
+                <Step>
+                    <Name>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PAR</Name>
+                </Step>
+                <Step>
+                    <Name>JS-AddOptionalClaimsIfPresent</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GeneratePARJWT</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/parrequest") and (request.verb = "GET")</Condition>
+        </Flow>
         <Flow name="unsupportedMethod">
             <Description>Method Not Allowed</Description>
             <Request>

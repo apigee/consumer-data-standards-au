@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-RebuildQueryRequestUsingPAR">
+    <DisplayName>AM-RebuildQueryRequestUsingPAR</DisplayName>
+    <Remove>
+        <QueryParams>
+            <QueryParam name="request_uri"/>
+        </QueryParams>
+    </Remove>
+    <Set>
+        <QueryParams>
+            <QueryParam name="response_type">{requested_response_type}</QueryParam>
+            <QueryParam name="scope">{requested_scope}</QueryParam>
+            <QueryParam name="state">{requested_state}</QueryParam>
+            <QueryParam name="nonce">{requested_nonce}</QueryParam>
+        </QueryParams>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

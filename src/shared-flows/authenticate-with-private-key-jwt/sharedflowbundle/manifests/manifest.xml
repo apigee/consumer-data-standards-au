@@ -2,19 +2,24 @@
 <Manifest name="manifest">
     <Policies>
         <VersionInfo resourceName="AE-GetAppDetails" version="SHA-512:0d7a3c86de472cef901c7f926deeaa2e75e01e3f19c6e0cbcdac62657724c6b5ba40ac83fba98704edb4b85909c0616826822d4e66a2f279f27d1570b57e210c"/>
+        <VersionInfo resourceName="AM-SetDefaultCDRArrangementId" version="SHA-512:cd7cac7fb5be6690175cccac9a474938a640813d09dd8133e8fb6f212bd07f1b1a4136e58253238ed863adbc31f27a1dba84f37b77f08f382aee36c2b8f4cc9d"/>
+        <VersionInfo resourceName="AM-SetDefaultSharingDuration" version="SHA-512:681defcab0df42729032689b0fff458aefeb0440b8670462e7d3f740e56a4eb0f9e9bd70046246a50b9cba8a027f6c1d9db282a8c8dd1ff16810a17aecd4b5e8"/>
+        <VersionInfo resourceName="AM-SetMaxSharingDurationTo1Year" version="SHA-512:2812ae247723ae2f1c0078a4a3e30a34c91f2029e7f2fc331cdcfae4fe610c245e55ac10b02354089f7993f7dac898b6c6734240e002e874dd0d1c32f0136792"/>
         <VersionInfo resourceName="BA-GenerateBasicEquivalentAuthHeader" version="SHA-512:c5cd57e9a14cb22096b473b46044370e59eb40d3472d2a0e7152a6b377cc85400ba58f74375597f875e3ba402de1891f62c26300dc036c791623b3ed4eb21f0e"/>
         <VersionInfo resourceName="EV-ExtractAppRegInfoAndClientSecret" version="SHA-512:c68603f4053e87b26768c143acbcb8b36501cfa3caa6f24542d0c8c4631e71df23d64046462df333d3434e810940b277b30c7acc80e9bed5632d830d255c4f5b"/>
         <VersionInfo resourceName="EV-ExtractClientJWKSURIFromRegoInfo" version="SHA-512:899d6266eace0ef8fad736fe1690401749c92d3a3df945b432ca5064b1dfd72ac07bc117e5a724d08f6ad2584fd26c414882a3f17df74d6fb1c47f04ab6d2bd7"/>
+        <VersionInfo resourceName="EV-GetAdditionalClaimsInJwt" version="SHA-512:a46e370285d068ed9464388677a3d481636fd9755af95ea977ab585af57e07deed95b72c0b9444b041647f54a7de4862205b30378e3cdb058b24c9204c433337"/>
         <VersionInfo resourceName="FC-GetClientJWKS" version="SHA-512:73df61518b3a393da7a5ff1755dc3158ad25c1cce215b0ac21aa29766191d1e334786db82b58943f7d5e83f9ee1cb5741150c02a42cc4a70370129286e73bd5e"/>
         <VersionInfo resourceName="FC-ValidateAudience" version="SHA-512:51a7eb02941e7888bc457343a6544e4384da7db3b1ead1340f2519daa8456cc99b032edb273c59bb9d2a26c0348d527569d7a66c7815b1c41268f1c0a8f63028"/>
         <VersionInfo resourceName="JWT-VerifyPrivateKeyJWT" version="SHA-512:843d928af681a6720b6a4c2f7e38f7403426b0dc2ba252797bf96b72fad1f99626eab28e1e8542dd8ab6c710673b9469c2a69510c694d9b92107785b9624809e"/>
         <VersionInfo resourceName="RF-InvalidJWT" version="SHA-512:7bec8cd7ec59812b4a39898db1cc6d98d9c314dec39fc6eea8461d61c734ab776b7a1ba257a10147ff49a9f02741bbd8371a16130ba181edf22c4d962eeb587f"/>
+        <VersionInfo resourceName="RF-InvalidSharingDuration" version="SHA-512:b65e0a3d339b97ee74fef5fd78b0c8a215387ce50943dd44e06b90c4f640350f7d701936d60ca58c5c881cfe44555cf41f8809844e0f4f18d90d98b19d9ef7df"/>
         <VersionInfo resourceName="RF-UnknownClientId" version="SHA-512:06aae1f81a7ba65ad8fa80e07a9a5e5513ee1840ec060e3b0be67b4aed472c6fbd8eccd50ed89912ac294374235ee516ba42174ec61c3b1fdcea6b74a201aacd"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources/>
     <SharedFlows>
-        <VersionInfo resourceName="default" version="SHA-512:aa0de77461da58b1fe42ee37024f6c31f57f7ea8b49af68b199928cb1d20de96a7ff10f2eeb94afe38b568412b2d41f51945fbd7bc8823e84aff8442e0e436b8"/>
+        <VersionInfo resourceName="default" version="SHA-512:2a9135d2c61dcc3fb467a07547edb51b4f462d5d9a4fccb201fb1cf474fa21738acd6368a2956475228a110e02e4e549e40d3d103f93cbe425ce5b5e39cf82ea"/>
     </SharedFlows>
     <TargetEndpoints/>
 </Manifest>

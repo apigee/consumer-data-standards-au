@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-VerifyPAR">
+    <DisplayName>FC-VerifyPAR</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <SharedFlowBundle>authenticate-with-private-key-jwt</SharedFlowBundle>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="theClientId" ref="jwt.JWT-DecodePAR.decoded.claim.client_id"/>
+        <Parameter name="thePrivateKeyJWT" ref="request.formparam.request"/>
+        <Parameter name="injectBasicAuth">false</Parameter>
+        <Parameter name="getAdditionalClaims">true</Parameter>
+    </Parameters>
+</FlowCallout>

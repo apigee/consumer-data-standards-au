@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ExtractConsentIdFromURIParam">
+    <DisplayName>EV-ExtractConsentIdFromURIParam</DisplayName>
+    <URIPath>
+        <Pattern ignoreCase="false">/{theConsentId}</Pattern>
+    </URIPath>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</ExtractVariables>

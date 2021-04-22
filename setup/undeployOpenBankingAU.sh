@@ -48,6 +48,9 @@ echo "--->" Removing KVM mockCDRRegister
 apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName mockCDRRegister
 echo "--->" Removing KVM mockADRClient
 apigeetool deleteKVMmap -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --mapName mockADRClient
+echo "--->"  Deleting dynamic KVM CDSConfig...
+apigeetool deleteKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName Consents 
+
 
 # Undeploy banking apiproxies
 cd src/apiproxies/banking
@@ -69,15 +72,15 @@ do
     cd ..
  done
 
-# Undeploy oidc proxy
-cd ../oidc
-echo "--->" Undeploying oidc Apiproxy
-apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
-
-# Undeploy oidc-mock-provider proxy
-cd ../oidc-mock-provider
-echo "--->" Undeploying oidc-mock-provider Apiproxy
-apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
+# Undeploy authn/authz related proxies
+cd ../authnz
+for ap in $(ls .) 
+do 
+    echo "--->" Undeploying $ap Apiproxy
+    cd $ap
+    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
+    cd ..
+done
 
 # Undeploy CDS-Admin proxy
 cd ../admin/CDS-Admin
@@ -107,8 +110,10 @@ done
 # Revert to original directory
  cd ../../..
 
- # Delete Cache and dynamic KVM used by oidc proxy
+ # Delete Caches and dynamic KVM used by oidc proxy
 echo "--->" Deleting cache OIDCState...
 apigeetool deletecache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState
+echo "--->" Deleting cache PushedAuthReqs...
+apigeetool deletecache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z PushedAuthReqs
 echo "--->" Deleting dynamic KVM PPIDs...
 apigeetool deleteKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName PPIDs

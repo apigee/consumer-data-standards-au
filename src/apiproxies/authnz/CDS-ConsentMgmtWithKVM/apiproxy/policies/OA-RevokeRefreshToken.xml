@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="true" enabled="true" name="OA-RevokeRefreshToken">
+    <DisplayName>OA-RevokeRefreshToken</DisplayName>
+    <Operation>InvalidateToken</Operation>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <SupportedGrantTypes/>
+    <Tokens>
+        <Token cascade="true" type="refreshtoken">existingConsentInfo.refresh_token</Token>
+    </Tokens>
+</OAuthV2>

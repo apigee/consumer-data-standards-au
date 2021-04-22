@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetParResponse">
+    <DisplayName>AM-SetParResponse</DisplayName>
+    <Set>
+        <Payload contentType="application/json">{ 
+    "request_uri": "{PARCacheKey}",
+  "expires_in": 90
+}</Payload>
+        <StatusCode>201</StatusCode>
+        <ReasonPhrase>Created</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

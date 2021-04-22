@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAdditionalClaimsInJwt">
+    <DisplayName>EV-GetAdditionalClaimsInJwt</DisplayName>
+    <JSONPayload>
+        <Variable name="requestedSharingDuration" type="integer">
+            <JSONPath>$.sharing_duration</JSONPath>
+        </Variable>
+        <Variable name="requestedCDRArrangementId">
+            <JSONPath>$.cdr_arrangement_id</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <VariablePrefix>PARInfo</VariablePrefix>
+    <Source clearPayload="false">jwt.JWT-VerifyPrivateKeyJWT.claim.claims</Source>
+</ExtractVariables>

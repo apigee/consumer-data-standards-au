@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetNewConsentInfo">
+    <DisplayName>AM-SetNewConsentInfo</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>formatStr</Name>
+        <Value>yyyy-MM-dd HH:mm:ss</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>nowFormatted</Name>
+        <Template>{timeFormatUTCMs(formatStr,system.timestamp)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>newConsentInfo</Name>
+        <Template>{ 
+    "client_id": "{requestedConsentInfo.client_id}",
+    "customer_id": "{requestedConsentInfo.customer_id}",
+    "customer_ppid": "{requestedConsentInfo.customer_ppid}",
+    "access_token": "{requestedConsentInfo.new_access_token}",
+    "refresh_token": "{requestedConsentInfo.new_refresh_token}",
+    "status": "active",
+    "expires_at": {requestedConsentInfo.expires_at},
+    "created_at": "{firstnonnull(existingConsentInfo.created_at,nowFormatted)}",
+    "updated_at": "{nowFormatted}"
+}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo transport="http" type="request"/>
+</AssignMessage>

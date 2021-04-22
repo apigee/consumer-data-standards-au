@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetMaxSharingDurationTo1Year">
+    <DisplayName>AM-SetMaxSharingDurationTo1Year</DisplayName>
+    <AssignVariable>
+        <Name>PARInfo.requestedSharingDuration</Name>
+        <Value>31536000</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

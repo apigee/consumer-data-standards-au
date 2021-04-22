@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-GenerateCDRArrangementId">
+    <DisplayName>AM-GenerateCDRArrangementId</DisplayName>
+    <AssignVariable>
+        <Name>regexpVar</Name>
+        <Value>^none$</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>newCdrArrangementId</Name>
+        <Template>{createUuid()}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>cdrArrangementId</Name>
+        <Template>{replaceFirst(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedCDRArrangementId,regexpVar,newCdrArrangementId)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="message"/>
+</AssignMessage>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidSharingDuration">
+    <DisplayName>RF-InvalidSharingDuration</DisplayName>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="application/json">{ "errors": [
+    {
+      "code": "401",
+      "title": "Unauthorized",
+      "detail": "Invalid claim sharing_duration. It should be a number greater than or equal to 0"
+    }
+  ]
+}</Payload>
+            <StatusCode>401</StatusCode>
+            <ReasonPhrase>Unauthorized</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

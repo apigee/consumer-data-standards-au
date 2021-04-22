@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ConsentError">
+    <DisplayName>AM-ConsentError</DisplayName>
+    <Set>
+        <Payload contentType="application/json">{consentResponse.content}</Payload>
+        <StatusCode>{consentResponse.status.code}</StatusCode>
+        <ReasonPhrase>{consentResponse.reason.phrase}</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="message"/>
+</AssignMessage>

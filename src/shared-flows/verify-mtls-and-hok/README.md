@@ -73,6 +73,7 @@ The following proxies need to use the new virtual host:
 
 * oidc
 * mock-oidc
+* CDS-ConsentMgmtWithKVM
 * Any *banking* proxy (Currently *CDS-Accounts* and *CDS-Transactions*)
 * CDS-DynamicClientRegistration
 
@@ -91,5 +92,8 @@ The Postman collection includes a folder for testing HoK verification.
 Note that the above proxies still accept one-way TLS connections, which is fine for testing purposes, but shouldn't be the case in a production environment.
 In production, **no** *banking* proxy (Currently *CDS-Accounts* and *CDS-Transactions*) should use the *secure* virtualhost, only *secure-mtls*.
 
-However, *oidc*, *mock-oidc* and *CDS-DynamicClientRegistration* apiproxies have a mixture of one way TLS and mTLS endpoints, so these proxies should still use both endpoints.
+However, *oidc*, *mock-oidc*, *CDS-ConsentMgmtWithKVM*, and *CDS-DynamicClientRegistration* apiproxies have a mixture of one way TLS and mTLS endpoints, so these proxies should still use both endpoints.
+
 You will need to edit the *verify-mtls-and-hok* shared flow to remove the dummy condition which prevents the enforcement of mTLS on the endpoints that should only accept mTLS.
+
+Finally, you will also need to add the CDR Register certificate to the CDS-Truststore, so that client certificates issued by this authority will be accepted.

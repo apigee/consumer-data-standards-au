@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetConsentStatusToInactive">
+    <DisplayName>AM-SetConsentStatusToInactive</DisplayName>
+    <AssignVariable>
+        <Name>formatStr</Name>
+        <Value>yyyy-MM-dd HH:mm:ss</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>nowFormatted</Name>
+        <Template>{timeFormatUTCMs(formatStr,system.timestamp)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>newConsentInfo</Name>
+        <Template>{ 
+    "client_id": "{existingConsentInfo.client_id}",
+    "customer_id": "{existingConsentInfo.customer_id}",
+    "customer_ppid": "{existingConsentInfo.customer_ppid}",
+    "status": "inactive",
+    "expires_at": {substring(system.timestamp,0,10)},
+    "created_at": "{existingConsentInfo.created_at}",
+    "updated_at": "{nowFormatted}"
+}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo transport="http" type="request"/>
+</AssignMessage>

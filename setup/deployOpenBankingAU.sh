@@ -60,11 +60,17 @@ function generate_private_public_key_pair {
 ###### End Utility functions
 
 
-# Create Cache and dynamic KVM used by oidc proxy
+# Create Caches and dynamic KVM used by oidc proxy
 echo "--->"  Creating cache OIDCState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState --description "Holds state during authorization_code flow" --cacheExpiryInSecs 600
+echo "--->"  Creating cache PushedAuthReqs...
+apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z PushedAuthReqs --description "Holds Pushed Authorisation Requests during authorization_code_flow" --cacheExpiryInSecs 600
 echo "--->"  Creating dynamic KVM PPIDs...
 apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName PPIDs --encrypted
+
+# Create KVM that will hold consent information
+echo "--->"  Creating dynamic KVM CDSConfig...
+apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName Consents --encrypted
 
 
  # Deploy banking apiproxies
@@ -88,12 +94,17 @@ do
  done
 
  # Deploy oidc proxy
-cd ../oidc
+cd ../authnz/oidc
 echo "--->"  Deploying oidc Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
 
+# Deploy CDS-ConsentMgmtWithKVM proxy
+cd ../CDS-ConsentMgmtWithKVM
+echo "--->"  Deploying CDS-ConsentMgmtWithKVM Apiproxy
+apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-ConsentMgmtWithKVM
+
 # Deploy Client Dynamic Registration proxy and the required mock-register and mock-adr-client proxies
-cd ../dynamic-client-registration
+cd ../../dynamic-client-registration
 for ap in $(ls .) 
 do 
     echo "--->"  Deploying $ap Apiproxy
@@ -143,23 +154,15 @@ APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
 
 
 # Update app attributes
+REG_INFO=$(sed -e "s/dummyorgname/$APIGEE_ORG/g" -e "s/dummyenvname/$APIGEE_ENV/g" ./setup/baseRegistrationInfoForCDSTestApp.json)
+REQ_BODY='{ "callbackUrl": "https://httpbin.org/post", "attributes": [ { "name": "DisplayName", "value": "CDSTestApp" }, { "name": "SectorIdentifier", "value": "httpbin.org" },'
+echo $REQ_BODY $REG_INFO "]}" >> ./tmpReqBody.json
 curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$CDS_TEST_DEVELOPER_EMAIL/apps/CDSTestApp \
   -u $APIGEE_USER:$APIGEE_PASSWORD \
   -H 'Accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "attributes": [
-    {
-      "name": "DisplayName",
-      "value": "CDSTestApp"
-    },
-    {
-      "name": "SectorIdentifier",
-      "value": "httpbin.org"
-    }
-  ],
-  "callbackUrl": "https://httpbin.org/post"
-}'
+  -d @./tmpReqBody.json
+rm ./tmpReqBody.json
 
 mkdir setup/certs
 cd setup/certs
@@ -189,8 +192,8 @@ CDSREFIMPL_OIDC_CLIENT_ID=$(openssl rand -hex 16)
 CDSREFIMPL_OIDC_CLIENT_SECRET=$(openssl rand -hex 16)
 CDSREFIMPL_JWKS=`cat ./CDSRefImpl.jwks`
 APIGEE_CLIENT_ENTRY=$(echo '[{ "client_id": "'$CDSREFIMPL_OIDC_CLIENT_ID'", "client_secret": "'$CDSREFIMPL_OIDC_CLIENT_SECRET'", "redirect_uris": ["https://'$APIGEE_ORG'-'$APIGEE_ENV'.apigee.net/authorise-cb"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"], "token_endpoint_auth_method": "client_secret_basic","jwks": '$CDSREFIMPL_JWKS'}]')
-OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
-echo $APIGEE_CLIENT_ENTRY > ../../src/apiproxies/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
+OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
+echo $APIGEE_CLIENT_ENTRY > ../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
 echo "----"
 
 
@@ -224,8 +227,6 @@ apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName ApigeeIDPCredentials_clientId --entryValue "$CDSREFIMPL_OIDC_CLIENT_ID"  1> /dev/null | echo Added entry for CDS Ref Impl credentials: client id in OIDC Provider
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName ApigeeIDPCredentials_clientSecret --entryValue "$CDSREFIMPL_OIDC_CLIENT_SECRET"   1> /dev/null | echo Added entry for CDS Ref Impl credentials: client secret in OIDC Provider
 
-
-
 # Revert to original directory
  cd ../..
 
@@ -253,9 +254,9 @@ echo "--->"  Deploying CDS-Admin Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
 
 # Deploy oidc-mock-provider proxy
-cd ../../oidc-mock-provider
+cd ../../authnz/oidc-mock-provider
 echo "--->"  Deploying oidc-mock-provider Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
 
 # Revert to original directory
- cd ../../..
+ cd ../../../..
