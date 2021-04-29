@@ -27,7 +27,7 @@ as well as the required security endpoints:
 - Introspection
 - OpenID Provider Configuration
 - Pushed Authorisation Requests (PARs)
-- CDR Arrangment Revocation (Consent revocation)
+- CDR Arrangement Revocation (Consent revocation)
 
 ... administration endpoints:
 - Metadata Update
