@@ -91,7 +91,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaa&nonce=n-0S6_WzA2Mj223",
+							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaa&nonce=n-0S6_WzA2Mj223&sharing_duration=1800",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -158,6 +158,17 @@
 									"key": "exp",
 									"value": "1596692638",
 									"description": "Epoch timestamp. Any value in the future will work",
+									"disabled": true
+								},
+								{
+									"key": "sharing_duration",
+									"value": "1800",
+									"description": "How long the refresh token should live for (In seconds)"
+								},
+								{
+									"key": "cdr_arrangement_id",
+									"value": "{{cdr_arrangement_id}}",
+									"description": "Optionally use an existing consent (arrangement)",
 									"disabled": true
 								}
 							]

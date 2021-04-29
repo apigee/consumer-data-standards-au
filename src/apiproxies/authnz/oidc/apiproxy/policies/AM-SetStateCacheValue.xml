@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetStateCacheValue">
     <DisplayName>AM-SetStateCacheValue</DisplayName>
-    <!-- Use a default sharing duration of 28 days and leave an empty placeholder for cdr_arrangement_id. These 2 fields are only populated by the client when using pushed authorisation requests -->
+    <!-- Use a default sharing duration of 28 days and set 'none' as placeholder for cdr_arrangement_id, if not present -->
+    <AssignVariable>
+        <Name>theSharingDuration</Name>
+        <Template>{firstnonnull(request.queryparam.sharing_duration,'2419200')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>theCDRArrangementId</Name>
+        <Template>{firstnonnull(request.queryparam.cdr_arrangement_id,'none')}</Template>
+    </AssignVariable>
     <AssignVariable>
         <Name>stateCacheVal</Name>
-        <Template>{request.queryparam.client_id}||{request.queryparam.redirect_uri}||{request.queryparam.scope}||{request.queryparam.nonce}||{request.queryparam.response_type}||2419200||||{verifyapikey.VAK-VerifyClientId.app.SectorIdentifier}</Template>
+        <Template>{request.queryparam.client_id}||{request.queryparam.redirect_uri}||{request.queryparam.scope}||{request.queryparam.nonce}||{request.queryparam.response_type}||{theSharingDuration}||{theCDRArrangementId}||{verifyapikey.VAK-VerifyClientId.app.SectorIdentifier}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

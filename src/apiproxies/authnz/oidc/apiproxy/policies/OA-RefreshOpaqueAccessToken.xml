@@ -17,9 +17,7 @@
     <Operation>RefreshAccessToken</Operation>
     <RefreshToken>theRefreshToken</RefreshToken>
     <RefreshTokenExpiresIn ref="RefreshTokenExpiryTimeInMillis">3600000</RefreshTokenExpiresIn>
-    <GenerateResponse enabled="false">
-        <Format>FORM_PARAM</Format>
-    </GenerateResponse>
+    <GenerateResponse enabled="false"/>
     <ReuseRefreshToken>false</ReuseRefreshToken>
     <Scope>OIDCTokenResponse.scope</Scope>
     <SupportedGrantTypes/>
