@@ -8,6 +8,6 @@
         <Parameter name="theClientId" ref="request.formparam.client_id"/>
         <Parameter name="thePrivateKeyJWT" ref="request.formparam.client_assertion"/>
         <Parameter name="injectBasicAuth">true</Parameter>
-        <Parameter name="getAdditionalClaims">true</Parameter>
+        <Parameter name="getAdditionalClaims">false</Parameter>
     </Parameters>
 </FlowCallout>

@@ -3823,43 +3823,136 @@
 			"name": "Admin",
 			"item": [
 				{
-					"name": "0 - Mock Register Get Admin Request JWT",
-					"event": [
+					"name": "OIDC - Obtain token for Admin Operations",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Store private_key_jwt to reuse in next call",
-									"pm.environment.set(\"register_token\", pm.response.text());"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net",
-							"protocol": "https",
-							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
-							],
-							"path": [
-								"mock-cdr-register",
-								"adminrequest"
-							],
-							"query": [
+							"name": "Step 1 - Mock CDR Register - Get Private Key JWT",
+							"event": [
 								{
-									"key": "admin-endpoint",
-									"value": "https://{{org}}-{{env}}.apigee.net"
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Store private_key_jwt to reuse in next call",
+											"pm.environment.set(\"cdr_register_private_key_jwt\", pm.response.text());"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/privatekeyjwt?cdr-register-client-id={{cdr_register_client_id}}",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"mock-cdr-register",
+										"privatekeyjwt"
+									],
+									"query": [
+										{
+											"key": "aud",
+											"value": "http://pirulo.com",
+											"disabled": true
+										},
+										{
+											"key": "cdr-register-client-id",
+											"value": "{{cdr_register_client_id}}",
+											"description": "The client Id assigned to the CDR Register client (CDRRegisterTestApp)"
+										}
+									]
+								},
+								"description": "Obtain Private Key JWT required to request an access token using the private key JWT authentication method"
+							},
+							"response": []
+						},
+						{
+							"name": "Step 2 - OIDC Acquire Token for  Admin Operations (Private Key JWT)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Store scope, access token and id token to reuse in subsequent calls",
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"cdr_register_access_token\", jsonData.access_token);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "admin:metrics.basic:read",
+											"description": "Scope should be either admin:metadata:update or admin:metrics.basic:read",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{cdr_register_client_id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{cdr_register_private_key_jwt}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{org}}-{{env}}.apigee.net/token",
+									"protocol": "https",
+									"host": [
+										"{{org}}-{{env}}",
+										"apigee",
+										"net"
+									],
+									"path": [
+										"token"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Metadata Update",
@@ -3869,7 +3962,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{register_token}}",
+									"value": "{{cdr_register_access_token}}",
 									"type": "string"
 								}
 							]
@@ -3918,7 +4011,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{register_token}}",
+									"value": "{{cdr_register_access_token}}",
 									"type": "string"
 								}
 							]
@@ -4114,7 +4207,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=DebsOrg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
+							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=DebsOrg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -4140,13 +4233,13 @@
 									"value": "{{client_redirect_uri}}"
 								},
 								{
-									"key": "software_id",
-									"value": "SomeSWID2"
-								},
-								{
 									"key": "sector_identifier_uri",
 									"value": "https://pepe.org",
 									"disabled": true
+								},
+								{
+									"key": "software_id",
+									"value": "SomeSWID"
 								}
 							]
 						}

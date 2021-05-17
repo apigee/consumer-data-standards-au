@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateAdminRequest">
-    <DisplayName>JWT-GenerateAdminRequest</DisplayName>
+<GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GeneratePrivateKeyJWTForAuth">
+    <DisplayName>JWT-GeneratePrivateKeyJWTForAuth</DisplayName>
     <Algorithm>RS256</Algorithm>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     <PrivateKey>
         <Value ref="private.mockCDRRegisterPrivateKey"/>
         <Id>MockCDRRegister</Id>
     </PrivateKey>
-    <Issuer>cdr-register</Issuer>
-    <Subject>cdr-register</Subject>
+    <Issuer ref="clientIdVar"/>
+    <Subject ref="clientIdVar"/>
     <ExpiresIn>30m</ExpiresIn>
     <Id/>
-    <Audience ref="request.queryparam.admin-endpoint"/>
+    <Audience ref="audVar"/>
     <OutputVariable>theJWT</OutputVariable>
 </GenerateJWT>

@@ -24,7 +24,14 @@
         <Condition>JWT.failed = true</Condition>
     </Step>
     <Step>
+        <Name>RF-MissingEXPClaim</Name>
+        <Condition>(jwt.JWT-VerifyPrivateKeyJWT.decoded.claim.exp == "") or (jwt.JWT-VerifyPrivateKeyJWT.decoded.claim.exp == null)</Condition>
+    </Step>
+    <Step>
         <Name>FC-ValidateAudience</Name>
+    </Step>
+    <Step>
+        <Name>FC-CheckTokenNotReused</Name>
     </Step>
     <Step>
         <Name>BA-GenerateBasicEquivalentAuthHeader</Name>

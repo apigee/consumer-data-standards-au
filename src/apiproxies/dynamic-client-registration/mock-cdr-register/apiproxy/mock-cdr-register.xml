@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="4" name="mock-cdr-register">
+<APIProxy revision="6" name="mock-cdr-register">
     <Basepaths>/mock-cdr-register</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1581308531154</CreatedAt>
+    <CreatedAt>1620790800766</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Mock proxy that emulates endpoints the CDR Register will support and that are required for dynamic client registration</Description>
     <DisplayName>mock-cdr-register</DisplayName>
-    <LastModifiedAt>1613955874783</LastModifiedAt>
+    <LastModifiedAt>1620790800766</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:fabdc7b16c3f646209df82782b69c5076b97c2b718e1143e06bab05e77357c3fa444ffef61dde7d323979702251e7220dd64afeeafca7ec81e6b77ec407dbca7:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:007a835d5e74edb1e17bfbdc0c3d16aca34edad626535dc5439a90a0343f2d70130358be47579f2458725d2d67d5272465f5beddcb49103a49a6f4fe650c6b44:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-SetMockJWKSInfo</Policy>
         <Policy>AM-SetResponse</Policy>
+        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT</Policy>
         <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults</Policy>
         <Policy>EV-SWIdFromURIParam</Policy>
         <Policy>JS-SetRedirectURIs</Policy>
-        <Policy>JWT-GenerateAdminRequest</Policy>
         <Policy>JWT-GenerateMockSSAForSWId</Policy>
+        <Policy>JWT-GeneratePrivateKeyJWTForAuth</Policy>
         <Policy>KVM-GetMockCDRRegisterKeys</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedMethod</Policy>

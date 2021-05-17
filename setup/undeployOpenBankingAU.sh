@@ -19,14 +19,23 @@
 
 # If no developer name has been set use a default
 if [ -z "$CDS_TEST_DEVELOPER_EMAIL" ]; then  CDS_TEST_DEVELOPER_EMAIL=CDS-Test-Developer@somefictitioustestcompany.com; fi;
+CDS_REGISTER_TEST_DEVELOPER_EMAIL=CDR-Register-Test-Developer@somefictitioustestcompany.com
 
 # Remove test app
 echo "--->" Removing Test App: CDRTestApp...
 apigeetool deleteApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL --name CDSTestApp
 
+# Remove CDR Register test app
+echo "--->"  Removing CDR Register Test App: CDRRegisterTestApp...
+apigeetool deleteApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL --name CDRRegisterTestApp
+
 # Remove test developer
 echo "--->" Removing Test Developer: $CDS_TEST_DEVELOPER_EMAIL
 apigeetool deleteDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL
+
+# Remove CDR Register test developer
+echo "--->" Removing CDR Register Test Developer: $CDS_REGISTER_TEST_DEVELOPER_EMAIL
+apigeetool deleteDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL
 
 # Remove products
 echo "--->" Removing API Product "Accounts"
@@ -40,6 +49,9 @@ apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --pr
 
 echo "--->" Removing API Product "DynamicClientRegistration"
 apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSDynamicClientRegistration"
+
+echo "--->" Removing API Product "Admin"
+apigeetool deleteProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --productName "CDSAdmin"
 
 # Remove KVMs
 echo "--->" Removing KVM CDSConfig

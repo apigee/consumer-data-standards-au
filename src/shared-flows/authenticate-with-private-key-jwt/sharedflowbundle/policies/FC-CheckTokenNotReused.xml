@@ -5,8 +5,8 @@
     <Properties/>
     <SharedFlowBundle>check-token-not-reused</SharedFlowBundle>
     <Parameters>
-        <Parameter name="jwtPayload" ref="jwt.JWT-VerifyCDRToken.payload-json"/>
+        <Parameter name="jwtPayload" ref="jwt.JWT-VerifyPrivateKeyJWT.payload-json"/>
         <Parameter name="jwtType">Bearer</Parameter>
-        <Parameter name="cacheTime" ref="jwt.JWT-VerifyCDRToken.seconds_remaining"/>
+        <Parameter name="cacheTime" ref="jwt.JWT-VerifyPrivateKeyJWT.seconds_remaining"/>
     </Parameters>
 </FlowCallout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="7" name="CDS-AdminWithRealMetrics">
+<APIProxy revision="8" name="CDS-AdminWithRealMetrics">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -14,9 +14,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Admin APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1602653224648</LastModifiedAt>
+    <LastModifiedAt>1620712145973</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:93c1f127ae495559dc273a8261c7cde34a891bdebf4c9bf6122ec5e0f430f531bcef4c099722c6e9033e0b7a63365901a39ecf37798caf1157d8441c776ddeb9</ManifestVersion>
+    <ManifestVersion>SHA-512:c1845314935a021e09404881799bb6306e836f15b22d0fd6a185967e9993fa07c8cbff3b0d99cef96c22fab84561210c8062cf026f2055601bf840a23223a4a1:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>
@@ -25,17 +25,17 @@
         <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
         <Policy>AM-TokenNotVerified</Policy>
         <Policy>EV-GetAction</Policy>
-        <Policy>EV-GetJWTTokenFromAuthHeader</Policy>
         <Policy>EV-getErrorDetail</Policy>
         <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
         <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
         <Policy>FC-TrafficThresholds</Policy>
-        <Policy>FC-ValidateRegisterToken</Policy>
         <Policy>FC-ValidateRequestParams-MetadataUpdate</Policy>
         <Policy>FC-ValidateRequestParams-Metrics</Policy>
         <Policy>JS-SetRequestTime</Policy>
+        <Policy>OA-VerifyTokenForMetadataUpdate</Policy>
+        <Policy>OA-VerifyTokenForMetrics</Policy>
         <Policy>RC-MetricsForPeriod</Policy>
         <Policy>RF-InvalidAction</Policy>
         <Policy>RF-NotFound</Policy>

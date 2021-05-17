@@ -47,7 +47,7 @@
         <VersionInfo resourceName="EV-ParseCachedPar" version="SHA-512:82a2b859e43f912c452e97572fbbbb6eabb85e2c57eed50c2f9f3b5f2026ad0c10b97a33d017167824e914e5a3b449156863bde24c0929aa3e6de5d19659529b"/>
         <VersionInfo resourceName="EV-ParseCachedState" version="SHA-512:9d5ad8289fecfeb64041ea4d09a24b1a9dd74ed550f8b87d0da9da20b9f1d65ec035fa40e59ed11aaff740459d19748fa55eab83a71c81f474ae93b048bff082"/>
         <VersionInfo resourceName="EV-StoreTokenRequestDetails" version="SHA-512:6246354bf1737cb304c5263f9a091c9004490a96a1ed22100a9c724ab152130201c9696d619c36fade2245e344568be65a58c68c782cd42ab3d26f1cc9056fed"/>
-        <VersionInfo resourceName="FC-AuthenticateWithPrivateKeyJWT" version="SHA-512:0c0c05387828bbf29d4d89188d1a7b9fda89bbfbdbcd238df05e1a47331cc24694cfde33756a2318e9b78369aee4c52d254f953091b962280c6fabe448e78cac"/>
+        <VersionInfo resourceName="FC-AuthenticateWithPrivateKeyJWT" version="SHA-512:957a22dd8a9626438bbd5e213565c74883ea54662db867f0384a907837ea6ad7742203f3adb8a47546fa5c60d4649475cffae216818108f9b5110ee6f9988a6e"/>
         <VersionInfo resourceName="FC-CollectPerformanceSLO" version="SHA-512:d56d2f1060d3a189ba26b2fa476935e03bb0a33aa52dfb43c6778a6df5f0b278d37a0f12f97b37b8b40e6c0f17f641b2ca47dfb3d09556953aa022578926eb9c"/>
         <VersionInfo resourceName="FC-DecideIfCustomerIsPresent" version="SHA-512:4e4c1d1fda4c95f19b50029f5463bd8ace2bd182a7d9f779614e583b6c3999f261f19e81cb00cea7fd8045d4e941cac67bfec71cbc99df6e9bdf5bd6f95a38d1"/>
         <VersionInfo resourceName="FC-GeneralTrafficThresholdsForAuthEndpoints" version="SHA-512:ef677522bddf0605de27d68fc20842b65137c17491e2bfbcc77ec525763fd3202bc03ea9959f24a8c01a13436701256f5df60169965907a2699a9508171a6405"/>
@@ -101,7 +101,7 @@
         <VersionInfo resourceName="VAK-VerifyClientId" version="SHA-512:742305bfa6cffcc6c07d360cd546fcb6f8db4fabeb26da872e8d8f9235535c625f0a51b435c49040c0fe348d05a9374c38a079502a299144f1d9d2cf09d0abd7"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:3a51a06486ca539951a173adc415319e7e0b4c6bf1a36a3a48e4e537b1932e1888ee53b4e47fed61f4c04652f9bfe30508e01dae544f30b979844d9120edf2dd"/>
+        <VersionInfo resourceName="default" version="SHA-512:1240ca6ec32917464300d7e6db2a387bb7077f65deb5737da1920f7a1640d74b742e399f41d65d2373023498e3c1612548b4782f8e556dbb0727977a317bb792"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://calculateOIDCTokenRemainingTime.js" version="SHA-512:8016ef49ad1a8c32702af10b85ccebfa571fd674e2de24c6f190c36e667a85468bfdf899687611b10299355e206d0661ceb732aa721c0ba3cea431025433602f"/>

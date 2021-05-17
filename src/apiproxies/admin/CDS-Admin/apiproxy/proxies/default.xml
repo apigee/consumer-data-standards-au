@@ -41,6 +41,9 @@
             <Description>Indicate that a critical update to the metadata for Accredited Data Recipients has been made and should be obtained</Description>
             <Request>
                 <Step>
+                    <Name>OA-VerifyTokenForMetadataUpdate</Name>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>FC-ValidateRequestParams-MetadataUpdate</Name>
                 </Step>
@@ -65,6 +68,9 @@
         <Flow name="getMetrics">
             <Description>Get Metrics</Description>
             <Request>
+                <Step>
+                    <Name>OA-VerifyTokenForMetrics</Name>
+                </Step>
                 <Step>
                     <FaultRules/>
                     <Name>FC-ValidateRequestParams-Metrics</Name>
@@ -149,13 +155,6 @@
     </PostFlow>
     <PreFlow name="PreFlow">
         <Request>
-            <Step>
-                <Name>EV-GetJWTTokenFromAuthHeader</Name>
-            </Step>
-            <Step>
-                <FaultRules/>
-                <Name>FC-ValidateRegisterToken</Name>
-            </Step>
             <Step>
                 <FaultRules/>
                 <Name>FC-CheckRequestHeaders</Name>

@@ -1,0 +1,4 @@
+{
+    "name": "RegistrationInfo",
+    "value": "{  \"jwks_uri\": \"https://dummyorgname-dummyenvname.apigee.net/mock-cdr-register/jwks\" }"
+}

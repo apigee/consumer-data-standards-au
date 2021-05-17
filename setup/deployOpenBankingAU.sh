@@ -138,11 +138,16 @@ apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSDynamicClientRegistration" --displayName "DynamicClientRegistration" --approvalType "auto" --productDesc "Dynamically register a client" \
    --environments $APIGEE_ENV --proxies CDS-DynamicClientRegistration --scopes "cdr:registration"
 
-# Create a test developer who will own the test app
+# Create product for Admin
+echo "--->"  Creating API Product: "Admin"
+apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
+   --productName "CDSAdmin" --displayName "Admin" --approvalType "auto" --productDesc "Get access to Admin APIs" \
+   --environments $APIGEE_ENV --proxies CDS-Admin --scopes "admin:metadata:update,admin:metrics.basic:read"
 
-echo "--->"  Creating Test Developer: $CDS_TEST_DEVELOPER_EMAIL
-# If no developer name has been set use a default
+# Create a test developer who will own the test app
+# If no developer name has been set, use a default
 if [ -z "$CDS_TEST_DEVELOPER_EMAIL" ]; then  CDS_TEST_DEVELOPER_EMAIL=CDS-Test-Developer@somefictitioustestcompany.com; fi;
+echo "--->"  Creating Test Developer: $CDS_TEST_DEVELOPER_EMAIL
 apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL --firstName "CDS Test" --lastName "Developer"  --userName $CDS_TEST_DEVELOPER_EMAIL
 
 # Create a test app - Store the client key and secret
@@ -151,7 +156,6 @@ echo "--->"  Creating Test App: CDSTestApp...
 APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --name CDSTestApp --apiProducts "CDSTransactions,CDSAccounts,CDSOIDC" --email $CDS_TEST_DEVELOPER_EMAIL --json | jq .credentials[0])
 APP_KEY=$(echo $APP_CREDENTIALS | jq -r .consumerKey)
 APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
-
 
 # Update app attributes
 REG_INFO=$(sed -e "s/dummyorgname/$APIGEE_ORG/g" -e "s/dummyenvname/$APIGEE_ENV/g" ./setup/baseRegistrationInfoForCDSTestApp.json)
@@ -163,6 +167,31 @@ curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$
   -H 'Content-Type: application/json' \
   -d @./tmpReqBody.json
 rm ./tmpReqBody.json
+
+# Create another test developer who will own the CDR Register test app
+CDS_REGISTER_TEST_DEVELOPER_EMAIL=CDR-Register-Test-Developer@somefictitioustestcompany.com
+echo "--->"  Creating Register Test Developer: $CDS_REGISTER_TEST_DEVELOPER_EMAIL
+
+apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL --firstName "CDS Register Test" --lastName "Developer"  --userName $CDS_REGISTER_TEST_DEVELOPER_EMAIL
+
+# Create a test app to test Admin APIs - Simulates calls made by the CDR Register
+echo "--->"  Creating CDR Register Test App: CDRRegisterTestApp...
+
+APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --name CDRRegisterTestApp --apiProducts "CDSAdmin,CDSOIDC" --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL --json | jq .credentials[0])
+APP_KEY=$(echo $APP_CREDENTIALS | jq -r .consumerKey)
+APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
+
+# Update app attributes
+REG_INFO=$(sed -e "s/dummyorgname/$APIGEE_ORG/g" -e "s/dummyenvname/$APIGEE_ENV/g" ./setup/baseRegistrationInfoForCDSRegisterTestApp.json)
+REQ_BODY='{ "attributes": [ { "name": "DisplayName", "value": "CDSRegisterTestApp" }, '
+echo $REQ_BODY $REG_INFO "]}" >> ./tmpReqBody.json
+curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$CDS_REGISTER_TEST_DEVELOPER_EMAIL/apps/CDRRegisterTestApp \
+  -u $APIGEE_USER:$APIGEE_PASSWORD \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d @./tmpReqBody.json
+rm ./tmpReqBody.json
+echo \n.. App created. When testing admin APIs use the following client_id: $APP_KEY
 
 mkdir setup/certs
 cd setup/certs
@@ -230,10 +259,8 @@ apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $
 # Revert to original directory
  cd ../..
 
-# Replace the existing <JWKS> element in the JWT-VerifyCDRToken policy of validate-cdr-register-token shared flow, and JWT-VerifyCDRSSAToken policy in validate-ssa shared flow
+# Replace the existing <JWKS> element in the  JWT-VerifyCDRSSAToken policy in validate-ssa shared flow
 # so that they point to the mock-cdr jwks endpoint
-echo "--->"  "Adding Mock CDR Register JWKS uri to policy used to validate CDR JWT Token"
-replace_with_jwks_uri src/shared-flows/validate-cdr-register-token/sharedflowbundle/policies/JWT-VerifyCDRToken.xml /mock-cdr-register/jwks
 echo "--->"  "Adding Mock CDR Register JWKS uri to policy used to validate SSA Token"
 replace_with_jwks_uri src/shared-flows/validate-ssa/sharedflowbundle/policies/JWT-VerifyCDRSSAToken.xml /mock-cdr-register/jwks
 
