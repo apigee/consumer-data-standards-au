@@ -6,7 +6,7 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
-This implementation is based on **v1.7** of the standards and currently supports the following Banking APIs
+This implementation is based on **v1.9** of the standards and currently supports the following Banking APIs
 
 - Get Products
 - Get Product Detail
@@ -108,11 +108,9 @@ You can see and try out an actual instance of such a portal at [https://live-cds
 
 
 ## Admin APIs
-This reference implementation includes Admin endpoints, *Metadata Update* and *Get Metrics*. These endpoints are meant to be called by the CDR Register only. In order to be able to test these endpoints, the deployment script generates a *Mock* implementation of the Register. The Mock implementation includes a facility to generate such an Admin API request (which is essentially a JWT token signed by the mock CDR register). 
+This reference implementation includes Admin endpoints, *Metadata Update* and *Get Metrics*. These endpoints are meant to be called by the CDR Register only. In order to be able to test these endpoints, the deployment script generates a *Mock* implementation of the Register and a Test Register Client which needs to authenticate using private key jwts. The Mock implementation includes a facility to generate such a private key jwt.
 
-The standards mandate that a token be used only once, so you'll need to generate a new token for each request. 
-
-The Postman collection includes a request to the helper endpoint in the Mock CDR Register (*/mock-cdr-register/adminrequest*) to generate a compliant request.
+The Postman collection includes a request to the helper endpoint in the Mock CDR Register (/mock-cdr-register/privatekeyjwt).
 
 The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return **actual** metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
 
@@ -123,7 +121,7 @@ You can find this version of the reference implementation in the [okta-integrati
 
 ## Shared Flows
 
-There are 17 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
+There are 16 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
 
 1. *add-response-fapi-interaction-id*: Includes *x-fapi-interaction-id* header in responses and error messages
 2. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
@@ -137,7 +135,6 @@ There are 17 shared flows that implement common functionality required by the Ba
 10. *get-ppid*: Returns a unique Pairwise Pseudonym Identifier based on a sector and a customer Id. Uses a KVM to persist the generated PPIds. The sector is an attribute of the registered app for a given data receiver, determined at registration time, according to the CDS specifications.
 11. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
 12. *validate-audience-in-jwt*: Validates the audience claim in an authorisation JWT token as specified in version 1.6
-13. *validate-cdr-register-token*: Validates JWT Token included in requests to Admin API endpoints, as specified in Section [CDR Register calling Data Holders and Data Recipients](https://consumerdatastandardsaustralia.github.io/standards/#client-authentication) of the Standards
 14. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
 15. *validate-ssa*: Validates a Software Statement Assertion included in a dynamic client registration request, as specified in Section [Dynamic Client Registration](https://cdr-register.github.io/register/#dynamic-client-registration) of the CDR Register standards
 16. *verify-idp-id-token*: Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse
