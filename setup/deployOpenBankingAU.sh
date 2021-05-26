@@ -116,6 +116,14 @@ do
  # Revert to original directory
  cd ../../..
 
+ # Deploy Admin Proxies
+cd ../apiproxies/admin/CDS-Admin
+echo "--->"  Deploying CDS-Admin Apiproxy
+apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
+
+# Revert to original directory
+ cd ../../..
+
 # Create Products required for the different APIs
 echo "--->"  Creating API Product: "Accounts"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
@@ -275,13 +283,8 @@ do
  done
 
 
- # Deploy Admin Proxies
-cd ../apiproxies/admin/CDS-Admin
-echo "--->"  Deploying CDS-Admin Apiproxy
-apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
-
 # Deploy oidc-mock-provider proxy
-cd ../../authnz/oidc-mock-provider
+cd ../apiproxies/authnz/oidc-mock-provider
 echo "--->"  Deploying oidc-mock-provider Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
 
