@@ -113,16 +113,13 @@ do
     cd ..
  done
 
- # Revert to original directory
- cd ../../..
-
- # Deploy Admin Proxies
-cd ../apiproxies/admin/CDS-Admin
+# Deploy Admin Proxies
+cd ../admin/CDS-Admin
 echo "--->"  Deploying CDS-Admin Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
 
 # Revert to original directory
- cd ../../..
+ cd ../../../..
 
 # Create Products required for the different APIs
 echo "--->"  Creating API Product: "Accounts"
