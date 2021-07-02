@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="8" name="mock-adr-client">
+<APIProxy revision="9" name="mock-adr-client">
     <Basepaths>/mock-cdr-register</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1600924797750</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Mock proxy that emulates endpoints and ADR who wants to register a client needs to provide. Required for dynamic client registration</Description>
     <DisplayName>mock-adr-client</DisplayName>
-    <LastModifiedAt>1617071128824</LastModifiedAt>
+    <LastModifiedAt>1624338717532</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:677f6483a1ee2c07f66a1b67593004240883a528727f794ac93c7b370247f439250966b580ce0f6524ac7e7cebc3ef6ce36e4469cd30fbb8b1845a2bce3d4138:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:361d5ac8e714ffe21d1dea277b46479d5f407e441c25ec3006c0ae6e4840652f6bd38f0ee776cc793b97e41602ce7b3d9ae80c9a9ed6bf868477a4c54d7c4dd3:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-AddSectorIdToSSARequest</Policy>
         <Policy>AM-SetMockJWKSInfo</Policy>

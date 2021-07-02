@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
+        <FaultRules/>
         <Name>JS-Do-Pagination</Name>
     </Step>
     <Step>
-        <Name>RF-Pagination-Error</Name>
         <Condition>!(pagination.error = null)</Condition>
+        <FaultRules/>
+        <Name>RF-Pagination-Error</Name>
     </Step>
 </SharedFlow>

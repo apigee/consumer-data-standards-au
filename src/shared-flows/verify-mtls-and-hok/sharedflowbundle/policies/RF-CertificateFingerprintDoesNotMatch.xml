@@ -9,8 +9,11 @@
  "errors": [
     {
       "code": "401",
-      "title": "Unauthorised",
-      "detail": "Invalid Token. Client certificate does not match"
+      "title": "Invalid Token",
+      "detail": "Client certificate does not match",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

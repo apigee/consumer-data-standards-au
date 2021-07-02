@@ -9,14 +9,14 @@
             <Payload contentType="application/json">{
   "errors": [
     {
-       "code": "415",
-       "title": "Unsupported Media Type",
+       "code": "urn:au-cds:error:cds-all:Header/Invalid",
+       "title": "Invalid Header",
        "detail": "Content-type Header must be application/json"
     }
   ]
 }</Payload>
-            <StatusCode>415</StatusCode>
-            <ReasonPhrase>Unsupported Media Type</ReasonPhrase>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

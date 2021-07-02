@@ -13,7 +13,10 @@
     {
       "code": "429",
       "title": "Too many requests",
-      "detail": "Publicly accessible APIs have traffic limits. Please retry after 1 second"
+      "detail": "Publicly accessible APIs have traffic limits. Please retry after 1 second",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

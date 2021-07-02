@@ -10,7 +10,10 @@
     {
       "code": "400",
       "title": "Bad Request",
-      "detail": "Invalid Authorization Code"
+      "detail": "Invalid Authorization Code",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>
@@ -18,5 +21,5 @@
         <ReasonPhrase>Bad Request</ReasonPhrase>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

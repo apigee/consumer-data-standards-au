@@ -7,7 +7,7 @@
         <VersionInfo resourceName="FC-GetIDPJWKS" version="SHA-512:f5ab06defb1d4a11c33f51e820052789097000320ad5a3bed2654b34d39fb92d528f8b72e8614c71a5790415d5f0e4118d7e2cd8d647dd969b57c0c779c610f6"/>
         <VersionInfo resourceName="JWT-VerifyIdpToken" version="SHA-512:2c7c6e49b48edc556005b05d87133f39b897e5137fd56f85ad8c856e32f6ac1fda4b0663ba8766a6c49e04d3dc181215145cd0d29ac93016a82bf125935e22b1"/>
         <VersionInfo resourceName="KVM-GetIDPCredentials" version="SHA-512:b5b592331ba04aa70f5cdac9cc4915355a42a9ce1b0587f6f3f2ec3e8d221c4415d46f3e93b7599679b86e1fab9cdb55a2ac2ab64db99f9a2e5df6e99aa4c638"/>
-        <VersionInfo resourceName="RF-InvalidIdToken" version="SHA-512:128b8b6dee922579f7ec56109b055ffab722adf365c6d7ce5c33763a8c479a7c49fce8fb1e769a6280aa49c1c63a1320c639cbe5772335e3cf546e067e807d32"/>
+        <VersionInfo resourceName="RF-InvalidIdToken" version="SHA-512:6ad497528467082105524c81e3927d1f0ec03eaae28967d60c61ff42ed12fa99fdbb5af023f20eca13eef0e95af6589793307e9fcb1dc324ebffc08eb66a5dae"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources/>

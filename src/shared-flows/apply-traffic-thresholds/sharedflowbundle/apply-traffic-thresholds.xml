@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="22" name="apply-traffic-thresholds">
+<SharedFlowBundle revision="23" name="apply-traffic-thresholds">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1564713794748</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Apply the traffic thresholds specified by CDS non functional requirements</Description>
     <DisplayName>apply-traffic-thresholds</DisplayName>
-    <LastModifiedAt>1613946753632</LastModifiedAt>
+    <LastModifiedAt>1624511029996</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:3841951e8d95f024757e09168ded14a6e1e3a8ffb58ae56284e468408285a1c8a67d2995e2eccc8b12d7a60402ad440acbb40beb23cd82947ef96fe4842c9c24:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:8aa58002edc0a0007155dc6197103f6e09a1d022c087a74c1114ee64de0661d0efbd8e6984f88ba6f4f476a83c803f662e1afdb01fca696f768cfa49d9ae252c:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-SetQuotaBucketForCustomerPresentSession</Policy>
         <Policy>Q-RequestsPerSessionForUnattendedTraffic</Policy>

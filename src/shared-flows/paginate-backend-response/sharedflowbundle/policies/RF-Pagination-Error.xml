@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-Pagination-Error">
     <DisplayName>RF-Pagination-Error</DisplayName>
+    <FaultRules/>
     <Properties/>
     <FaultResponse>
         <Set>
@@ -8,15 +9,16 @@
             <Payload contentType="application/json">{
                 “errors”: [
                     {
-                      “code”: “400”,
-                      “title”: “Bad Request”,
+                      “code”: “urn:au-cds:error:cds-all:Field/InvalidPage”,
+                      “title”: “Invalid Page”,
                       “detail”: “{pagination.error}”
                     }
                 ]
             }</Payload>
-            <StatusCode>400</StatusCode>
-            <ReasonPhrase>Bad Request</ReasonPhrase>
+            <StatusCode>422</StatusCode>
+            <ReasonPhrase>Unprocessable Entity</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
 </RaiseFault>

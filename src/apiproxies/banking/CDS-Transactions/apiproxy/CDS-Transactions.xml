@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="17" name="CDS-Transactions">
+<APIProxy revision="19" name="CDS-Transactions">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -12,17 +12,18 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Transaction API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Transactions</DisplayName>
-    <LastModifiedAt>1604895014604</LastModifiedAt>
+    <LastModifiedAt>1625113517021</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:245df06294b237019d8f913c595a3bb169163787ae0cee8d35505abb4ef6603065d5483723704417bceaa4fecd8ffc2041d5ce90e449b9156b466d5de31c8188</ManifestVersion>
+    <ManifestVersion>SHA-512:7587bb472f73a18e94598fc6b7ea47ce99d4711a0a815980296b772919413fb8add8be63765189ac20a2631411af4913f4a8d00ccb141538bd97f6eee19f219b:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>
-        <Policy>AM-MockFullListOfTransactions</Policy>
+        <Policy>AM-MockFullListOfTransactionsAndValidAccounts</Policy>
         <Policy>AM-Set-Pagination-Settings</Policy>
         <Policy>AM-SetCustomerId</Policy>
         <Policy>AM-TokenNotVerified</Policy>
         <Policy>EV-AccountIdFromBasePath</Policy>
+        <Policy>EV-GetAllAccountsForCustomer</Policy>
         <Policy>EV-GetAllTransactionsForCustomer</Policy>
         <Policy>EV-GetErrorDetail</Policy>
         <Policy>EV-GetTransactionsFilterCriteria</Policy>
@@ -37,10 +38,13 @@
         <Policy>FC-ValidateRequestParams</Policy>
         <Policy>FC-VerifyHoK</Policy>
         <Policy>JS-BuildTransactionDetailsResponse</Policy>
+        <Policy>JS-CheckAccountIsValid</Policy>
         <Policy>JS-FilterTransactionsListBasedOnRequestFilters</Policy>
         <Policy>JS-ModifyDatesInMockTransactions</Policy>
         <Policy>JS-RemoveTransactionDetails</Policy>
         <Policy>OA-VerifyTokenForGetTransactions</Policy>
+        <Policy>RF-InvalidAccountInURI</Policy>
+        <Policy>RF-InvalidTxIdInURI</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
     </Policies>
@@ -49,6 +53,7 @@
     </ProxyEndpoints>
     <Resources>
         <Resource>jsc://buildTransactionDetailsResponse.js</Resource>
+        <Resource>jsc://checkAccountIsValid.js</Resource>
         <Resource>jsc://filterTransactionsListBasedOnRequestFilters.js</Resource>
         <Resource>jsc://modifyDatesInMockTransactions.js</Resource>
         <Resource>jsc://removeTransactionDetails.js</Resource>

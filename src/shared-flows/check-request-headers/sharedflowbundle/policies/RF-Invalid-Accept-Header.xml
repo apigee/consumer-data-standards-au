@@ -9,14 +9,14 @@
             <Payload contentType="application/json">{
   "errors": [
     {
-       "code": "406",
-       "title": "Not Acceptable",
+       "code": "urn:au-cds:error:cds-all:Header/Invalid",
+       "title": "Invalid Header",
        "detail": "Accept Header must be application/json"
     }
   ]
 }</Payload>
-            <StatusCode>406</StatusCode>
-            <ReasonPhrase>Not Acceptable</ReasonPhrase>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

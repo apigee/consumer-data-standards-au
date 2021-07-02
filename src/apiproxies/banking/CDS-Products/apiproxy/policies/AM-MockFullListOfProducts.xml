@@ -19,8 +19,7 @@
 		"additionalInformation": {
 			"overviewUri": "https://apibank.com.au/savings/overview",
 			"termsUri": "https://apibank.com.au/savings/tycs",
-			"feesAndPricingUri": "https://apibank.com.au/savings/fees",
-			"imageUri": "https://apibank.com.au/img/SavingsAccount1.png"
+			"feesAndPricingUri": "https://apibank.com.au/savings/fees"
 		},
 		"features": [
 			{
@@ -53,8 +52,7 @@
 		"additionalInformation": {
 			"overviewUri": "https://apibank.com.au/mortgage/overview",
 			"termsUri": "https://apibank.com.au/mortgage/tycs",
-			"feesAndPricingUri": "https://apibank.com.au/mortgage/fees",
-			"imageUri": "https://apibank.com.au/img/BasicMortgage1.png"
+			"feesAndPricingUri": "https://apibank.com.au/mortgage/fees"
 		},
 		"features": [
 			{

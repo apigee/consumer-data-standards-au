@@ -33,4 +33,4 @@ if (accountMatches) {
     txDetails.data = theTransactionDetails[0];
 }
 context.setVariable("response.content",JSON.stringify(txDetails));
-    
+context.setVariable("trxIsValid", accountMatches);    

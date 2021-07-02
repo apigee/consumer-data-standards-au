@@ -7,8 +7,11 @@
             <Payload contentType="application/json">{ "errors": [
     {
       "code": "401",
-      "title": "Unauthorized",
-      "detail": "Invalid claim: aud"
+      "title": "Invalid Claim",
+      "detail": "aud",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

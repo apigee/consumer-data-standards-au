@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-GetAllAccountsForCustomer">
+    <DisplayName>EV-GetAllAccountsForCustomer</DisplayName>
+    <JSONPayload>
+        <Variable name="listOfAllAccounts">
+            <JSONPath>$.[?(@.customer == {customerId})].accounts</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">listOfAllAccountsByCustomer</Source>
+</ExtractVariables>

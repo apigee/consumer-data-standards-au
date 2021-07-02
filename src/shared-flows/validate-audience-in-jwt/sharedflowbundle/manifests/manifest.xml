@@ -6,7 +6,7 @@
         <VersionInfo resourceName="EV-GetIssuerAndTokenEndpoint" version="SHA-512:792e0acf7373bde643ca85cba7ef3ea8d5e3d49972c64539433a210dce2ce077fd13b9b4ce49332f1fe560991fdba879a5683cc7b2598b5b05b841688e344048"/>
         <VersionInfo resourceName="LC-RetrieveOIDCConfig" version="SHA-512:32a6916b625db531d0275eeb30c4127b44e7f3e064adff23fa41d97fb32dc184ffdcc07411b7b2a619df815c4f15311b3b0e6089ea8fb1a3efaae0487692d054"/>
         <VersionInfo resourceName="PC-StoreOIDCConfig" version="SHA-512:eb1a89e11d7a0d3ab937b8188f62cade690c00d5a7d335d0625c7a49c8ad8187cd2429c4070f42824c353b20a018eca28140f6404598e34da85fd8d43b97ecd0"/>
-        <VersionInfo resourceName="RF-InvalidAudience" version="SHA-512:cf58ecad769d2cab4615b81f82702f7f043f52121cf2f29f0f69764aa55a80735df8c587123ad17de00fb38f4a489011b3ce94c2671ac9b1d5d1db15b4321db5"/>
+        <VersionInfo resourceName="RF-InvalidAudience" version="SHA-512:0f65dce49ff49c3b11b813af8f7debd8dd7da8719a420dbeda70f0d4e6fb4af28be35c51b9cb5a939f1214c61b7e94893b20fbbc0a0ad5650050cba03a031b5e"/>
         <VersionInfo resourceName="RF-InvalidAudience-400Error" version="SHA-512:ee91cc082251fd6adc6fd92a261c657629c3198646a9c816e64b04e8bae509192ab3f583ddf76f408cd099d22b97226bcbf54e84f15e300ed5e88ce1bf7fb4ae"/>
         <VersionInfo resourceName="SC-GetOIDCConfig" version="SHA-512:7744537017ca5e3a3f5dcff5a59549d5f139cae386f9bd5dbc8567a3d50ed22aa6a68348f0d1a0b6f34e170cd518b5247b9fbc5f248c8095978a0ab75d2e9e8e"/>
     </Policies>

@@ -45,9 +45,9 @@
         <VersionInfo resourceName="RF-InvalidRedirectURIs" version="SHA-512:94d5bdb1c81786fc83fef2468838a7b0e3781915f9ab98bd5dec63538548c67748ed554f5fd99d1fd37d286a3d95fae4a2fc9b21a9410ab4b9402f6a629f93cf"/>
         <VersionInfo resourceName="RF-InvalidRequest" version="SHA-512:6b6e20135ecdc85642ccf23dac7c9a63abd4371be8238a5fbe68eba6c72d6614ae752d3496763a13734089702f6d5096da342cf8cad981acad89feb34193aa26"/>
         <VersionInfo resourceName="RF-MissingEXPClaim" version="SHA-512:d668621d3de0ed070da16261f33dc8ffa41dba175eead686a6eeb294ee541734d8671b14254cc92985230ab953cb46b3414626003dcc785c0cf1f0c4bc6360a0"/>
-        <VersionInfo resourceName="RF-NotFound" version="SHA-512:ee8b1b452846c40d858bc0f9dc289f2fa73cd5ca12e76cd17661a63b01a60465bff857ded1788f390ba01fc3e8af0589e471c2e714b532324cbdb6fa251a9dc0"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:f65530a661aad72a001c377a9bdb4559f3e89e6d0ad0d98c4a8a28a2e3feb59b7d8d7b8c8fde207732545a7d73ce9c8bdaeb7e624839eebd9a2d777ce10eedf7"/>
         <VersionInfo resourceName="RF-SWIdOrOrgIdDoesNotMatch" version="SHA-512:c89196050878136207979a8926a00e44557202f6da51bf0d21513b17e140cea913bbf035fe8f16db6eafc7c0fd91192a89c77df3dd5f12fadbe159912b34037b"/>
-        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:fd39a8b1e91fbf4a7a99310707059a5a911f715861e6d0cc6204aea9fa9eda0b0d94856410fde501d89903aaaced4b4e482f5ebdc3666fc592a64b95499b3c3f"/>
+        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:8b0edba96bb18fe27ea9f08a45b4706f44d13a8ff081b8134485ab033accafb8142ead60ad5686ad9b8503fb402edf6d32e9f370475a1080cbd042a39e69773c"/>
         <VersionInfo resourceName="SC-AddKeysToApigeeApp" version="SHA-512:062cf9defd90c3267fc893cfee7bfb69d3e8408d693a185ae0e1b0e13416de44260dc3f66a4a5c6721ef8f6c050aae12130bcfcfa678240409832109b7b9fcec"/>
         <VersionInfo resourceName="SC-AssociateProductsWithKey" version="SHA-512:0d3352bb44071b425d227651c6714ce50c4e4c9948f66095e8282b246d97e4bb8cef9e00eff9255548d3c4032defba4feebfb2cbb318b7a0c48f774d7d2e4e6a"/>
         <VersionInfo resourceName="SC-CreateApp" version="SHA-512:3d7f8783eb68ae1f77bf993bb8b1cd52b165cddf114a61ac9acefce3b850e4a158a855d79035d997c30d3084d217266ae053ce829cb5e5d99bb83613a644bfc9"/>
@@ -58,7 +58,7 @@
         <VersionInfo resourceName="SC-UpdateApp" version="SHA-512:0490754f58b3e9d9fb761bb0b4d9e08ab4fb99c7b30677411683af469df53efc74f20abc8fa92bec3ef820d9844f3220c298535d66caf806db9bc1dba2329936"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:fe7e4e64f9d1ccffbb827dbe12204b7703385be85d9bc5271651aa0e6272b461a1114ab67e68e9d17e7968ccb585ebf5c9d0d99921dd01683958d4930059aef4"/>
+        <VersionInfo resourceName="default" version="SHA-512:a8751d7996ef906d67c89bec4ae7d8a1e00b1606d18ab4732b0b2cc5e7a99df3621c9c79469c440f48560fa63539feb32783626860af7b9477e7ccd1ff2c2348"/>
     </ProxyEndpoints>
     <Resources>
         <VersionInfo resourceName="jsc://assignProductsBasedOnScope.js" version="SHA-512:307b142b577c2a56cf850d7e6d5c633cfebe32aed6f799c79a48c1deffcde04fa5e1f89c157c7d00e756d9f31ca7bab6f77d4b8cfff66af04d85425e839d0553"/>

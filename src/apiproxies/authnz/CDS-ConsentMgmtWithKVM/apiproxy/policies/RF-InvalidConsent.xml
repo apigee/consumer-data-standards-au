@@ -7,9 +7,9 @@
             <Payload contentType="application/json">{
  "errors": [
     {
-      "code": "422",
-      "title": "Unprocessable Entity",
-      "detail": "Invalid CDR Arrangement Id or not active or not associated with client_id or customer"
+      "code": "urn:au-cds:error:cds-all:Authorisation/InvalidArrangement",
+      "title": "Invalid Consent Arrangement",
+      "detail": "{theConsentId}"
     }
   ]
 }</Payload>

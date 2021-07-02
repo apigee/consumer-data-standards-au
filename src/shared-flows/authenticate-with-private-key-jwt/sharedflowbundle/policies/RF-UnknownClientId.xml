@@ -8,7 +8,10 @@
     {
       "code": "401",
       "title": "Unauthorized",
-      "detail": "Invalid client Id"
+      "detail": "Invalid client Id",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

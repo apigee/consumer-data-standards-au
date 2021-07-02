@@ -11,7 +11,10 @@
     {
       "code": "400",
       "title": "Bad Request",
-      "detail": "Invalid Refresh Token"
+      "detail": "Invalid Refresh Token",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

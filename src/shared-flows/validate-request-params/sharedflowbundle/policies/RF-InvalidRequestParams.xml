@@ -11,7 +11,7 @@
     {
       “code”: “{errorResponseCode}”,
       “title”: “{errorTitle}”,
-      “detail”: “{errorDetail}”
+      “detail”: “{errorDescription}”
     }
   ]
 }</Payload>

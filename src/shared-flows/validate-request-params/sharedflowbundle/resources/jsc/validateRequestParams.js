@@ -20,15 +20,19 @@
  * Generic Script is for validation of request based on config provided
  */
 
+
+// Maximum allowed page size value, according to CDS standards
+const MAX_PAGE_SIZE = 1000;
+
 // Extract validation configuration
 
 RequestConfig = JSON.parse(context.getVariable("validateParamConfig"));
 var error = validateRequest(RequestConfig);
 if (error.isError) {
     context.setVariable("isError", error.isError);
-    context.setVariable("errorResponseCode", error.errorResponseCode);
+    context.setVariable("errorResponseCode", error.errorCode);
     context.setVariable("errorTitle", error.errorTitle);
-    context.setVariable("errorDetail", error.errorDescription);
+    context.setVariable("errorDescription", error.errorDescription);
 }
 else {
     context.setVariable("isError", false);
@@ -40,12 +44,11 @@ function validateRequest(RequestConfig) {
     var errorJson = {};
     errorJson.isError = true;
     errorJson.errorResponseCode = 400;
-    errorJson.errorTitle = "Bad Request"
-
+    
     validPayload = {};
     // validate Headers
     if (RequestConfig.Headers) {
-        for (i = 0; i < RequestConfig.Headers.length; i++) {
+       for (i = 0; i < RequestConfig.Headers.length; i++) {
 
             for (key in RequestConfig.Headers[i]) {
                 ispresent = false;
@@ -54,19 +57,26 @@ function validateRequest(RequestConfig) {
                 if (headerVal) {
                     ispresent = true;
                 }
+                errorJson.errorDescription = key;
                 // check if header is mandatory
                 if (headerValidation.Mandatory) {
                     if (!ispresent) {
-                        errorJson.errorDescription = "" + key + " header not present in the request";
+                        errorJson.errorCode = "urn:au-cds:error:cds-all:Header/Missing";
+                        errorJson.errorTitle = "Missing Header";
                         return errorJson;
 
                     }
                 }
 
+                errorJson.errorCode = "urn:au-cds:error:cds-all:Header/Invalid";
+                errorJson.errorTitle = "Invalid Header";
 
                 //validate type of header value
                 if (isValidParamType(headerVal, headerValidation, ispresent) === false) {
-                    errorJson.errorDescription = "" + key + " header type is invalid";
+                    if (headerValidation.ValueType == "Date") {
+                        errorJson.errorCode = "	urn:au-cds:error:cds-all:Field/InvalidDateTime";
+                        errorJson.errorTitle = "Invalid Date";
+                    }
                     return errorJson;
 
                 }
@@ -85,7 +95,6 @@ function validateRequest(RequestConfig) {
 
                 // validate against list of allowed values for the header
                 if (isInvalidParamValue(headerVal, headerValidation, ispresent)) {
-                    errorJson.errorDescription = "" + key + " header value is invalid";
                     return errorJson;
                 }
 
@@ -105,21 +114,30 @@ function validateRequest(RequestConfig) {
                 ispresent = false;
                 var queryParamVal = context.getVariable("request.queryparam." + key);
                 var queryParamValidation = RequestConfig.QueryParams[i][key];
-                if (queryParamVal) {
+                if  (queryParamVal) {
                     ispresent = true;
                 }
+                errorJson.errorDescription = key;
                 // check if query param is mandatory
                 if (queryParamValidation.Mandatory) {
                     if (!ispresent) {
-                        errorJson.errorDescription = "" + key + " query parameter not present in the request";
+                        errorJson.errorCode = "urn:au-cds:error:cds-all:Field/Missing";
+                        errorJson.errorTitle = "Missing Field";
                         return errorJson;
 
                     }
 
                 }
+                
+                errorJson.errorCode = "urn:au-cds:error:cds-all:Field/Invalid";
+                errorJson.errorTitle = "Invalid Field";
+                
                 //validate the type of query parameter
                 if (isValidParamType(queryParamVal, queryParamValidation, ispresent) === false) {
-                    errorJson.errorDescription = "" + key + " query parameter type is invalid";
+                    if (queryParamValidation.ValueType == "Date") {
+                        errorJson.errorCode = "urn:au-cds:error:cds-all:Field/InvalidDateTime";
+                        errorJson.errorTitle = "Invalid Date";
+                    }
                     return errorJson;
                 }
 
@@ -137,9 +155,16 @@ function validateRequest(RequestConfig) {
 
                 // validate against the list of possible values allowed for the query parameter
                 if (isInvalidParamValue(queryParamVal, queryParamValidation, ispresent)) {
-
-                    errorJson.errorDescription = "" + key + " query parameter value is invalid";
                     return errorJson;
+                }
+                
+                
+                // Valideate page-size param if present
+                if ((key == "page-size") && (isInvalidPageSize(queryParamVal, ispresent))) {
+                     errorJson.errorCode = "urn:au-cds:error:cds-all:Field/InvalidPageSize";
+                     errorJson.errorTitle = "Invalid Page Size";
+                     errorJson.errorDescription = "page-size provided (" + queryParamVal + ") needs to be an integer between 1 and " + MAX_PAGE_SIZE;
+                     return errorJson;
                 }
             }
         }
@@ -162,22 +187,31 @@ function validateRequest(RequestConfig) {
                     if (bodyParam != "invalid") {
                         ispresent = true;
                     }
+                    
+                    errorJson.errorDescription = key;
 
                     // check if the body parameter is mandatory and if not present in the request, return error
                     if (bodyValidation.Mandatory) {
 
                         if (bodyParam == "invalid") {
-                            errorJson.errorDescription = "" + key + " is not present";
+                            errorJson.errorCode = "urn:au-cds:error:cds-all:Field/Missing";
+                            errorJson.errorTitle = "Missing Field";
                             return errorJson;
                         }
 
                     }
+                    
+                    errorJson.errorCode = "urn:au-cds:error:cds-all:Field/Invalid";
+                    errorJson.errorTitle = "Invalid Field";
+                
                     var typeCastedBodyParam = null;
                     //validate the type of the body parameter value
                     var isBodyParamValid = isValidParamType(bodyParam, bodyValidation, ispresent);
+                    if (bodyValidation.ValueType == "Date") {
+                        errorJson.errorCode = "	urn:au-cds:error:cds-all:Field/InvalidDateTime";
+                        errorJson.errorTitle = "Invalid Date";
+                    }
                     if (isBodyParamValid === false) {
-
-                        errorJson.errorDescription = "" + key + " type is invalid";
                         return errorJson;
                     }
                     else {
@@ -203,7 +237,6 @@ function validateRequest(RequestConfig) {
 
                     // validate if the body parameter value is one in the list of allowed values for it
                     if (isInvalidParamValue(bodyParam, bodyValidation, ispresent)) {
-                        errorJson.errorDescription = "" + key + " value is invalid";
                         return errorJson;
                     }
 
@@ -270,6 +303,21 @@ function isInvalidMinLength(param, configparam, ispresent) {
     }
 
     return false;
+
+}
+
+// Checks that, if present,  page-size is non empty and less than the maximum value allowed
+function isInvalidPageSize(paramvalue, ispresent) {
+    if (ispresent) {
+        if ( (paramvalue > MAX_PAGE_SIZE)  )
+            return true;
+
+        else return false;
+    }
+    if ( paramvalue === "" )
+        return true;
+    else
+        return false;
 
 }
 

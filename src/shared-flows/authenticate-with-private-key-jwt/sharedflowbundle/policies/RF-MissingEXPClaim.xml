@@ -7,8 +7,11 @@
  "errors": [
     {
       "code": "400",
-      "title": "Bad Request",
-      "detail": "Missing claim: exp"
+      "title": "Invalid Claim",
+      "detail": "Missing claim: exp",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

@@ -6,9 +6,9 @@
     <Set>
         <Payload contentType="application/json">{ "errors": [
     {
-      "code": "403",
-      "title": "Forbidden",
-      "detail": "Token does not have required scope"
+      "code": "urn:au-cds:error:cds-all:Authorisation/InvalidConsent",
+      "title": "Consent Is Invalid",
+      "detail": "Consent does not have required scope"
     }
   ]
 }</Payload>
@@ -16,5 +16,5 @@
         <ReasonPhrase>Forbidden</ReasonPhrase>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

@@ -25,10 +25,16 @@
  const currEndpointVersion = parseInt(context.getVariable("currentEndpointVersion"));
  var hdrError = false;
  var hdrErrorMsg;
+ var hdrStatusCode = "400";
+ var hdrErrorCode;
+ var hdrErrorTitle;
  
-  hdrError = (vHdr == "undefined") || (vHdr === "");
+  hdrError = (vHdr == "undefined") || (vHdr === null) || (vHdr === "");
  if (hdrError) {
      hdrErrorMsg = "Missing version header x-v";
+     hdrErrorCode = "urn:au-cds:error:cds-all:Header/Missing";
+     hdrErrorTitle = "Missing Required Header"
+
  }
  else {
      // Convert xVHdr to number
@@ -36,28 +42,41 @@
      hdrError = (isNaN(vHdrAsNumber)) || (vHdrAsNumber < 1);
      if (hdrError) {
         hdrErrorMsg = "Version header x-v should be a positive integer";
+        hdrErrorCode = "urn:au-cds:error:cds-all:Header/InvalidVersion";
+        hdrErrorTitle = "Invalid Version"
      }
      else {
          if (vHdrAsNumber != currEndpointVersion) {
              // Requested version in x-v doesn't match the current endpoint version. 
              // Check x-min-v to see if it is within the range. If absent, or bigger than x-v, set it to x-v
-             if (minVHdr === "") {
+             if ((minVHdr == "undefined") || (minVHdr === null) ||(minVHdr === "")) {
                  minVHdr = vHdr;
              }
              const minVHdrAsNumber = parseInt(minVHdr);
              hdrError = isNaN(minVHdrAsNumber) || (minVHdrAsNumber < 1);
              if (hdrError) {
                  hdrErrorMsg = "x-min-v should be a positive integer"; 
+                 hdrErrorCode = "urn:au-cds:error:cds-all:Header/InvalidVersion";
+                 hdrErrorTitle = "Invalid Version"
              } 
              else {
               // Acceptable condition: x-min-v <= currEndpointVersion <= x-v
               hdrError =  (minVHdrAsNumber > currEndpointVersion) || (currEndpointVersion > vHdrAsNumber);
               hdrErrorMsg = "Currently supported endpoint version: " + currEndpointVersion;
+              hdrErrorCode = "urn:au-cds:error:cds-all:Header/UnsupportedVersion";
+              hdrErrorTitle = "Unsupported Version"
+              hdrStatusCode = "406";
              }
          }
      }
  }
+ var hdrReasonPhrase = (hdrStatusCode == "400") ? "Bad Request" : "Not Acceptable"
+ 
  context.setVariable("hdrError", hdrError);
  context.setVariable("hdrErrorMsg", hdrErrorMsg);
+ context.setVariable("hdrStatusCode", hdrStatusCode);
+ context.setVariable("hdrErrorTitle", hdrErrorTitle);
+ context.setVariable("hdrErrorCode", hdrErrorCode);
+ context.setVariable("hdrReasonPhrase", hdrReasonPhrase);
  
 

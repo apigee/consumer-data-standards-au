@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="2" name="decide-if-customer-present">
+<SharedFlowBundle revision="5" name="decide-if-customer-present">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1576642616429</CreatedAt>
+    <CreatedAt>1576642330287</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Sets isCustomerPresent variable, based on inspection of x-fapi-customer-ip-address header</Description>
     <DisplayName>decide-if-customer-present</DisplayName>
-    <LastModifiedAt>1576642616429</LastModifiedAt>
+    <LastModifiedAt>1624257575579</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:502a5b43532e7e27a47fdb29a8fcd75aaae5f845d6f4ea7ea831932fd01437f5209c44b7e8e1c4a6922696b48a73e372d3df2c96209a2e061406273e4c59e132</ManifestVersion>
+    <ManifestVersion>SHA-512:937ab015ad2355d42567742438e230a9938a64d06be730ad118e07ae317d862f93f9a6487fbdb0c74cf8c2a8b31a0e29abe797cd1931fbdb5975bc785890b01f:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-SetIsCustomerPresentToFalse</Policy>
         <Policy>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Policy>

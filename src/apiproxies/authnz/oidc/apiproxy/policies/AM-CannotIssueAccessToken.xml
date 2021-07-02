@@ -9,7 +9,10 @@
     {
       "code": "400",
       "title": "Bad Request",
-      "detail": "{firstnonnull(oauthV2.OA-IssueOpaqueAccessToken.fault.cause,oauthV2.OA-RevokeRefreshToken.fault.cause,oauthV2.OA-RevokeAccessToken.fault.cause)}"
+      "detail": "{firstnonnull(oauthV2.OA-IssueOpaqueAccessToken.fault.cause,oauthV2.OA-RevokeRefreshToken.fault.cause,oauthV2.OA-RevokeAccessToken.fault.cause)}",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

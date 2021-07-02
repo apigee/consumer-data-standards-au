@@ -7,9 +7,9 @@
         <VersionInfo resourceName="LC-JTIHasBeenSeen" version="SHA-512:4a780846a005cad97ffd9c7728e4fc2973817964fdc00c2e011b75ac16481e298ed5f47e7a444a65e3ed9dfffc285771fe2c93c4e4f9505676e28861883e9720"/>
         <VersionInfo resourceName="PC-RememberJTI" version="SHA-512:fb9910289cbaa0c4f7890061a9e14d6f0a10f4cfeb64dba2d5937b6293b678f5e9382d6ff8fdec9fe05bed9eff4ff1730a4b9cf6c79b8233c51e48c34fb62fc2"/>
         <VersionInfo resourceName="RF-MissingJTIClaim" version="SHA-512:b89dee1270a19c32cda85382ea86468776bde86de01d21d29a24f246693eca6bfcfcfa1ecf2c8508ed322d4f3e20eae4dd4404adeb1161df6d006b36dc2b85b5"/>
-        <VersionInfo resourceName="RF-MissingJTIClaimBearer" version="SHA-512:34e08d9ce9734382ea9dff9ef2c1010b72ad8d91376ad311ddc18d433d9b4dff539f2a5bb7db6ca03cefa5d95dcf233b387d5671210a3ca0f32bff18405c2fae"/>
+        <VersionInfo resourceName="RF-MissingJTIClaimBearer" version="SHA-512:3453400f956843adbf322bbbe6644adfc5189806a52ace615536853a0b99a7584b7593e8067d1c44fa97eb50a78b6f63ed266071d0c7afef789dde0e6221e67c"/>
         <VersionInfo resourceName="RF-TokenReused" version="SHA-512:bb5a49bc5f5e4fc7fb8e8daa7e6f77473ef266454f39921996bb0355ad8552fa8fe1175975a069ed518bfef2ef7eca97b885253547727e6a62801b6cd674fd3c"/>
-        <VersionInfo resourceName="RF-TokenReusedBearer" version="SHA-512:cc2371b5d9151ac20106ecdf769ab08309ff7df9250c54dfebee551a7ac616416417a8d865c9aa51e9c3c29fa14f0dc19382655e7d5c0316ab8524f358012e9e"/>
+        <VersionInfo resourceName="RF-TokenReusedBearer" version="SHA-512:7f39e2b3827c54fed1b6f20faa120a10e801449985ed89b39ea273f08bd062cb93a3796219fcdfb1800006db855db49ccd98602a6077392b1658bc78c8f20072"/>
     </Policies>
     <ProxyEndpoints/>
     <Resources/>

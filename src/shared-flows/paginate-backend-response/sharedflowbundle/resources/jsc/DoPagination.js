@@ -35,7 +35,7 @@ if (doPagination) {
 	var totalPages = Math.ceil(totalNumberOfEntries / pageSize);
 	if (totalNumberOfEntries > 0 && pageNumber > totalPages) {
 		// When there are no records in the backend response, it shouldn't be considered an error
-		context.setVariable("pagination.error", "Page requested is bigger than total number of pages available");
+		context.setVariable("pagination.error", "Page requested (" + pageNumber + ") is bigger than total number of pages available (" + totalPages + ")");
 	} else {
 		var responseSliceStart = (pageNumber - 1) * pageSize;		
 		var responseSliceEnd = responseSliceStart + pageSize;

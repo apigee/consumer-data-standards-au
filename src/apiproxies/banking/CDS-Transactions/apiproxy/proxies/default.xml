@@ -93,6 +93,10 @@
                     <FaultRules/>
                     <Name>JS-BuildTransactionDetailsResponse</Name>
                 </Step>
+                <Step>
+                    <Name>RF-InvalidTxIdInURI</Name>
+                    <Condition>trxIsValid = "false"</Condition>
+                </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/{theTransactionId}") and (request.verb = "GET")</Condition>
         </Flow>
@@ -154,7 +158,17 @@
             </Step>
             <Step>
                 <FaultRules/>
-                <Name>AM-MockFullListOfTransactions</Name>
+                <Name>AM-MockFullListOfTransactionsAndValidAccounts</Name>
+            </Step>
+            <Step>
+                <Name>EV-GetAllAccountsForCustomer</Name>
+            </Step>
+            <Step>
+                <Name>JS-CheckAccountIsValid</Name>
+            </Step>
+            <Step>
+                <Name>RF-InvalidAccountInURI</Name>
+                <Condition>accountIsValid = "false"</Condition>
             </Step>
             <Step>
                 <FaultRules/>

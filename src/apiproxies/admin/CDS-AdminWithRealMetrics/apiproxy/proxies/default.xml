@@ -7,6 +7,7 @@
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
         <Step>
+            <FaultRules/>
             <Name>FC-AddFAPIInteractionId</Name>
         </Step>
         <Step>
@@ -15,7 +16,7 @@
         </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
-    <Description/>
+    <Description></Description>
     <FaultRules>
         <FaultRule name="Invalid Scope">
             <Condition>(fault.name = "InsufficientScope")</Condition>
@@ -41,6 +42,7 @@
             <Description>Indicate that a critical update to the metadata for Accredited Data Recipients has been made and should be obtained</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-VerifyTokenForMetadataUpdate</Name>
                 </Step>
                 <Step>
@@ -69,6 +71,7 @@
             <Description>Get Metrics</Description>
             <Request>
                 <Step>
+                    <FaultRules/>
                     <Name>OA-VerifyTokenForMetrics</Name>
                 </Step>
                 <Step>

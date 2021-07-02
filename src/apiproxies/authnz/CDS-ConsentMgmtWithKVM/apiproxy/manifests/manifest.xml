@@ -14,12 +14,12 @@
         <VersionInfo resourceName="EV-ParseRequestedConsentInfo" version="SHA-512:636706b29b298f082ef317ac9bff9783fa071f5848dc8dc10f05dfc7f341451b601876803eb3bd60b544ed91a90c06e5dedb3709ef3ef7ae4ce6a1f29238de8b"/>
         <VersionInfo resourceName="KVM-GetExistingConsent" version="SHA-512:f1a993675d4c814c3ee5532e1030646fec79dbecd3b9491e91ee0e6e9888e76930b5ff047d0aa6aa6d251a19a93ccac3b7a3beac88d779868316f381f54fc86d"/>
         <VersionInfo resourceName="KVM-PutNewOrUpdatedConsent" version="SHA-512:3b0572361954a2b2e35dae466d7f1040acbc8113a9fbaf8b2a6fee2a9d2fa9e05f7669c24fa51fa6e9b5cf6e1ccd731ae2861fa952b230afa849287acc55d338"/>
-        <VersionInfo resourceName="OA-RevokeAccessToken" version="SHA-512:d161af850e1a76cb206d92e2007c8e2ec5078ba30538cd1a66564bac9d02ca0a881a46db358c5fe7993e304ba6f190bf7fc0a44f12386978274282c6fdd8e723"/>
+        <VersionInfo resourceName="OA-RevokeAccessToken" version="SHA-512:70a01be782980d17e406226104a8cae5a68ede8b6fac66442dcb38eddcd10ea48eedb4b4a196e59c0c713b97922554b7bc9480ca46a0a432cd9d2b57d76d8f6d"/>
         <VersionInfo resourceName="OA-RevokeRefreshToken" version="SHA-512:859f6d0713b62613607fe362609a0df4ddb3a42d2b2175beffa1d3f3126f0ed80bfd965d438aed1fff2c146ea93fb02947b91fcdec31ad5d48c745f4ab830f28"/>
-        <VersionInfo resourceName="RF-InvalidConsent" version="SHA-512:a4d0160a3b1f7121a9284acec79ca992ce08c9843a29842f388368dbb9cf9ded3bdc997f3d66f7e5800dcdfc63841df465121b774cc947822c3809c2b37410fc"/>
+        <VersionInfo resourceName="RF-InvalidConsent" version="SHA-512:bd6159c64d5bc294c91841a397379c48160a02bb4842ea7e3d94b254118a301cdfa320140e35f7e60ec7d8b9413d5d805aaf6fbb5ed49b8f9c9d3d98ca397866"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:0cfe0a61a50f452156d6896fe635d18c3f6ea097cf465ee879e667425a4259b1e4010d031ff0c0adb3989451e9494beb66674a139ca6418d4a75e0972b35b196"/>
+        <VersionInfo resourceName="default" version="SHA-512:10af471ed8f6e5f71eb58babe12fa62f9d6e07f2a96253c1b23716f53a9f4d78cf196e4c9929097f1a233044edf4eadd83a254c349c0543877ec76211dd68e8f"/>
     </ProxyEndpoints>
     <Resources/>
     <SharedFlows/>

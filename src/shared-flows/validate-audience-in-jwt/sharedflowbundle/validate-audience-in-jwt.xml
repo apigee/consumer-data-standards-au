@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="2" name="validate-audience-in-jwt">
+<SharedFlowBundle revision="3" name="validate-audience-in-jwt">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1609985728142</CreatedAt>
+    <CreatedAt>1609911266996</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Validates the audience claim in an auth JWT token according to rules specified in standards v1.6</Description>
     <DisplayName>validate-audience-in-jwt</DisplayName>
-    <LastModifiedAt>1609985728142</LastModifiedAt>
+    <LastModifiedAt>1624332076567</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:6695b1a341e95058c2de57713f13afd4938c4178ea990c5c47aa65c82db0e3f039852f992a44dc3c814fc2dc922b018d530129be7c10ea2d334f134ad69288fe:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:2ff79036075ec5d990c07f5dafceda81b5ff215dcb3f7de05521128e320efe5f64eefa3c4afec5c0de6940612ea02c82988852043ddc3162fe874136191a2e29:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-ExtractAudFromAudArray</Policy>
         <Policy>AM-SetCurrentURI</Policy>

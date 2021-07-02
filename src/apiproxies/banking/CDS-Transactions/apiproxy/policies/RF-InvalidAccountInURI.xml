@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidAccountInFilter">
-    <DisplayName>RF-InvalidAccountInFilter</DisplayName>
-    <Properties/>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidAccountInURI">
+    <DisplayName>RF-InvalidAccountInURI</DisplayName>
     <FaultResponse>
         <Set>
             <Payload contentType="application/json">{ "errors": [
     {
-      "code": "urn:au-cds:error:cds-all:Authorisation/InvalidBankingAccount",
+      "code": "urn:au-cds:error:cds-banking:Authorisation/InvalidBankingAccount",
       "title": "Invalid Banking Account",
-      "detail": "{invalidAccount}"
+      "detail": "{theAccountId}"
     }
   ]
 }</Payload>
             <Headers>
                 <Header name="x-fapi-interaction-id">{fapiInteractionId}</Header>
             </Headers>
-            <StatusCode>422</StatusCode>
-            <ReasonPhrase>Unprocessable Entity</ReasonPhrase>
+            <StatusCode>404</StatusCode>
+            <ReasonPhrase>Not Found</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

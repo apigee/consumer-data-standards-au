@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="3" name="CDS-Discovery">
+<APIProxy revision="4" name="CDS-Discovery">
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
@@ -11,9 +11,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Discovery API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
     <DisplayName>CDS-Discovery</DisplayName>
-    <LastModifiedAt>1597821069046</LastModifiedAt>
+    <LastModifiedAt>1624338052809</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:5d87e36b78de35ce5fac515fa7a6bb8b8d5aa432665665f04019c86f6bdff6d9ed8bc877cb528c523aaec784af8144e47862668fac7af6a5fb90704415a532ea</ManifestVersion>
+    <ManifestVersion>SHA-512:32aa5666665671bce1de2776d3a20d341ead2eeccba598cb12a7bf54d445fab561af1891a4fd589e7061fd78406f9cbef3ec99eef387f0e0385df42b4e3118d4:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-FormattedCurrentTime</Policy>

@@ -9,6 +9,13 @@
                 <Name>RF-OIDCProviderTimeout</Name>
             </Step>
         </FaultRule>
+        <FaultRule name="OIDCProviderError404">
+            <Condition>response.status.code = 404</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>RF-OIDCProviderError404</Name>
+            </Step>
+        </FaultRule>
         <FaultRule name="OIDCProviderError">
             <Condition>(response.status.code != 200) and (response.status.code != 302)</Condition>
             <Step>
@@ -18,8 +25,7 @@
         </FaultRule>
     </FaultRules>
     <PreFlow name="PreFlow">
-        <Request>
-        </Request>
+        <Request/>
     </PreFlow>
     <Flows/>
     <HostedTarget>

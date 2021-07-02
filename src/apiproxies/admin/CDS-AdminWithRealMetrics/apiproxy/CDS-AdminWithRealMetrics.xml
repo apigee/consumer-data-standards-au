@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="8" name="CDS-AdminWithRealMetrics">
+<APIProxy revision="10" name="CDS-AdminWithRealMetrics">
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/banking/products</Basepaths>
     <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
@@ -9,14 +9,15 @@
     <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
     <Basepaths>/cds-au/v1/admin</Basepaths>
     <Basepaths>/cds-au/v1/admin</Basepaths>
+    <Basepaths>/cds-au/v1/admin</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1582174564322</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Admin APIs</Description>
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1620712145973</LastModifiedAt>
+    <LastModifiedAt>1624336557979</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:c1845314935a021e09404881799bb6306e836f15b22d0fd6a185967e9993fa07c8cbff3b0d99cef96c22fab84561210c8062cf026f2055601bf840a23223a4a1:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:160f8cfb03b907f0f78d5ccef8267ca121f87c98238fa624178b163e846c47f98aa2943b0d4d47cf44d4c2bf78144effd8947b2d016de1355fc78f6c346ef0c0:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
         <Policy>AM-InvalidScope</Policy>

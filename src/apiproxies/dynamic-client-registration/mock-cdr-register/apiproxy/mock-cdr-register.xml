@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="6" name="mock-cdr-register">
+<APIProxy revision="7" name="mock-cdr-register">
     <Basepaths>/mock-cdr-register</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1620790800766</CreatedAt>
+    <CreatedAt>1581308531154</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Mock proxy that emulates endpoints the CDR Register will support and that are required for dynamic client registration</Description>
     <DisplayName>mock-cdr-register</DisplayName>
-    <LastModifiedAt>1620790800766</LastModifiedAt>
+    <LastModifiedAt>1624338776280</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:007a835d5e74edb1e17bfbdc0c3d16aca34edad626535dc5439a90a0343f2d70130358be47579f2458725d2d67d5272465f5beddcb49103a49a6f4fe650c6b44:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:bc54d08d1dc2ebe099ccdb039fc9fcbc37c372a3a32e3acd66e69969e49b26ff60c6559a805f7e1ab3aa8ba5d9bef607af06069ccf439f05e8a7aed31a63e2be:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-SetMockJWKSInfo</Policy>
         <Policy>AM-SetResponse</Policy>

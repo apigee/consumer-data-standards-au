@@ -9,7 +9,10 @@
     {
       "code": "400",
       "title": "Bad Request",
-      "detail": "Invalid request_uri. Pushed Authorisaation Request does not exist or has expired"
+      "detail": "Invalid request_uri. Pushed Authorisation Request does not exist or has expired",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

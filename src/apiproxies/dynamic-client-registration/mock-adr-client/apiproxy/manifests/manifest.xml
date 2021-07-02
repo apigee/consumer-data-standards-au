@@ -14,8 +14,8 @@
         <VersionInfo resourceName="JWT-GeneratePARJWT" version="SHA-512:0a9b4e1baaf4d575ee8452e940a733e9e99a3bf922456e33a81bdf97c3fc6cd1cdfd9825e57b4e9829033bcfc38c36eb30992892ac0a4e08ec86fc5863abf0b2"/>
         <VersionInfo resourceName="JWT-GeneratePrivateKeyJWT" version="SHA-512:7b650ff54b0af7398b801180a7eaafd05903543f9ffa1747c5b5460b00c4d3962d5cfd93fb21ad95dc5afea0a3d5694637086bff60257b841895b09acc36a94b"/>
         <VersionInfo resourceName="KVM-GetMockADRKeys" version="SHA-512:20daaca52d184d0a09a5874ee7531101e358df0aa2cae1061ad3d6bc1dc2d98007f594db8199be7230c6315d152bc40b96ca585d6da4a13d39ca81e70686e332"/>
-        <VersionInfo resourceName="RF-NotFound" version="SHA-512:bf7edec9b2f76f7a537310b85cb06191319de6b7e1fa7d869e61dcfc176a751b734c134761e175001a1fed7d0e688ec1af3a3f96024ba12e0c1c75ee6a365e0b"/>
-        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:cf0a6fbc7379dee68546fa58b7bc7d2532bb0b165a3c87c3e79cd9993fba21ac2b553e1da0e6a4d7af18a0f60919a29285abfa8978a2a7dacb3fcbb265b9db03"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:f65530a661aad72a001c377a9bdb4559f3e89e6d0ad0d98c4a8a28a2e3feb59b7d8d7b8c8fde207732545a7d73ce9c8bdaeb7e624839eebd9a2d777ce10eedf7"/>
+        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:8b0edba96bb18fe27ea9f08a45b4706f44d13a8ff081b8134485ab033accafb8142ead60ad5686ad9b8503fb402edf6d32e9f370475a1080cbd042a39e69773c"/>
         <VersionInfo resourceName="SC-GetSSAFromCDRRegister" version="SHA-512:4b72ec09f1b42b3d3f7ea965c5b5ab2327faa95986ac470e313b9f7ce33839c87bac66aada46663dba317ff3a05cffec4542fc3357dc3b9b08d93531085243b6"/>
     </Policies>
     <ProxyEndpoints>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="3" name="check-token-not-reused">
+<SharedFlowBundle revision="4" name="check-token-not-reused">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1601263987984</CreatedAt>
+    <CreatedAt>1598850467920</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time</Description>
     <DisplayName>check-token-not-reused</DisplayName>
-    <LastModifiedAt>1601263987984</LastModifiedAt>
+    <LastModifiedAt>1624332230444</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:d7f12a6df439dfe00bf49b94499478a827fbc3a21b8a69092718600ad579df56b83fa8c074e55fb586556bbe6ad23559755b49dcc9fcce14bc18e0ddfa91723d</ManifestVersion>
+    <ManifestVersion>SHA-512:39879e300a8b3c1f03815cc65c19baebe5a4fb103f4a660386b846f1bde314f5bc1595c7a2d364ce0c4ab9d713341282b09901a8edf9c488480c3f9fff6ce2f4:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-SetErrorTypeForDynClientRegToken</Policy>
         <Policy>AM-SetErrorTypeForSSAToken</Policy>

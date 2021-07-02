@@ -10,7 +10,10 @@
     {
       "code": "401",
       "title": "Unauthorized",
-      "detail": "Reused token"
+      "detail": "Reused token",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

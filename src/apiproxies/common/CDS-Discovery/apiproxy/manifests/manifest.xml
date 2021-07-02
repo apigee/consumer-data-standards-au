@@ -12,9 +12,9 @@
         <VersionInfo resourceName="FC-CheckRequestHeaders" version="SHA-512:5b2ad6beed370945c3f80cbbfe381ba5f4210637a358598c032049cd2c9f360c133b64ded5be5f9be5b5b7272af3ed743abbcedbb324e5a406e81140680bebb6"/>
         <VersionInfo resourceName="FC-CollectPerformanceSLO" version="SHA-512:a9b222146542fbfaf60ca59259f4e95151124f18a64d2f4f10cafdeb80166773c3d8ed29c40125ff4dc347e9f63a9e9dba2e14563f50cb5956821a6598411229"/>
         <VersionInfo resourceName="FC-TrafficThresholds" version="SHA-512:06b26c2a4f540a1f5d7a4e5d016097146e9265eafe8cd87246327c0dfcaa8b9ab8d6efb632c877aecac06f78064c54a855b544de1ced5fc806a4a2c903b17018"/>
-        <VersionInfo resourceName="RF-NotFound" version="SHA-512:dd8c233ed6dd3ee535323424b9a23a9814a67b806688179cb68f1f6d05a7269489074030dccccbc8cbba1504fb41d01b2bd68ca4df314d0ff07472df82f58d42"/>
-        <VersionInfo resourceName="RF-TooManyRequests" version="SHA-512:c62d853b5402af48bb129cc0587eaddd5ef0e6469e2dc9ef42fa51863acbf00cb697f84ea30a0717e931e562b57d65cc0c55c4156ac884f22fee06b184f768da"/>
-        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:07e6655bc3c0a7514fbce38ead742f8fb8a069a0aa4f18fe65a3c24490e7e0664a24f2714ebe5e4f733eda7a076ee049a67f3a028f2892d766b49d5db849d36f"/>
+        <VersionInfo resourceName="RF-NotFound" version="SHA-512:f65530a661aad72a001c377a9bdb4559f3e89e6d0ad0d98c4a8a28a2e3feb59b7d8d7b8c8fde207732545a7d73ce9c8bdaeb7e624839eebd9a2d777ce10eedf7"/>
+        <VersionInfo resourceName="RF-TooManyRequests" version="SHA-512:953bd46040b906279113278348d7bbaced8542b6f7f4a0c68659ddd9b40a483981711a90af96ef4fa4426314b213f3741997ed0700388c56b2799639dd899515"/>
+        <VersionInfo resourceName="RF-UnsupportedMethod" version="SHA-512:8b0edba96bb18fe27ea9f08a45b4706f44d13a8ff081b8134485ab033accafb8142ead60ad5686ad9b8503fb402edf6d32e9f370475a1080cbd042a39e69773c"/>
     </Policies>
     <ProxyEndpoints>
         <VersionInfo resourceName="default" version="SHA-512:886a6b9a03584bd89e10092e695fa2cc72a919922676789d2c3791299012d1003f31e1b28184481a953cf098a8c0f870c0310e5969a2549d1111e25a01911ad4"/>

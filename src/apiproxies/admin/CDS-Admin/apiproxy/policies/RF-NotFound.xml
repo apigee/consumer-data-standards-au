@@ -6,8 +6,8 @@
     <FaultResponse>
         <Set>
             <Payload contentType="application/json">{ "errors": [
-    {
-      "code": "404",
+   {
+      "code": "urn:au-cds:error:cds-all:Resource/NotFound",
       "title": "Resource not found",
       "detail": "{request.uri} not found"
     }

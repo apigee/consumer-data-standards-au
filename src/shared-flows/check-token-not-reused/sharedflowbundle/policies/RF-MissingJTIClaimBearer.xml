@@ -9,8 +9,11 @@
  "errors": [
     {
       "code": "401",
-      "title": "Unauthorized",
-      "detail": "Missing claim: jti"
+      "title": "Invalid Claim",
+      "detail": "Missing claim: jti",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

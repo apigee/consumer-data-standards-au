@@ -8,14 +8,17 @@
             <Payload contentType="application/json">{
   "errors": [
     {
-      "code": "504",
-      "title": "Gateway Timeout",
-      "detail": "OIDC Service not responding. Please try again"
+      "code": "503",
+      "title": "Service Unavailable",
+      "detail": "OIDC Service not responding. Please try again",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Unexpected"
+      }
     }
   ]
 }</Payload>
-            <StatusCode>504</StatusCode>
-            <ReasonPhrase>Gateway Timeout</ReasonPhrase>
+            <StatusCode>503</StatusCode>
+            <ReasonPhrase>Service Unavailable</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

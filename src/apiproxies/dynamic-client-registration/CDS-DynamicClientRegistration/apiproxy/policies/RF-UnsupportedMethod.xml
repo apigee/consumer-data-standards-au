@@ -11,6 +11,9 @@
       "code": "405",
       "title": "Method not allowed",
       "detail": "Method {request.verb} not allowed for resource {proxy.basepath}{proxy.pathsuffix}"
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

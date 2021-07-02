@@ -19,7 +19,10 @@
     {
       "code": "401",
       "title": "Unauthorized",
-      "detail": "{replaceAll(errorMsg,searchStrRegex,replaceStr)}"
+      "detail": "{replaceAll(errorMsg,searchStrRegex,replaceStr)}",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

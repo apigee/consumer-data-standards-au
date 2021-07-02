@@ -9,8 +9,8 @@
             <Payload contentType="application/json">{
   "errors": [
     {
-       "code": "400",
-       "title": "Bad Request",
+       "code": "urn:au-cds:error:cds-all:Header/Missing",
+       "title": "Missing Required Header",
        "detail": "Missing x-fapi-auth-date header"
     }
   ]

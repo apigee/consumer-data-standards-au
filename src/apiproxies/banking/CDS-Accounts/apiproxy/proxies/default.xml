@@ -127,6 +127,10 @@
                     <Name>EV-ResultsForAccountId</Name>
                 </Step>
                 <Step>
+                    <Name>RF-InvalidAccountInURI</Name>
+                    <Condition>theResultsForAccountId = "[]"</Condition>
+                </Step>
+                <Step>
                     <FaultRules/>
                     <Name>JS-BuildDetailsResponse</Name>
                 </Step>
@@ -188,6 +192,10 @@
                 <Step>
                     <FaultRules/>
                     <Name>EV-ResultsForAccountId</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidAccountInURI</Name>
+                    <Condition>theResultsForAccountId = "[]"</Condition>
                 </Step>
                 <Step>
                     <FaultRules/>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="2" name="verify-idp-id-token">
+<SharedFlowBundle revision="3" name="verify-idp-id-token">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1612844583235</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse</Description>
     <DisplayName>verify-idp-id-token</DisplayName>
-    <LastModifiedAt>1613348084037</LastModifiedAt>
+    <LastModifiedAt>1624333385948</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:9ed0d8b4ca4d1faffcddd98ed02521a4447bf3a4f800ac2a79a7957e10387105f152ceca490f40576431f65d375367fd0fbd903ef143f2b1845314d860fe7162:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:f593c6c76d182bdc1d20bde865630c1b7186e5c2dbe4a45bf536a38f04b26da25cc2d301d0289554ebc34b52dac93631b2aa9de2963a2a4e3720490d1fc20c7e</ManifestVersion>
     <Policies>
         <Policy>AM-SetIDPJWKSUri</Policy>
         <Policy>AM-SetValidAudience</Policy>

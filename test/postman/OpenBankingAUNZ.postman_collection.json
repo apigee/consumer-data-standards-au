@@ -2436,6 +2436,12 @@
 								"type": "text",
 								"value": "2965365e-ab4d-4158-8eda-ca48f1f4f225",
 								"disabled": true
+							},
+							{
+								"key": "x-min-v",
+								"value": "3",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -2470,7 +2476,7 @@
 								},
 								{
 									"key": "page-size",
-									"value": "1",
+									"value": "100",
 									"disabled": true
 								},
 								{
@@ -2601,7 +2607,7 @@
 							},
 							{
 								"key": "x-fapi-auth-date",
-								"value": "2019-08-01",
+								"value": "2020-01-01",
 								"type": "text"
 							},
 							{
@@ -2638,7 +2644,7 @@
 							"query": [
 								{
 									"key": "open-status",
-									"value": "ALL",
+									"value": "ALL2",
 									"disabled": true
 								},
 								{
@@ -2694,18 +2700,24 @@
 							{
 								"key": "Accept",
 								"type": "text",
-								"value": "application/jxon;charset=UTF-8"
+								"value": "application/json"
 							},
 							{
 								"key": "x-fapi-auth-date",
 								"type": "text",
-								"value": "2019-08-01"
+								"value": "2020-01-01"
 							},
 							{
 								"key": "x-cds-client-headers",
 								"value": "1234567=",
 								"description": "Base64 Encoded String",
 								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.168.0.1",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -2861,7 +2873,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/10203040-Acc003",
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/10203040-Acc001",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -2873,7 +2885,7 @@
 								"v1",
 								"banking",
 								"accounts",
-								"10203040-Acc003"
+								"10203040-Acc001"
 							]
 						}
 					},
@@ -3527,12 +3539,14 @@
 								"key": "x-cds-client-headers",
 								"value": "InvalidBase64String@!$$#",
 								"description": "Base64 Encoded String",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "x-fapi-customer-ip-address",
 								"value": "10.0.0.1",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -3589,6 +3603,110 @@
 							]
 						},
 						"description": "Selectively remove or change header or param values to other values to check different error messages"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions For Account - Invalid Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "2965365e-ab4d-4158-8eda-ca48f1f4f225",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-auth-date",
+								"value": "2019-08-01",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-customer-ip-address",
+								"value": "192.168.1.1",
+								"type": "text"
+							},
+							{
+								"key": "x-cds-client-headers",
+								"value": "Base64EncodedString1",
+								"description": "Base64 Encoded String",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}xxxx/transactions",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}xxxx",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "oldest-time",
+									"value": "2016-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "newest-time",
+									"value": "2021-04-15T00:00:00%2B11:00",
+									"disabled": true
+								},
+								{
+									"key": "min-amount",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "max-amount",
+									"value": "1000",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": "pay",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page-size",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -3683,6 +3801,120 @@
 								"{{accountId}}",
 								"transactions",
 								"tx0003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Detail  - Invalid Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-ip-address",
+								"value": "192.168.0.1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}xxxx/transactions/tx0003",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}xxxx",
+								"transactions",
+								"tx0003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Detail  - Invalid TxId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-fapi-auth-date",
+								"type": "text",
+								"value": "2019-08-01"
+							},
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-customer-ip-address",
+								"value": "192.168.0.1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions/tx00033333",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"banking",
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"tx00033333"
 							]
 						}
 					},

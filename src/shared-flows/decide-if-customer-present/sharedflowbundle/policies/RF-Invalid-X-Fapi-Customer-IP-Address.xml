@@ -9,8 +9,8 @@
             <Payload contentType="application/json">{
   "errors": [
     {
-       "code": "400",
-       "title": "Bad Request",
+       "code": "urn:au-cds:error:cds-all:Header/Invalid",
+       "title": "Invalid Header",
        "detail": "x-fapi-customer-ip-address Header must contain a valid IP Address"
     }
   ]

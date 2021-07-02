@@ -9,7 +9,10 @@
     {
       "code": "400",
       "title": "Bad Request",
-      "detail": "Invalid scope"
+      "detail": "Invalid scope",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
 }</Payload>

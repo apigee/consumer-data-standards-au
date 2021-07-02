@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfTransactions">
-    <DisplayName>AM-MockFullListOfTransactions</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-MockFullListOfTransactionsAndValidAccounts">
+    <DisplayName>AM-MockFullListOfTransactionsAndValidAccounts</DisplayName>
     <FaultRules/>
     <Properties/>
     <AssignVariable>
@@ -121,6 +121,15 @@
     ]
 }]</Template>
     </AssignVariable>
+    <!-- The next variable holds the list of all valid accounts by customer. Note that an account could be valid, but have no transactions (So it's not enough to check in the list of transactions to determine
+         if an account is valid -->
+    <AssignVariable>
+        <Name>listOfAllAccountsByCustomer</Name>
+        <Template>[{
+    "customer": "10203040",
+    "accounts": ["10203040-Acc001", "10203040-Acc002", "10203040-Acc003"]
+}]</Template>
+    </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo type="request" transport="http" createNew="false"/>
 </AssignMessage>

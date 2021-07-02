@@ -2,19 +2,22 @@
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidIdToken">
     <DisplayName>RF-InvalidIdToken</DisplayName>
     <FaultResponse>
-      <Set>
-          <Payload contentType="application/json">{
+        <Set>
+            <Payload contentType="application/json">{
   "errors": [
       {
         "code": "400",
         "title": "Bad Request",
-        "detail": "Invalid Id Token"
+        "detail": "Invalid Id Token",
+        "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
       }
     ]
   }</Payload>
-          <StatusCode>400</StatusCode>
-          <ReasonPhrase>Bad Request</ReasonPhrase>
-      </Set>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+        </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </RaiseFault>

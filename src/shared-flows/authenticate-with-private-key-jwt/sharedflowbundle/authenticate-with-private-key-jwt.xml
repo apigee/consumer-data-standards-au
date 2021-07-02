@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="7" name="authenticate-with-private-key-jwt">
+<SharedFlowBundle revision="8" name="authenticate-with-private-key-jwt">
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1602460875658</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed. This shared flow can also be used to do a basic verification of a PAR object, in which case, no basic auth header is inserted</Description>
     <DisplayName>authenticate-with-private-key-jwt</DisplayName>
-    <LastModifiedAt>1620706676715</LastModifiedAt>
+    <LastModifiedAt>1624332180338</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:a16473c409877a070c14c93d7487d7f76eafbbc2d6c3f514a10e368e7da469b98e5199c2da1848e9d0f2ae5391cfb75e57bba2f25f7be96599137e0cfec89e33:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:76b1bf8c303eb2cfe77c5b832354024c77a9b15e28c9e065946acb19444459ce7376b4367fff70ce0c646df342467a560d78760f6ee11c4c3df58bfbde445d46:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AE-GetAppDetails</Policy>
         <Policy>AM-SetDefaultCDRArrangementId</Policy>

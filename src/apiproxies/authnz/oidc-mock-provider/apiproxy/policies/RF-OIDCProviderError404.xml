@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-OIDCProviderError">
-    <DisplayName>RF-OIDCProviderError</DisplayName>
-    <FaultRules/>
-    <Properties/>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-OIDCProviderError404">
+    <DisplayName>RF-OIDCProviderError404</DisplayName>
     <FaultResponse>
         <Set>
             <Payload contentType="application/json">{
   "errors": [
     {
-      "code": "{response.status.code}",
-      "title": "{response.reason.phrase}",
-      "detail": "{jsonPath($.error_description,response.content)}",
-      "meta": {
-         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
-      }
+      "code": "404",
+      "title": "urn:au-cds:error:cds-all:Resource/NotFound",
+      "detail": "{jsonPath($.error_description,response.content)}"
     }
   ]
 }</Payload>

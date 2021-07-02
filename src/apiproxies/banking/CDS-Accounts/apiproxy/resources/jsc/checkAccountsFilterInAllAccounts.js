@@ -35,5 +35,6 @@
  
  print("Filter OK = " + ok);
  context.setVariable("accountFilterOK", ok);
+ context.setVariable("invalidAccount", filterAccountList[i-1]);
  
  
