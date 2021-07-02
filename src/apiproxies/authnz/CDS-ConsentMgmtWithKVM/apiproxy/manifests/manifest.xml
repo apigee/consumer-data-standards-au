@@ -19,7 +19,7 @@
         <VersionInfo resourceName="RF-InvalidConsent" version="SHA-512:bd6159c64d5bc294c91841a397379c48160a02bb4842ea7e3d94b254118a301cdfa320140e35f7e60ec7d8b9413d5d805aaf6fbb5ed49b8f9c9d3d98ca397866"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:10af471ed8f6e5f71eb58babe12fa62f9d6e07f2a96253c1b23716f53a9f4d78cf196e4c9929097f1a233044edf4eadd83a254c349c0543877ec76211dd68e8f"/>
+        <VersionInfo resourceName="default" version="SHA-512:c29a08d8264cfa65131d940037dd6fcd03ff50b38292b874f859e4ed3faee6797eef6c3dc11020d80350ca4f6ed6d84961a0fd6d8cf0768ffddbf780505302b5"/>
     </ProxyEndpoints>
     <Resources/>
     <SharedFlows/>

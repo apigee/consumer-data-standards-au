@@ -12,10 +12,6 @@
                 <Name>EV-ParseExistingConsentInfo</Name>
                 <Condition>(private.existingConsent != null) and (private.existingConsent != "")</Condition>
             </Step>
-            <Step>
-                <Name>RF-InvalidConsent</Name>
-                <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "")</Condition>
-            </Step>
         </Request>
         <Response/>
     </PreFlow>
@@ -68,6 +64,10 @@
             <Description>Returns the consentId. Validates that the consent is associated with the given client_id and that it is still active and hasn't expired</Description>
             <Request>
                 <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "")</Condition>
+                </Step>
+                <Step>
                     <Name>AM-SetCurrentTimeAsEpochSeconds</Name>
                 </Step>
                 <Step>
@@ -85,6 +85,10 @@
         <Flow name="Revoke consent">
             <Description>Logically deletes a consent (by setting its status to inactive)</Description>
             <Request>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "")</Condition>
+                </Step>
                 <Step>
                     <Name>AM-SetConsentStatusToInactive</Name>
                 </Step>

@@ -6,9 +6,9 @@
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Provides basic consent management functionality (Get, Create, Update, Revoke) using KVMs. The key to a consent is always a consent_id (So no functionality to retrieve all consents associated with a given end user or client)</Description>
     <DisplayName>CDS-ConsentMgmtWithKVM</DisplayName>
-    <LastModifiedAt>1625189217986</LastModifiedAt>
+    <LastModifiedAt>1625199913960</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:cd659b9bc9bf8d7ec58e676f79ddf0cc3c701383b2b2e63963b61a872453e45c92daf9e387892afce3e8a2a86a980fdf7abf047ce56b688447fc9897c283cbaf:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:3e66a3b47254fd76024dd97480a31cbccbe6a2ebfb3edd8ebca8b4a6911eb8813b103bf4c82ddd0229dc09a06de2053961893b0c613b2c5b9225e4dabf49896f:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-SetConsentStatusToInactive</Policy>
         <Policy>AM-SetCreateUpdateResponseBody</Policy>
