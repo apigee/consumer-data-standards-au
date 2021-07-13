@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<InvalidateCache async="false" continueOnError="false" enabled="true" name="IC-RemoveFromCacheToPreventReplays">
+    <DisplayName>IC-RemoveFromCacheToPreventReplays</DisplayName>
+    <CacheKey>
+        <KeyFragment ref="consentCacheKey"/>
+    </CacheKey>
+    <CacheResource>ConsentState</CacheResource>
+    <Scope>Global</Scope>
+</InvalidateCache>

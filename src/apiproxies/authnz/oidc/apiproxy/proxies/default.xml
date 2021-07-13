@@ -127,11 +127,14 @@
                     <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
                 </Step>
                 <Step>
-                    <Name>AM-RebuildQueryRequestUsingPAR</Name>
-                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
+                    <Name>AM-SetStateAsOIDCCacheKey</Name>
                 </Step>
                 <Step>
                     <Name>PC-CacheOIDCState</Name>
+                </Step>
+                <Step>
+                    <Name>AM-RebuildQueryRequestUsingPAR</Name>
+                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
                 </Step>
                 <Step>
                     <Name>KVM-GetIDPCredentials</Name>
@@ -154,6 +157,9 @@
                     <Name>EV-GetFormParams</Name>
                 </Step>
                 <Step>
+                    <Name>AM-SetStateAsOIDCCacheKey</Name>
+                </Step>
+                <Step>
                     <Name>LC-RetrieveCachedOIDCState</Name>
                 </Step>
                 <Step>
@@ -162,6 +168,46 @@
                 </Step>
                 <Step>
                     <Name>EV-ParseCachedState</Name>
+                </Step>
+                <Step>
+                    <Name>FC-VerifyIdpIdToken</Name>
+                </Step>
+                <Step>
+                    <Name>AM-AppendOIDCAuthCodeIdTokenToOIDCState</Name>
+                </Step>
+                <Step>
+                    <Name>PC-CacheOIDCState</Name>
+                </Step>
+                <Step>
+                    <Name>AM-InsertQueryParamsForRedirectToConsent</Name>
+                </Step>
+                <Step>
+                    <Name>AM-AddCDRArrangementIdAsQueryParam</Name>
+                    <Condition>(requested_cdr_arrangement_id != null) and (requested_cdr_arrangement_id != "")</Condition>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-RedirectToConsentFlow</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/authorise-cb")</Condition>
+        </Flow>
+        <Flow name="Consent - Callback">
+            <Description>Handles the response from the Consent Flow</Description>
+            <Request>
+                <Step>
+                    <Name>AM-SetStateAsOIDCCacheKey</Name>
+                </Step>
+                <Step>
+                    <Name>LC-RetrieveCachedOIDCState</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidState</Name>
+                    <Condition>lookupcache.LC-RetrieveCachedOIDCState.cachehit = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ParseCachedStateWithIdPAuthCodeAndIdToken</Name>
                 </Step>
                 <Step>
                     <Name>FC-VerifyIdpIdToken</Name>
@@ -193,7 +239,113 @@
                     <Name>AM-RedirectToClient</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/authorise-cb")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/consent-cb") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Acquire Token - Auth Code">
+            <Description>Acquire Token Authorization Code Grant Type</Description>
+            <Request>
+                <Step>
+                    <Name>FC-VerifyMTLSOnly</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-StoreTokenRequestDetails</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>OAInfo-RetrieveOIDCAuthCode</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidRedirectURI</Name>
+                    <Condition>request.formparam.redirect_uri != oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.redirect_uri</Condition>
+                </Step>
+                <Step>
+                    <Name>KVM-GetIDPCredentials</Name>
+                </Step>
+                <Step>
+                    <Name>BA-SetBasicAuthHeader</Name>
+                </Step>
+                <Step>
+                    <Name>SC-InvokeIdPTokenEndpoint</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JWT-DecodeOIDCIdToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>AM-SetCustomDimensionsForAcquireToken</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-GetOIDCTokenExpiryTime</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateCDRArrangementId</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>OA-IssueOpaqueAccessToken</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetIssuer</Name>
+                </Step>
+                <Step>
+                    <FaultRules/>
+                    <Name>JS-GetInfoFromOAuth2Policy</Name>
+                </Step>
+                <Step>
+                    <Name>SC-GetOIDCTokenHash</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetJWTSigningKeys</Name>
+                </Step>
+                <Step>
+                    <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
+                </Step>
+                <Step>
+                    <Name>SC-CreateUpdateCDRArrangement</Name>
+                </Step>
+                <Step>
+                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-IssueToken</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetIssueOrRefreshTokenResponse</Name>
+                    <Condition>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration &gt; 0</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetIssueTokenResponseWithNoRefreshToken</Name>
+                    <Condition>(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = "") or (oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = 0)</Condition>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "authorization_code")</Condition>
+        </Flow>
+        <Flow name="Acquire Token - Client Cred">
+            <Description>Acquire Token Client Credentials Grant Type</Description>
+            <Request>
+                <Step>
+                    <Name>FC-VerifyMTLSOnly</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidScope</Name>
+                    <Condition>(request.formparam.scope != "cdr:registration") and (request.formparam.scope != "admin:metadata:update") and (request.formparam.scope != "admin:metrics.basic:read")</Condition>
+                </Step>
+                <Step>
+                    <Name>OA-IssueAccessTokenClientCreds</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetAccessTokenResponse-ClientCred</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>
         </Flow>
         <Flow name="Refresh Token">
             <Description>Refresh Token</Description>
@@ -271,10 +423,10 @@
                     <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
                 </Step>
                 <Step>
-                    <Name>AM-SetCreateUpdateConsentReq-RefreshToken</Name>
+                    <Name>SC-CreateUpdateCDRArrangement</Name>
                 </Step>
                 <Step>
-                    <Name>SC-CreateUpdateCDRArrangement</Name>
+                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-RefreshToken</Name>
                 </Step>
             </Request>
             <Response>
@@ -287,112 +439,6 @@
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "refresh_token")</Condition>
-        </Flow>
-        <Flow name="Acquire Token - Auth Code">
-            <Description>Acquire Token Authorization Code Grant Type</Description>
-            <Request>
-                <Step>
-                    <Name>FC-VerifyMTLSOnly</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>EV-StoreTokenRequestDetails</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>OAInfo-RetrieveOIDCAuthCode</Name>
-                </Step>
-                <Step>
-                    <Name>RF-InvalidRedirectURI</Name>
-                    <Condition>request.formparam.redirect_uri != oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.redirect_uri</Condition>
-                </Step>
-                <Step>
-                    <Name>KVM-GetIDPCredentials</Name>
-                </Step>
-                <Step>
-                    <Name>BA-SetBasicAuthHeader</Name>
-                </Step>
-                <Step>
-                    <Name>SC-InvokeIdPTokenEndpoint</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>EV-GetInfoReqdForIssuingAccessToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JWT-DecodeOIDCIdToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForAcquireToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JS-GetOIDCTokenExpiryTime</Name>
-                </Step>
-                <Step>
-                    <Name>AM-GenerateCDRArrangementId</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>OA-IssueOpaqueAccessToken</Name>
-                </Step>
-                <Step>
-                    <Name>AM-SetIssuer</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>JS-GetInfoFromOAuth2Policy</Name>
-                </Step>
-                <Step>
-                    <Name>SC-GetOIDCTokenHash</Name>
-                </Step>
-                <Step>
-                    <Name>KVM-GetJWTSigningKeys</Name>
-                </Step>
-                <Step>
-                    <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
-                </Step>
-                <Step>
-                    <Name>AM-SetCreateUpdateConsentReq-IssueToken</Name>
-                </Step>
-                <Step>
-                    <Name>SC-CreateUpdateCDRArrangement</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Name>AM-SetIssueOrRefreshTokenResponse</Name>
-                    <Condition>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration &gt; 0</Condition>
-                </Step>
-                <Step>
-                    <Name>AM-SetIssueTokenResponseWithNoRefreshToken</Name>
-                    <Condition>(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = "") or (oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = 0)</Condition>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "authorization_code")</Condition>
-        </Flow>
-        <Flow name="Acquire Token - Client Cred">
-            <Description>Acquire Token Client Credentials Grant Type</Description>
-            <Request>
-                <Step>
-                    <Name>FC-VerifyMTLSOnly</Name>
-                </Step>
-                <Step>
-                    <Name>RF-InvalidScope</Name>
-                    <Condition>(request.formparam.scope != "cdr:registration") and (request.formparam.scope != "admin:metadata:update") and (request.formparam.scope != "admin:metrics.basic:read")</Condition>
-                </Step>
-                <Step>
-                    <Name>OA-IssueAccessTokenClientCreds</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Name>AM-SetAccessTokenResponse-ClientCred</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "client_credentials")</Condition>
         </Flow>
         <Flow name="Revoke Token">
             <Description>Get Token Info</Description>
@@ -577,13 +623,34 @@
                 <Step>
                     <Name>SC-RevokeCDRArrangement</Name>
                 </Step>
+                <Step>
+                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</Name>
+                </Step>
             </Request>
             <Response>
                 <Step>
                     <Name>AM-SetResponse204NoContent</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/arrangements/revoke") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix = "/arrangements/revoke") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Revoke Tokens Bound to Arrangement">
+            <Description>Private endpoint to be used by Consent Management Proxy when an Arrangement is revoked out of bounds (via a different channel)</Description>
+            <Request>
+                <Step>
+                    <Name>RF-InvocationFromProxyChainingOnly</Name>
+                    <Condition>virtualhost.ip != "127.0.0.1"</Condition>
+                </Step>
+                <Step>
+                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-SetResponse204NoContent</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix = "/arrangements/revoke/tokens") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Not Found">
             <Description>Not Found</Description>
@@ -640,7 +707,7 @@
         <BasePath>/</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
-         <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
+        <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
              The secure-mtls virtual host must already be configured to support mTLS with propagateTLSInformation
              This proxy has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
         <!-- <VirtualHost>secure-mtls</VirtualHost> -->
@@ -654,8 +721,11 @@
     <RouteRule name="noroute-jwks">
         <Condition>(proxy.pathsuffix MatchesPath "/jwks") and (request.verb = "GET")</Condition>
     </RouteRule>
-    <RouteRule name="noroute-cb">
+    <RouteRule name="noroute-authorise-cb">
         <Condition>(proxy.pathsuffix MatchesPath "/authorise-cb")</Condition>
+    </RouteRule>
+    <RouteRule name="noroute-consent-cb">
+        <Condition>(proxy.pathsuffix MatchesPath "/consent-cb")</Condition>
     </RouteRule>
     <RouteRule name="noroute-authorise">
         <Condition>(proxy.pathsuffix MatchesPath "/authorise")</Condition>
@@ -665,6 +735,9 @@
     </RouteRule>
     <RouteRule name="noroute-arrangement-revoke">
         <Condition>(proxy.pathsuffix MatchesPath "/arrangements/revoke")</Condition>
+    </RouteRule>
+    <RouteRule name="noroute-arrangement-revoke-tokens">
+        <Condition>(proxy.pathsuffix MatchesPath "/arrangements/revoke/tokens")</Condition>
     </RouteRule>
     <RouteRule name="mock-oidc">
         <TargetEndpoint>default</TargetEndpoint>

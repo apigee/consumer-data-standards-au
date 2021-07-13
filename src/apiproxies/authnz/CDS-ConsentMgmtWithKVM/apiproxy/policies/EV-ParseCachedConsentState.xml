@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ParseCachedConsentState">
+    <DisplayName>EV-ParseCachedConsentState</DisplayName>
+    <Variable name="cachedConsent">
+        <Pattern>{client_id}||{customer_id}||{scope}||{state}||{consent_id}</Pattern>
+    </Variable>
+    <VariablePrefix>requestedConsentInfo</VariablePrefix>
+</ExtractVariables>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-CacheConsentState">
+    <DisplayName>PC-CacheConsentState</DisplayName>
+    <CacheKey>
+        <KeyFragment ref="consentCacheKey"/>
+    </CacheKey>
+    <CacheResource>ConsentState</CacheResource>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>300</TimeoutInSec>
+    </ExpirySettings>
+    <Source>consentCacheVal</Source>
+</PopulateCache>

@@ -3,7 +3,7 @@
     <DisplayName>LC-RetrieveCachedOIDCState</DisplayName>
     <Properties/>
     <CacheKey>
-        <KeyFragment ref="request.formparam.state"/>
+        <KeyFragment ref="stateVar"/>
     </CacheKey>
     <CacheResource>OIDCState</CacheResource>
     <Scope>Global</Scope>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetNewTokenInfo">
+    <DisplayName>AM-SetNewTokenInfo</DisplayName>
+    <AssignVariable>
+        <Name>newTokenInfo</Name>
+        <Template>{ 
+    "access_token": "{newAccessToken}",
+    "refresh_token": "{newRefreshToken}"
+}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlowBundle revision="1" name="manage-tokens-by-consent-id">
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1625722262325</CreatedAt>
+    <CreatedBy>defaultUser</CreatedBy>
+    <Description>Keeps track of access and refresh tokens issued under a given consent id. Optionally revokes any existing tokens already associated with the consent id</Description>
+    <DisplayName>manage-tokens-by-consent-id</DisplayName>
+    <LastModifiedAt>1625801897275</LastModifiedAt>
+    <LastModifiedBy>defaultUser</LastModifiedBy>
+    <ManifestVersion>SHA-512:5ead8f06c571ad93c56dc4693e1034defbfc4c1ce0b587c0e0d2aafbf8f7bf9502beb81efe43132b1b4f230a674fa07c25af606115c6c3014c3b2d7112abdab3:ap-southeast-2</ManifestVersion>
+    <Policies>
+        <Policy>AM-SetNewTokenInfo</Policy>
+        <Policy>EV-ParseExistingTokensInfo</Policy>
+        <Policy>KVM-GetExistingTokens</Policy>
+        <Policy>KVM-PutNewOrUpdatedTokenInfo</Policy>
+        <Policy>OA-RevokeAccessToken</Policy>
+        <Policy>OA-RevokeRefreshToken</Policy>
+    </Policies>
+    <Resources/>
+    <Spec></Spec>
+    <subType>SharedFlow</subType>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+</SharedFlowBundle>

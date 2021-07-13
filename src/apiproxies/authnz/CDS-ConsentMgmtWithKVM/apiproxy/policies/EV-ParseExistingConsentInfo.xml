@@ -8,15 +8,6 @@
         <Variable name="customer_id">
             <JSONPath>$.customer_id</JSONPath>
         </Variable>
-        <Variable name="customer_ppid">
-            <JSONPath>$.customer_ppid</JSONPath>
-        </Variable>
-        <Variable name="access_token">
-            <JSONPath>$.access_token</JSONPath>
-        </Variable>
-        <Variable name="refresh_token">
-            <JSONPath>$.refresh_token</JSONPath>
-        </Variable>
         <Variable name="status">
             <JSONPath>$.status</JSONPath>
         </Variable>

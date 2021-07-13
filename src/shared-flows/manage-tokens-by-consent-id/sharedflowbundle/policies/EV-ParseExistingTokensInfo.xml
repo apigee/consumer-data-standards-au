@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ParseExistingTokensInfo">
+    <DisplayName>EV-ParseExistingTokensInfo</DisplayName>
+    <JSONPayload>
+        <Variable name="access_token">
+            <JSONPath>$.access_token</JSONPath>
+        </Variable>
+        <Variable name="refresh_token">
+            <JSONPath>$.refresh_token</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <VariablePrefix>existingTokens</VariablePrefix>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source>private.existingTokens</Source>
+</ExtractVariables>

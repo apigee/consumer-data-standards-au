@@ -49,17 +49,17 @@ This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
 2. API Proxies (*CDS-Products, CDS-Accounts*) as a reference implementation. These API proxies return mock data from a fictional bank, and showcase how to include those reusable artefacts and best practices such as caching of (mock) responses
 3. An API proxy (*oidc-mock-provider*) that implements a standalone Open ID Connect Identity Provider, based on the open source package [oidc-provider](https://github.com/panva/node-oidc-provider)
-5. An API Proxy (*CDS-ConsentMgmtWithKVM*) that provides basic consent management capabilities, including revocation by CDR Arrangement ID
+5. An API Proxy (*CDS-ConsentMgmtWithKVM*) that provides basic consent management capabilities, including managing consent screens, end user approval and consent revocation by CDR Arrangement ID
 6. An API Proxy (*oidc*) that  highlights one of the multiple patterns in which Apigee can interact with an Identity Provider. In this case, the standalone OIDC provider issues identity tokens, and Apigee issues opaque access and refresh tokens. It also interacts with the *CDS-ConsentMgmtWithKVM* proxy to create/modify/revoke consents.
 5. An API Proxy (*CDS-DynamicClientRegistration*) that leverages Apigee client management capabilities to allow Data Recipients to dynamically register with the reference implementation.
 6. An API Proxy (*mock-cdr-register*) that mocks the CDR register role in dynamic client registration: Issuing Software Statement Assertions (SSAs) and providing a JWKS to verify these SSAs. 
-7. An API Proxy (*mock-adr-client*) that mocks the functionality a client needs being registered dynamically needs to include: provide a JWKS that can be used to verify a registration request. In addition, to make testing easier, it also has a helper facility to automatically generate such registration requests and create Pushed Authorisation Requests (PARs)
+7. An API Proxy (*mock-adr-client*) that mocks the functionality that a client being registered dynamically needs to include: provide a JWKS that can be used to verify a registration request. In addition, to make testing easier, it also has a helper facility to automatically generate such registration requests and create Pushed Authorisation Requests (PARs)
 
 The reference implementation can accelerate Open Banking implementation in multiple ways:
 - Quick delivery of a sandbox API environment, returning mock data.
 - Reusable artefacts (implemented as shared flows) can be included in real API implementations.
 - Leverage the implemented Apigee/Standalone OIDC Provider interaction to kickstart the interaction between Apigee and a real OIDC Provider.
-- The Dynamic Client Registration functionality can be reused as is, if Apigee is kept as the source of truth for API clients authentication/authorisation, or with minor changes if the API clients need to be registered in the Identity Provider as well.
+- The Dynamic Client Registration functionality can be reused as is, if Apigee is kept as the source of truth for API clients authentication/authorisation, or with minor changes if the API clients need to be registered in the Identity Provider and/or Consent Management Solution as well.
 
 **This is not an officially supported Google product.**
 
@@ -121,7 +121,7 @@ You can find this version of the reference implementation in the [okta-integrati
 
 ## Shared Flows
 
-There are 16 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
+There are 17 shared flows that implement common functionality required by the Banking, Admin and dynamic client registration APIs.
 
 1. *add-response-fapi-interaction-id*: Includes *x-fapi-interaction-id* header in responses and error messages
 2. *add-response-headers-links-meta*: Includes in the response the mandated headers and  "meta" structure in the payload, including self links, pagination links, and pagination information, if applicable.
@@ -133,8 +133,9 @@ There are 16 shared flows that implement common functionality required by the Ba
 8. *decide-if-customer-present*: Determines whether a request has a customer present or is unattended. This impact the traffic thresholds and performance SLOs applied to the request. Used by the *check-request-headers* shared flow, but can also be used independently.
 9. *get-jwks-from-dynamic-uri*: Retrieves (and caches) a JWKS from a URI.
 10. *get-ppid*: Returns a unique Pairwise Pseudonym Identifier based on a sector and a customer Id. Uses a KVM to persist the generated PPIds. The sector is an attribute of the registered app for a given data receiver, determined at registration time, according to the CDS specifications.
-11. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
-12. *validate-audience-in-jwt*: Validates the audience claim in an authorisation JWT token as specified in version 1.6
+11. *manage-tokens-by-consent-id*: Keeps track of the latest tokens (access and refresh tokens) associated with a given CDR arrangement ID. Can revoke these tokens when a CDR arrangement is revoked (either through Arrangement Revocation API or out of band, on a different channel) 
+12. *paginate-backend-response*: Returns a subset of the full backend response, according to the pagination parameters included in a request.
+13. *validate-audience-in-jwt*: Validates the audience claim in an authorisation JWT token as specified in version 1.6
 14. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
 15. *validate-ssa*: Validates a Software Statement Assertion included in a dynamic client registration request, as specified in Section [Dynamic Client Registration](https://cdr-register.github.io/register/#dynamic-client-registration) of the CDR Register standards
 16. *verify-idp-id-token*: Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse

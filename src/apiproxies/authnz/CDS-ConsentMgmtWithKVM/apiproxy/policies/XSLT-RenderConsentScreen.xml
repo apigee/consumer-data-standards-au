@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XSL async="false" continueOnError="false" enabled="true" name="XSLT-RenderConsentScreen">
+    <DisplayName>XSLT-RenderConsentScreen</DisplayName>
+    <Properties/>
+    <Source>response</Source>
+    <ResourceURL>xsl://renderConsentScreen.xsl</ResourceURL>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="scope" ref="request.queryparam.scope"/>
+        <Parameter name="consentCacheKey" ref="consentCacheKey"/>
+    </Parameters>
+</XSL>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-GenerateNewConsentId">
+    <DisplayName>AM-GenerateNewConsentId</DisplayName>
+    <AssignVariable>
+        <Name>requestedConsentInfo.consent_id</Name>
+        <Template>{createUuid()}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>theConsentId</Name>
+        <Ref>requestedConsentInfo.consent_id</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

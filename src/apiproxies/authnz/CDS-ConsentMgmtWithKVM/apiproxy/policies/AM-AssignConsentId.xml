@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-AssignConsentId">
+    <DisplayName>AM-AssignConsentId</DisplayName>
+    <AssignVariable>
+        <Name>theConsentId</Name>
+        <Ref>requestedConsentInfo.consent_id</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

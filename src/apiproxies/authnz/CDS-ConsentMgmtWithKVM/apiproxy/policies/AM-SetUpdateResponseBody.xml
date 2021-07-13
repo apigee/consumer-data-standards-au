@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetCreateUpdateResponseBody">
-    <DisplayName>AM-SetCreateUpdateResponseBody</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetUpdateResponseBody">
+    <DisplayName>AM-SetUpdateResponseBody</DisplayName>
     <Set>
         <Payload contentType="application/json">{newConsentInfo}</Payload>
+        <StatusCode>202</StatusCode>
+        <ReasonPhrase>Accepted</ReasonPhrase>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="response"/>

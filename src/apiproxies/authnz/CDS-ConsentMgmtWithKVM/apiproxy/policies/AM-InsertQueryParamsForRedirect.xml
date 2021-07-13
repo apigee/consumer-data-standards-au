@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-InsertQueryParamsForRedirect">
+    <DisplayName>AM-InsertQueryParamsForRedirect</DisplayName>
+    <Remove>
+        <QueryParams/>
+    </Remove>
+    <Set>
+        <QueryParams>
+            <QueryParam name="consent_id">{requestedConsentInfo.consent_id}</QueryParam>
+            <QueryParam name="state">{requestedConsentInfo.state}</QueryParam>
+            <QueryParam name="scope">{requestedConsentInfo.scope}</QueryParam>
+        </QueryParams>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

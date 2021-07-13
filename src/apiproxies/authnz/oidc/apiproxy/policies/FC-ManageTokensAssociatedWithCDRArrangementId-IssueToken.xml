@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ManageTokensAssociatedWithCDRArrangementId-IssueToken">
+    <DisplayName>FC-ManageTokensAssociatedWithCDRArrangementId-IssueToken</DisplayName>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="theConsentId" ref="cdrArrangementId"/>
+        <Parameter name="newAccessToken" ref="theAccessToken"/>
+        <Parameter name="newRefreshToken" ref="theRefreshToken"/>
+        <Parameter name="revokeExistingTokens">true</Parameter>
+    </Parameters>
+    <SharedFlowBundle>manage-tokens-by-consent-id</SharedFlowBundle>
+</FlowCallout>

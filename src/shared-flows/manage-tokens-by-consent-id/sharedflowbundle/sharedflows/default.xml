@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>KVM-GetExistingTokens</Name>
+    </Step>
+    <Step>
+        <Name>EV-ParseExistingTokensInfo</Name>
+        <Condition>(private.existingTokens != null) and (private.existingTokens != "")</Condition>
+    </Step>
+    <Step>
+        <Name>OA-RevokeAccessToken</Name>
+        <Condition>(revokeExistingTokens = "true") and (existingTokens.access_token != null) and (existingTokens.access_token != "")</Condition>
+    </Step>
+    <Step>
+        <Name>OA-RevokeRefreshToken</Name>
+        <Condition>(revokeExistingTokens = "true") and (existingTokens.refresh_token != null) and (existingTokens.refresh_token != "")</Condition>
+    </Step>
+    <Step>
+        <Name>AM-SetNewTokenInfo</Name>
+    </Step>
+    <Step>
+        <Name>KVM-PutNewOrUpdatedTokenInfo</Name>
+    </Step>
+</SharedFlow>

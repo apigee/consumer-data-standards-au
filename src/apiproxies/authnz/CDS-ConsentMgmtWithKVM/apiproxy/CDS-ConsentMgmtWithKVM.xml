@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="3" name="CDS-ConsentMgmtWithKVM">
+<APIProxy revision="5" name="CDS-ConsentMgmtWithKVM">
     <Basepaths>/consent</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1617685715397</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
-    <Description>Provides basic consent management functionality (Get, Create, Update, Revoke) using KVMs. The key to a consent is always a consent_id (So no functionality to retrieve all consents associated with a given end user or client)</Description>
+    <Description>Provides basic consent management functionality (Get, Create, Update, Revoke) using KVMs. The key to a consent is always a consent_id (So no functionality to retrieve all consents associated with a given end user or client). Displays consent screen to end user and manages response</Description>
     <DisplayName>CDS-ConsentMgmtWithKVM</DisplayName>
-    <LastModifiedAt>1625199913960</LastModifiedAt>
+    <LastModifiedAt>1626155496744</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:3e66a3b47254fd76024dd97480a31cbccbe6a2ebfb3edd8ebca8b4a6911eb8813b103bf4c82ddd0229dc09a06de2053961893b0c613b2c5b9225e4dabf49896f:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:14f38191e642e7a39b1b9fcb661aeaf5afce3f0bbe6ceb9635a5bc455f0628f7f81a09d50e5f32d0e2801c9e2df54cc371faf3660ba0ab36db8724133929f04a:ap-southeast-2</ManifestVersion>
     <Policies>
+        <Policy>AM-AssignConsentId</Policy>
+        <Policy>AM-AssignDummyXMLResponse</Policy>
+        <Policy>AM-CleanupHTMLResponse</Policy>
+        <Policy>AM-GenerateNewConsentId</Policy>
+        <Policy>AM-InsertQueryParamsForRedirect</Policy>
+        <Policy>AM-RedirectToOIDCConsentCallback</Policy>
+        <Policy>AM-SetConsentCacheKeyAndValue</Policy>
+        <Policy>AM-SetConsentStatusToInProgress</Policy>
         <Policy>AM-SetConsentStatusToInactive</Policy>
-        <Policy>AM-SetCreateUpdateResponseBody</Policy>
         <Policy>AM-SetCurrentTimeAsEpochSeconds</Policy>
         <Policy>AM-SetGetConsentResponse</Policy>
         <Policy>AM-SetNewConsentInfo</Policy>
         <Policy>AM-SetResponse204NoContent</Policy>
-        <Policy>AM-SetResponseCode201Created</Policy>
-        <Policy>AM-SetResponseCode202Accepted</Policy>
+        <Policy>AM-SetUpdateResponseBody</Policy>
+        <Policy>EV-ExtractConsentCacheKeyFromURIParam</Policy>
         <Policy>EV-ExtractConsentIdFromURIParam</Policy>
+        <Policy>EV-ParseCachedConsentState</Policy>
         <Policy>EV-ParseExistingConsentInfo</Policy>
         <Policy>EV-ParseRequestedConsentInfo</Policy>
+        <Policy>IC-RemoveFromCacheToPreventReplays</Policy>
+        <Policy>JS-SetExpiryTimeForConsent</Policy>
         <Policy>KVM-GetExistingConsent</Policy>
         <Policy>KVM-PutNewOrUpdatedConsent</Policy>
-        <Policy>OA-RevokeAccessToken</Policy>
-        <Policy>OA-RevokeRefreshToken</Policy>
+        <Policy>LC-RetrieveCachedConsentState</Policy>
+        <Policy>PC-CacheConsentState</Policy>
+        <Policy>RF-InvalidCachedConsent</Policy>
         <Policy>RF-InvalidConsent</Policy>
+        <Policy>XSLT-RenderConsentScreen</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
-    <Resources/>
+    <Resources>
+        <Resource>xsl://renderConsentScreen.xsl</Resource>
+        <Resource>jsc://setExpiryTimeForConsent.js</Resource>
+    </Resources>
     <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints/>

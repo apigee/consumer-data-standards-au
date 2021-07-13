@@ -14,7 +14,6 @@
         <Template>{ 
     "client_id": "{existingConsentInfo.client_id}",
     "customer_id": "{existingConsentInfo.customer_id}",
-    "customer_ppid": "{existingConsentInfo.customer_ppid}",
     "status": "inactive",
     "expires_at": {substring(system.timestamp,0,10)},
     "created_at": "{existingConsentInfo.created_at}",

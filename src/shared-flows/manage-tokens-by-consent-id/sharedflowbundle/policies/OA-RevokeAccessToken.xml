@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OAuthV2 async="false" continueOnError="true" enabled="true" name="OA-RevokeAccessToken">
     <DisplayName>OA-RevokeAccessToken</DisplayName>
+    <DisplayName>OA-RevokeAccessToken</DisplayName>
     <Operation>InvalidateToken</Operation>
     <ReuseRefreshToken>false</ReuseRefreshToken>
     <SupportedGrantTypes/>
     <Tokens>
-        <Token cascade="true" type="accesstoken">existingConsentInfo.access_token</Token>
+        <Token cascade="true" type="accesstoken">existingTokens.access_token</Token>
     </Tokens>
 </OAuthV2>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidCachedConsent">
+    <DisplayName>RF-InvalidCachedConsent</DisplayName>
+    <FaultResponse>
+        <Set>
+            <Headers/>
+            <Payload contentType="application/json">{
+ "errors": [
+    {
+      "code": "400",
+      "title": "Bad Request",
+      "detail": "Invalid consent state. Consent has expired or does not exist. Please restart the authorisation process",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
+    }
+  ]
+}</Payload>
+            <StatusCode>400</StatusCode>
+            <ReasonPhrase>Bad Request</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

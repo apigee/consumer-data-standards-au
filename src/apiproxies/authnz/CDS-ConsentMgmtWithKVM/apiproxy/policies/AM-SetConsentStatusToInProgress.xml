@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetConsentStatusToInProgress">
+    <DisplayName>AM-SetConsentStatusToInProgress</DisplayName>
+    <AssignVariable>
+        <Name>requestedConsentInfo.status</Name>
+        <Value>in_progress</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

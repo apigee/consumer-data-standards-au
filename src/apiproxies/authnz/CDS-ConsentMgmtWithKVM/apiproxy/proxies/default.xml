@@ -1,42 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
     <PreFlow name="PreFlow">
-        <Request>
-            <Step>
-                <Name>EV-ExtractConsentIdFromURIParam</Name>
-            </Step>
-            <Step>
-                <Name>KVM-GetExistingConsent</Name>
-            </Step>
-            <Step>
-                <Name>EV-ParseExistingConsentInfo</Name>
-                <Condition>(private.existingConsent != null) and (private.existingConsent != "")</Condition>
-            </Step>
-        </Request>
+        <Request/>
         <Response/>
     </PreFlow>
     <Flows>
-        <Flow name="Create / Update consent">
-            <Description>Creates a new consent entry or updates an existing one. If existing, it checks that it matches the provided client and end user</Description>
+        <Flow name="Update consent">
+            <Description>Updates an existing consent entry. Main purpose is to update its state and/or expiry.</Description>
             <Request>
                 <Step>
                     <Name>EV-ParseRequestedConsentInfo</Name>
                 </Step>
                 <Step>
-                    <Name>RF-InvalidConsent</Name>
-                    <Condition>(existingConsentInfo.client_id != null) and (existingConsentInfo.client_id != "") and (existingConsentInfo.client_id != requestedConsentInfo.client_id)</Condition>
+                    <Name>EV-ExtractConsentIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetExistingConsent</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ParseExistingConsentInfo</Name>
+                    <Condition>(private.existingConsent != null) and (private.existingConsent != "")</Condition>
                 </Step>
                 <Step>
                     <Name>RF-InvalidConsent</Name>
-                    <Condition>(existingConsentInfo.customer_id != null) and (existingConsentInfo.customer_id != "") and (existingConsentInfo.customer_id != requestedConsentInfo.customer_id)</Condition>
+                    <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "") or (existingConsentInfo.client_id != requestedConsentInfo.client_id)</Condition>
                 </Step>
                 <Step>
-                    <Name>OA-RevokeAccessToken</Name>
-                    <Condition>(requestedConsentInfo.revoke_existing_tokens = "true") and (existingConsentInfo.access_token != null) and (existingConsentInfo.access_token != "")</Condition>
-                </Step>
-                <Step>
-                    <Name>OA-RevokeRefreshToken</Name>
-                    <Condition>(requestedConsentInfo.revoke_existing_tokens = "true") and (existingConsentInfo.refresh_token != null) and (existingConsentInfo.refresh_token != "")</Condition>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.customer_id = null) or (existingConsentInfo.customer_id = "") or (existingConsentInfo.customer_id != requestedConsentInfo.customer_id)</Condition>
                 </Step>
                 <Step>
                     <Name>AM-SetNewConsentInfo</Name>
@@ -47,15 +38,7 @@
             </Request>
             <Response>
                 <Step>
-                    <Name>AM-SetCreateUpdateResponseBody</Name>
-                </Step>
-                <Step>
-                    <Name>AM-SetResponseCode201Created</Name>
-                    <Condition>(existingConsentInfo.customer_id = null) or (existingConsentInfo.customer_id = "")</Condition>
-                </Step>
-                <Step>
-                    <Name>AM-SetResponseCode202Accepted</Name>
-                    <Condition>(existingConsentInfo.customer_id != null) and (existingConsentInfo.customer_id != "")</Condition>
+                    <Name>AM-SetUpdateResponseBody</Name>
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/{consentId}") and (request.verb = "PUT")</Condition>
@@ -63,6 +46,16 @@
         <Flow name="Get consent">
             <Description>Returns the consentId. Validates that the consent is associated with the given client_id and that it is still active and hasn't expired</Description>
             <Request>
+                <Step>
+                    <Name>EV-ExtractConsentIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetExistingConsent</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ParseExistingConsentInfo</Name>
+                    <Condition>(private.existingConsent != null) and (private.existingConsent != "")</Condition>
+                </Step>
                 <Step>
                     <Name>RF-InvalidConsent</Name>
                     <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "")</Condition>
@@ -72,7 +65,7 @@
                 </Step>
                 <Step>
                     <Name>RF-InvalidConsent</Name>
-                    <Condition>(existingConsentInfo.client_id != request.queryparam.expected_client_id) or (existingConsentInfo.status != "active") or (existingConsentInfo.expires_at LesserThanOrEquals nowInEpochSeconds)</Condition>
+                    <Condition>(existingConsentInfo.client_id != request.queryparam.expected_client_id) or (existingConsentInfo.status = "inactive") or (existingConsentInfo.expires_at LesserThanOrEquals nowInEpochSeconds)</Condition>
                 </Step>
             </Request>
             <Response>
@@ -83,23 +76,31 @@
             <Condition>(proxy.pathsuffix MatchesPath "/{consentId}") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="Revoke consent">
-            <Description>Logically deletes a consent (by setting its status to inactive)</Description>
+            <Description>Logically deletes a consent (by setting its status to inactive). Checks that it is bound to the expected client_id</Description>
             <Request>
+                <Step>
+                    <Name>EV-ExtractConsentIdFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetExistingConsent</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ParseExistingConsentInfo</Name>
+                    <Condition>(private.existingConsent != null) and (private.existingConsent != "")</Condition>
+                </Step>
                 <Step>
                     <Name>RF-InvalidConsent</Name>
                     <Condition>(existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(existingConsentInfo.client_id != request.queryparam.expected_client_id)</Condition>
                 </Step>
                 <Step>
                     <Name>AM-SetConsentStatusToInactive</Name>
                 </Step>
                 <Step>
                     <Name>KVM-PutNewOrUpdatedConsent</Name>
-                </Step>
-                <Step>
-                    <Name>OA-RevokeAccessToken</Name>
-                </Step>
-                <Step>
-                    <Name>OA-RevokeRefreshToken</Name>
                 </Step>
             </Request>
             <Response>
@@ -108,6 +109,94 @@
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/{theConsentId}") and (request.verb = "DELETE")</Condition>
+        </Flow>
+        <Flow name="Initiate Consent Flow">
+            <Description>Caches consent parameters (state, client_id, cdr_arrangement_id, etc) and renders consent screen for end user</Description>
+            <Request>
+                <Step>
+                    <Name>AM-SetConsentCacheKeyAndValue</Name>
+                </Step>
+                <Step>
+                    <Name>PC-CacheConsentState</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-AssignDummyXMLResponse</Name>
+                </Step>
+                <Step>
+                    <Name>XSLT-RenderConsentScreen</Name>
+                </Step>
+                <Step>
+                    <Name>AM-CleanupHTMLResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Process Consent Form">
+            <Description>Processes the consent form submitted by the end user</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractConsentCacheKeyFromURIParam</Name>
+                </Step>
+                <Step>
+                    <Name>LC-RetrieveCachedConsentState</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidCachedConsent</Name>
+                    <Condition>lookupcache.LC-RetrieveCachedConsentState.cachehit = "false"</Condition>
+                </Step>
+                <Step>
+                    <Name>IC-RemoveFromCacheToPreventReplays</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ParseCachedConsentState</Name>
+                </Step>
+                <Step>
+                    <Name>AM-AssignConsentId</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetExistingConsent</Name>
+                    <Condition>requestedConsentInfo.consent_id != "none"</Condition>
+                </Step>
+                <Step>
+                    <Name>EV-ParseExistingConsentInfo</Name>
+                    <Condition>(requestedConsentInfo.consent_id != "none") and (private.existingConsent != null) and (private.existingConsent != "")</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(requestedConsentInfo.consent_id != "none") and ( (existingConsentInfo.client_id = null) or (existingConsentInfo.client_id = "") or (existingConsentInfo.client_id != requestedConsentInfo.client_id) )</Condition>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(requestedConsentInfo.consent_id != "none") and ( (existingConsentInfo.customer_id = null) or (existingConsentInfo.customer_id = "") or (existingConsentInfo.customer_id != requestedConsentInfo.customer_id) )</Condition>
+                </Step>
+                <Step>
+                    <Name>JS-SetExpiryTimeForConsent</Name>
+                </Step>
+                <Step>
+                    <Name>AM-GenerateNewConsentId</Name>
+                    <Condition>requestedConsentInfo.consent_id = "none"</Condition>
+                </Step>
+                <Step>
+                    <Name>AM-SetConsentStatusToInProgress</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetNewConsentInfo</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-PutNewOrUpdatedConsent</Name>
+                </Step>
+                <Step>
+                    <Name>AM-InsertQueryParamsForRedirect</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>AM-RedirectToOIDCConsentCallback</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/interaction/{consentCacheKey}") and (request.verb = "POST")</Condition>
         </Flow>
     </Flows>
     <PostFlow name="PostFlow">

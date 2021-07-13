@@ -20,12 +20,8 @@
 									"",
 									"var html = cheerio(responseBody);",
 									"var nextInteraction1 = html.find('#loginForm').attr('action');",
-									"var uuid = html.find('#uuid').attr('value');",
-									"var acr = html.find('#acr').attr('value');",
 									"",
 									"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
-									"pm.environment.set(\"uuid\", uuid);",
-									"pm.environment.set(\"acr\", acr);",
 									"",
 									"// If the auth code had already been issued and was still valid, this",
 									"// invocation would directly return it (no necessary login)",
@@ -91,7 +87,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaa&nonce=n-0S6_WzA2Mj223&sharing_duration=1800",
+							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaa&nonce=n-0S6_WzA2Mj223&sharing_duration=1800&cdr_arrangement_id={{cdr_arrangement_id}}",
 							"protocol": "https",
 							"host": [
 								"{{org}}-{{env}}",
@@ -168,8 +164,7 @@
 								{
 									"key": "cdr_arrangement_id",
 									"value": "{{cdr_arrangement_id}}",
-									"description": "Optionally use an existing consent (arrangement)",
-									"disabled": true
+									"description": "Optionally use an existing consent (arrangement)"
 								}
 							]
 						}
@@ -183,21 +178,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store html interaction  and uuid to use in subsequent calls",
+									"// Store callback response from IdP to use in subsequent call",
 									"",
-									"var html = cheerio(responseBody);",
-									"var nextInteraction2 = html.find('#consentForm').attr('action');",
-									"var uuid = html.find('#uuid').attr('value');",
-									"var acr = html.find('#acr').attr('value');",
-									"var account = html.find('#account').attr('value');",
-									"var consentResponse = html.find('#consent').attr('value');",
-									"",
-									"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
-									"pm.environment.set(\"uuid\", uuid);",
-									"pm.environment.set(\"acr\", acr);",
-									"pm.environment.set(\"account\", account);",
-									"pm.environment.set(\"consentResponse\", consentResponse);",
-									""
+									"const htmlResponse = cheerio(responseBody);",
+									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+									"const $ = cheerio.load(responseBody);",
+									"var temp_cb_uri = $('form').attr('action');",
+									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+									"pm.environment.set(\"temp_id_token\", temp_id_token);",
+									"pm.environment.set(\"temp_state\", temp_state);",
+									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);"
 								],
 								"type": "text/javascript"
 							}
@@ -205,19 +197,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{client_secret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{client_id}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -237,11 +217,6 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "uuid",
-									"value": "{{uuid}}",
-									"type": "text"
-								},
-								{
 									"key": "login",
 									"value": "10203040",
 									"type": "text"
@@ -249,11 +224,6 @@
 								{
 									"key": "password",
 									"value": "anyPasswordWillDo",
-									"type": "text"
-								},
-								{
-									"key": "acr",
-									"value": "{{acr}}",
 									"type": "text"
 								}
 							]
@@ -271,154 +241,18 @@
 					"response": []
 				},
 				{
-					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"name": "OIDC Authorise - Step 2.5 (Hybrid)  - Follow redirect to display consent screen",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store callback response from IdP to use in subsequent call",
+									"// Store URL to use in subsequent call",
 									"",
-									"const htmlResponse = cheerio(responseBody);",
-									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
-									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
-									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
-									"const $ = cheerio.load(responseBody);",
-									"var temp_cb_uri = $('form').attr('action');",
-									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
-									"pm.environment.set(\"temp_id_token\", temp_id_token);",
-									"pm.environment.set(\"temp_state\", temp_state);",
-									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
+									"var html = cheerio(responseBody);",
+									"var nextInteraction2 = html.find('#consentForm').attr('action');",
 									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{client_secret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{client_id}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/x-www-form-urlencoded"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "uuid",
-									"value": "{{uuid}}",
-									"type": "text"
-								},
-								{
-									"key": "account",
-									"value": "{{account}}",
-									"type": "text"
-								},
-								{
-									"key": "acr",
-									"value": "{{acr}}",
-									"type": "text"
-								},
-								{
-									"key": "bank:accounts.basic:read",
-									"value": "bank:accounts.basic:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:accounts.detail:read",
-									"value": "bank:accounts.detail:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:transactions:read",
-									"value": "bank:transactions:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:payees:read",
-									"value": "bank:payees:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "bank:regular_payments:read",
-									"value": "bank:regular_payments:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "common:customer.basic:read",
-									"value": "common:customer.basic:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "common:customer.detail:read",
-									"value": "common:customer.detail:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
-							"protocol": "https",
-							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "OIDC Authorise - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Store authorisation code to use in subsequent calls",
-									"",
-									"const html_response = cheerio(responseBody);",
-									"var auth_code = html_response.find('[name=\"code\"]').val();",
-									"",
-									"pm.environment.set(\"auth_code\", auth_code);",
-									"",
-									""
+									"pm.environment.set(\"nextInteraction2\", nextInteraction2);"
 								],
 								"type": "text/javascript"
 							}
@@ -466,6 +300,108 @@
 							"raw": "{{temp_cb_uri}}",
 							"host": [
 								"{{temp_cb_uri}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store auth code to use in subsequent call",
+									"",
+									"const htmlResponse = cheerio(responseBody);",
+									"var auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "bank:accounts.basic:read",
+									"value": "bank:accounts.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:accounts.detail:read",
+									"value": "bank:accounts.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:transactions:read",
+									"value": "bank:transactions:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:payees:read",
+									"value": "bank:payees:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:regular_payments:read",
+									"value": "bank:regular_payments:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.basic:read",
+									"value": "common:customer.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.detail:read",
+									"value": "common:customer.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net{{nextInteraction2}}"
 							]
 						}
 					},
@@ -588,7 +524,7 @@
 			"name": "OIDC - Authorise/Obtain Token (HF) - PAR",
 			"item": [
 				{
-					"name": "Steo 0 - Generate PAR request",
+					"name": "Step 0 - Generate PAR request",
 					"event": [
 						{
 							"listen": "test",
@@ -828,12 +764,7 @@
 									"",
 									"var html = cheerio(responseBody);",
 									"var nextInteraction1 = html.find('#loginForm').attr('action');",
-									"var uuid = html.find('#uuid').attr('value');",
-									"var acr = html.find('#acr').attr('value');",
-									"",
 									"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
-									"pm.environment.set(\"uuid\", uuid);",
-									"pm.environment.set(\"acr\", acr);",
 									"",
 									"// If the auth code had already been issued and was still valid, this",
 									"// invocation would directly return it (no necessary login)",
@@ -940,21 +871,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store html interaction  and uuid to use in subsequent calls",
+									"// Store callback response from IdP to use in subsequent call",
 									"",
-									"var html = cheerio(responseBody);",
-									"var nextInteraction2 = html.find('#consentForm').attr('action');",
-									"var uuid = html.find('#uuid').attr('value');",
-									"var acr = html.find('#acr').attr('value');",
-									"var account = html.find('#account').attr('value');",
-									"var consentResponse = html.find('#consent').attr('value');",
-									"",
-									"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
-									"pm.environment.set(\"uuid\", uuid);",
-									"pm.environment.set(\"acr\", acr);",
-									"pm.environment.set(\"account\", account);",
-									"pm.environment.set(\"consentResponse\", consentResponse);",
-									""
+									"const htmlResponse = cheerio(responseBody);",
+									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+									"const $ = cheerio.load(responseBody);",
+									"var temp_cb_uri = $('form').attr('action');",
+									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+									"pm.environment.set(\"temp_id_token\", temp_id_token);",
+									"pm.environment.set(\"temp_state\", temp_state);",
+									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);"
 								],
 								"type": "text/javascript"
 							}
@@ -994,11 +922,6 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "uuid",
-									"value": "{{uuid}}",
-									"type": "text"
-								},
-								{
 									"key": "login",
 									"value": "10203040",
 									"type": "text"
@@ -1006,11 +929,6 @@
 								{
 									"key": "password",
 									"value": "anyPasswordWillDo",
-									"type": "text"
-								},
-								{
-									"key": "acr",
-									"value": "{{acr}}",
 									"type": "text"
 								}
 							]
@@ -1028,154 +946,18 @@
 					"response": []
 				},
 				{
-					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"name": "OIDC Authorise - Step 2.5 (Hybrid)  - Follow redirect to display consent screen",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store callback response from IdP to use in subsequent call",
+									"// Store URL to use in subsequent call",
 									"",
-									"const htmlResponse = cheerio(responseBody);",
-									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
-									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
-									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
-									"const $ = cheerio.load(responseBody);",
-									"var temp_cb_uri = $('form').attr('action');",
-									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
-									"pm.environment.set(\"temp_id_token\", temp_id_token);",
-									"pm.environment.set(\"temp_state\", temp_state);",
-									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
+									"var html = cheerio(responseBody);",
+									"var nextInteraction2 = html.find('#consentForm').attr('action');",
 									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{client_secret}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{client_id}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/x-www-form-urlencoded"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "uuid",
-									"value": "{{uuid}}",
-									"type": "text"
-								},
-								{
-									"key": "account",
-									"value": "{{account}}",
-									"type": "text"
-								},
-								{
-									"key": "acr",
-									"value": "{{acr}}",
-									"type": "text"
-								},
-								{
-									"key": "bank:accounts.basic:read",
-									"value": "bank:accounts.basic:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:accounts.detail:read",
-									"value": "bank:accounts.detail:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:transactions:read",
-									"value": "bank:transactions:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:payees:read",
-									"value": "bank:payees:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "bank:regular_payments:read",
-									"value": "bank:regular_payments:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "common:customer.basic:read",
-									"value": "common:customer.basic:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "common:customer.detail:read",
-									"value": "common:customer.detail:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
-							"protocol": "https",
-							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "OIDC Authorise - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Store authorisation code to use in subsequent calls",
-									"",
-									"const html_response = cheerio(responseBody);",
-									"var auth_code = html_response.find('[name=\"code\"]').val();",
-									"",
-									"pm.environment.set(\"auth_code\", auth_code);",
-									"",
-									""
+									"pm.environment.set(\"nextInteraction2\", nextInteraction2);"
 								],
 								"type": "text/javascript"
 							}
@@ -1223,6 +1005,121 @@
 							"raw": "{{temp_cb_uri}}",
 							"host": [
 								"{{temp_cb_uri}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store auth code to use in subsequent call",
+									"",
+									"const htmlResponse = cheerio(responseBody);",
+									"var auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "bank:accounts.basic:read",
+									"value": "bank:accounts.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:accounts.detail:read",
+									"value": "bank:accounts.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:transactions:read",
+									"value": "bank:transactions:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:payees:read",
+									"value": "bank:payees:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:regular_payments:read",
+									"value": "bank:regular_payments:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.basic:read",
+									"value": "common:customer.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.detail:read",
+									"value": "common:customer.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net{{nextInteraction2}}"
 							]
 						}
 					},
@@ -1355,12 +1252,8 @@
 									"",
 									"var html = cheerio(responseBody);",
 									"var nextInteraction1 = html.find('#loginForm').attr('action');",
-									"var uuid = html.find('#uuid').attr('value');",
-									"var acr = html.find('#acr').attr('value');",
 									"",
 									"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
-									"pm.environment.set(\"uuid\", uuid);",
-									"pm.environment.set(\"acr\", acr);",
 									"",
 									"// If the auth code had already been issued and was still valid, this",
 									"// invocation would directly return it (no necessary login)",
@@ -1482,20 +1375,18 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store html interaction  and uuid to use in subsequent calls",
+									"// Store callback response from IdP to use in subsequent call",
 									"",
-									"var html = cheerio(responseBody);",
-									"var nextInteraction2 = html.find('#consentForm').attr('action');",
-									"var uuid = html.find('#uuid').attr('value');",
-									"var acr = html.find('#acr').attr('value');",
-									"var account = html.find('#account').attr('value');",
-									"var consentResponse = html.find('#consent').attr('value');",
-									"",
-									"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
-									"pm.environment.set(\"uuid\", uuid);",
-									"pm.environment.set(\"acr\", acr);",
-									"pm.environment.set(\"account\", account);",
-									"pm.environment.set(\"consentResponse\", consentResponse);",
+									"const htmlResponse = cheerio(responseBody);",
+									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+									"const $ = cheerio.load(responseBody);",
+									"var temp_cb_uri = $('form').attr('action');",
+									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+									"pm.environment.set(\"temp_id_token\", temp_id_token);",
+									"pm.environment.set(\"temp_state\", temp_state);",
+									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
 									""
 								],
 								"type": "text/javascript"
@@ -1524,11 +1415,6 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "uuid",
-									"value": "{{uuid}}",
-									"type": "text"
-								},
-								{
 									"key": "login",
 									"value": "10203040",
 									"type": "text"
@@ -1536,11 +1422,6 @@
 								{
 									"key": "password",
 									"value": "anyPasswordWillDo",
-									"type": "text"
-								},
-								{
-									"key": "acr",
-									"value": "{{acr}}",
 									"type": "text"
 								}
 							]
@@ -1558,142 +1439,18 @@
 					"response": []
 				},
 				{
-					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"name": "OIDC Authorise - Step 2.5 (Hybrid)  - Follow redirect to display consent screen",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Store callback response from IdP to use in subsequent call",
+									"// Store URL to use in subsequent call",
 									"",
-									"const htmlResponse = cheerio(responseBody);",
-									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
-									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
-									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
-									"const $ = cheerio.load(responseBody);",
-									"var temp_cb_uri = $('form').attr('action');",
-									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
-									"pm.environment.set(\"temp_id_token\", temp_id_token);",
-									"pm.environment.set(\"temp_state\", temp_state);",
-									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
+									"var html = cheerio(responseBody);",
+									"var nextInteraction2 = html.find('#consentForm').attr('action');",
 									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/x-www-form-urlencoded"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "uuid",
-									"value": "{{uuid}}",
-									"type": "text"
-								},
-								{
-									"key": "account",
-									"value": "{{account}}",
-									"type": "text"
-								},
-								{
-									"key": "acr",
-									"value": "{{acr}}",
-									"type": "text"
-								},
-								{
-									"key": "bank:accounts.basic:read",
-									"value": "bank:accounts.basic:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:accounts.detail:read",
-									"value": "bank:accounts.detail:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:transactions:read",
-									"value": "bank:transactions:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text"
-								},
-								{
-									"key": "bank:payees:read",
-									"value": "bank:payees:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "bank:regular_payments:read",
-									"value": "bank:regular_payments:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "common:customer.basic:read",
-									"value": "common:customer.basic:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "common:customer.detail:read",
-									"value": "common:customer.detail:read",
-									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
-							"protocol": "https",
-							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "OIDC Authorise Local - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Store authorisation code to use in subsequent calls",
-									"",
-									"const html_response = cheerio(responseBody);",
-									"var auth_code = html_response.find('[name=\"code\"]').val();",
-									"",
-									"pm.environment.set(\"auth_code\", auth_code);",
-									"",
-									""
+									"pm.environment.set(\"nextInteraction2\", nextInteraction2);"
 								],
 								"type": "text/javascript"
 							}
@@ -1741,6 +1498,108 @@
 							"raw": "{{temp_cb_uri}}",
 							"host": [
 								"{{temp_cb_uri}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store auth code to use in subsequent call",
+									"",
+									"const htmlResponse = cheerio(responseBody);",
+									"var auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"pm.environment.set(\"auth_code\", auth_code);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "bank:accounts.basic:read",
+									"value": "bank:accounts.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:accounts.detail:read",
+									"value": "bank:accounts.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:transactions:read",
+									"value": "bank:transactions:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:payees:read",
+									"value": "bank:payees:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:regular_payments:read",
+									"value": "bank:regular_payments:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.basic:read",
+									"value": "common:customer.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.detail:read",
+									"value": "common:customer.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net{{nextInteraction2}}"
 							]
 						}
 					},
@@ -2311,6 +2170,11 @@
 									"key": "cdr_arrangement_id",
 									"value": "{{cdr_arrangement_id}}",
 									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
 								}
 							]
 						},
@@ -2664,7 +2528,7 @@
 								},
 								{
 									"key": "page",
-									"value": "2",
+									"value": "1",
 									"disabled": true
 								}
 							]
@@ -7467,6 +7331,271 @@
 									"value": "n-0S6_WzA2Mj3",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ConsentMgmtWithKVM-Standalone Test",
+			"item": [
+				{
+					"name": "Display Consent Form",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store html interaction  and uuid to use in subsequent calls",
+									"",
+									"var html = cheerio(responseBody);",
+									"var nextInteraction2 = html.find('#consentForm').attr('action');",
+									"",
+									"pm.environment.set(\"nextInteraction2\", nextInteraction2);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/consent?client_id={{client_id}}&customer_id=10203040&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=lalsdgkjoaegho&consent_id={{cdr_arrangement_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"consent"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}"
+								},
+								{
+									"key": "customer_id",
+									"value": "10203040"
+								},
+								{
+									"key": "scope",
+									"value": "openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read"
+								},
+								{
+									"key": "state",
+									"value": "lalsdgkjoaegho",
+									"description": "For test purposes any string will do"
+								},
+								{
+									"key": "consent_id",
+									"value": "{{cdr_arrangement_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit consent  form",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Store callback response from IdP to use in subsequent call",
+									"",
+									"const htmlResponse = cheerio(responseBody);",
+									"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+									"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+									"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+									"const $ = cheerio.load(responseBody);",
+									"var temp_cb_uri = $('form').attr('action');",
+									"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+									"pm.environment.set(\"temp_id_token\", temp_id_token);",
+									"pm.environment.set(\"temp_state\", temp_state);",
+									"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "bank:accounts.basic:read",
+									"value": "bank:accounts.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text"
+								},
+								{
+									"key": "bank:accounts.detail:read",
+									"value": "bank:accounts.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text"
+								},
+								{
+									"key": "bank:transactions:read",
+									"value": "bank:transactions:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text"
+								},
+								{
+									"key": "bank:payees:read",
+									"value": "bank:payees:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "bank:regular_payments:read",
+									"value": "bank:regular_payments:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.basic:read",
+									"value": "common:customer.basic:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "common:customer.detail:read",
+									"value": "common:customer.detail:read",
+									"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net{{nextInteraction2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Consent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/consent/{{cdr_arrangement_id}}?expected_client_id={{client_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"consent",
+								"{{cdr_arrangement_id}}"
+							],
+							"query": [
+								{
+									"key": "expected_client_id",
+									"value": "{{client_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Consent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": "10203040",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"type": "text"
+								},
+								{
+									"key": "expires_at",
+									"value": "1625710762",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/consent/{{cdr_arrangement_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"consent",
+								"{{cdr_arrangement_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Consent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{org}}-{{env}}.apigee.net/consent/{{cdr_arrangement_id}}",
+							"protocol": "https",
+							"host": [
+								"{{org}}-{{env}}",
+								"apigee",
+								"net"
+							],
+							"path": [
+								"consent",
+								"{{cdr_arrangement_id}}"
 							]
 						}
 					},

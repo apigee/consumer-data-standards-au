@@ -5,7 +5,12 @@
     <Request>
         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
         <Set>
-            <Payload contentType="application/json">{consentRequest}</Payload>
+            <FormParams>
+                <FormParam name="client_id">{apigee.client_id}</FormParam>
+                <FormParam name="customer_id">{firstnonnull(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerId,oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId)}</FormParam>
+                <FormParam name="status">active</FormParam>
+                <FormParam name="expires_at">{refreshTokenExpiresAt}</FormParam>
+            </FormParams>
             <Verb>PUT</Verb>
         </Set>
     </Request>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetConsentCacheKeyAndValue">
+    <DisplayName>AM-SetConsentCacheKeyAndValue</DisplayName>
+    <AssignVariable>
+        <Name>requestedConsentId</Name>
+        <Template>{firstnonnull(request.queryparam.consent_id,'none')}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>consentCacheVal</Name>
+        <Template>{request.queryparam.client_id}||{request.queryparam.customer_id}||{request.queryparam.scope}||{request.queryparam.state}||{requestedConsentId}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>consentCacheKey</Name>
+        <Template>{createUuid()}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetStateAsOIDCCacheKey">
+    <DisplayName>AM-SetStateAsOIDCCacheKey</DisplayName>
+    <AssignVariable>
+        <Name>stateVar</Name>
+        <Template>{firstnonnull(requested_state,request.formparam.state,request.queryparam.state)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

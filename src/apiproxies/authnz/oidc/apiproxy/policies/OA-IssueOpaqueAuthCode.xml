@@ -7,7 +7,7 @@
     <Operation>GenerateAuthorizationCode</Operation>
     <RedirectUri>requested_redirect_uri</RedirectUri>
     <ResponseType>requested_response_type</ResponseType>
-    <Scope>requested_scope</Scope>
+    <Scope>request.queryparam.scope</Scope>
     <GenerateResponse enabled="false"/>
     <Attributes>
         <Attribute name="OIDCAuthCode" ref="IDP_auth_code" display="false"/>
@@ -15,7 +15,7 @@
         <Attribute name="customerId" ref="IDPTokenClaims.customerId" display="false"/>
         <Attribute name="customerPPId" ref="customerPPId" display="false"/>
         <Attribute name="requestedSharingDuration" ref="requested_sharing_duration" display="false"/>
-        <Attribute name="requestedCDRArrangementId" ref="requested_cdr_arrangement_id" display="false"/>
+        <Attribute name="requestedCDRArrangementId" ref="request.queryparam.consent_id" display="false"/>
     </Attributes>
     <Tokens/>
 </OAuthV2>

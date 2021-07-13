@@ -5,6 +5,6 @@
     <ReuseRefreshToken>false</ReuseRefreshToken>
     <SupportedGrantTypes/>
     <Tokens>
-        <Token cascade="true" type="refreshtoken">existingConsentInfo.refresh_token</Token>
+        <Token cascade="true" type="refreshtoken">existingTokens.refresh_token</Token>
     </Tokens>
 </OAuthV2>

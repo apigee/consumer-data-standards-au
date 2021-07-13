@@ -15,10 +15,7 @@
         <Template>{ 
     "client_id": "{requestedConsentInfo.client_id}",
     "customer_id": "{requestedConsentInfo.customer_id}",
-    "customer_ppid": "{requestedConsentInfo.customer_ppid}",
-    "access_token": "{requestedConsentInfo.new_access_token}",
-    "refresh_token": "{requestedConsentInfo.new_refresh_token}",
-    "status": "active",
+    "status": "{requestedConsentInfo.status}",
     "expires_at": {requestedConsentInfo.expires_at},
     "created_at": "{firstnonnull(existingConsentInfo.created_at,nowFormatted)}",
     "updated_at": "{nowFormatted}"

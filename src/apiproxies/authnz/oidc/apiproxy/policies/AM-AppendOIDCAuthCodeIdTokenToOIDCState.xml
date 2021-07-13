@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-AppendOIDCAuthCodeIdTokenToOIDCState">
+    <DisplayName>AM-AppendOIDCAuthCodeIdTokenToOIDCState</DisplayName>
+    <AssignVariable>
+        <Name>stateCacheVal</Name>
+        <Template>{cachedStateVal}||{IDP_auth_code}||{IDP_id_token}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

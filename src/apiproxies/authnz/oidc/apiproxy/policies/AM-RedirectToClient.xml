@@ -13,7 +13,7 @@
                     <form method="post" action="{requested_redirect_uri}">
                         <input type="hidden" name="code" value="{oauthv2authcode.OA-IssueOpaqueAuthCode.code}"/>
                         <input type="hidden" name="id_token" value="{theNewIdToken}"/>
-                        <input type="hidden" name="state" value="{request.formparam.state}"/>
+                        <input type="hidden" name="state" value="{request.queryparam.state}"/>
                     </form>
                 </body>
             </html>

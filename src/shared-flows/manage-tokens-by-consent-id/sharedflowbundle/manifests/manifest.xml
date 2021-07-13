@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="AM-SetNewTokenInfo" version="SHA-512:cd827718c41c901c8f9a6e120e962ed3348619001874e129838fe4645f7259b22d0cab89584c0ad0e19465e215dac31dd80a3f8948ce63776c98500fcd301f6d"/>
+        <VersionInfo resourceName="EV-ParseExistingTokensInfo" version="SHA-512:587e7db12e58973884c9e9aecf181f57bcf768302feed5ca4a76b76eba8d79663c9a7315bd2d96320cee28bf8949032030e0178d9b46263370884cdda9840d69"/>
+        <VersionInfo resourceName="KVM-GetExistingTokens" version="SHA-512:7443b7b474c8ff5d1010000838a28f11c25fda390d8a6b1e0a7a326f27a21dd6b9fd9321fe9c0350e8ad18e5316fbe4c37f70fc6d1d4699cd563e315036bb36c"/>
+        <VersionInfo resourceName="KVM-PutNewOrUpdatedTokenInfo" version="SHA-512:b9857fbe8ecab339bc7dea236a455079b0feb1f3f59086156f2baa802942db30737fbdef27d666d82df3e95e3df85b38f33ef2e9b97fe5923e695dd5fc040ee4"/>
+        <VersionInfo resourceName="OA-RevokeAccessToken" version="SHA-512:74eb208cf36267b848ea896c677e41f4a5da6e126a58f7163ce00aaf0bcd913c9393fa873c256801624ec2f863ffe489b911976e0e368b42752bb37505b405bc"/>
+        <VersionInfo resourceName="OA-RevokeRefreshToken" version="SHA-512:0f8110b96cb5d10638f67fc6be2f0be749f679042573c5e3349b1734622e4c9af97e67492d64820e074a4a29c2094c0613284a453b36f2fa2254d97de19abde5"/>
+    </Policies>
+    <ProxyEndpoints/>
+    <Resources/>
+    <SharedFlows>
+        <VersionInfo resourceName="default" version="SHA-512:caa2c40ee7e715ab9786bc1b823a335d711c04e4fe00c749922da2146c2d872318759f726b93f0a17c5168ebd607f29d2ea2c778533c131dde3b56b1005f3cd0"/>
+    </SharedFlows>
+    <TargetEndpoints/>
+</Manifest>

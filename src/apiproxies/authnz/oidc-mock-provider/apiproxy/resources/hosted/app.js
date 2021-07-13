@@ -9,7 +9,7 @@ const path = require('path')
 const { request } = require('express')
 const app = express()
 var debug = require('debug')('oidc-provider:main-app')
-	// Determine whether to run in local mode
+// Determine whether to run in local mode
 localTest = !(process.env.APIGEE_ORGANIZATION);
 
 const oidcURL = (localTest) ? "http://localhost:9000" : process.env.OIDC_URL || ("https://" + process.env.APIGEE_ORGANIZATION + "-" + process.env.APIGEE_ENVIRONMENT + ".apigee.net");
@@ -32,20 +32,19 @@ configuration.features.registration.secretFactory = function secretFactory() {
 // Add function that allows a client to specify a refresh token duration
 // When access token is issued for first time, TTL will be specified in query parameter refresh_token_expires_in
 // When an access token is refreshed, the remainingTTL will be used
-configuration.ttl.RefreshToken=function RefreshTokenTTL(ctx, token, client) {
+configuration.ttl.RefreshToken = function RefreshTokenTTL(ctx, token, client) {
 	if (ctx && ctx.oidc.entities.RotatedRefreshToken) {
 		// RefreshTokens do not have infinite expiration through rotation
 		debug("In refresh_token grant type - Setting refresh token TTL to " + ctx.oidc.entities.RotatedRefreshToken.remainingTTL);
 		return ctx.oidc.entities.RotatedRefreshToken.remainingTTL;
 	}
-    if ((token.gty = "authorization_code") && (ctx.req.query.refresh_token_expires_in  !== null) && (ctx.req.query.refresh_token_expires_in  !== '') && (!(isNaN(ctx.req.query.refresh_token_expires_in)))) { 
+	if ((token.gty = "authorization_code") && (ctx.req.query.refresh_token_expires_in !== null) && (ctx.req.query.refresh_token_expires_in !== '') && (!(isNaN(ctx.req.query.refresh_token_expires_in)))) {
 		debug("In authorization_code grant type - Setting refresh token TTL to " + ctx.req.query.refresh_token_expires_in);
-      	return Number(ctx.req.query.refresh_token_expires_in);
+		return Number(ctx.req.query.refresh_token_expires_in);
 	}
-    debug("Returning default TTL = " + 28 * 24 * 60 * 60);
-    return 28 * 24 * 60 * 60; // 28 days in seconds
+	debug("Returning default TTL = " + 28 * 24 * 60 * 60);
+	return 28 * 24 * 60 * 60; // 28 days in seconds
 }
-
 
 const oidc = new Provider(oidcURL, configuration)
 
@@ -55,19 +54,19 @@ app.set('view engine', 'ejs')
 
 let server
 
-	(async() => {
+(async () => {
 	// await oidc.initialize({
 	// 	clients
 	// })
 	app.get('/', (req, res) => res.send('Welcome to the Apigee OIDC Mock - Local version'))
 	routes(app, oidc)
-	app.use('/',oidc.callback)
+	app.use('/', oidc.callback)
 	app.enable('trust proxy')
 	oidc.proxy = true
 
-	server = app.listen(process.env.PORT || 9000, function() {
+	server = app.listen(process.env.PORT || 9000, function () {
 		console.log('Listening on port %d', server.address().port)
-		
+
 	})
 
 })().catch((err) => {

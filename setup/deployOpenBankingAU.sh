@@ -67,11 +67,16 @@ echo "--->"  Creating cache PushedAuthReqs...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z PushedAuthReqs --description "Holds Pushed Authorisation Requests during authorization_code_flow" --cacheExpiryInSecs 600
 echo "--->"  Creating dynamic KVM PPIDs...
 apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName PPIDs --encrypted
+echo "--->"  Creating dynamic KVM TokensIssuedForConsent...
+apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName TokensIssuedForConsent --encrypted
 
 # Create KVM that will hold consent information
 echo "--->"  Creating dynamic KVM CDSConfig...
 apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName Consents --encrypted
 
+# Create cache that will hold consent state (Used by basic consent management proxy)
+echo "--->"  Creating cache ConsentState...
+apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z ConsentState --description "Holds state during consent flow" --cacheExpiryInSecs 600
 
  # Deploy banking apiproxies
 cd src/apiproxies/banking

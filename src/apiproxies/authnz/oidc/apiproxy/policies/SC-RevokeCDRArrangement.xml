@@ -5,6 +5,9 @@
         <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
         <Set>
             <Payload/>
+            <QueryParams>
+                <QueryParam name="expected_client_id">{request.formparam.client_id}</QueryParam>
+            </QueryParams>
             <Verb>DELETE</Verb>
         </Set>
     </Request>

@@ -22,7 +22,7 @@
 
 var debug = require('debug')('oidc-provider:custom-routes')
 const {
-	urlencoded
+	urlencoded, json
 } = require('express')
 const body = urlencoded({
 	extended: false
@@ -36,7 +36,7 @@ module.exports = (app, provider) => {
 	})
 
 	//get login page
-	app.get('/interaction/:grant', async(req, res, next) => {
+	app.get('/interaction/:grant', async (req, res, next) => {
 		try {
 			const details = await provider.interactionDetails(req)
 			debug("In get login page - interaction details: " + JSON.stringify(details));
@@ -51,80 +51,32 @@ module.exports = (app, provider) => {
 
 
 	//submit login
-	app.post('/interaction/:grant/login', body, async(req, res, next) => {
+	app.post('/interaction/:grant/login', body, async (req, res, next) => {
 		res.set('Pragma', 'no-cache')
 		res.set('Cache-Control', 'no-cache, no-store')
-		debug("In submit login page - account: " + req.body.login + " - acr: " + req.body.acr);
 		var details = await provider.interactionDetails(req);
 		// Add login to interaction details
 		details.params.login = req.body.login;
 		try {
-
-			const result = {
-				account: req.body.login,
-				acr: req.body.acr
-			}
-			await provider.setProviderSession(req, res, result)
-			res.status(302).set({
-				Location: '/interaction/' + req.params.grant + '/consent'
-			}).send()
-		} catch (err) {
-			next(err)
-		}
-	})
-
-	//get consent
-	app.get('/interaction/:grant/consent', body, async(req, res, next) => {
-		try {
-			const details = await provider.interactionDetails(req)
-			debug("In get consent page - acr: " + details.params.acr_values + " - account: " + details.params.login);
-			return res.render('consent', {
-				details,
-			})
-		} catch (err) {
-			return next(err)
-		}
-	})
-
-	//submit consent
-	app.post('/interaction/:grant/consent', body, async(req, res, next) => {
-			res.set('Pragma', 'no-cache')
-			res.set('Cache-Control', 'no-cache, no-store')
-				// Iterate over the consent checkboxes and adjust the scope accordingly
-			var acceptedScopes = ["openid", "profile"];
-			var rejectedScopes = [];		
-
-		try {
-			// Iterate over the requested scopes
-			const details = await provider.interactionDetails(req)
-			requestedScopes = details.params.scope.split(" ");
-			requestedScopes.forEach(function rejectOrAcceptScope(value, index, array) {
-					// If the checkbox with the same name as the scope is checked, add to the accepted scope,s otherwise to rejected scopes
-					// openid profile will alwyas be accepted
-					if ((value != "openid") && (value != "profile")) {
-						if (req.body[value]) {
-							acceptedScopes.push(value);
-						} else {
-							debug("Rejecting scope: " + value);
-							rejectedScopes.push(value);
-						}
-					}
-			});
-			const result = {
+			result = {
 				login: {
-					account: req.body.account,
+					// account: req.body.account,
+					account: req.body.login,
 					acr: req.body.acr,
 					amr: ['pwd'],
 					remember: false,
 					ts: Math.floor(Date.now() / 1000),
 				},
 			}
+			// Accept all requested scopes, since we are no longer dealing with scopes here. This will effectively finish the interaction
+			// and resume auth flow
 			result.consent = {}
-			result.consent.acceptedScopes = acceptedScopes;
-			result.consent.rejectedScopes = rejectedScopes;
-
+			result.consent.acceptedScopes = details.params.scope.split(" ");
+			result.consent.rejectedScopes = [];
+			// debug("In submit login page -  About to finish interaction interaction - result = " + JSON.stringify(result));
 			const redirectTo = await provider.interactionResult(req, res, result)
 			const redirectToRelative = redirectTo.replace(/http(s?):\/\/(.*):(\d{4})/g, '')
+			debug("In submit login page -  About to redirect to: " + redirectToRelative);
 			res.status(302).set({
 				Location: redirectToRelative
 			}).send()
@@ -132,7 +84,7 @@ module.exports = (app, provider) => {
 			next(err)
 		}
 	})
-	
+
 	// Return oidc compliant hashes for a string
 	app.get('/oidc-token-hash/:token', (req, res) => {
 

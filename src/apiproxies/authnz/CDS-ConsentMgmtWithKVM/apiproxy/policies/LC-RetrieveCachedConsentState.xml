@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LC-RetrieveCachedConsentState">
+    <DisplayName>LC-RetrieveCachedConsentState</DisplayName>
+    <CacheKey>
+        <KeyFragment ref="consentCacheKey"/>
+    </CacheKey>
+    <CacheResource>ConsentState</CacheResource>
+    <Scope>Global</Scope>
+    <AssignTo>cachedConsent</AssignTo>
+</LookupCache>

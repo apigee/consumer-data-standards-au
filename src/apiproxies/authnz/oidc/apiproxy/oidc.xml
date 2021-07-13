@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="75" name="oidc">
+<APIProxy revision="77" name="oidc">
     <Basepaths></Basepaths>
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
@@ -10,16 +10,18 @@
     <Basepaths>/</Basepaths>
     <Basepaths>/</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1566213116257</CreatedAt>
+    <CreatedAt>1626064816624</CreatedAt>
     <CreatedBy>defaultUser</CreatedBy>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
     <DisplayName>oidc</DisplayName>
     <HostedManifestVersion>SHA-512:1f29642276d62e46830e50e4c2c895efeb31ddcc31c2822ec32760ca107740cec49f7cd096807c8ecf7e5ec58a6d6bcdd9d44c7820052631fd89afe136ab527c:ap-southeast-2</HostedManifestVersion>
-    <LastModifiedAt>1625122234237</LastModifiedAt>
+    <LastModifiedAt>1626064816624</LastModifiedAt>
     <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:f8456878142f96e448e9776770490414495ff455b0f92eb88558b8611b403fbd8d302f1b9fb09427989b698d6950c823250f5df7c0a3ad766346305f77986231:ap-southeast-2</ManifestVersion>
+    <ManifestVersion>SHA-512:6384d02574e1487b0969009460dfd56f449acd5e1dcc300eae1464241dff095da9a41285ed40841ad85cd7abfb048135b22233484cf7764788271c835082a46a:ap-southeast-2</ManifestVersion>
     <Policies>
         <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-AddCDRArrangementIdAsQueryParam</Policy>
+        <Policy>AM-AppendOIDCAuthCodeIdTokenToOIDCState</Policy>
         <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
         <Policy>AM-CannotIssueAccessToken</Policy>
         <Policy>AM-ConsentError</Policy>
@@ -28,15 +30,15 @@
         <Policy>AM-GetCDRArrangementIdFromRefreshToken</Policy>
         <Policy>AM-IDPError</Policy>
         <Policy>AM-InsertApigeeOIDCCredentials</Policy>
+        <Policy>AM-InsertQueryParamsForRedirectToConsent</Policy>
         <Policy>AM-InvalidAuthCode</Policy>
         <Policy>AM-RebuildQueryRequestUsingPAR</Policy>
         <Policy>AM-RedirectToClient</Policy>
+        <Policy>AM-RedirectToConsentFlow</Policy>
         <Policy>AM-RedirectToMockOIDCAuthorise</Policy>
         <Policy>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Policy>
         <Policy>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Policy>
         <Policy>AM-SetAccessTokenResponse-ClientCred</Policy>
-        <Policy>AM-SetCreateUpdateConsentReq-IssueToken</Policy>
-        <Policy>AM-SetCreateUpdateConsentReq-RefreshToken</Policy>
         <Policy>AM-SetCustomDimensionsForAcquireToken</Policy>
         <Policy>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Policy>
         <Policy>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Policy>
@@ -52,6 +54,7 @@
         <Policy>AM-SetParResponse</Policy>
         <Policy>AM-SetRefreshTokenAsAccessToken</Policy>
         <Policy>AM-SetResponse204NoContent</Policy>
+        <Policy>AM-SetStateAsOIDCCacheKey</Policy>
         <Policy>AM-SetStateCacheValue</Policy>
         <Policy>AM-SetStateCacheValueFromCachedPAR</Policy>
         <Policy>AM-SetUserInfoResponse</Policy>
@@ -64,12 +67,16 @@
         <Policy>EV-GetInfoReqdForIssuingAccessToken</Policy>
         <Policy>EV-ParseCachedPar</Policy>
         <Policy>EV-ParseCachedState</Policy>
+        <Policy>EV-ParseCachedStateWithIdPAuthCodeAndIdToken</Policy>
         <Policy>EV-StoreTokenRequestDetails</Policy>
         <Policy>FC-AuthenticateWithPrivateKeyJWT</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
         <Policy>FC-DecideIfCustomerIsPresent</Policy>
         <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
         <Policy>FC-GetPPId</Policy>
+        <Policy>FC-ManageTokensAssociatedWithCDRArrangementId-IssueToken</Policy>
+        <Policy>FC-ManageTokensAssociatedWithCDRArrangementId-RefreshToken</Policy>
+        <Policy>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</Policy>
         <Policy>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Policy>
         <Policy>FC-VerifyHoK-AccessToken</Policy>
         <Policy>FC-VerifyHoK-RefreshToken</Policy>
@@ -108,6 +115,7 @@
         <Policy>RF-InvalidRefreshToken</Policy>
         <Policy>RF-InvalidScope</Policy>
         <Policy>RF-InvalidState</Policy>
+        <Policy>RF-InvocationFromProxyChainingOnly</Policy>
         <Policy>RF-NotFound</Policy>
         <Policy>RF-UnsupportedTokenType</Policy>
         <Policy>SC-CreateUpdateCDRArrangement</Policy>
