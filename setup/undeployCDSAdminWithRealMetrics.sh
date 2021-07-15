@@ -19,6 +19,8 @@
 # Undeploy CDS-AdminWithRealMetrics
 echo Undeploying CDS-AdminWithRealMetrics Apiproxy
 apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-AdminWithRealMetrics
+echo Deleting CDS-AdminWithRealMetrics Apiproxy
+apigeetool delete -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-AdminWithRealMetrics
 
 # Delete target server
 echo Deleting Target Server cds-metrics-collector

@@ -17,6 +17,27 @@
 # limitations under the License.
 #
 
+#### Utility functions
+
+# Undeploy and delete an apiproxy or sharedflow
+function undeploy_and_delete {
+ ARTEFACT_TYPE=$1
+ ARTEFACT_NAME=$2
+
+ if [ "$ARTEFACT_TYPE" = "Apiproxy" ]; then 
+    TOOL_CMD_SUFFIX=""; 
+ else TOOL_CMD_SUFFIX="Sharedflow"
+ fi
+ echo "Suffix = " $TOOL_CMD_SUFFIX
+ echo "--->" Undeploying $ARTEFACT_NAME $ARTEFACT_TYPE
+ apigeetool undeploy$TOOL_CMD_SUFFIX -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ARTEFACT_NAME
+ echo "--->" Deleting $ARTEFACT_NAME $ARTEFACT_TYPE
+ apigeetool delete$TOOL_CMD_SUFFIX -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ARTEFACT_NAME
+
+}
+
+#### End utility functions
+      
 # If no developer name has been set use a default
 if [ -z "$CDS_TEST_DEVELOPER_EMAIL" ]; then  CDS_TEST_DEVELOPER_EMAIL=CDS-Test-Developer@somefictitioustestcompany.com; fi;
 CDS_REGISTER_TEST_DEVELOPER_EMAIL=CDR-Register-Test-Developer@somefictitioustestcompany.com
@@ -68,55 +89,39 @@ apigeetool deleteKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $A
 cd src/apiproxies/banking
 for ap in $(ls .) 
 do 
-    echo "--->" Undeploying $ap Apiproxy
-    cd $ap
-    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
-    cd ..
- done
+    undeploy_and_delete "Apiproxy" $ap
+done
 
  # Undeploy common apiproxies
 cd ../common
 for ap in $(ls .) 
 do 
-    echo "--->" Undeploying $ap Apiproxy
-    cd $ap
-    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
-    cd ..
- done
+    undeploy_and_delete "Apiproxy" $ap
+done
 
 # Undeploy authn/authz related proxies
 cd ../authnz
 for ap in $(ls .) 
 do 
-    echo "--->" Undeploying $ap Apiproxy
-    cd $ap
-    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
-    cd ..
+    undeploy_and_delete "Apiproxy" $ap
 done
 
 # Undeploy CDS-Admin proxy
 cd ../admin/CDS-Admin
-echo "--->" Undeploying CDS-Admin Apiproxy
-apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
+undeploy_and_delete "Apiproxy" CDS-Admin
 
 # Undeploy Client Dynamic Registration proxy and the accompanying mock-register and mock-adr-client proxies
 cd ../../dynamic-client-registration
 for ap in $(ls .) 
 do 
-    echo "--->" Undeploying $ap Apiproxy
-    cd $ap
-    apigeetool undeploy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
-    cd ..
- done
+    undeploy_and_delete "Apiproxy" $ap
+done
 
 # Undeploy Shared flows
 cd ../../shared-flows
 for sf in $(ls .) 
 do 
-    echo "--->" Undeploying $sf Shared Flow 
-    cd $sf
-    apigeetool undeploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
-    cd ..
+    undeploy_and_delete "Sharedflow" $sf
 done
 
 # Revert to original directory
