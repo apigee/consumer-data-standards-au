@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1beta2
+kind: ManagedCertificate
+metadata:
+  name: oidc-ssl-cert
+  namespace: default
+spec:
+  domains:
+    - "34-149-216-12.nip.io"

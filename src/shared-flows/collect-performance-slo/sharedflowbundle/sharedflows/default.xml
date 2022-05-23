@@ -45,6 +45,6 @@
     </Step>
     <Step>
         <FaultRules/>
-        <Name>SC-AddPerformanceTierDimension</Name>
+        <Name>DC-AddPerformanceTierDimension</Name>
     </Step>
 </SharedFlow>

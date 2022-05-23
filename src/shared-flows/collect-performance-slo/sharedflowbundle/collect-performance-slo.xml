@@ -18,7 +18,7 @@
         <Policy>AM-SetPerformanceTierToUnattended</Policy>
         <Policy>AM-SetPerformanceTierToUnauthenticated</Policy>
         <Policy>JS-CheckIfRequestMeetsPerformanceSLO</Policy>
-        <Policy>SC-AddPerformanceTierDimension</Policy>
+        <Policy>DC-AddPerformanceTierDimension</Policy>
     </Policies>
     <Resources>
         <Resource>jsc://checkIfRequestMeetsPerformanceSLO.js</Resource>

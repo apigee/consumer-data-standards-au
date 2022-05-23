@@ -7,9 +7,9 @@
         <Parameter name="isPublicEndpoint">true</Parameter>
         <Parameter name="isAuthEndpoint">false</Parameter>
         <Parameter name="isCustomerPresent">false</Parameter>
-        <Parameter name="customerId"></Parameter>
-        <Parameter name="clientId"></Parameter>
-        <Parameter name="sessionId"></Parameter>
+        <Parameter name="customerId"> </Parameter>
+        <Parameter name="clientId"> </Parameter>
+        <Parameter name="sessionId"> </Parameter>
     </Parameters>
     <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>
 </FlowCallout>

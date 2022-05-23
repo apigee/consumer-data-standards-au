@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataCapture name="DC-AddPerformanceTierDimension">
+    <DisplayName>DC-AddPerformanceTierDimension</DisplayName>
+    <Capture>
+        <DataCollector>dc_PerformanceTier</DataCollector>
+        <Collect ref="performanceTier" default="undetermined"/>
+    </Capture>
+    <Capture>
+        <DataCollector>dc_MeetsPerformanceSLO</DataCollector>
+        <Collect ref="meetsPerformanceSLO" default="undetermined"/>
+    </Capture>
+    <Capture>
+        <DataCollector>dc_CustomerPPId</DataCollector>
+        <Collect ref="customerPPId" default="undetermined"/>
+    </Capture>
+    <Capture>
+        <DataCollector>dc_TokenOp</DataCollector>
+        <Collect ref="tokenOpp" default="undetermined"/>
+    </Capture>
+</DataCapture>

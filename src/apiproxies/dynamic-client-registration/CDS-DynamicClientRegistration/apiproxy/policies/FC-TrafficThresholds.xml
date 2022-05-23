@@ -7,7 +7,7 @@
         <Parameter name="isPublicEndpoint">false</Parameter>
         <Parameter name="isAuthEndpoint">true</Parameter>
         <Parameter name="isCustomerPresent">false</Parameter>
-        <Parameter name="customerId"/>
+        <Parameter name="customerId"> </Parameter>
         <Parameter name="clientId" ref="theClientId"/>
         <Parameter name="sessionId">DynamicClientRegistrationSession</Parameter>
     </Parameters>

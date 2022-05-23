@@ -18,3 +18,4 @@ test/postman/*environment.json
 src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients-*.json
 **/package-lock.json
 specs/Notes.txt
+**/*.log

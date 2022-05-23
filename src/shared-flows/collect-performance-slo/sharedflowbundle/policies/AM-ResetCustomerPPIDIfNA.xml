@@ -7,5 +7,5 @@
         <Value/>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="message"/>
+    <AssignTo createNew="false" transport="http"/>
 </AssignMessage>

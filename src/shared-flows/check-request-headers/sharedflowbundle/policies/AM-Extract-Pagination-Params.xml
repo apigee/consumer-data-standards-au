@@ -14,5 +14,5 @@
         <Ref>request.queryparam.page-size</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo type="request" transport="http" createNew="false"></AssignTo>
+    <AssignTo transport="http" createNew="false"></AssignTo>
 </AssignMessage>

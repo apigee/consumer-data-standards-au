@@ -55,7 +55,6 @@
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
-        <Resource>openapi://association.json</Resource>
         <Resource>jsc://buildDetailsResponse.js</Resource>
         <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
         <Resource>jsc://checkAccountsFilterInAllAccounts.js</Resource>
