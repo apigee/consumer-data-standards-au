@@ -64,14 +64,6 @@ function generate_private_public_key_pair {
 
 ###### End Utility functions
 
-#------------------
-if false; then
-
-
-
-
-
-
 # Create Caches and dynamic KVM used by oidc proxy
 echo "--->"  Creating cache OIDCState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState --description "Holds state during authorization_code flow" --cacheExpiryInSecs 600
@@ -91,14 +83,17 @@ echo "--->"  Creating cache ConsentState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z ConsentState --description "Holds state during consent flow" --cacheExpiryInSecs 600
 
 
+# Create Data Collectors
+for dc in dc_PerformanceTier dc_MeetsPerformanceSLO dc_CustomerPPId dc_TokenOp; do
+    apigeetool createDataCollector --dataCollectorName $dc --dataCollectorType STRING
+done
 
- # Deploy Shared flows
 
-sftraverse="add-response-fapi-interaction-id add-response-headers-links-meta check-token-not-reused validate-ssa validate-audience-in-jwt get-jwks-from-dynamic-uri authenticate-with-private-key-jwt verify-idp-id-token decide-if-customer-present check-request-headers"
+# Deploy Shared flows
 
 pushd src/shared-flows
 
-for sf in $sftraverse; do
+for sf in $(gensfds.sh . tsort); do
     echo "--->"  Deploying $sf Shared Flow 
     cd $sf
     apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
@@ -263,17 +258,7 @@ generate_private_public_key_pair MockCDRRegister "Mock CDR Register"
 echo "Use private key when signing JWT tokens used for authentication in Admin API Endpoints"
 echo "----"
 
-
-
-
-
-
-
-fi #------------------
 pushd setup/certs
-
-
-
 
 
 # Generate RSA Private/public key pair to be used by Apigee when signing JWT ID Tokens

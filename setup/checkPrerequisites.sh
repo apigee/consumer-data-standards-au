@@ -92,7 +92,7 @@ function check_commands() {
 
 set -e
 
-check_commands "curl openssl xmllint pem-jwk apigeetool"
+check_commands "curl openssl xmllint pem-jwk apigeetool gensfds.sh"
 
 check_command_version bash "4.1"
 
@@ -104,5 +104,3 @@ check_envvars "METRICS_SERVICE_HOST"
 # Configuraton
 
 check_envvars "CDS_TEST_DEVELOPER_EMAIL CDS_REGISTER_TEST_DEVELOPER_EMAIL CDS_HOSTNAME"
-
-

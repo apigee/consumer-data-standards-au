@@ -3,7 +3,7 @@
 # deploy oidc-mock-provider app to a Kubernetes cluster
 
 
-# current directory assumption: setup
+# current directory assumption: <repo-root-folder>
 
 # dependencies:
 # utils: gcloud docker npm kubectl
@@ -12,7 +12,7 @@ set -e
 
 # build a docker image
 
-pushd ../src/additional-solutions/oidc-mock-provider-app
+pushd src/additional-solutions/oidc-mock-provider-app
 
 npm i --package-lock-only
 
@@ -33,7 +33,7 @@ popd
 
 # deploy the app
 
-pushd ../src/additional-solutions/oidc-mock-provider-k8s
+pushd src/additional-solutions/oidc-mock-provider-k8s
 
 envsubst < oidc-mock-provider-deployment.tyaml > oidc-mock-provider-deployment.yaml
 
