@@ -5,4 +5,4 @@ metadata:
   namespace: default
 spec:
   domains:
-    - "35-190-48-144.nip.io"
+    - "$GTM_HOST_ALIAS"

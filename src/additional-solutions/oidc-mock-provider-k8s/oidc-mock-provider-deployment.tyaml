@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: oidc-mock-provider
-        image: gcr.io/emea-cs-hybrid-demo11/oidc-mock-provider:1.0
+        image: gcr.io/$PROJECT/oidc-mock-provider:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
