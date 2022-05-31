@@ -64,6 +64,12 @@ function generate_private_public_key_pair {
 
 ###### End Utility functions
 
+
+if false; then 
+
+
+
+
 # Create Caches and dynamic KVM used by oidc proxy
 echo "--->"  Creating cache OIDCState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState --description "Holds state during authorization_code flow" --cacheExpiryInSecs 600
@@ -103,7 +109,7 @@ for sf in $(gensfds.sh . tsort); do
 popd
 
 
- # Deploy banking apiproxies
+# Deploy banking apiproxies
 pushd src/apiproxies/banking
 
 for ap in $(ls .); do
@@ -195,6 +201,12 @@ if [ -z "$CDS_TEST_DEVELOPER_EMAIL" ]; then  CDS_TEST_DEVELOPER_EMAIL=CDS-Test-D
 echo "--->"  Creating Test Developer: $CDS_TEST_DEVELOPER_EMAIL
 apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL --firstName "CDS Test" --lastName "Developer"  --userName $CDS_TEST_DEVELOPER_EMAIL
 
+
+fi
+
+
+
+
 # Create a test app - Store the client key and secret
 echo "--->"  Creating Test App: CDSTestApp...
 
@@ -207,7 +219,7 @@ REG_INFO=$(sed -e "s/cds-hostname/$CDS_HOSTNAME/g" ./setup/baseRegistrationInfoF
 REQ_BODY='{ "callbackUrl": "https://httpbin.org/post", "attributes": [ { "name": "DisplayName", "value": "CDSTestApp" }, { "name": "SectorIdentifier", "value": "httpbin.org" },'
 echo $REQ_BODY $REG_INFO "]}" >> ./tmpReqBody.json
 
-curl --silent -X PUT -H "Authorization: Bearer $(token)" \
+curl --silent -X PUT -H "Authorization: Bearer $(apigeetool getToken)" \
           -H "Content-Type:application/json" \
           https://apigee.googleapis.com/v1/organizations/$APIGEE_ORG/developers/$CDS_TEST_DEVELOPER_EMAIL/apps/CDSTestApp \
           -d @./tmpReqBody.json
@@ -232,7 +244,7 @@ REG_INFO=$(sed -e "s/cds-hostname/$CDS_HOSTNAME/g" ./setup/baseRegistrationInfoF
 REQ_BODY='{ "attributes": [ { "name": "DisplayName", "value": "CDSRegisterTestApp" }, '
 echo $REQ_BODY $REG_INFO "]}" >> ./tmpReqBody.json
 
-curl --silent -X PUT -H "Authorization: Bearer $(token)" \
+curl --silent -X PUT -H "Authorization: Bearer $(apigeetool getToken)" \
           -H "Content-Type:application/json" \
           https://apigee.googleapis.com/v1/organizations/$APIGEE_ORG/developers/$CDS_REGISTER_TEST_DEVELOPER_EMAIL/apps/CDSRegisterTestApp \
           -d @./tmpReqBody.json
@@ -257,8 +269,6 @@ echo Certificate CDSTestApp.crt generated and stored in ./setup/certs. You will 
 generate_private_public_key_pair MockCDRRegister "Mock CDR Register"
 echo "Use private key when signing JWT tokens used for authentication in Admin API Endpoints"
 echo "----"
-
-pushd setup/certs
 
 
 # Generate RSA Private/public key pair to be used by Apigee when signing JWT ID Tokens

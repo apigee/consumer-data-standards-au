@@ -1,9 +1,15 @@
 
 
+
+
+
+# Instructions:
+# git clone -b 5g $CDSAU_REPO
+# cp ./setup/env 
+# source cds-au-config-<env>.env
+# ./setup/cds-au-setup.sh
+
 set -e
-
-
-source cds-au-config.env
 
 gcloud config set project $PROJECT
 
@@ -77,8 +83,18 @@ apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -n gcp-sa-auth
 cd $CDSAU_HOME
 
 
-git clone -b 5g $CDSAU_REPO
 
 cd $CDSAU_HOME/consumer-data-standards-au
 
 ./setup/checkPrerequisites.sh
+
+gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_LOCATION
+
+./setup/deployOidcMockProvider.sh
+
+
+./setup/deployOpenBankingAU.sh
+
+
+#./setup/deployCDSAdminWithRealMetrics.sh
+

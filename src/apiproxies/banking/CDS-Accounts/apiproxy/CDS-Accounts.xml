@@ -1,67 +1,52 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="37" name="CDS-Accounts">
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1563516215003</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+<APIProxy revision="5" name="CDS-Accounts">
     <DisplayName>CDS-Accounts</DisplayName>
-    <LastModifiedAt>1624511177629</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:1b3732105f15c188cce3afb4dec5752ac7b41d2ab53c68f3e6735022c5f77e5b46e5d08e2b70ebf93f9ead4f2fdd5695a4427c22f270fe38d7f083dafb8f7078:ap-southeast-2</ManifestVersion>
+    <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+    <CreatedAt>1635031673218</CreatedAt>
+    <LastModifiedAt>1635031673218</LastModifiedAt>
+    <BasePaths>/cds-au/v1/banking/accounts</BasePaths>
     <Policies>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
-        <Policy>AM-InvalidScope</Policy>
-        <Policy>AM-MockFullListOfAccounts</Policy>
-        <Policy>AM-MockFullListOfBalances</Policy>
-        <Policy>AM-Set-Pagination-Settings</Policy>
-        <Policy>AM-SetCustomerId</Policy>
-        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>JS-CheckAccountsFilterInAllAccounts</Policy>
         <Policy>EV-AccountIdFromURL</Policy>
-        <Policy>EV-GetAccountsFilterCriteria</Policy>
-        <Policy>EV-GetAllAcountsForCustomer</Policy>
-        <Policy>EV-GetAllBalancesForCustomer</Policy>
-        <Policy>EV-GetErrorDetail</Policy>
-        <Policy>EV-ResultsForAccountId</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
-        <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>FC-PaginateResponse</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
+        <Policy>RF-InvalidAccountInURI</Policy>
+        <Policy>AM-InvalidScope</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>EV-GetAllBalancesForCustomer</Policy>
+        <Policy>EV-GetAccountsFilterCriteria</Policy>
+        <Policy>EV-ResultsForAccountId</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>AM-MockFullListOfBalances</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>EV-GetAllAcountsForCustomer</Policy>
+        <Policy>AM-MockFullListOfAccounts</Policy>
+        <Policy>AM-SetCustomerId</Policy>
+        <Policy>AM-Set-Pagination-Settings</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>RF-InvalidAccountInFilter</Policy>
         <Policy>FC-ValidateRequestParams</Policy>
         <Policy>FC-VerifyHoK</Policy>
+        <Policy>FC-PaginateResponse</Policy>
         <Policy>JS-BuildDetailsResponse</Policy>
-        <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
-        <Policy>JS-CheckAccountsFilterInAllAccounts</Policy>
-        <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
-        <Policy>JS-FilterResults</Policy>
         <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
-        <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
-        <Policy>RF-InvalidAccountInFilter</Policy>
-        <Policy>RF-InvalidAccountInURI</Policy>
-        <Policy>RF-NotFound</Policy>
-        <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
+        <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>EV-GetErrorDetail</Policy>
+        <Policy>JS-FilterResults</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://filterResults.js</Resource>
         <Resource>jsc://buildDetailsResponse.js</Resource>
-        <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
         <Resource>jsc://checkAccountsFilterInAllAccounts.js</Resource>
         <Resource>jsc://filterAccountsListBasedOnRequestFilters.js</Resource>
-        <Resource>jsc://filterResults.js</Resource>
+        <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <TargetServers/>
-    <TargetEndpoints/>
 </APIProxy>
