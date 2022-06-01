@@ -5,8 +5,11 @@ PR readiness state: WIP: 90%
 ## TODO:
 
 [ ] remove oidc mock proxies from 5g branch
+
 [ ] deploy oidc mock provider to app engine
+
 [ ] refactor docker as a separate install; it might be considered extra hassle  to setup docker et all if not really required
+
 [ ] final compare of proxy states
 
 [ ] metrics server not touched
