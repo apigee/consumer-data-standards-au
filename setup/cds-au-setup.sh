@@ -1,8 +1,5 @@
 
 
-
-
-
 # Instructions:
 # git clone -b 5g $CDSAU_REPO
 # cp ./setup/env 
@@ -13,8 +10,7 @@ set -e
 
 gcloud config set project $PROJECT
 
-mkdir -p $CDSAU_HOME
-cd $CDSAU_HOME
+$CDSAU_HOME/consumer-data-standards-au/setup/checkPrerequisites.sh
 
 mkdir -p $CDSAU_HOME/bin
 
@@ -26,7 +22,7 @@ chmod 0700 $CDSAU_HOME/service-accounts
 # apigeetool
 
 curl -LO https://raw.githubusercontent.com/apigee/ahr/main/bin/apigeetool && chmod +x apigeetool
-mv apigeetool bin
+mv apigeetool $CDSAU_HOME/bin
 
 
 
@@ -86,7 +82,6 @@ cd $CDSAU_HOME
 
 cd $CDSAU_HOME/consumer-data-standards-au
 
-./setup/checkPrerequisites.sh
 
 gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_LOCATION
 

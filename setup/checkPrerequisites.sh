@@ -11,11 +11,11 @@ function version_is_higher( ){
 split( ver_curr, ver_curr_ar, "." )
 split( ver_tgt, ver_tgt_ar, "." )
 
-print( ( ver_curr_ar[1] > ver_tgt_ar[1] )?
-              "true":
-              ( ver_curr_ar[1] <  ver_tgt_ar[1] )?
-                  "false":
-                   ( ver_curr_ar[2] >= ver_tgt_ar[2] )? "true" : "false" )
+print( ( ver_curr_ar[1] > ver_tgt_ar[1] )? \
+              "true": \
+              ( ver_curr_ar[1] <  ver_tgt_ar[1] )? \
+                  "false": \
+                   ( ver_curr_ar[2] >= ver_tgt_ar[2] )? "true" : "false" ) \
 }' )
     echo -n "$is_higher"
 }
@@ -96,7 +96,8 @@ check_commands "curl openssl xmllint pem-jwk apigeetool gensfds.sh"
 
 check_command_version bash "4.1"
 
-check_command_version awk "4.1"
+check_commands "awk"
+# check_command_version awk "4.1"
 
 check_envvars "APIGEE_ORG APIGEE_ENV APIGEE_USER APIGEE_PASSWORD"
 check_envvars "METRICS_SERVICE_HOST"
