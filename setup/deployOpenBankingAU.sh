@@ -65,11 +65,6 @@ function generate_private_public_key_pair {
 ###### End Utility functions
 
 
-if false; then 
-
-
-
-
 # Create Caches and dynamic KVM used by oidc proxy
 echo "--->"  Creating cache OIDCState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z OIDCState --description "Holds state during authorization_code flow" --cacheExpiryInSecs 600
@@ -200,11 +195,6 @@ apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
 if [ -z "$CDS_TEST_DEVELOPER_EMAIL" ]; then  CDS_TEST_DEVELOPER_EMAIL=CDS-Test-Developer@somefictitioustestcompany.com; fi;
 echo "--->"  Creating Test Developer: $CDS_TEST_DEVELOPER_EMAIL
 apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL --firstName "CDS Test" --lastName "Developer"  --userName $CDS_TEST_DEVELOPER_EMAIL
-
-
-fi
-
-
 
 
 # Create a test app - Store the client key and secret

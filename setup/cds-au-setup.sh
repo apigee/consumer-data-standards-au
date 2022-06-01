@@ -10,8 +10,6 @@ set -e
 
 gcloud config set project $PROJECT
 
-$CDSAU_HOME/consumer-data-standards-au/setup/checkPrerequisites.sh
-
 mkdir -p $CDSAU_HOME/bin
 
 
@@ -35,6 +33,9 @@ git clone https://github.com/apigee/devrel.git
 # gensfds.sh
 
 cp $CDSAU_HOME/devrel/tools/sf-dependency-list/src/gensfds.sh $CDSAU_HOME/bin
+
+
+$CDSAU_HOME/consumer-data-standards-au/setup/checkPrerequisites.sh
 
 
 # kvm-admin
@@ -63,20 +64,13 @@ gcloud iam service-accounts keys create $APIGEE_ORG_ADMIN_KEY \
 # create KVM to hold SA Key
 apigeetool createKVMmap -o $APIGEE_ORG -e $APIGEE_ENV --mapName apigee-runtime-sa --encrypted
 
+
 apigeetool addEntryToKVM -o $APIGEE_ORG -e $APIGEE_ENV --mapName apigee-runtime-sa --entryName apigee-runtime-sa --entryValue "$(cat $APIGEE_ORG_ADMIN_KEY)"
 
 
-# 
-
-
-
-# gcp 
 cd $CDSAU_HOME/devrel/references/gcp-sa-auth-shared-flow
 
 apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -n gcp-sa-auth
-
-
-cd $CDSAU_HOME
 
 
 
