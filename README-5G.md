@@ -24,7 +24,8 @@ PR readiness state: WIP: 90%
 1. Define Repository URL. Useful for development.
 
 ```bash
-export CDSAU_REPO=git@github.com:yuriylesyuk/consumer-data-standards-au.git
+# export CDSAU_REPO=git@github.com:yuriylesyuk/consumer-data-standards-au.git
+export CDSAU_REPO=https://github.com/yuriylesyuk/consumer-data-standards-au.git
 ```
 
 1. Define a project home
