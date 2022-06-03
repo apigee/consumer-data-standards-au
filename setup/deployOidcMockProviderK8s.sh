@@ -10,6 +10,11 @@
 
 set -e
 
+
+# permissions for kubectl
+gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_LOCATION
+
+
 # build a docker image
 
 pushd src/additional-solutions/oidc-mock-provider-app

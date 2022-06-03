@@ -1,35 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="37" name="check-request-headers">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1546400695647</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
+<SharedFlowBundle revision="1" name="check-request-headers">
     <DisplayName>check-request-headers</DisplayName>
-    <LastModifiedAt>1624427711947</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:e76fa84222a149fab1005353953af4412dbde058f25f2fdc632cdd153c97e351750360bebcf522988e5719da4e1e38256f493ba7a927f1938b758b0f2ede2348:ap-southeast-2</ManifestVersion>
+    <Description>Check headers and their values required in every request. Stores headers that may need to be included in the response</Description>
+    <CreatedAt>1635030497124</CreatedAt>
+    <LastModifiedAt>1635030497124</LastModifiedAt>
     <Policies>
-        <Policy>AM-Extract-Pagination-Params</Policy>
-        <Policy>AM-ExtractContentTypeAndAcceptHeaders</Policy>
         <Policy>AM-SetEndpointVersionTo1</Policy>
-        <Policy>AM-SetEndpointVersionTo2</Policy>
-        <Policy>AM-SetEndpointVersionTo3</Policy>
-        <Policy>EV-Preserve-Request-Headers</Policy>
-        <Policy>FC-DecideIfCustomerIsPresent</Policy>
-        <Policy>JS-CheckVersionHeaders</Policy>
-        <Policy>RF-Invalid-Accept-Header</Policy>
-        <Policy>RF-Invalid-Content-Type-Header</Policy>
-        <Policy>RF-Invalid-Version</Policy>
-        <Policy>RF-Missing-Authdate-Header</Policy>
-        <Policy>RF-Missing-Invalid-cdsClientHeaders-Header</Policy>
         <Policy>RF-Return-CORS-Headers</Policy>
+        <Policy>JS-CheckVersionHeaders</Policy>
+        <Policy>RF-Missing-Invalid-cdsClientHeaders-Header</Policy>
+        <Policy>FC-DecideIfCustomerIsPresent</Policy>
+        <Policy>EV-Preserve-Request-Headers</Policy>
+        <Policy>AM-SetEndpointVersionTo3</Policy>
+        <Policy>AM-Extract-Pagination-Params</Policy>
+        <Policy>RF-Missing-Authdate-Header</Policy>
+        <Policy>RF-Invalid-Version</Policy>
+        <Policy>RF-Invalid-Content-Type-Header</Policy>
+        <Policy>AM-ExtractContentTypeAndAcceptHeaders</Policy>
+        <Policy>RF-Invalid-Accept-Header</Policy>
+        <Policy>AM-SetEndpointVersionTo2</Policy>
     </Policies>
     <Resources>
         <Resource>jsc://checkVersionHeaders.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

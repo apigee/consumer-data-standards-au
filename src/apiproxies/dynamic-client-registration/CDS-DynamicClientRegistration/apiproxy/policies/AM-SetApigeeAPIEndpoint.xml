@@ -3,7 +3,7 @@
     <DisplayName>AM-SetApigeeAPIEndpoint</DisplayName>
     <AssignVariable>
         <Name>apigeeAPIEndpoint</Name>
-        <Value>api.enterprise.apigee.com</Value>
+        <Value>apigee.googleapis.com</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

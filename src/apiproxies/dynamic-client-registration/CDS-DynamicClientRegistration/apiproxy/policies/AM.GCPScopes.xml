@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AM.GCPScopes">
+    <AssignVariable>
+        <Name>gcp.scopes</Name>
+        <Value>https://www.googleapis.com/auth/cloud-platform</Value>
+    </AssignVariable>
+</AssignMessage>

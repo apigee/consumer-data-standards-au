@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations continueOnError="false" enabled="true" name="KVM-GetGcpSAKey" mapIdentifier="apigee-runtime-sa">
+    <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+    <Get assignTo="private.gcp.service_account.key">
+        <Key>
+            <Parameter>apigee-runtime-sa</Parameter>
+        </Key>
+    </Get>
+</KeyValueMapOperations>

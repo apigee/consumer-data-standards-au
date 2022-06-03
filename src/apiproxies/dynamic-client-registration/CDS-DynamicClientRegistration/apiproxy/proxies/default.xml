@@ -361,10 +361,16 @@
                 <Name>AM-SetApigeeAPIEndpoint</Name>
             </Step>
             <Step>
-                <Name>KVM-GetApigeeAPICredentials</Name>
+                <Name>KVM-GetGcpSAKey</Name>
             </Step>
             <Step>
-                <Name>BA-SetBasicAuthHeader</Name>
+                <Name>AM.GCPScopes</Name>
+            </Step>
+            <Step>
+                <Name>FC-Gen-GCP-SA-Auth-Token</Name>
+            </Step>
+            <Step>
+                <Name>AM-SetApigeeAuth</Name>
             </Step>
         </Request>
         <Response/>
@@ -376,7 +382,7 @@
         <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
 -             The secure-mtls virtual host must already be configured to support mTLS with propagateTLSInformation
 -             This proxy has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
--       <!-- <VirtualHost>secure-mtls</VirtualHost> -->
+        <!-- <VirtualHost>secure-mtls</VirtualHost> -->
     </HTTPProxyConnection>
     <RouteRule name="noroute"/>
 </ProxyEndpoint>

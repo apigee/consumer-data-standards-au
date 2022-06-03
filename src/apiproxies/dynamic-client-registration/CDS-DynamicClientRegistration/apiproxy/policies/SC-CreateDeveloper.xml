@@ -9,10 +9,10 @@
             </Headers>
             <Verb>POST</Verb>
             <Payload contentType="application/json"> {
-                   "email" : "{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net",
+                   "email" : "{ADRDetailsFromSSA.org_id}@apigeecdsrefimplementation.net",
    "firstName" : "{ADRDetailsFromSSA.org_name}",
    "lastName" : ".",
-   "userName" : "{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net"}</Payload>
+   "userName" : "{ADRDetailsFromSSA.org_id}@apigeecdsrefimplementation.net"}</Payload>
         </Set>
     </Request>
     <Response>apigeeAPICreateDeveloperResponse</Response>

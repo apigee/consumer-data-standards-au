@@ -34,14 +34,16 @@
   ],
  "apiProducts": {productList},  
  "name" : "{ADRDetailsFromSSA.software_id}",
- "callbackUrl" : "{redirectURIInRequest}",
- "scopes": {scopeList}
+ "callbackUrl" : "{redirectURIInRequest}"
 }
 </Payload>
+            <!-- TODO: [ ] ,
+ "scopes": {scopeList}
+ -->
         </Set>
     </Request>
     <Response>apigeeAPIAppResponse</Response>
     <HTTPTargetConnection>
-        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps</URL>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@apigeecdsrefimplementation.net/apps</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

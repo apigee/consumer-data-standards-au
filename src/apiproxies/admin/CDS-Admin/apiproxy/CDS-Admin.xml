@@ -1,57 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="13" name="CDS-Admin">
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1580773921732</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Admin APIs</Description>
+<APIProxy revision="1" name="CDS-Admin">
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1624336463901</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:ef7d5a0ec6cd9cbb0d36e0a3111c884e465ae03970ffb631800e1e9f84bbc9c0c4981bb945f836e172a45b945b644b4a3065483e63512532906b88b0f94e34f2:ap-southeast-2</ManifestVersion>
+    <Description>Admin APIs</Description>
+    <CreatedAt>1635032838156</CreatedAt>
+    <LastModifiedAt>1635032838156</LastModifiedAt>
+    <BasePaths>/cds-au/v1/admin</BasePaths>
     <Policies>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-InvalidScope</Policy>
-        <Policy>AM-MockFullMetrics</Policy>
-        <Policy>AM-SetMetricsPeriodAndRequestTime</Policy>
-        <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
-        <Policy>AM-TokenNotVerified</Policy>
-        <Policy>EV-GetAction</Policy>
-        <Policy>EV-getErrorDetail</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
-        <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
         <Policy>FC-ValidateRequestParams-MetadataUpdate</Policy>
-        <Policy>FC-ValidateRequestParams-Metrics</Policy>
         <Policy>JS-FilterTransactionsListBasedOnRequestFilters</Policy>
+        <Policy>FC-ValidateRequestParams-Metrics</Policy>
         <Policy>JS-SetRequestTime</Policy>
-        <Policy>LC-AllMetrics</Policy>
-        <Policy>LC-MetricsForPeriod</Policy>
-        <Policy>OA-VerifyTokenForMetadataUpdate</Policy>
-        <Policy>OA-VerifyTokenForMetrics</Policy>
-        <Policy>PC-StoreAllMetrics</Policy>
+        <Policy>AM-InvalidScope</Policy>
         <Policy>PC-StoreMetricsForPeriod</Policy>
-        <Policy>RF-InvalidAction</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>LC-MetricsForPeriod</Policy>
         <Policy>RF-NotFound</Policy>
+        <Policy>EV-GetAction</Policy>
+        <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>EV-getErrorDetail</Policy>
+        <Policy>AM-MockFullMetrics</Policy>
+        <Policy>OA-VerifyTokenForMetadataUpdate</Policy>
+        <Policy>AM-SetMetricsPeriodAndRequestTime</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>LC-AllMetrics</Policy>
+        <Policy>PC-StoreAllMetrics</Policy>
+        <Policy>RF-InvalidAction</Policy>
+        <Policy>OA-VerifyTokenForMetrics</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
-        <Resource>jsc://filterMetricsListBasedOnRequestFilters.js</Resource>
         <Resource>jsc://setRequestTime.js</Resource>
+        <Resource>jsc://filterMetricsListBasedOnRequestFilters.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <TargetServers/>
-    <TargetEndpoints/>
 </APIProxy>

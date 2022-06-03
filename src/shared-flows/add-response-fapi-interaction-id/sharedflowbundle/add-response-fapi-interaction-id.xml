@@ -1,21 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="1" name="add-response-fapi-interaction-id">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1597385030169</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Adds x-fapi-interaction-id to response or error message</Description>
+<SharedFlowBundle revision="3" name="add-response-fapi-interaction-id">
     <DisplayName>add-response-fapi-interaction-id</DisplayName>
-    <LastModifiedAt>1597385201437</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:d467eeff480edeb56184004a645cada1fa3cb6eba87b982d67604420c8281a9e95760866dd89acadcca4453dce7cc87b26315cfb28d136ea7cda75a243355d22</ManifestVersion>
+    <Description>Adds x-fapi-interaction-id to response or error message</Description>
+    <CreatedAt>1643306414637</CreatedAt>
+    <LastModifiedAt>1643306414637</LastModifiedAt>
     <Policies>
         <Policy>AM-Add-Existing-FAPI-Interaction-Id</Policy>
         <Policy>AM-Generate-New-Fapi-Interaction-Id</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

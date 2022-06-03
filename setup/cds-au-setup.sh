@@ -73,14 +73,7 @@ cd $CDSAU_HOME/devrel/references/gcp-sa-auth-shared-flow
 apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -n gcp-sa-auth
 
 
-
-cd $CDSAU_HOME/consumer-data-standards-au
-
-
-gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_LOCATION
-
-./setup/deployOidcMockProvider.sh
-
+./setup/deployOidcMockProviderGAE.sh
 
 ./setup/deployOpenBankingAU.sh
 

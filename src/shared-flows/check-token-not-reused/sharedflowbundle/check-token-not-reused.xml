@@ -1,28 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="4" name="check-token-not-reused">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1598850467920</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time</Description>
+<SharedFlowBundle revision="2" name="check-token-not-reused">
     <DisplayName>check-token-not-reused</DisplayName>
-    <LastModifiedAt>1624332230444</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:39879e300a8b3c1f03815cc65c19baebe5a4fb103f4a660386b846f1bde314f5bc1595c7a2d364ce0c4ab9d713341282b09901a8edf9c488480c3f9fff6ce2f4:ap-southeast-2</ManifestVersion>
+    <Description>Validates that a JWT token has not been previously seen by caching its JTI claim for a specified amount of time</Description>
+    <CreatedAt>1635030072367</CreatedAt>
+    <LastModifiedAt>1635030072367</LastModifiedAt>
     <Policies>
-        <Policy>AM-SetErrorTypeForDynClientRegToken</Policy>
-        <Policy>AM-SetErrorTypeForSSAToken</Policy>
-        <Policy>EV-GetJTIAndExp</Policy>
-        <Policy>LC-JTIHasBeenSeen</Policy>
         <Policy>PC-RememberJTI</Policy>
-        <Policy>RF-MissingJTIClaim</Policy>
-        <Policy>RF-MissingJTIClaimBearer</Policy>
         <Policy>RF-TokenReused</Policy>
+        <Policy>EV-GetJTIAndExp</Policy>
+        <Policy>AM-SetErrorTypeForSSAToken</Policy>
         <Policy>RF-TokenReusedBearer</Policy>
+        <Policy>RF-MissingJTIClaimBearer</Policy>
+        <Policy>LC-JTIHasBeenSeen</Policy>
+        <Policy>AM-SetErrorTypeForDynClientRegToken</Policy>
+        <Policy>RF-MissingJTIClaim</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

@@ -15,6 +15,6 @@
         <Properties>
             <Property name="success.codes">2xx</Property>
         </Properties>
-        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps/{ADRDetailsFromSSA.software_id}</URL>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@apigeecdsrefimplementation.net/apps/{ADRDetailsFromSSA.software_id}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

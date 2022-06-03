@@ -1,25 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="4" name="validate-ssa">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1600916275193</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Validates the CDR register SSA token according to CDS requirements</Description>
+<SharedFlowBundle revision="2" name="validate-ssa">
     <DisplayName>validate-ssa</DisplayName>
-    <LastModifiedAt>1613967063887</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:501e0ea6d6e0737945e787a6d7f46f7f91f0b8d70c315f73bbd98c7d7fb1cd8a00bef686914dfe7eb44961d8a0bbcd2f3fb59031233ca65cea65d561a32bcb76:ap-southeast-2</ManifestVersion>
+    <Description>Validates the CDR register SSA token according to CDS requirements</Description>
+    <CreatedAt>1636220796169</CreatedAt>
+    <LastModifiedAt>1636220796169</LastModifiedAt>
     <Policies>
-        <Policy>EV-GetADRDetailsFromSSA</Policy>
         <Policy>FC-CheckTokenNotReused</Policy>
         <Policy>JWT-VerifyCDRSSAToken</Policy>
+        <Policy>EV-GetADRDetailsFromSSA</Policy>
         <Policy>RF-MissingEXPClaim</Policy>
         <Policy>RF-MissingJWTTokenSSA</Policy>
         <Policy>RF-TokenNotVerifiedSSA</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

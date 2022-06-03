@@ -1,21 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="2" name="verify-mtls-and-hok">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1604631907664</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Verifies that mtls is used (not enfoced in testing envs) and, optionally, that the client certificate being used is the same that was used when the client requested a token. In non-production environments this test can be bypassed by using a non-mtls enabled virtual host. In production environments, proxies protected by mTLS with HoK should ONLY be associated with the secure-mtls virtual host</Description>
+<SharedFlowBundle revision="1" name="verify-mtls-and-hok">
     <DisplayName>verify-mtls-and-hok</DisplayName>
-    <LastModifiedAt>1624333436546</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:a2f7941d379606fca16bcf4486e807937a90ff71b8953e79b6014ba27eb0592e3a70932e0a566afcd75cef3b34c871c65b09671f6192a4385b008e864478a9a2:ap-southeast-2</ManifestVersion>
+    <Description>Verifies that mtls is used (not enfoced in testing envs) and, optionally, that the client certificate being used is the same that was used when the client requested a token. In non-production environments this test can be bypassed by using a non-mtls enabled virtual host. In production environments, proxies protected by mTLS with HoK should ONLY be associated with the secure-mtls virtual host</Description>
+    <CreatedAt>1635031229311</CreatedAt>
+    <LastModifiedAt>1635031229311</LastModifiedAt>
     <Policies>
         <Policy>RF-CertificateFingerprintDoesNotMatch</Policy>
         <Policy>RF-NonMTLS</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

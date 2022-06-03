@@ -3,7 +3,7 @@
     <DisplayName>ExtractClientJWKSURIFromRegoInfo</DisplayName>
     <JSONPayload>
         <Variable name="clientJWKSUri">
-            <JSONPath>.jwks_uri[0]</JSONPath>
+            <JSONPath>$.jwks_uri</JSONPath>
         </Variable>
     </JSONPayload>
     <Source clearPayload="false">clientInfo.regoInfo</Source>

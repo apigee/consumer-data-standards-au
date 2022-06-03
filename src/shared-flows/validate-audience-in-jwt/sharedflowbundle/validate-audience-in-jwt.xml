@@ -1,27 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="3" name="validate-audience-in-jwt">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1609911266996</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Validates the audience claim in an auth JWT token according to rules specified in standards v1.6</Description>
+<SharedFlowBundle revision="1" name="validate-audience-in-jwt">
     <DisplayName>validate-audience-in-jwt</DisplayName>
-    <LastModifiedAt>1624332076567</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:2ff79036075ec5d990c07f5dafceda81b5ff215dcb3f7de05521128e320efe5f64eefa3c4afec5c0de6940612ea02c82988852043ddc3162fe874136191a2e29:ap-southeast-2</ManifestVersion>
+    <Description>Validates the audience claim in an auth JWT token according to rules specified in standards v1.6</Description>
+    <CreatedAt>1635030192019</CreatedAt>
+    <LastModifiedAt>1635030192019</LastModifiedAt>
     <Policies>
         <Policy>AM-ExtractAudFromAudArray</Policy>
-        <Policy>AM-SetCurrentURI</Policy>
-        <Policy>EV-GetIssuerAndTokenEndpoint</Policy>
-        <Policy>LC-RetrieveOIDCConfig</Policy>
-        <Policy>PC-StoreOIDCConfig</Policy>
-        <Policy>RF-InvalidAudience-400Error</Policy>
         <Policy>RF-InvalidAudience</Policy>
+        <Policy>PC-StoreOIDCConfig</Policy>
+        <Policy>EV-GetIssuerAndTokenEndpoint</Policy>
+        <Policy>AM-SetCurrentURI</Policy>
+        <Policy>LC-RetrieveOIDCConfig</Policy>
         <Policy>SC-GetOIDCConfig</Policy>
+        <Policy>RF-InvalidAudience-400Error</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>
