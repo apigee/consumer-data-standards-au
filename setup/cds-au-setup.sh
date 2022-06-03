@@ -28,7 +28,9 @@ mv apigeetool $CDSAU_HOME/bin
 
 cd $CDSAU_HOME
 
+set +e
 git clone https://github.com/apigee/devrel.git
+set -e
 
 # gensfds.sh
 
@@ -71,12 +73,3 @@ apigeetool addEntryToKVM -o $APIGEE_ORG -e $APIGEE_ENV --mapName apigee-runtime-
 cd $CDSAU_HOME/devrel/references/gcp-sa-auth-shared-flow
 
 apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -n gcp-sa-auth
-
-
-./setup/deployOidcMockProviderGAE.sh
-
-./setup/deployOpenBankingAU.sh
-
-
-#./setup/deployCDSAdminWithRealMetrics.sh
-

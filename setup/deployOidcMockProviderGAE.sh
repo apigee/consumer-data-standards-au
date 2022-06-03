@@ -19,14 +19,14 @@ set -e
 
 pushd $CDSAU_HOME/consumer-data-standards-au/src/additional-solutions/oidc-mock-provider-app
 
-export REGION=europe-west2
-
+set +e
 gcloud app create --region $REGION
+set -e
 
-gcloud app deploy app.yaml
+gcloud app deploy app.yaml --quiet
 
 
 # test:
-# curl https://$PROJECT.appspot.com
+# curl https://$PROJECT.nw.r.appspot.com
 
 popd
