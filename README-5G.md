@@ -6,17 +6,17 @@ PR readiness state: WIP: 90%
 
 [ ] remove oidc mock proxies from 5g branch
 
-[ ] deploy oidc mock provider to app engine
+[x] deploy oidc mock provider to app engine
 
-[ ] refactor docker as a separate install; it might be considered extra hassle  to setup docker et all if not really required
+[ ] tie the oidc hostname with invocation points
 
-[ ] final compare of proxy states
+[x] refactor docker as a separate install; it might be considered extra hassle  to setup docker et all if not really required
+
+[x] final compare of proxy states
 
 [ ] metrics server not touched
 
-[ ] ahr: add nip.io gxlbs
-
-
+[ ] ./setup/deployCDSAdminWithRealMetrics.sh
 
 ## Quick Start
 
@@ -79,18 +79,26 @@ sudo npm install -g pem-jwk
 4. Source the environment and execute script
 
 
-4. You need docker to build an image for oidc-mock-provider
+__NOTE:__ if you want to deploy oidc-mock-provider into a Kubernetes cluster
+you need docker to build an image for oidc-mock-provider.
+Use `setup/deployOidcMockProviderK8s.sh` script.
 
+```bash
 docker permissions: storage admin
 docker gcloud auth
 docker gcr.io
    gcloud auth configure-docker gcr.io
->>>>>
+```
 
 
 ```bash
 source $CDSAU_HOME/cds-au-config.env
 
-cd consumer-data-standards-au
+cd $CDSAU_HOME/consumer-data-standards-au
+
 ./setup/cds-au-setup.sh
+./setup/deployOidcMockProviderGAE.sh
+./setup/deployOpenBankingAU.sh
+./setup/deployCDSAdminWithRealMetrics.sh
+
 ```
