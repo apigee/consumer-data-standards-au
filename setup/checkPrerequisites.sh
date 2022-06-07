@@ -92,7 +92,7 @@ function check_commands() {
 
 set -e
 
-check_commands "curl openssl xmllint pem-jwk apigeetool cat gensfds.sh"
+check_commands "curl openssl xmllint pem-jwk apigeetool tac gensfds.sh"
 
 check_command_version bash "4.1"
 
