@@ -140,7 +140,7 @@ apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
 echo "--->"  Creating API Product: "OIDC"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSOIDC" --displayName "OIDC" --approvalType "auto" --productDesc "Get access to authentication and authorisation requests" \
-   --environments $APIGEE_ENV --proxies oidc --scopes "openid, profile"
+   --environments $APIGEE_ENV --proxies oidc --scopes "openid,profile"
 
 # Create product for dynamic client registration
 echo "--->"  Creating API Product: "DynamicClientRegistration"
