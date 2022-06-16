@@ -6,9 +6,9 @@
     <Parameters ignoreUnresolvedVariables="false">
         <Parameter name="isPublicEndpoint">false</Parameter>
         <Parameter name="isAuthEndpoint">true</Parameter>
-        <Parameter name="isCustomerPresent" ref="isCustomerPresent">false</Parameter>
-        <Parameter name="tokenOp" ref="tokenOp">n/a</Parameter>
-        <Parameter name="customerPPId" ref="customerPPId">n/a</Parameter>
+        <Parameter name="isCustomerPresent">false</Parameter>
+        <Parameter name="tokenOp">n/a</Parameter>
+        <Parameter name="customerPPId">n/a</Parameter>
     </Parameters>
     <SharedFlowBundle>collect-performance-slo</SharedFlowBundle>
 </FlowCallout>

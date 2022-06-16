@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oidc-mock-provider
+spec:
+  selector:
+    app: oidc-mock-provider
+  ports:
+    - name: "http"
+      port: 80
+      targetPort: 9000

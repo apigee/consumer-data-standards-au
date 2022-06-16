@@ -38,7 +38,7 @@
             "productCategory": "RESIDENTIAL_MORTGAGES",
             "productName": "Mortgage Basic",
             "bsb": "111000",
-            "accountNumber": "10203040003",
+            "accountNumber": "10203040001",
             "specificAccountUType": "loan",
             "loan": {
                 "originalStartDate": "2018-11-01",

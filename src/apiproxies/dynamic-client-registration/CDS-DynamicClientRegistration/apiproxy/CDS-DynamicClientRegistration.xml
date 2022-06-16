@@ -1,88 +1,77 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="18" name="CDS-DynamicClientRegistration">
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1598417656250</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Implement Client Registration Management APIs</Description>
+<APIProxy revision="11" name="CDS-DynamicClientRegistration">
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1625190617819</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:e1a1154f2251dee30aa446a0d5feee780d343b49c9d26fc688e40c78e3aa028511a5ca63998f10e12a4598f5e92e79d9080867952954396039b03a91d05b5c30:ap-southeast-2</ManifestVersion>
+    <Description>Implement Client Registration Management APIs</Description>
+    <CreatedAt>1636238825335</CreatedAt>
+    <LastModifiedAt>1636238825335</LastModifiedAt>
+    <BasePaths>/register</BasePaths>
     <Policies>
-        <Policy>AE-GetApp</Policy>
-        <Policy>AE-GetDeveloper</Policy>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-BuildRegistrationInfo</Policy>
-        <Policy>AM-GetOrgIdAndAppIdFromTokenInfo</Policy>
-        <Policy>AM-InternalServerError</Policy>
-        <Policy>AM-InvalidJWTTokenInRequest</Policy>
-        <Policy>AM-InvalidScope</Policy>
-        <Policy>AM-SetApigeeAPIEndpoint</Policy>
-        <Policy>AM-SetAppDeletedResponseCode</Policy>
-        <Policy>AM-SetKeysToAddToApp</Policy>
-        <Policy>AM-SetOrgIdForApigee</Policy>
-        <Policy>AM-TokenNotVerified</Policy>
-        <Policy>BA-SetBasicAuthHeader</Policy>
-        <Policy>EV-ExtractClientSecretFromUpdateAppResponse</Policy>
-        <Policy>EV-ExtractOrgIdFromAppOwner</Policy>
-        <Policy>EV-ExtractOrgIdFromAppOwnerInToken</Policy>
-        <Policy>EV-ExtractRegInfoAndSSAFromAccessEntityResult</Policy>
-        <Policy>EV-GetClientIdFromURIParam</Policy>
-        <Policy>EV-GetErrorDetail</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>FC-CheckTokenNotReused</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>FC-RetrieveClientJWKS</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
-        <Policy>FC-TrafficThresholdsForClientRegistration</Policy>
-        <Policy>FC-ValidateAudience</Policy>
-        <Policy>FC-ValidateSSA</Policy>
-        <Policy>FC-VerifyHoK</Policy>
-        <Policy>FC-VerifyMTLSOnly</Policy>
-        <Policy>JS-AssignProductsBasedOnScope</Policy>
-        <Policy>JS-BuildResponse</Policy>
-        <Policy>JS-CheckIfProductsHaveChanged</Policy>
-        <Policy>JS-VerifyRedirectURIClaim</Policy>
-        <Policy>JWT-DecodeJWTInRequestBody</Policy>
-        <Policy>JWT-VerifyJWTInRequestBody</Policy>
-        <Policy>KVM-GetApigeeAPICredentials</Policy>
-        <Policy>OA-VerifyTokenForDCROperations</Policy>
-        <Policy>RF-ClientIdDoesNotMatch</Policy>
-        <Policy>RF-DuplicateRegistration</Policy>
         <Policy>RF-InvalidContentType</Policy>
-        <Policy>RF-InvalidRedirectURIs</Policy>
-        <Policy>RF-InvalidRequest</Policy>
-        <Policy>RF-MissingEXPClaim</Policy>
-        <Policy>RF-NotFound</Policy>
-        <Policy>RF-SWIdOrOrgIdDoesNotMatch</Policy>
-        <Policy>RF-UnsupportedMethod</Policy>
-        <Policy>SC-AddKeysToApigeeApp</Policy>
         <Policy>SC-AssociateProductsWithKey</Policy>
+        <Policy>BA-SetBasicAuthHeader</Policy>
+        <Policy>AM-InternalServerError</Policy>
+        <Policy>JS-AssignProductsBasedOnScope</Policy>
         <Policy>SC-CreateApp</Policy>
-        <Policy>SC-CreateDeveloper</Policy>
+        <Policy>AM-InvalidScope</Policy>
+        <Policy>FC-VerifyMTLSOnly</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
         <Policy>SC-DeleteApp</Policy>
-        <Policy>SC-DeleteAppKeyJustCreated</Policy>
+        <Policy>FC-TrafficThresholdsForClientRegistration</Policy>
+        <Policy>AE-GetApp</Policy>
+        <Policy>FC-RetrieveClientJWKS</Policy>
         <Policy>SC-DeleteClientKeySoItCanBeRecreated</Policy>
+        <Policy>FC-CheckTokenNotReused</Policy>
+        <Policy>EV-ExtractOrgIdFromAppOwnerInToken</Policy>
+        <Policy>FC-ValidateSSA</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>JWT-DecodeJWTInRequestBody</Policy>
+        <Policy>SC-DeleteAppKeyJustCreated</Policy>
+        <Policy>RF-ClientIdDoesNotMatch</Policy>
+        <Policy>AM-InvalidJWTTokenInRequest</Policy>
+        <Policy>RF-MissingEXPClaim</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>RF-SWIdOrOrgIdDoesNotMatch</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>AM-SetAppDeletedResponseCode</Policy>
+        <Policy>AM-BuildRegistrationInfo</Policy>
+        <Policy>RF-InvalidRedirectURIs</Policy>
+        <Policy>JS-VerifyRedirectURIClaim</Policy>
+        <Policy>EV-ExtractRegInfoAndSSAFromAccessEntityResult</Policy>
+        <Policy>KVM-GetApigeeAPICredentials</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-SetOrgIdForApigee</Policy>
+        <Policy>JS-BuildResponse</Policy>
+        <Policy>EV-ExtractOrgIdFromAppOwner</Policy>
+        <Policy>OA-VerifyTokenForDCROperations</Policy>
+        <Policy>FC-VerifyHoK</Policy>
         <Policy>SC-UpdateApp</Policy>
+        <Policy>RF-InvalidRequest</Policy>
+        <Policy>SC-CreateDeveloper</Policy>
+        <Policy>AM-GetOrgIdAndAppIdFromTokenInfo</Policy>
+        <Policy>EV-GetClientIdFromURIParam</Policy>
+        <Policy>AM-SetKeysToAddToApp</Policy>
+        <Policy>SC-AddKeysToApigeeApp</Policy>
+        <Policy>FC-ValidateAudience</Policy>
+        <Policy>EV-ExtractClientSecretFromUpdateAppResponse</Policy>
+        <Policy>AE-GetDeveloper</Policy>
+        <Policy>RF-DuplicateRegistration</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>JWT-VerifyJWTInRequestBody</Policy>
+        <Policy>JS-CheckIfProductsHaveChanged</Policy>
+        <Policy>EV-GetErrorDetail</Policy>
+        <Policy>AM-SetApigeeAPIEndpoint</Policy>
+        <Policy>AM.GCPScopes</Policy>
+        <Policy>KVM-GetGcpSAKey</Policy>
+        <Policy>FC-Gen-GCP-SA-Auth-Token</Policy>
+        <Policy>AM-SetApigeeAuth</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
-        <Resource>jsc://assignProductsBasedOnScope.js</Resource>
-        <Resource>jsc://buildResponse.js</Resource>
         <Resource>jsc://checkIfProductsHaveChanged.js</Resource>
+        <Resource>jsc://buildResponse.js</Resource>
+        <Resource>jsc://assignProductsBasedOnScope.js</Resource>
         <Resource>jsc://verifyRedirectURIClaim.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <TargetServers/>
-    <TargetEndpoints/>
 </APIProxy>

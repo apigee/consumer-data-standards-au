@@ -1,35 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="8" name="authenticate-with-private-key-jwt">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1602460875658</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed. This shared flow can also be used to do a basic verification of a PAR object, in which case, no basic auth header is inserted</Description>
+<SharedFlowBundle revision="3" name="authenticate-with-private-key-jwt">
     <DisplayName>authenticate-with-private-key-jwt</DisplayName>
-    <LastModifiedAt>1624332180338</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:76b1bf8c303eb2cfe77c5b832354024c77a9b15e28c9e065946acb19444459ce7376b4367fff70ce0c646df342467a560d78760f6ee11c4c3df58bfbde445d46:ap-southeast-2</ManifestVersion>
+    <Description>Authenticates a client with a private key jwt. If successful, inserts basic auth header using client secret generated when client registered, so that further OAuth policies can succeed. This shared flow can also be used to do a basic verification of a PAR object, in which case, no basic auth header is inserted</Description>
+    <CreatedAt>1635894171185</CreatedAt>
+    <LastModifiedAt>1635894171185</LastModifiedAt>
     <Policies>
-        <Policy>AE-GetAppDetails</Policy>
-        <Policy>AM-SetDefaultCDRArrangementId</Policy>
-        <Policy>AM-SetDefaultSharingDuration</Policy>
-        <Policy>AM-SetMaxSharingDurationTo1Year</Policy>
-        <Policy>BA-GenerateBasicEquivalentAuthHeader</Policy>
-        <Policy>EV-ExtractAppRegInfoAndClientSecret</Policy>
-        <Policy>EV-ExtractClientJWKSURIFromRegoInfo</Policy>
-        <Policy>EV-GetAdditionalClaimsInJwt</Policy>
         <Policy>FC-CheckTokenNotReused</Policy>
-        <Policy>FC-GetClientJWKS</Policy>
-        <Policy>FC-ValidateAudience</Policy>
-        <Policy>JWT-VerifyPrivateKeyJWT</Policy>
-        <Policy>RF-InvalidJWT</Policy>
-        <Policy>RF-InvalidSharingDuration</Policy>
+        <Policy>EV-GetAdditionalClaimsInJwt</Policy>
+        <Policy>AM-SetMaxSharingDurationTo1Year</Policy>
         <Policy>RF-MissingEXPClaim</Policy>
+        <Policy>RF-InvalidJWT</Policy>
+        <Policy>EV-ExtractAppRegInfoAndClientSecret</Policy>
+        <Policy>RF-InvalidSharingDuration</Policy>
+        <Policy>FC-GetClientJWKS</Policy>
+        <Policy>AM-SetDefaultCDRArrangementId</Policy>
         <Policy>RF-UnknownClientId</Policy>
+        <Policy>EV-ExtractClientJWKSURIFromRegoInfo</Policy>
+        <Policy>AE-GetAppDetails</Policy>
+        <Policy>FC-ValidateAudience</Policy>
+        <Policy>BA-GenerateBasicEquivalentAuthHeader</Policy>
+        <Policy>AM-SetDefaultSharingDuration</Policy>
+        <Policy>JWT-VerifyPrivateKeyJWT</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

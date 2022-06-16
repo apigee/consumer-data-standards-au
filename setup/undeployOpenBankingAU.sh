@@ -1,6 +1,5 @@
 #/bin/bash
 
-
 #
 # Copyright 2018 Google LLC
 #

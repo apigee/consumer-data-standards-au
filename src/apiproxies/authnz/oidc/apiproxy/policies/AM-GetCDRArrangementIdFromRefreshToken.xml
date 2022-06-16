@@ -11,5 +11,5 @@
         <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type=",essage"/>
+    <AssignTo createNew="false" transport="http"/>
 </AssignMessage>

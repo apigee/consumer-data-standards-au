@@ -16,6 +16,6 @@
     </Request>
     <Response>apigeeAPIAddKeysResponse</Response>
     <HTTPTargetConnection>
-        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net/apps/{ADRDetailsFromSSA.software_id}/keys/{OIDCCredentials.client_id}</URL>
+        <URL>https://{apigeeAPIEndpoint}/v1/organizations/{organization.name}/developers/{ADRDetailsFromSSA.org_id}@apigeecdsrefimplementation.net/apps/{ADRDetailsFromSSA.software_id}/keys/{OIDCCredentials.client_id}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>

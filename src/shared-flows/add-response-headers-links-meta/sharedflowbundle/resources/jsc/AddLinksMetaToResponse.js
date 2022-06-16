@@ -85,9 +85,6 @@
   
 // Utility function that splits a query string into an object 
 function splitQueryParams(queryString) {
-    if ( (queryString === null) || (queryString === "") ) {
-      return {};
-    }
     var obj = queryString.split("&").reduce(function(prev, curr, i, arr) {
         var p = curr.split("=");
         prev[decodeURIComponent(p[0])] = decodeURIComponent(p[1]);

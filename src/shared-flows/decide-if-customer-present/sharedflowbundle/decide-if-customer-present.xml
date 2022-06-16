@@ -1,24 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="5" name="decide-if-customer-present">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1576642330287</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Sets isCustomerPresent variable, based on inspection of x-fapi-customer-ip-address header</Description>
+<SharedFlowBundle revision="1" name="decide-if-customer-present">
     <DisplayName>decide-if-customer-present</DisplayName>
-    <LastModifiedAt>1624257575579</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:937ab015ad2355d42567742438e230a9938a64d06be730ad118e07ae317d862f93f9a6487fbdb0c74cf8c2a8b31a0e29abe797cd1931fbdb5975bc785890b01f:ap-southeast-2</ManifestVersion>
+    <Description>Sets isCustomerPresent variable, based on inspection of x-fapi-customer-ip-address header</Description>
+    <CreatedAt>1635030437298</CreatedAt>
+    <LastModifiedAt>1635030437298</LastModifiedAt>
     <Policies>
+        <Policy>RF-Invalid-X-Fapi-Customer-IP-Address</Policy>
         <Policy>AM-SetIsCustomerPresentToFalse</Policy>
         <Policy>JS-ValidateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Policy>
-        <Policy>RF-Invalid-X-Fapi-Customer-IP-Address</Policy>
     </Policies>
     <Resources>
         <Resource>jsc://validateX-Fapi-Customer-IP-AdddressAndSetIsCustomerPresent</Resource>
     </Resources>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

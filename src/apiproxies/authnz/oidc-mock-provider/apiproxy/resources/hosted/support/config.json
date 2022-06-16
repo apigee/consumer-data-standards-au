@@ -98,6 +98,7 @@
 			"qi": "h48OH9ffL0nu8rGTRpYOFVEcrXdruuDLZxzeYt7FGOJIes7hvwElmI_oXSOeBwVDKJp84u0KXNsDL1icjfLKg3ShslcGtsX_uqKEaQlLIsMShNCpKqy0sRfi_LdfjhTbtODwye7HELfLEcQAARIrgwq9QicV_6PmveqZ2Wy5oUw",
 			"kty": "RSA",
 			"kid": "lThWGW0co9l4atv-H9Cshm-ad6uda4spLy2WtDLHG4w",
+			"alg": "RS256",
 			"use": "sig"
 		}]
 	},

@@ -7,5 +7,5 @@
         <Ref>jwksResponse.content</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignTo createNew="false" transport="http"/>
 </AssignMessage>

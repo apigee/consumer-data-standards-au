@@ -2,6 +2,6 @@
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ExtractOrgIdFromAppOwner">
     <DisplayName>EV-ExtractOrgIdFromAppOwner</DisplayName>
     <Variable name="ADRDetailsFromToken.app_owner">
-        <Pattern>{ADRDetailsFromSSA.org_id}@ApigeeCDSRefImplementation.net</Pattern>
+        <Pattern>{ADRDetailsFromSSA.org_id}@apigeecdsrefimplementation.net</Pattern>
     </Variable>
 </ExtractVariables>

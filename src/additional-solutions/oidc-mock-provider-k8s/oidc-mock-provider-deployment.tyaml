@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oidc-mock-provider
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: oidc-mock-provider
+  template:
+    metadata:
+      labels:
+        app: oidc-mock-provider
+    spec:
+      containers:
+      - name: oidc-mock-provider
+        image: gcr.io/$PROJECT/oidc-mock-provider:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000

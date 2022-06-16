@@ -1,27 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="23" name="apply-traffic-thresholds">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1564713794748</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Apply the traffic thresholds specified by CDS non functional requirements</Description>
+<SharedFlowBundle revision="2" name="apply-traffic-thresholds">
     <DisplayName>apply-traffic-thresholds</DisplayName>
-    <LastModifiedAt>1624511029996</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:8aa58002edc0a0007155dc6197103f6e09a1d022c087a74c1114ee64de0661d0efbd8e6984f88ba6f4f476a83c803f662e1afdb01fca696f768cfa49d9ae252c:ap-southeast-2</ManifestVersion>
+    <Description>Apply the traffic thresholds specified by CDS non functional requirements</Description>
+    <CreatedAt>1635031470364</CreatedAt>
+    <LastModifiedAt>1635031470364</LastModifiedAt>
     <Policies>
-        <Policy>AM-SetQuotaBucketForCustomerPresentSession</Policy>
-        <Policy>Q-RequestsPerSessionForUnattendedTraffic</Policy>
         <Policy>RF-QuotaExceededForSessionWithUnattendedTraffic</Policy>
         <Policy>RF-TooManyRequests</Policy>
-        <Policy>SA-GlobalTrafficThreshold</Policy>
-        <Policy>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Policy>
-        <Policy>SA-ThresholdForSecureTrafficPerClientId</Policy>
+        <Policy>Q-RequestsPerSessionForUnattendedTraffic</Policy>
+        <Policy>AM-SetQuotaBucketForCustomerPresentSession</Policy>
         <Policy>SA-ThresholdForUnattendedSecureTrafficPerSession</Policy>
+        <Policy>SA-ThresholdForSecureTrafficPerClientId</Policy>
+        <Policy>SA-ThresholdForCustomerPresentSecureTrafficPerClientId</Policy>
+        <Policy>SA-GlobalTrafficThreshold</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

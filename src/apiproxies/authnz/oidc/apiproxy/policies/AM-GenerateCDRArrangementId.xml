@@ -14,5 +14,5 @@
         <Template>{replaceFirst(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedCDRArrangementId,regexpVar,newCdrArrangementId)}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="message"/>
+    <AssignTo createNew="false" transport="http"/>
 </AssignMessage>

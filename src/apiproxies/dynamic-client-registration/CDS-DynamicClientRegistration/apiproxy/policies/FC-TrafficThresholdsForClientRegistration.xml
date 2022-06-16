@@ -5,8 +5,8 @@
         <Parameter name="isPublicEndpoint">false</Parameter>
         <Parameter name="isAuthEndpoint">true</Parameter>
         <Parameter name="isCustomerPresent">false</Parameter>
-        <Parameter name="customerId"/>
-        <Parameter name="clientId"/>
+        <Parameter name="customerId"> </Parameter>
+        <Parameter name="clientId"> </Parameter>
         <Parameter name="sessionId">DynamicClientRegistrationSession</Parameter>
     </Parameters>
     <SharedFlowBundle>apply-traffic-thresholds</SharedFlowBundle>

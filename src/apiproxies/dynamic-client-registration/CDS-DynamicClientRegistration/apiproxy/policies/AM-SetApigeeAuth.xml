@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-SetApigeeAuth">
+    <AssignVariable>
+        <Name>private.apigeeAuth</Name>
+        <Template>Bearer {private.gcp.access_token}</Template>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

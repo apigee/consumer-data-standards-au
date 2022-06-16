@@ -1,5 +1,7 @@
 #/bin/bash
 
+set -e
+
 #
 # Copyright 2020 Google LLC
 #

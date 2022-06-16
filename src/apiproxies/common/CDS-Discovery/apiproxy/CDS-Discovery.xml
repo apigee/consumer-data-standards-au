@@ -1,40 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="4" name="CDS-Discovery">
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/discovery</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1588138816207</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Discovery API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+<APIProxy revision="2" name="CDS-Discovery">
     <DisplayName>CDS-Discovery</DisplayName>
-    <LastModifiedAt>1624338052809</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:32aa5666665671bce1de2776d3a20d341ead2eeccba598cb12a7bf54d445fab561af1891a4fd589e7061fd78406f9cbef3ec99eef387f0e0385df42b4e3118d4:ap-southeast-2</ManifestVersion>
+    <Description>Discovery API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+    <CreatedAt>1635032465367</CreatedAt>
+    <LastModifiedAt>1635032465367</LastModifiedAt>
+    <BasePaths>/cds-au/v1/discovery</BasePaths>
     <Policies>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-FormattedCurrentTime</Policy>
-        <Policy>AM-GenerateRandomIntLessThan1000</Policy>
-        <Policy>AM-MockOKStatusResponse</Policy>
-        <Policy>AM-MockOutagesResponse</Policy>
-        <Policy>AM-MockPartialFailureStatusResponse</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
-        <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
-        <Policy>RF-NotFound</Policy>
+        <Policy>AM-MockPartialFailureStatusResponse</Policy>
+        <Policy>AM-MockOKStatusResponse</Policy>
         <Policy>RF-TooManyRequests</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>AM-GenerateRandomIntLessThan1000</Policy>
+        <Policy>AM-MockOutagesResponse</Policy>
+        <Policy>AM-FormattedCurrentTime</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
-    <Resources/>
-    <Spec></Spec>
-    <TargetServers/>
-    <TargetEndpoints/>
 </APIProxy>

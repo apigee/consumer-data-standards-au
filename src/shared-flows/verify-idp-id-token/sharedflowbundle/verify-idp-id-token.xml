@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="3" name="verify-idp-id-token">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1612844583235</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse</Description>
+<SharedFlowBundle revision="1" name="verify-idp-id-token">
     <DisplayName>verify-idp-id-token</DisplayName>
-    <LastModifiedAt>1624333385948</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:f593c6c76d182bdc1d20bde865630c1b7186e5c2dbe4a45bf536a38f04b26da25cc2d301d0289554ebc34b52dac93631b2aa9de2963a2a4e3720490d1fc20c7e</ManifestVersion>
+    <Description>Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse</Description>
+    <CreatedAt>1635030377584</CreatedAt>
+    <LastModifiedAt>1635030377584</LastModifiedAt>
     <Policies>
-        <Policy>AM-SetIDPJWKSUri</Policy>
-        <Policy>AM-SetValidAudience</Policy>
-        <Policy>EV-CopyRelevantClaims</Policy>
-        <Policy>FC-GetIDPJWKS</Policy>
         <Policy>JWT-VerifyIdpToken</Policy>
         <Policy>KVM-GetIDPCredentials</Policy>
+        <Policy>AM-SetIDPJWKSUri</Policy>
         <Policy>RF-InvalidIdToken</Policy>
+        <Policy>FC-GetIDPJWKS</Policy>
+        <Policy>AM-SetValidAudience</Policy>
+        <Policy>EV-CopyRelevantClaims</Policy>
     </Policies>
-    <Resources/>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>

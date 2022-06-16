@@ -1,49 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="28" name="CDS-Products">
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1560831663655</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Product API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+<APIProxy revision="1" name="CDS-Products">
     <DisplayName>CDS-Products</DisplayName>
-    <LastModifiedAt>1624338516506</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:70fc0807d1975be74be74bd3ee3300f3f5f7d0b8c6efadf211ad3c10e041c49f3592c21853ea2c87f2a92788ae5df15dc4f5c30a2ceec0a20537e51f8aa2139b:ap-southeast-2</ManifestVersion>
+    <Description>Product API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
+    <CreatedAt>1635032150912</CreatedAt>
+    <LastModifiedAt>1635032150912</LastModifiedAt>
+    <BasePaths>/cds-au/v1/banking/products</BasePaths>
     <Policies>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-MockFullListOfProducts</Policy>
-        <Policy>AM-Set-Pagination-Settings</Policy>
-        <Policy>EV-GetProductFilterCriteria</Policy>
-        <Policy>EV-productDetailsForProductId</Policy>
-        <Policy>EV-productIdFromURL</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
-        <Policy>FC-CheckRequestHeaders</Policy>
         <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>FC-PaginateResponse</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
-        <Policy>FC-ValidateRequestParams</Policy>
-        <Policy>JS-BuildProductDetailsResponse</Policy>
-        <Policy>JS-FilterProductListBasedOnRequestFilters</Policy>
+        <Policy>RF-TooManyRequests</Policy>
         <Policy>JS-RemoveProductDetails</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>RF-TooManyRequests</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>EV-productIdFromURL</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>AM-Set-Pagination-Settings</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>AM-MockFullListOfProducts</Policy>
+        <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>JS-FilterProductListBasedOnRequestFilters</Policy>
+        <Policy>EV-productDetailsForProductId</Policy>
+        <Policy>FC-PaginateResponse</Policy>
+        <Policy>EV-GetProductFilterCriteria</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>JS-BuildProductDetailsResponse</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
-        <Resource>openapi://association.json</Resource>
         <Resource>jsc://buildProductDetailsResponse.js</Resource>
-        <Resource>jsc://filterProductListBasedOnRequestFilters.js</Resource>
         <Resource>jsc://removeProductDetails.js</Resource>
+        <Resource>jsc://filterProductListBasedOnRequestFilters.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <TargetServers/>
-    <TargetEndpoints/>
 </APIProxy>

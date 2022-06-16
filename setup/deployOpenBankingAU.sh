@@ -1,5 +1,10 @@
 #/bin/bash
 
+set -e
+
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+$BASEDIR/checkPrerequisites.sh
+
 #
 # Copyright 2018 Google LLC
 #
@@ -53,7 +58,7 @@ function generate_private_public_key_pair {
    IN_FILE=$OUT_FILE
    APP_JWK=$(pem-jwk $IN_FILE  | jq '{"keys": [. + { "kid": "PlaceHolderKid" } + { "use": "sig" }]}')  
    echo $APP_JWK > $KEY_PAIR_NAME.jwks
-   sed  -i '' "s/PlaceHolderKid/$KEY_PAIR_NAME/" $KEY_PAIR_NAME.jwks
+   sed  -i "s/PlaceHolderKid/$KEY_PAIR_NAME/" $KEY_PAIR_NAME.jwks
 
 }
 
@@ -78,53 +83,83 @@ apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $A
 echo "--->"  Creating cache ConsentState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z ConsentState --description "Holds state during consent flow" --cacheExpiryInSecs 600
 
- # Deploy banking apiproxies
-cd src/apiproxies/banking
-for ap in $(ls .) 
-do 
+
+# Create Data Collectors
+for dc in dc_PerformanceTier dc_MeetsPerformanceSLO dc_CustomerPPId dc_TokenOp; do
+    apigeetool createDataCollector --dataCollectorName $dc --dataCollectorType STRING
+done
+
+
+# Deploy Shared flows
+
+pushd src/shared-flows
+
+for sf in $(gensfds.sh . tsort); do
+    echo "--->"  Deploying $sf Shared Flow 
+    cd $sf
+    apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
+    cd ..
+ done
+
+popd
+
+
+# Deploy banking apiproxies
+pushd src/apiproxies/banking
+
+for ap in $(ls .); do
     echo "--->"  Deploying $ap Apiproxy
     cd $ap
     apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
     cd ..
- done
+done
+
+popd
 
  # Deploy Common Proxies
-cd ../common
-for ap in $(ls .) 
-do 
+pushd src/apiproxies/common
+for ap in $(ls .); do
     echo "--->"  Deploying $ap Apiproxy
     cd $ap
     apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
     cd ..
- done
+done
+
+popd
 
  # Deploy oidc proxy
-cd ../authnz/oidc
+pushd src/apiproxies/authnz/oidc
 echo "--->"  Deploying oidc Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc
 
+popd
+
+
 # Deploy CDS-ConsentMgmtWithKVM proxy
-cd ../CDS-ConsentMgmtWithKVM
+pushd src/apiproxies/authnz/CDS-ConsentMgmtWithKVM
 echo "--->"  Deploying CDS-ConsentMgmtWithKVM Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-ConsentMgmtWithKVM
 
+popd
+
 # Deploy Client Dynamic Registration proxy and the required mock-register and mock-adr-client proxies
-cd ../../dynamic-client-registration
-for ap in $(ls .) 
-do 
+pushd src/apiproxies/dynamic-client-registration
+for ap in $(ls .); do
     echo "--->"  Deploying $ap Apiproxy
     cd $ap
     apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $ap
     cd ..
- done
+done
+popd
+
 
 # Deploy Admin Proxies
-cd ../admin/CDS-Admin
+pushd src/apiproxies/admin/CDS-Admin
 echo "--->"  Deploying CDS-Admin Apiproxy
 apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n CDS-Admin
 
-# Revert to original directory
- cd ../../../..
+popd
+
 
 # Create Products required for the different APIs
 echo "--->"  Creating API Product: "Accounts"
@@ -140,7 +175,7 @@ apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
 echo "--->"  Creating API Product: "OIDC"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSOIDC" --displayName "OIDC" --approvalType "auto" --productDesc "Get access to authentication and authorisation requests" \
-   --environments $APIGEE_ENV --proxies oidc --scopes "openid,profile"
+   --environments $APIGEE_ENV --proxies oidc --scopes "openid, profile"
 
 # Create product for dynamic client registration
 echo "--->"  Creating API Product: "DynamicClientRegistration"
@@ -154,11 +189,13 @@ apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSAdmin" --displayName "Admin" --approvalType "auto" --productDesc "Get access to Admin APIs" \
    --environments $APIGEE_ENV --proxies CDS-Admin --scopes "admin:metadata:update,admin:metrics.basic:read"
 
+
 # Create a test developer who will own the test app
 # If no developer name has been set, use a default
 if [ -z "$CDS_TEST_DEVELOPER_EMAIL" ]; then  CDS_TEST_DEVELOPER_EMAIL=CDS-Test-Developer@somefictitioustestcompany.com; fi;
 echo "--->"  Creating Test Developer: $CDS_TEST_DEVELOPER_EMAIL
 apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_TEST_DEVELOPER_EMAIL --firstName "CDS Test" --lastName "Developer"  --userName $CDS_TEST_DEVELOPER_EMAIL
+
 
 # Create a test app - Store the client key and secret
 echo "--->"  Creating Test App: CDSTestApp...
@@ -168,18 +205,19 @@ APP_KEY=$(echo $APP_CREDENTIALS | jq -r .consumerKey)
 APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
 
 # Update app attributes
-REG_INFO=$(sed -e "s/dummyorgname/$APIGEE_ORG/g" -e "s/dummyenvname/$APIGEE_ENV/g" ./setup/baseRegistrationInfoForCDSTestApp.json)
+REG_INFO=$(sed -e "s/cds-hostname/$CDS_HOSTNAME/g" ./setup/baseRegistrationInfoForCDSTestApp.json)
 REQ_BODY='{ "callbackUrl": "https://httpbin.org/post", "attributes": [ { "name": "DisplayName", "value": "CDSTestApp" }, { "name": "SectorIdentifier", "value": "httpbin.org" },'
 echo $REQ_BODY $REG_INFO "]}" >> ./tmpReqBody.json
-curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$CDS_TEST_DEVELOPER_EMAIL/apps/CDSTestApp \
-  -u $APIGEE_USER:$APIGEE_PASSWORD \
-  -H 'Accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d @./tmpReqBody.json
+
+curl --silent -X PUT -H "Authorization: Bearer $(apigeetool getToken)" \
+          -H "Content-Type:application/json" \
+          https://apigee.googleapis.com/v1/organizations/$APIGEE_ORG/developers/$CDS_TEST_DEVELOPER_EMAIL/apps/CDSTestApp \
+          -d @./tmpReqBody.json
 rm ./tmpReqBody.json
 
 # Create another test developer who will own the CDR Register test app
-CDS_REGISTER_TEST_DEVELOPER_EMAIL=CDR-Register-Test-Developer@somefictitioustestcompany.com
+# If no developer name has been set, use a default
+if [ -z "$CDS_REGISTER_TEST_DEVELOPER_EMAIL" ]; then  CDS_REGISTER_TEST_DEVELOPER_EMAIL=CDR-Register-Test-Developer@somefictitioustestcompany.com; fi;
 echo "--->"  Creating Register Test Developer: $CDS_REGISTER_TEST_DEVELOPER_EMAIL
 
 apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASSWORD --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL --firstName "CDS Register Test" --lastName "Developer"  --userName $CDS_REGISTER_TEST_DEVELOPER_EMAIL
@@ -187,24 +225,26 @@ apigeetool createDeveloper -o $APIGEE_ORG -username $APIGEE_USER -p $APIGEE_PASS
 # Create a test app to test Admin APIs - Simulates calls made by the CDR Register
 echo "--->"  Creating CDR Register Test App: CDRRegisterTestApp...
 
-APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --name CDRRegisterTestApp --apiProducts "CDSAdmin,CDSOIDC" --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL --json | jq .credentials[0])
+APP_CREDENTIALS=$(apigeetool createApp -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD --name CDSRegisterTestApp --apiProducts "CDSAdmin,CDSOIDC" --email $CDS_REGISTER_TEST_DEVELOPER_EMAIL --json | jq .credentials[0])
 APP_KEY=$(echo $APP_CREDENTIALS | jq -r .consumerKey)
 APP_SECRET=$(echo $APP_CREDENTIALS | jq -r .consumerSecret)
 
 # Update app attributes
-REG_INFO=$(sed -e "s/dummyorgname/$APIGEE_ORG/g" -e "s/dummyenvname/$APIGEE_ENV/g" ./setup/baseRegistrationInfoForCDSRegisterTestApp.json)
+REG_INFO=$(sed -e "s/cds-hostname/$CDS_HOSTNAME/g" ./setup/baseRegistrationInfoForCDSRegisterTestApp.json)
 REQ_BODY='{ "attributes": [ { "name": "DisplayName", "value": "CDSRegisterTestApp" }, '
 echo $REQ_BODY $REG_INFO "]}" >> ./tmpReqBody.json
-curl https://api.enterprise.apigee.com/v1/organizations/$APIGEE_ORG/developers/$CDS_REGISTER_TEST_DEVELOPER_EMAIL/apps/CDRRegisterTestApp \
-  -u $APIGEE_USER:$APIGEE_PASSWORD \
-  -H 'Accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d @./tmpReqBody.json
+
+curl --silent -X PUT -H "Authorization: Bearer $(apigeetool getToken)" \
+          -H "Content-Type:application/json" \
+          https://apigee.googleapis.com/v1/organizations/$APIGEE_ORG/developers/$CDS_REGISTER_TEST_DEVELOPER_EMAIL/apps/CDSRegisterTestApp \
+          -d @./tmpReqBody.json
+
 rm ./tmpReqBody.json
 echo \n.. App created. When testing admin APIs use the following client_id: $APP_KEY
 
-mkdir setup/certs
-cd setup/certs
+
+mkdir -p setup/certs
+pushd setup/certs
 
 # Generate RSA Private/public key pair for client app:
 generate_private_public_key_pair CDSTestApp "Test App"
@@ -220,6 +260,7 @@ generate_private_public_key_pair MockCDRRegister "Mock CDR Register"
 echo "Use private key when signing JWT tokens used for authentication in Admin API Endpoints"
 echo "----"
 
+
 # Generate RSA Private/public key pair to be used by Apigee when signing JWT ID Tokens
 generate_private_public_key_pair CDSRefImpl "CDS Reference Implementation to be used when signing JWT Tokens"
 
@@ -231,8 +272,13 @@ CDSREFIMPL_OIDC_CLIENT_ID=$(openssl rand -hex 16)
 CDSREFIMPL_OIDC_CLIENT_SECRET=$(openssl rand -hex 16)
 CDSREFIMPL_JWKS=`cat ./CDSRefImpl.jwks`
 APIGEE_CLIENT_ENTRY=$(echo '[{ "client_id": "'$CDSREFIMPL_OIDC_CLIENT_ID'", "client_secret": "'$CDSREFIMPL_OIDC_CLIENT_SECRET'", "redirect_uris": ["https://'$APIGEE_ORG'-'$APIGEE_ENV'.apigee.net/authorise-cb"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"], "token_endpoint_auth_method": "client_secret_basic","jwks": '$CDSREFIMPL_JWKS'}]')
-OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
-echo $APIGEE_CLIENT_ENTRY > ../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
+
+### OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
+### echo $APIGEE_CLIENT_ENTRY > ../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
+
+echo ">>>> Configure OIDC Mock Provider:"
+
+echo $APIGEE_CLIENT_ENTRY
 echo "----"
 
 
@@ -267,28 +313,16 @@ apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName ApigeeIDPCredentials_clientSecret --entryValue "$CDSREFIMPL_OIDC_CLIENT_SECRET"   1> /dev/null | echo Added entry for CDS Ref Impl credentials: client secret in OIDC Provider
 
 # Revert to original directory
- cd ../..
+popd
 
 # Replace the existing <JWKS> element in the  JWT-VerifyCDRSSAToken policy in validate-ssa shared flow
 # so that they point to the mock-cdr jwks endpoint
 echo "--->"  "Adding Mock CDR Register JWKS uri to policy used to validate SSA Token"
 replace_with_jwks_uri src/shared-flows/validate-ssa/sharedflowbundle/policies/JWT-VerifyCDRSSAToken.xml /mock-cdr-register/jwks
 
- # Deploy Shared flows
-cd src/shared-flows
-for sf in $(ls .) 
-do 
-    echo "--->"  Deploying $sf Shared Flow 
-    cd $sf
-    apigeetool deploySharedflow -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n $sf 
-    cd ..
- done
 
-
-# Deploy oidc-mock-provider proxy
-cd ../apiproxies/authnz/oidc-mock-provider
-echo "--->"  Deploying oidc-mock-provider Apiproxy
-apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider
-
-# Revert to original directory
- cd ../../../..
+### PORT: no oidc-mock-provider proxy for 5G/Hybrid
+### # Deploy oidc-mock-provider proxy
+### pushd src/apiproxies/authnz/oidc-mock-provider
+### echo "--->"  Deploying oidc-mock-provider Apiproxy
+### apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD -n oidc-mock-provider

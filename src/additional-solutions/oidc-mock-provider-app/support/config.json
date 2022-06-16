@@ -1,0 +1,170 @@
+{
+	"features": {
+		"claimsParameter": {
+			"enabled": true
+		},
+		"clientCredentials": {
+			"enabled": true
+		},
+		"encryption": {
+			"enabled": true
+		},
+		"fapiRW": {
+			"enabled": true,
+			"ack": "implementers-draft-02"
+		},
+		"introspection": {
+			"enabled": true
+		},
+		"pushedAuthorizationRequests": {
+			"enabled": false,
+			"requirePushedAuthorizationRequests": false
+		},
+		"requestObjects": {
+			"request": true,
+			"requestUri": true
+		},
+		"registration": {
+			"enabled": true
+		},
+		"registrationManagement": {
+			"enabled": true,
+			"rotateRegistrationAccessToken": false
+		},
+		"revocation": {
+			"enabled": true
+		}
+	},
+	"acrValues": [
+		"urn:brasil:openbanking:loa2",
+		"urn:brasil:openbanking:loa3"
+	],
+	"clientDefaults": {
+		"response_types": [
+			"code id_token"
+		],
+		"grant_types": [
+			"authorization_code",
+			"client_credentials",
+			"implicit",
+			"refresh_token"
+		],
+		"id_token_signed_response_alg": "PS256",
+		"token_endpoint_auth_method": "private_key_jwt"
+	},
+	"claims": {
+		"openid": [
+			"sub",
+			"name",
+			"given_name",
+			"family_name",
+			"cpf",
+			"cnpj",
+			"updated_at"
+		],
+		"profile": [
+			"sub",
+			"name",
+			"given_name",
+			"family_name",
+			"cpf",
+			"cnpj",
+			"updated_at"
+		],
+		"acr": null,
+		"auth_time": null,
+		"name": null,
+		"given_name": null,
+		"family_name": null,
+		"refresh_token_expires_at": null,
+		"sharing_expires_at": null
+	},
+	"conformIdTokenClaims": {
+		"enabled": false
+	},
+	"cookies": {
+		"short": {
+			"sameSite": "none"
+		}
+	},
+	"formats": {
+		"AccessToken": "opaque",
+		"ClientCredentials": "opaque",
+		"RefreshToken": "opaque"
+	},
+	"jwks": {
+		"keys": [{
+			"e": "AQAB",
+			"n": "zUNZ6v30_8tZGfRiZMY9UUO86rmnNKMVDk4xm4WvVsZO4xS4APgpeReZYu9IfNcEZZ3RGcpvQ5yyL_-OglXQJ6EdLI0FsuyK9PGvYv7DgjonCJBkM9b70zft6-a-Gwy8_GxdzHYiAb0v7089Zruzkk5bN_9tTlzXjUxBpJIaZlFLK1SLH1O88bxCUkiV6YZ6CEoQ_HYkQBJiM88Jz0PkTu_cDnCAlo4o_4geauOqnw5TNFZuTEl8wZ2Smu9rIKvRgLGO643XPl-Lo3_YBm0LwuOQfqqzAtnvU7pOOPNK967fTxGMxumrDhi5VOKIPtFbx3caz81mnKO0RdsQUce0ow",
+			"d": "PKhlnxsTVrAaEaB1n0AyCJzS7C6W6egzpbmX0VTNPwB1eYe65JZxcxZ1PpZlvnawFvNvQobfIITi52pHC98eF0f2Xh8CiyB54-60HLYawpY6yL4aznL-kimaBrd2gHngM1w2z-AtJoRo8PhitcRMSbUcIc062Qh4ronVcDO413kxBwU0Nbm0xSPl_JsXiD7AacEMLRIPhzx1ofrK8w9wdP7_hvZR3Ezex8WLUP7qH7Nq88WYqPkPfH18drzt-4u_5grEIcMqQSCo9H4-Nc98rpnUwPPG0wyytbGYNl_mETBPfqvRNMLCV-aF7wjCvWOxfhxRm9vFIkdGRqAlxGJO6Q",
+			"p": "7KiBt_wbfmw-Rkg-mEFLKkoE4fSZYS9BMf1gMBkfwzIgi2JjJtiwC_ELbCZFehBoZZELTRAMx0TB7P1U0eev4M36Fs3zp-6X8VFi8$qXfpRoBRqfjar1z-weTcW4i9PUaBy23sGAR0hGLbSk65TSc5X7OZEg1gh2p__Uh3R7X-c",
+			"q": "3gn6bIY9U6V8JT9VnHwJ-MylTv275KmwCdV74noqDru3Bq0clJhHNi0cGGz1Eoe6UMlJ_MIhLqc1wdIWvGCM3EdLpQ0TTe9Ja1PUIK2av-z6lNumRCu8IIlMiMIdfRLSuU1NZZ3VQ26R3sMWm4nbLejWmecp3JjSzIJthuNMXeU",
+			"dp": "fOcul4kyhZXhhDyK9Na5Mheg3hS3guhq01R0GM6Zye7B6G7D__OrbpIIwkqsrpDMWJalzUVkSSOL6mWGB8btN4veq3yFVaOCg_W9cSFYJZF0GQWFIkMRu2xWThvFm97wIwbMqWKdLoIBsAvAYynHrQOCdU6Ycv5CicZnSBp9Jw8",
+			"dq": "UEdNSpWScL7BTvpCKszSEilzj0a_-2G6qyOLogvHTwJhn0FRtwwDmzveD5q9VNDL9U-Bt6g8tRBxqD0cSUmjRDVmzSsYErJ0WiC57oK2E7RLuSxdRgKGB0F88Wk1njYDCEpBtH7HT5UXmnHwp5XFMCkiBg0FHqQGezig_wcJYl0",
+			"qi": "h48OH9ffL0nu8rGTRpYOFVEcrXdruuDLZxzeYt7FGOJIes7hvwElmI_oXSOeBwVDKJp84u0KXNsDL1icjfLKg3ShslcGtsX_uqKEaQlLIsMShNCpKqy0sRfi_LdfjhTbtODwye7HELfLEcQAARIrgwq9QicV_6PmveqZ2Wy5oUw",
+			"kty": "RSA",
+			"kid": "lThWGW0co9l4atv-H9Cshm-ad6uda4spLy2WtDLHG4w",
+			"use": "sig"
+		}, {
+			"e": "AQAB",
+			"n": "mZZzC-mOQA9IYSDQbqZvfRny21l24MSVGd-PHcpF7kEH4nW6Tu2UsC9Zl4Sjls1WAO1dVNBDQJ3VZvq1u-GbDM3FV9__ZpDXbdP3z4_cmQ-0AlmA2bV3js5fcrYrzChKBQ8kh-qu0Z1fVCahosGASpw39uktvL2vO4dcWIqWOQU379SZa68jCPKKVn3UOpNvmis0udjzeMoCfnJz9KwBHX6k1aYKEn1Vu2wSx3dF9FISYk9tRqn2cJIBJgwutD2GPPE9kCLU3ApWvAZ5qUgDJCCflsFR08scj_pMV3boEMBERdAD_S_kbID7qCVxl7xgy7oSBPQti7bFZT8KJes5sw",
+			"d": "XntK8r0OoSHFqNqC3k7MruzTlVSH6OWFw5Dffbf9JQAkVY-OuRc2LNw0BR23dQGEMrXSgGZNuOZfbSY1vgqfU1USXWiSuQnJPOr0u18ImbArUHa26TbVAai61tpyPvlZ75rNIj-go5poFmBddr4KqdtIIkB3vnAB6GDw0hcPKquzLf3d2nQMyJaVpcCWXgaFXRXA2J7WHxuHyLxWk4ozG0ZJnWUuItfK_35i1MxzM8bVPUp8amrlvl0whKn2v1sHyZRKvMqEHgPc8AbxWABuujPSPyhx245rc3Yamm-S_CsrkoCbz-U6FUdYjeVcEEtuRPJzoAtRiK5DwhrjvxsrIQ",
+			"p": "yL0wOvlaSxgZ75V2a__AiGqgUOoOAUdG2xshUKRXa2mT7jDcS1LyrJSSJepMyu2q4Or16dWeihhbpXp3AAVkBgAsjSYXkYwTePXs-bB7nVVRDw0busxiIuUVwHkHOLOEHvUIgo46dlXjdBWN-reeVNMPEqGDYSwdDrycxDSFm0c",
+			"q": "w95VwkoWNq0iriGvRUoBy0y7Y--yRBGMqQZHQxBRsqYQuwownY0WF2ozmHeSuC-o_XkUHJGI5RxG0u8NlDihOK79GVuB8sSFpIY_FQwdtYUI8Fm6ASw8wuUFoOvo1LPvQ3q2ZaszCUmvMiWQxZpZPIHR4WA_O_Pok2Bun-UPTDU",
+			"dp": "kFiqk922dgVQsR1S2HpB4lZ6DXUguP6eDvRFUo26Zvy2aTMtVeTBqCP1q9n9enbIx49tYcZAiKDXVfjoFVXLBR2e66iWjgyh-_sreqjTWuF8tkwAwqQxdVIyAAOHk9hSi0g75FWN6IX-Vv0g6UacTfavAgCuTnPAOVabi-MQqAU",
+			"dq": "9BEYzAGFrJwRmupefPi7Q5lZ6C3G9QrpO7WXFvo-014bevY3nhswa_zqThKxwNGiwjcd2HuBGf0iQ7WeNhRa0Uc8G1zrkJdR8LFX6eIvIwGjIdys6sk07aZ0XRGaD3Insu42Wnn6HpiytsoYnCK5D6y02yITqaFFLl_7eUL0zQ",
+			"qi": "RIVQ3R-1rK94jyj3xbCipqcz7yBP057KTMfCo8uqSHgTH78p_J8ZawZJ_JM2mX74qrMLMD9YU9f5HrPhF-F6_L5mJehsf1hEEUfsN0V5narFXhODIOq8Gr-HQo08wVndHzZVjS13oaGxU0IsIKhYOe623iUtjO7y9FaHUy3YCBc",
+			"kty": "RSA",
+			"kid": "9fTvBJKTn1c8D2jgJx-hI_jHInQns046EG0YLLaJkps",
+			"use": "enc"
+		}]
+	},
+	"responseTypes": [
+		"code id_token"
+	],
+	"rotateRefreshToken": true,
+	"routes": {
+		"authorization": "/authorise",
+		"registration": "/register"
+	},
+	"scopes": [
+		"openid",
+		"profile",
+		"accounts:basic",
+		"accounts:details",
+		"transactions"
+	],
+	"subjectTypes": [
+		"public"
+	],
+	"tokenEndpointAuthMethods": [
+		"client_secret_basic",
+		"private_key_jwt"
+	],
+	"ttl": {
+		"AccessToken": 600,
+		"IdToken": 600,
+		"RefreshToken": 2419200
+	},
+	"whitelistedJWA": {
+		"authorizationSigningAlgValues": ["PS256"],
+		"dPoPSigningAlgValues": ["PS256"],
+		"idTokenSigningAlgValues": ["PS256"],
+		"introspectionEndpointAuthSigningAlgValues": ["PS256"],
+		"introspectionSigningAlgValues": ["PS256"],
+		"requestObjectSigningAlgValues": ["PS256"],
+		"revocationEndpointAuthSigningAlgValues": ["PS256"],
+		"tokenEndpointAuthSigningAlgValues": ["PS256"],
+		"userinfoSigningAlgValues": ["PS256"],
+		"authorizationEncryptionAlgValues": ["RSA-OAEP"],
+		"authorizationEncryptionEncValues": ["A256GCM"],
+		"idTokenEncryptionAlgValues": ["RSA-OAEP"],
+		"idTokenEncryptionEncValues": ["A256GCM"],
+		"introspectionEncryptionAlgValues": ["RSA-OAEP"],
+		"introspectionEncryptionEncValues": ["A256GCM"],
+		"requestObjectEncryptionAlgValues": ["RSA-OAEP"],
+		"requestObjectEncryptionEncValues": ["A256GCM"],
+		"userinfoEncryptionAlgValues": ["RSA-OAEP"],
+		"userinfoEncryptionEncValues": ["A256GCM"]
+	}
+}

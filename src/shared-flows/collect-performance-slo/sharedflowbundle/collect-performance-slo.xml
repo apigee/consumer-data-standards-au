@@ -1,31 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<SharedFlowBundle revision="5" name="collect-performance-slo">
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1576644058184</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Stores custom analytics metric that indicates whether a request meets its performance objective (based on tiers specified by CDS)</Description>
+<SharedFlowBundle revision="2" name="collect-performance-slo">
     <DisplayName>collect-performance-slo</DisplayName>
-    <LastModifiedAt>1602213943784</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:689803662e5e5885b263c6192e12941ede22fa958c8a7a123f388f31106781f76d85bbec74cf33df94bad0942081282e5787e20621bf9e591d726dce260bc44a</ManifestVersion>
+    <Description>Stores custom analytics metric that indicates whether a request meets its performance objective (based on tiers specified by CDS)</Description>
+    <CreatedAt>1636058423821</CreatedAt>
+    <LastModifiedAt>1636058423821</LastModifiedAt>
     <Policies>
-        <Policy>AM-ResetCustomerPPIDIfNA</Policy>
-        <Policy>AM-ResetTokenOpIfNA</Policy>
-        <Policy>AM-SetMessageSLO</Policy>
-        <Policy>AM-SetPerformanceTierToHighPriority</Policy>
         <Policy>AM-SetPerformanceTierToLargePayload</Policy>
         <Policy>AM-SetPerformanceTierToLowPriority</Policy>
-        <Policy>AM-SetPerformanceTierToUnattended</Policy>
-        <Policy>AM-SetPerformanceTierToUnauthenticated</Policy>
+        <Policy>AM-SetMessageSLO</Policy>
         <Policy>JS-CheckIfRequestMeetsPerformanceSLO</Policy>
-        <Policy>SC-AddPerformanceTierDimension</Policy>
+        <Policy>AM-ResetCustomerPPIDIfNA</Policy>
+        <Policy>AM-SetPerformanceTierToUnattended</Policy>
+        <Policy>AM-ResetTokenOpIfNA</Policy>
+        <Policy>AM-SetPerformanceTierToHighPriority</Policy>
+        <Policy>AM-SetPerformanceTierToUnauthenticated</Policy>
+        <Policy>DC-AddPerformanceTierDimension</Policy>
     </Policies>
     <Resources>
         <Resource>jsc://checkIfRequestMeetsPerformanceSLO.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <subType>SharedFlow</subType>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>
+    <subType>SharedFlow</subType>
 </SharedFlowBundle>
