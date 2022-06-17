@@ -18,6 +18,7 @@
                 </body>
             </html>
         </Payload>
+        <StatusCode>302</StatusCode>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="response"/>

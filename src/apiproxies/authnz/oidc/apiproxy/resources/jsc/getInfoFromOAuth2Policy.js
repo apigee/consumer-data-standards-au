@@ -28,14 +28,16 @@ var executedOAuthV2PolicyName = (theGrantType === "authorization_code")? "OA-Iss
 the_access_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".access_token");
 access_token_expires_in = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".expires_in");
 the_refresh_token = context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token");
-var d = new Date();
-var nowInEpochMillis = d.getTime();
-var refresh_token_expires_in_millis = Number(context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token_expires_in") + "000");
-var refreshTokenExpiresAt = Math.floor( (nowInEpochMillis + refresh_token_expires_in_millis) / 1000);   
+const d = new Date();
+const nowInEpochMillis = d.getTime();
+const refresh_token_expires_in_millis = Number(context.getVariable("oauthv2accesstoken." + executedOAuthV2PolicyName + ".refresh_token_expires_in") + "000");
+const refreshTokenExpiresAt = Math.floor( (nowInEpochMillis + refresh_token_expires_in_millis) / 1000);   
 context.setVariable("theAccessToken", the_access_token);
 context.setVariable("theRefreshToken", the_refresh_token);
 context.setVariable("accessTokenExpiresIn", access_token_expires_in);
 context.setVariable("refreshTokenExpiresAt", refreshTokenExpiresAt.toString());
+
+
 
 
  

@@ -10,18 +10,21 @@
             </Headers>
             <FormParams>
                 <FormParam name="code">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.OIDCAuthCode}</FormParam>
-                <FormParam name="redirect_uri">https://{organization.name}-{environment.name}.apigee.net/authorise-cb</FormParam>
+                <FormParam name="redirect_uri">https://{request.header.host}/authorise-cb</FormParam>
                 <FormParam name="grant_type">authorization_code</FormParam>
                 <FormParam name="refresh_token">true</FormParam>
             </FormParams>
             <QueryParams>
-                <QueryParam name="refresh_token_expires_in">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration}</QueryParam>
+                <QueryParam name="refresh_token_expires_in">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.refreshTokenExpiryTimeInSeconds}</QueryParam>
             </QueryParams>
             <Verb>{request.verb}</Verb>
         </Set>
     </Request>
     <Response>IdPTokenResponse</Response>
-    <LocalTargetConnection>
-        <Path>/mock-oidc/token</Path>
-    </LocalTargetConnection>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="OIDCProvider"/>
+        </LoadBalancer>
+        <Path>/token</Path>
+    </HTTPTargetConnection>
 </ServiceCallout>

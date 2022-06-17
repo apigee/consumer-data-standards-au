@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Javascript timeLimit="200" async="false" continueOnError="false" enabled="true" name="JS-RemoveOIDCProvideBasePath">
-    <DisplayName>JS-RemoveOIDCProvideBasePath</DisplayName>
+    <DisplayName>JS-ReplaceIDPUriWithApigeeInstanceUri</DisplayName>
     <FaultRules/>
     <Properties/>
-    <ResourceURL>jsc://removeOIDCProvideBasePath.js</ResourceURL>
+    <ResourceURL>jsc://replaceIDPUriWithApigeeInstanceUri.js</ResourceURL>
 </Javascript>

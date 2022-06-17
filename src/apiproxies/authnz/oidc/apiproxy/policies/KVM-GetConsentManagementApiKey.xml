@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations continueOnError="false" enabled="true" name="KVM-GetConsentManagementApiKey" mapIdentifier="CDSConfig">
+    <DisplayName>KVM-GetConsentManagementApiKey</DisplayName>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>3000</ExpiryTimeInSecs>
+    <Get assignTo="private.ConsentManagement_ApiKey" index="1">
+        <Key>
+            <Parameter>ApigeeConsentManagement_apiKey</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

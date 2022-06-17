@@ -9,5 +9,10 @@
             <Parameter>HOK_mtlsHostname</Parameter>
         </Key>
     </Get>
+    <Get assignTo="private.IDPUri" index="1">
+        <Key>
+            <Parameter>IDPUri</Parameter>
+        </Key>
+    </Get>
     <Scope>environment</Scope>
 </KeyValueMapOperations>

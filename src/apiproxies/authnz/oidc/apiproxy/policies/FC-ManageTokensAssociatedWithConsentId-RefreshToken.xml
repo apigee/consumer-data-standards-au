@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ManageTokensAssociatedWithConsentId-RefreshToken">
+    <DisplayName>FC-ManageTokensAssociatedWithConsentId-RefreshToken</DisplayName>
+    <Parameters ignoreUnresolvedVariables="false">
+        <Parameter name="theConsentId" ref="theConsentId"/>
+        <Parameter name="newAccessToken" ref="theAccessToken"/>
+        <Parameter name="newRefreshToken" ref="theRefreshToken"/>
+        <Parameter name="revokeExistingTokens">false</Parameter>
+    </Parameters>
+    <SharedFlowBundle>manage-tokens-by-consent-id</SharedFlowBundle>
+</FlowCallout>

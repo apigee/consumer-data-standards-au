@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables continueOnError="false" enabled="true" name="EV-ExtractConsentIdFromURIParam">
+    <DisplayName>EV-ExtractConsentIdFromURIParam</DisplayName>
+    <URIPath>
+        <Pattern ignoreCase="false">/consents/{theConsentId}/tokens</Pattern>
+    </URIPath>
+</ExtractVariables>

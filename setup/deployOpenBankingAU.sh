@@ -58,7 +58,7 @@ function generate_private_public_key_pair {
    IN_FILE=$OUT_FILE
    APP_JWK=$(pem-jwk $IN_FILE  | jq '{"keys": [. + { "kid": "PlaceHolderKid" } + { "use": "sig" }]}')  
    echo $APP_JWK > $KEY_PAIR_NAME.jwks
-   sed  -i "s/PlaceHolderKid/$KEY_PAIR_NAME/" $KEY_PAIR_NAME.jwks
+   sed  -i '' "s/PlaceHolderKid/$KEY_PAIR_NAME/" $KEY_PAIR_NAME.jwks
 
 }
 
@@ -82,6 +82,10 @@ apigeetool createKVMmap -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $A
 # Create cache that will hold consent state (Used by basic consent management proxy)
 echo "--->"  Creating cache ConsentState...
 apigeetool createcache -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV -z ConsentState --description "Holds state during consent flow" --cacheExpiryInSecs 600
+
+# Create target server
+echo "--->" Creating Target Server OIDCProvider
+apigeetool createTargetServer -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_PASSWORD --targetEnabled true --targetHost $OIDC_PROVIDER_HOST_ALIAS --targetPort 443 --targetSSL true --targetServerName OIDCProvider
 
 
 # Create Data Collectors
@@ -311,6 +315,7 @@ apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName JWTSignKeys_privateKey --entryValue "$CDSREFIMPL_PRIVATE_KEY"   1> /dev/null | echo Added entry for CDS Ref Impl private key
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName ApigeeIDPCredentials_clientId --entryValue "$CDSREFIMPL_OIDC_CLIENT_ID"  1> /dev/null | echo Added entry for CDS Ref Impl credentials: client id in OIDC Provider
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName ApigeeIDPCredentials_clientSecret --entryValue "$CDSREFIMPL_OIDC_CLIENT_SECRET"   1> /dev/null | echo Added entry for CDS Ref Impl credentials: client secret in OIDC Provider
+apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName IDPUri --entryValue "$OIDC_PROVIDER_HOST_ALIAS"   1> /dev/null | echo Added entry for CDS Ref Impl credentials: client secret in OIDC Provider
 
 # Revert to original directory
 popd

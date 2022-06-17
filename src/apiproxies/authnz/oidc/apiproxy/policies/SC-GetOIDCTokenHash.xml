@@ -3,7 +3,10 @@
     <DisplayName>SC-GetOIDCTokenHash</DisplayName>
     <Request/>
     <Response>hashResponse</Response>
-    <LocalTargetConnection>
-        <Path>/mock-oidc/oidc-token-hash/{tokenToHash}?alg=RS256</Path>
-    </LocalTargetConnection>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="OIDCProvider"/>
+        </LoadBalancer>
+        <Path>/oidc-token-hash/{tokenToHash}?alg=PS256</Path>
+    </HTTPTargetConnection>
 </ServiceCallout>

@@ -1,5 +1,5 @@
- /*
- * Copyright 2019 Google LLC
+  /*
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,38 +16,34 @@
 
 /**
 * @file
-* removeOIDCProvideBasePath.js
-* The OIDC provider reports endpoints using its proxy base path
-* Remove the base path
+* replaceIDPUriWithApigeeInstanceUri.js
+* The OIDC provider reports endpoints using its hostname
+* Replace it with the Apigee instance hostname
 * Also, make sure the MTLS protected endpoints use the MTLS hostname
-* Finally add the cdr_arrangement_revocation_endpoint which is not supported by the OIDC provider
 **/
 
 var payload = JSON.parse(context.getVariable("response.content"));
 var mtlsHostname = context.getVariable("private.mtlsHostname");
-const standardHostname = payload.issuer;
+const standardHostname = context.getVariable("standardHostname");
+const idpUri = context.getVariable("private.IDPUri");
 // If no entry is found for mtlsHostname (because mTLS is not enabled in this instance) use the standardHostname
 if ( (mtlsHostname === null) || (mtlsHostname === "") ) {
     mtlsHostname = standardHostname;
 }
 
+
 // Treat mtlsEndpoints as a string because the JS interpreter does not support Array.includes 
 const mtlsEndpoints = "introspection_endpoint|registration_endpoint|revocation_endpoint|token_endpoint|userinfo_endpoint|pushed_authorization_request_endpoint";
 
 Object.keys(payload).forEach(function (key) {
-    if ((key == "jwks_uri") || key.endsWith("endpoint")) {
-        // The attributes that need to be changed are jwks_uri and any whose name
+    if ((key == "jwks_uri") || (key == "issuer") || key.endsWith("endpoint")) {
+        // The attributes that need to be changed are jwks_uri, issuer and any whose name
         // finishes in endpoint
-        payload[key] = payload[key].replace("/mock-oidc", "");
-        if (mtlsEndpoints.includes(key)) {
-            // Replace standard hostname with mtls Hostname
-            payload[key] = payload[key].replace(standardHostname,mtlsHostname);
-        }
+        // We'll replace the idpURI with either the standardHostname, or mtlHostname, for mtlsEndpoints
+        var targetHostname = mtlsEndpoints.includes(key) ? mtlsHostname : standardHostname
+        payload[key] = payload[key].replace(idpUri, "https://" + targetHostname);
     }
 });
-
-// add the cdr_arrangement_revocation_endpoint which is not included in the OIDC provider config
-payload['cdr_arrangement_revocation_endpoint'] = mtlsHostname + '/arrangements/revoke';
 
 context.setVariable("response.content", JSON.stringify(payload));
 

@@ -3,7 +3,7 @@
     <DisplayName>AM-SetIssuer</DisplayName>
     <AssignVariable>
         <Name>issuer</Name>
-        <Template>https://{organization.name}-{environment.name}.apigee.net</Template>
+        <Template>https://{request.header.host}</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>tokenToHash</Name>
