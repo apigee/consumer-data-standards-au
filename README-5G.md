@@ -23,10 +23,22 @@ PR readiness state: WIP: 90%
 
 1. Define Repository URL. Useful for development.
 
-```bash
+```sh
 # export CDSAU_REPO=git@github.com:yuriylesyuk/consumer-data-standards-au.git
-export CDSAU_REPO=https://github.com/yuriylesyuk/consumer-data-standards-au.git
+export CDSAU_REPO_URL=https://github.com/yuriylesyuk/consumer-data-standards-au.git
+export CDSAU_REPO=consumer-data-standards-au
+export CDSAU_BRANCH_5G=5g
 ```
+
+or for an internal repo:
+
+```sh
+export CDSAU_REPO_URL=sso://team/apigee-openbank-dev/openbank-aus
+export CDSAU_REPO=openbank-aus
+export CDSAU_BRANCH_5G=apigee-x
+```
+
+
 
 1. Define a project home
 ```bash
@@ -40,7 +52,7 @@ mkdir -p $CDSAU_HOME
 ```bash
 cd $CDSAU_HOME
 
-git clone -b 5g $CDSAU_REPO
+git clone -b $CDSAU_BRANCH_5G $CDSAU_REPO_URL
 ```
 
 2. Clone environment configuration file
@@ -52,6 +64,7 @@ cp consumer-data-standards-au/setup/cds-au-config.env .
 3. Populate/edit variables as appropriate. At least:
 
 * PROJECT
+* GAE_REGION
 * APIGEE_ENV
 * CLUSTER
 * CLUSTER_LOCATION
@@ -94,7 +107,7 @@ docker gcr.io
 ```bash
 source $CDSAU_HOME/cds-au-config.env
 
-cd $CDSAU_HOME/consumer-data-standards-au
+cd $CDSAU_HOME/$CDSAU_REPO
 
 ./setup/cds-au-setup.sh
 ./setup/deployOidcMockProviderGAE.sh

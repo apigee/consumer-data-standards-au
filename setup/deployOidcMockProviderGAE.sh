@@ -17,10 +17,10 @@
 
 set -e
 
-pushd $CDSAU_HOME/consumer-data-standards-au/src/additional-solutions/oidc-mock-provider-app
+pushd $CDSAU_HOME/$CDSAU_REPO/src/additional-solutions/oidc-mock-provider-app
 
 set +e
-gcloud app create --region $REGION
+gcloud app create --region=$GAE_REGION
 set -e
 
 gcloud app deploy app.yaml --quiet
@@ -30,3 +30,6 @@ gcloud app deploy app.yaml --quiet
 # curl https://$PROJECT.nw.r.appspot.com
 
 popd
+
+echo "INFO: OIDC MOCK Provider Google App is successfully installed."
+echo "INFO: test request: curl https://$PROJECT.nw.r.appspot.com"
