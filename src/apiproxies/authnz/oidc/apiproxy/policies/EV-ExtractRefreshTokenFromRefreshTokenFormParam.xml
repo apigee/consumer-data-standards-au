@@ -6,9 +6,6 @@
     <FormParam name="refresh_token">
         <Pattern ignoreCase="false">{theRefreshToken}</Pattern>
     </FormParam>
-    <FormParam name="scope">
-        <Pattern ignoreCase="false">{requested_scope}</Pattern>
-    </FormParam>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <Source clearPayload="false">request</Source>
 </ExtractVariables>

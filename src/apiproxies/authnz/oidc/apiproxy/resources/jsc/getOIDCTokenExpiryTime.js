@@ -34,7 +34,7 @@
  var tokenExpiryTime = String(context.getVariable("OIDCTokenResponse.expires_in")) + "000";
  context.setVariable("OIDCTokenExpiryTimeInMillis", tokenExpiryTime);
  
- var refreshTokenExpiryTime = String(context.getVariable("oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.refreshTokenExpiryTimeInSeconds"));
+ var refreshTokenExpiryTime = String(context.getVariable("oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration"));
  if ( (refreshTokenExpiryTime !== null) && (refreshTokenExpiryTime !== "") && (refreshTokenExpiryTime != "null")) {
      // This variable will be defined only when the token is being issued in exchange for an auth code
      if (refreshTokenExpiryTime == "0") {

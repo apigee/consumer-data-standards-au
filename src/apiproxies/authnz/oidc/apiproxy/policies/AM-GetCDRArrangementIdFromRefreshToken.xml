@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-GetCDRArrangementIdFromRefreshToken">
-    <DisplayName>AM-GetConsentIdFromRefreshToken</DisplayName>
+    <DisplayName>AM-GetCDRArrangementIdFromRefreshToken</DisplayName>
     <Properties/>
     <AssignVariable>
-        <Name>theConsentId</Name>
-        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.consentId</Ref>
+        <Name>cdrArrangementId</Name>
+        <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.cdrArrangementId</Ref>
     </AssignVariable>
     <AssignVariable>
         <Name>customerPPId</Name>
         <Ref>oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerPPId</Ref>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <AssignTo createNew="false" transport="http" type="request"/>
+    <AssignTo createNew="false" transport="http"/>
 </AssignMessage>

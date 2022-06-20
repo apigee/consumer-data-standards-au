@@ -15,8 +15,6 @@
         <Claim name="name" ref="IDPTokenClaims.name"/>
         <Claim name="given_name" ref="IDPTokenClaims.given_name"/>
         <Claim name="family_name" ref="IDPTokenClaims.family_name"/>
-        <Claim name="cpf" ref="cpfToIncludeInIdToken"/>
-        <Claim name="cnpj" ref="cnpjToIncludeInIdToken"/>
         <Claim name="updated_at" ref="IDPTokenClaims.updated_at" type="number"/>
         <Claim name="auth_time" ref="IDPTokenClaims.auth_time" type="number"/>
         <Claim name="acr" ref="IDPTokenClaims.acr"/>

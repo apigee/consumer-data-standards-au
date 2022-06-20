@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetCustomDimensionsForAcquireToken">
+    <DisplayName>AM-SetCustomDimensionsForAcquireToken</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <AssignVariable>
+        <Name>customerPPId</Name>
+        <Ref>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.customerPPId</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>tokenOp</Name>
+        <Value>acquire</Value>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo transport="http" createNew="false"/>
+</AssignMessage>

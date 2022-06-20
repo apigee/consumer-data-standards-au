@@ -1,106 +1,125 @@
-<APIProxy revision="2" name="oidc">
+<APIProxy revision="12" name="oidc">
     <DisplayName>oidc</DisplayName>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
-    <CreatedAt>1655434827523</CreatedAt>
-    <LastModifiedAt>1655435986768</LastModifiedAt>
+    <CreatedAt>1636148565957</CreatedAt>
+    <LastModifiedAt>1636148565957</LastModifiedAt>
     <BasePaths>/</BasePaths>
     <Policies>
-        <Policy>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Policy>
-        <Policy>FC-GetPPId</Policy>
-        <Policy>RF-NotFound</Policy>
-        <Policy>AM-SetUserInfoResponse</Policy>
-        <Policy>EV-ExtractIntrospectionResponse</Policy>
-        <Policy>AM-InsertApigeeOIDCCredentials</Policy>
-        <Policy>VAK-VerifyClientId</Policy>
-        <Policy>AM-RedirectToClient</Policy>
-        <Policy>AM-AppendOIDCAuthCodeIdTokenToOIDCState</Policy>
-        <Policy>SC-InvokeIdPTokenEndpoint</Policy>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-ConsentError</Policy>
-        <Policy>EV-StoreTokenRequestDetails</Policy>
-        <Policy>EV-ParseCachedState</Policy>
-        <Policy>JS-CalculateExpiryTimeForNewIdToken-AuthCodeStage</Policy>
-        <Policy>SC-GetOIDCTokenHash</Policy>
-        <Policy>FC-VerifyIdpIdToken</Policy>
-        <Policy>KVM-GetMTLSHostname</Policy>
-        <Policy>RF-InvalidScope</Policy>
-        <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
-        <Policy>AM-SetResponse204NoContent</Policy>
-        <Policy>AM-SetJWTTokenToDecode</Policy>
-        <Policy>PC-CacheOIDCState</Policy>
-        <Policy>OAInfo-RetrieveRefreshTokenDetails</Policy>
-        <Policy>JS-RemoveOIDCProvideBasePath</Policy>
-        <Policy>OAInfo-RetrieveOIDCAuthCode</Policy>
-        <Policy>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Policy>
-        <Policy>BA-SetBasicAuthHeader</Policy>
-        <Policy>RF-InvalidRedirectURI</Policy>
-        <Policy>AM-SetStateAsOIDCCacheKey</Policy>
-        <Policy>RF-InvalidAccessToken</Policy>
-        <Policy>AM-SetIssuer</Policy>
-        <Policy>AM-SetRefreshTokenAsAccessToken</Policy>
-        <Policy>KVM-GetJWTSigningKeys</Policy>
-        <Policy>JS-GetOIDCTokenExpiryTime</Policy>
-        <Policy>AM-SetRefreshTokenExpiryDate</Policy>
-        <Policy>AM-RedirectToMockOIDCAuthorise</Policy>
-        <Policy>OA-IssueOpaqueAuthCode</Policy>
-        <Policy>AM-RedirectToConsentFlow</Policy>
-        <Policy>AM-GenerateIntrospectionResponse</Policy>
-        <Policy>AM-InvalidAuthCode</Policy>
-        <Policy>OAInfo-RetrieveAccessTokenDetails</Policy>
-        <Policy>JWT-DecodeOIDCIdToken</Policy>
-        <Policy>EV-ExtractRefreshTokenFromTokenFormParam</Policy>
-        <Policy>AM-SetClientIdAndPrivKeyJwt</Policy>
-        <Policy>LC-RetrieveCachedOIDCState</Policy>
-        <Policy>OA-IssueOpaqueAccessToken</Policy>
-        <Policy>AM-SetAccessTokenResponse-ClientCred</Policy>
-        <Policy>RF-InvalidRefreshToken</Policy>
-        <Policy>AM-SetRefreshTokenExpiryTimeBasedOnConsent</Policy>
-        <Policy>AM-SetConsentIdFromToken</Policy>
-        <Policy>EV-GetFormParams</Policy>
-        <Policy>AM-SetStateCacheValue</Policy>
-        <Policy>OAInfoSet-ForceUpdateOfAttributes</Policy>
+        <Policy>FC-VerifyHoK-RefreshToken</Policy>
         <Policy>AM-SetIssueOrRefreshTokenResponse</Policy>
-        <Policy>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Policy>
-        <Policy>RF-InvalidClientId</Policy>
-        <Policy>RF-RedirectToClientConsentNotAuthorised</Policy>
-        <Policy>RF-UnsupportedTokenType</Policy>
-        <Policy>KVM-GetIDPCredentials</Policy>
-        <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
         <Policy>OA-IssueAccessTokenClientCreds</Policy>
-        <Policy>AM-SetJWKSResponse</Policy>
-        <Policy>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Policy>
-        <Policy>OA-RefreshOpaqueAccessToken</Policy>
-        <Policy>JWT-GenerateIdTokenForAuthCodeStep</Policy>
-        <Policy>JS-GetInfoFromOAuth2Policy</Policy>
-        <Policy>RF-InvalidState</Policy>
-        <Policy>AM-IDPError</Policy>
-        <Policy>EV-ParseCachedStateWithIdPAuthCodeAndIdToken</Policy>
-        <Policy>AM-GetCDRArrangementIdFromRefreshToken</Policy>
+        <Policy>FC-ManageTokensAssociatedWithCDRArrangementId-IssueToken</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>AM-RedirectToMockOIDCAuthorise</Policy>
+        <Policy>EV-ExtractRefreshTokenFromTokenFormParam</Policy>
         <Policy>OA-RevokeAccessToken</Policy>
-        <Policy>EV-GetInfoReqdForIssuingAccessToken</Policy>
-        <Policy>AM-InsertQueryParamsForRedirectToConsent</Policy>
-        <Policy>OA-RevokeRefreshToken</Policy>
-        <Policy>SC-InvokeIdPRefreshTokenEndpoint</Policy>
-        <Policy>AM-CannotIssueAccessToken</Policy>
-        <Policy>FC-ManageTokensAssociatedWithConsentId-IssueToken</Policy>
-        <Policy>FC-ManageTokensAssociatedWithConsentId-RefreshToken</Policy>
-        <Policy>FC-ManageTokensAssociatedWithConsentId-RevokeArrangment</Policy>
-        <Policy>AM-SetCurrentHostname</Policy>
-        <Policy>EV-ExtractConsentIdFromURIParam</Policy>
-        <Policy>EV-ExtractConsentCheckResult</Policy>
-        <Policy>RF-InvalidConsent</Policy>
-        <Policy>KVM-GetConsentManagementApiKey</Policy>
-        <Policy>AM-DebugAddCalloutResponse</Policy>
-        <Policy>SC-CreateUpdateCDRArrangement</Policy>
+        <Policy>AM-GenerateCDRArrangementId</Policy>
+        <Policy>AM-ReplaceAccessTokenInRequestSentToOIDCProvider</Policy>
+        <Policy>AM-ReplaceRefreshTokenInRequestSentToOIDCProvider</Policy>
+        <Policy>AM-BuildIntrospectionResponseInactiveToken</Policy>
+        <Policy>RF-InvocationFromProxyChainingOnly</Policy>
+        <Policy>JWT-DecodeOIDCIdToken</Policy>
+        <Policy>EV-ExtractAccessTokenFromAuthHdr</Policy>
+        <Policy>OAInfo-RetrieveAccessTokenDetails</Policy>
+        <Policy>BA-SetBasicAuthHeader</Policy>
+        <Policy>AM-SetResponse204NoContent</Policy>
+        <Policy>AM-SetDefaultValuesForPerfSLO</Policy>
+        <Policy>FC-VerifyMTLSOnly</Policy>
+        <Policy>EV-ParseCachedStateWithIdPAuthCodeAndIdToken</Policy>
+        <Policy>AM-SetDefaultValuesForTokenCustomDimensions</Policy>
+        <Policy>AM-SetPARCacheValueAndKey</Policy>
+        <Policy>AM-SetCustomDimensionsForAcquireToken</Policy>
+        <Policy>RF-InvalidPAR</Policy>
+        <Policy>LC-RetrieveCachedPAR</Policy>
+        <Policy>RF-InvalidRedirectURI</Policy>
+        <Policy>RF-InvalidAccessToken</Policy>
+        <Policy>EV-GetFormParams</Policy>
         <Policy>SC-VerifyExistingCDRArrangmentId</Policy>
+        <Policy>LC-RetrieveCachedOIDCState</Policy>
+        <Policy>OA-RevokeRefreshToken</Policy>
+        <Policy>AM-SetIssuer</Policy>
+        <Policy>RF-NotFound</Policy>
+        <Policy>JWT-GenerateIdTokenForAuthCodeStep</Policy>
+        <Policy>OA-RefreshOpaqueAccessToken</Policy>
+        <Policy>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Policy>
+        <Policy>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Policy>
+        <Policy>FC-DecideIfCustomerIsPresent</Policy>
+        <Policy>JWT-DecodePAR</Policy>
+        <Policy>FC-GeneralTrafficThresholdsForAuthEndpoints</Policy>
+        <Policy>VAK-VerifyClientId</Policy>
+        <Policy>SC-CreateUpdateCDRArrangement</Policy>
+        <Policy>AM-SetCustomDimensionsForRefreshToken</Policy>
+        <Policy>AM-AppendOIDCAuthCodeIdTokenToOIDCState</Policy>
+        <Policy>FC-AuthenticateWithPrivateKeyJWT</Policy>
+        <Policy>KVM-GetIDPCredentials</Policy>
+        <Policy>AM-ConsentError</Policy>
+        <Policy>OA-IssueOpaqueAuthCode</Policy>
+        <Policy>AM-SetParResponse</Policy>
+        <Policy>RF-InvalidRefreshToken</Policy>
+        <Policy>AM-AddCDRArrangementIdAsQueryParam</Policy>
+        <Policy>AM-RedirectToConsentFlow</Policy>
+        <Policy>RF-InvalidClientId</Policy>
+        <Policy>AM-GetCDRArrangementIdFromRefreshToken</Policy>
+        <Policy>OAInfo-RetrieveOIDCAuthCode</Policy>
+        <Policy>AM-SetStateAsOIDCCacheKey</Policy>
+        <Policy>FC-ManageTokensAssociatedWithCDRArrangementId-RefreshToken</Policy>
+        <Policy>OA-IssueOpaqueAccessToken</Policy>
+        <Policy>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</Policy>
+        <Policy>AM-RedirectToClient</Policy>
+        <Policy>RF-UnsupportedTokenType</Policy>
+        <Policy>RF-InvalidScope</Policy>
+        <Policy>EV-ParseCachedState</Policy>
+        <Policy>AM-SetRefreshTokenAsAccessToken</Policy>
+        <Policy>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Policy>
+        <Policy>FC-VerifyPAR</Policy>
+        <Policy>EV-ExtractIntrospectionResponse</Policy>
+        <Policy>AM-SetStateCacheValue</Policy>
+        <Policy>FC-VerifyHoK-AccessToken</Policy>
+        <Policy>EV-StoreTokenRequestDetails</Policy>
+        <Policy>PC-CachePAR</Policy>
+        <Policy>AM-InsertQueryParamsForRedirectToConsent</Policy>
+        <Policy>AM-SetAccessTokenResponse-ClientCred</Policy>
+        <Policy>AM-GenerateIntrospectionResponse</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>SC-RevokeCDRArrangement</Policy>
+        <Policy>RF-InvalidState</Policy>
+        <Policy>SC-GetOIDCTokenHash</Policy>
+        <Policy>AM-SetStateCacheValueFromCachedPAR</Policy>
+        <Policy>JS-GetOIDCTokenExpiryTime</Policy>
+        <Policy>FC-VerifyIdpIdToken</Policy>
+        <Policy>AM-RebuildQueryRequestUsingPAR</Policy>
+        <Policy>KVM-GetJWTSigningKeys</Policy>
+        <Policy>AM-CannotIssueAccessToken</Policy>
+        <Policy>OAInfoSet-ForceUpdateOfAttributes</Policy>
+        <Policy>SC-InvokeIdPTokenEndpoint</Policy>
+        <Policy>AM-SetJWTTokenToDecode</Policy>
+        <Policy>EV-GetInfoReqdForIssuingAccessToken</Policy>
+        <Policy>FC-GetPPId</Policy>
+        <Policy>PC-CacheOIDCState</Policy>
+        <Policy>AM-IDPError</Policy>
+        <Policy>AM-SetJWKSResponse</Policy>
+        <Policy>SC-InvokeIdPRefreshTokenEndpoint</Policy>
+        <Policy>AM-SetIssueTokenResponseWithNoRefreshToken</Policy>
+        <Policy>JS-CalculateExpiryTimeForNewIdToken-AuthCodeStage</Policy>
+        <Policy>AM-InvalidAuthCode</Policy>
+        <Policy>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Policy>
+        <Policy>AM-InsertApigeeOIDCCredentials</Policy>
+        <Policy>OAInfo-RetrieveRefreshTokenDetails</Policy>
+        <Policy>AM-SetUserInfoResponse</Policy>
+        <Policy>EV-ParseCachedPar</Policy>
+        <Policy>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Policy>
+        <Policy>JS-GetInfoFromOAuth2Policy</Policy>
+        <Policy>JS-ReplaceIDPUriWithApigeeInstanceUri</Policy>
+        <Policy>AM-SetCurrentHostname</Policy>
+        <Policy>KVM-GetMTLSHostnameAndIDPUri</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
+        <Resource>jsc://getInfoFromOAuth2Policy.js</Resource>
         <Resource>jsc://calculateOIDCTokenRemainingTime.js</Resource>
         <Resource>jsc://getOIDCTokenExpiryTime.js</Resource>
-        <Resource>jsc://getInfoFromOAuth2Policy.js</Resource>
         <Resource>jsc://replaceIDPUriWithApigeeInstanceUri.js</Resource>
     </Resources>
     <TargetEndpoints>

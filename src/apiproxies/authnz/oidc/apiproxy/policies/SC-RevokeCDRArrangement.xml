@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-RevokeCDRArrangement">
+    <DisplayName>SC-RevokeCDRArrangement</DisplayName>
+    <Request>
+        <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+        <Set>
+            <Payload/>
+            <QueryParams>
+                <QueryParam name="expected_client_id">{request.formparam.client_id}</QueryParam>
+            </QueryParams>
+            <Verb>DELETE</Verb>
+        </Set>
+    </Request>
+    <Response>consentResponse</Response>
+    <LocalTargetConnection>
+        <Path>/consent/{request.formparam.cdr_arrangement_id}</Path>
+    </LocalTargetConnection>
+</ServiceCallout>

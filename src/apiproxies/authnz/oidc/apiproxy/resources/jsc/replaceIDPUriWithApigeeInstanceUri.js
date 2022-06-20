@@ -1,4 +1,4 @@
-  /*
+/*
  * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,14 +25,16 @@
 var payload = JSON.parse(context.getVariable("response.content"));
 var mtlsHostname = context.getVariable("private.mtlsHostname");
 const standardHostname = context.getVariable("standardHostname");
-const idpUri = context.getVariable("private.IDPUri");
+// TODO: add const
+var idpUri = context.getVariable("private.IDPUri");
+
 // If no entry is found for mtlsHostname (because mTLS is not enabled in this instance) use the standardHostname
 if ( (mtlsHostname === null) || (mtlsHostname === "") ) {
     mtlsHostname = standardHostname;
 }
 
 
-// Treat mtlsEndpoints as a string because the JS interpreter does not support Array.includes 
+// Treat mtlsEndpoints as a string because the JS interpreter does not support Array.includes
 const mtlsEndpoints = "introspection_endpoint|registration_endpoint|revocation_endpoint|token_endpoint|userinfo_endpoint|pushed_authorization_request_endpoint";
 
 Object.keys(payload).forEach(function (key) {
@@ -46,6 +48,3 @@ Object.keys(payload).forEach(function (key) {
 });
 
 context.setVariable("response.content", JSON.stringify(payload));
-
-
-

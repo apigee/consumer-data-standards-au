@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault continueOnError="false" enabled="true" name="RF-InvalidConsent">
-    <DisplayName>RF-InvalidConsent</DisplayName>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RF-InvalidPAR">
+    <DisplayName>RF-InvalidPAR</DisplayName>
     <FaultResponse>
         <Set>
+            <Headers/>
             <Payload contentType="application/json">{
  "errors": [
     {
       "code": "400",
       "title": "Bad Request",
-      "detail": "Invalid consent associated with token",
+      "detail": "Invalid request_uri. Pushed Authorisation Request does not exist or has expired",
+      "meta": {
+         "urn": "urn:au-cds:error:cds-all:GeneralError/Expected"
+      }
     }
   ]
-}
-            </Payload>
+}</Payload>
             <StatusCode>400</StatusCode>
             <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <ShortFaultReason>false</ShortFaultReason>
 </RaiseFault>

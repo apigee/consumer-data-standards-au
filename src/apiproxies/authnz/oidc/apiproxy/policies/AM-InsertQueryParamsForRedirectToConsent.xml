@@ -7,10 +7,9 @@
     <Set>
         <QueryParams>
             <QueryParam name="client_id">{requested_client_id}</QueryParam>
-            <QueryParam name="consent_id">{theConsentId}</QueryParam>
+            <QueryParam name="customer_id">{IDPTokenClaims.customerId}</QueryParam>
             <QueryParam name="scope">{requested_scope}</QueryParam>
             <QueryParam name="state">{stateVar}</QueryParam>
-            <QueryParam name="cid">{IDPTokenClaims.customerId}</QueryParam>
         </QueryParams>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

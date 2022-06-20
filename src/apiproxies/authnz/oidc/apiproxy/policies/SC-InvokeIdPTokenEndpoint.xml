@@ -15,16 +15,13 @@
                 <FormParam name="refresh_token">true</FormParam>
             </FormParams>
             <QueryParams>
-                <QueryParam name="refresh_token_expires_in">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.refreshTokenExpiryTimeInSeconds}</QueryParam>
+                <QueryParam name="refresh_token_expires_in">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration}</QueryParam>
             </QueryParams>
             <Verb>{request.verb}</Verb>
         </Set>
     </Request>
     <Response>IdPTokenResponse</Response>
     <HTTPTargetConnection>
-        <LoadBalancer>
-            <Server name="OIDCProvider"/>
-        </LoadBalancer>
-        <Path>/token</Path>
+        <URL>https://34-149-216-12.nip.io/token</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
