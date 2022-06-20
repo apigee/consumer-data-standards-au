@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateIdTokenForTokenIssueOrRefreshStep">
     <DisplayName>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</DisplayName>
-    <Algorithm>RS256</Algorithm>
+    <Algorithm>PS256</Algorithm>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <PrivateKey>
         <Value ref="private.JWTSignKeys_privateKey"/>
@@ -15,6 +15,8 @@
         <Claim name="name" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.name"/>
         <Claim name="given_name" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.given_name"/>
         <Claim name="family_name" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.family_name"/>
+        <Claim name="cpf" ref="cpfToIncludeInIdToken"/>
+        <Claim name="cnpj" ref="cnpjToIncludeInIdToken"/>
         <Claim name="updated_at" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.updated_at" type="number"/>
         <Claim name="auth_time" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.auth_time" type="number"/>
         <Claim name="acr" ref="jwt.JWT-DecodeOIDCIdToken.decoded.claim.acr"/>

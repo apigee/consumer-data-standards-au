@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GenerateJWT async="false" continueOnError="false" enabled="true" name="JWT-GenerateIdTokenForAuthCodeStep">
     <DisplayName>JWT-GenerateIdTokenForAuthCodeStep</DisplayName>
-    <Algorithm>RS256</Algorithm>
+    <Algorithm>PS256</Algorithm>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     <PrivateKey>
         <Value ref="private.JWTSignKeys_privateKey"/>
@@ -15,6 +15,8 @@
         <Claim name="name" ref="IDPTokenClaims.name"/>
         <Claim name="given_name" ref="IDPTokenClaims.given_name"/>
         <Claim name="family_name" ref="IDPTokenClaims.family_name"/>
+        <Claim name="cpf" ref="cpfToIncludeInIdToken"/>
+        <Claim name="cnpj" ref="cnpjToIncludeInIdToken"/>
         <Claim name="updated_at" ref="IDPTokenClaims.updated_at" type="number"/>
         <Claim name="auth_time" ref="IDPTokenClaims.auth_time" type="number"/>
         <Claim name="acr" ref="IDPTokenClaims.acr"/>

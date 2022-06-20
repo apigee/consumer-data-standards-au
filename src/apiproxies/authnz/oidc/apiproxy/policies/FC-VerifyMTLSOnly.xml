@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-VerifyMTLSOnly">
-    <DisplayName>FC-VerifyMTLSOnly</DisplayName>
-    <SharedFlowBundle>verify-mtls-and-hok</SharedFlowBundle>
-    <Parameters ignoreUnresolvedVariables="true">
-        <Parameter name="verifyHok">false</Parameter>
-    </Parameters>
-</FlowCallout>

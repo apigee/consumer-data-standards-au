@@ -5,10 +5,6 @@
             <FaultRules/>
             <Name>AM-Add-CORS-Headers</Name>
         </Step>
-        <Step>
-            <FaultRules/>
-            <Name>FC-CollectPerformanceSLO</Name>
-        </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
     <Description/>
@@ -44,7 +40,7 @@
         </FaultRule>
         <FaultRule name="SC to Consent failed">
             <Description>Issues when invoking consent management via a service callout</Description>
-            <Condition>(fault.name = "ExecutionFailed") and ( (servicecallout.SC-CreateUpdateCDRArrangement.failed = "true") or (servicecallout.SC-RevokeCDRArrangement.failed = "true") or (servicecallout.SC-VerifyExistingCDRArrangmentId.failed = "true") )</Condition>
+            <Condition>(fault.name = "ExecutionFailed") and ( (servicecallout.SC-CreateUpdateCDRArrangement.failed = "true") or (servicecallout.SC-RevokeCDRArrangement.failed = "true") or (servicecallout.SC-VerifyExistingConsentId.failed = "true") )</Condition>
             <Step>
                 <FaultRules/>
                 <Name>AM-ConsentError</Name>
@@ -54,7 +50,11 @@
     <Flows>
         <Flow name="Get OIDC Configuration">
             <Description/>
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>AM-SetCurrentHostname</Name>
+                </Step>
+            </Request>
             <Response>
                 <Step>
                     <Name>KVM-GetMTLSHostname</Name>
@@ -65,36 +65,6 @@
                 </Step>
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/.well-known/openid-configuration") and (request.verb = "GET")</Condition>
-        </Flow>
-        <Flow name="Pushed Auth Request">
-            <Description>Pushed Authorisation</Description>
-            <Request>
-                <Step>
-                    <Name>FC-VerifyMTLSOnly</Name>
-                </Step>
-                <Step>
-                    <Name>JWT-DecodePAR</Name>
-                </Step>
-                <Step>
-                    <Name>FC-VerifyPAR</Name>
-                </Step>
-                <Step>
-                    <Name>SC-VerifyExistingCDRArrangmentId</Name>
-                    <Condition>PARInfo.requestedCDRArrangementId != "none"</Condition>
-                </Step>
-                <Step>
-                    <Name>AM-SetPARCacheValueAndKey</Name>
-                </Step>
-                <Step>
-                    <Name>PC-CachePAR</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Name>AM-SetParResponse</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/par") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Authorise">
             <Description>Get Authorisation Code</Description>
@@ -111,30 +81,10 @@
                     <Condition>(request.queryparam.request_uri = null) or (request.queryparam.request_uri = "")</Condition>
                 </Step>
                 <Step>
-                    <Name>LC-RetrieveCachedPAR</Name>
-                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
-                </Step>
-                <Step>
-                    <Name>RF-InvalidPAR</Name>
-                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "") and (lookupcache.LC-RetrieveCachedPAR.cachehit = "false")</Condition>
-                </Step>
-                <Step>
-                    <Name>EV-ParseCachedPar</Name>
-                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
-                </Step>
-                <Step>
-                    <Name>AM-SetStateCacheValueFromCachedPAR</Name>
-                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
-                </Step>
-                <Step>
                     <Name>AM-SetStateAsOIDCCacheKey</Name>
                 </Step>
                 <Step>
                     <Name>PC-CacheOIDCState</Name>
-                </Step>
-                <Step>
-                    <Name>AM-RebuildQueryRequestUsingPAR</Name>
-                    <Condition>(request.queryparam.request_uri != null) and (request.queryparam.request_uri != "")</Condition>
                 </Step>
                 <Step>
                     <Name>KVM-GetIDPCredentials</Name>
@@ -181,10 +131,6 @@
                 <Step>
                     <Name>AM-InsertQueryParamsForRedirectToConsent</Name>
                 </Step>
-                <Step>
-                    <Name>AM-AddCDRArrangementIdAsQueryParam</Name>
-                    <Condition>(requested_cdr_arrangement_id != null) and (requested_cdr_arrangement_id != "")</Condition>
-                </Step>
             </Request>
             <Response>
                 <Step>
@@ -210,6 +156,10 @@
                     <Name>EV-ParseCachedStateWithIdPAuthCodeAndIdToken</Name>
                 </Step>
                 <Step>
+                    <Name>RF-RedirectToClientConsentNotAuthorised</Name>
+                    <Condition>request.queryparam.consent-status != "AUTHORIZED_END_USER"</Condition>
+                </Step>
+                <Step>
                     <Name>FC-VerifyIdpIdToken</Name>
                 </Step>
                 <Step>
@@ -217,6 +167,9 @@
                 </Step>
                 <Step>
                     <Name>FC-GetPPId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetRefreshTokenExpiryTimeBasedOnConsent</Name>
                 </Step>
                 <Step>
                     <Name>OA-IssueOpaqueAuthCode</Name>
@@ -244,9 +197,6 @@
         <Flow name="Acquire Token - Auth Code">
             <Description>Acquire Token Authorization Code Grant Type</Description>
             <Request>
-                <Step>
-                    <Name>FC-VerifyMTLSOnly</Name>
-                </Step>
                 <Step>
                     <FaultRules/>
                     <Name>EV-StoreTokenRequestDetails</Name>
@@ -278,14 +228,7 @@
                 </Step>
                 <Step>
                     <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForAcquireToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
                     <Name>JS-GetOIDCTokenExpiryTime</Name>
-                </Step>
-                <Step>
-                    <Name>AM-GenerateCDRArrangementId</Name>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -308,21 +251,30 @@
                     <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
                 </Step>
                 <Step>
+                    <Name>AM-SetConsentIdFromToken</Name>
+                </Step>
+                <Step>
+                    <Name>AM-SetRefreshTokenExpiryDate</Name>
+                </Step>
+                <Step>
+                    <Name>KVM-GetConsentManagementApiKey</Name>
+                </Step>
+                <Step>
                     <Name>SC-CreateUpdateCDRArrangement</Name>
                 </Step>
                 <Step>
-                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-IssueToken</Name>
+                    <Name>FC-ManageTokensAssociatedWithConsentId-IssueToken</Name>
                 </Step>
             </Request>
             <Response>
                 <Step>
                     <Name>AM-SetIssueOrRefreshTokenResponse</Name>
-                    <Condition>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration &gt; 0</Condition>
+                    <!--<Condition>oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration &gt; 0</Condition>-->
                 </Step>
-                <Step>
-                    <Name>AM-SetIssueTokenResponseWithNoRefreshToken</Name>
-                    <Condition>(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = "") or (oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = 0)</Condition>
-                </Step>
+                <!--<Step>-->
+                <!--    <Name>AM-SetIssueTokenResponseWithNoRefreshToken</Name>-->
+                <!--    <Condition>(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = "") or (oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration = 0)</Condition>-->
+                <!--</Step>-->
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST") and (request.formparam.grant_type = "authorization_code")</Condition>
         </Flow>
@@ -330,11 +282,8 @@
             <Description>Acquire Token Client Credentials Grant Type</Description>
             <Request>
                 <Step>
-                    <Name>FC-VerifyMTLSOnly</Name>
-                </Step>
-                <Step>
                     <Name>RF-InvalidScope</Name>
-                    <Condition>(request.formparam.scope != "cdr:registration") and (request.formparam.scope != "admin:metadata:update") and (request.formparam.scope != "admin:metrics.basic:read")</Condition>
+                    <Condition>(request.formparam.scope != "consents")</Condition>
                 </Step>
                 <Step>
                     <Name>OA-IssueAccessTokenClientCreds</Name>
@@ -359,19 +308,27 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>FC-VerifyHoK-RefreshToken</Name>
+                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
+                    <Name>RF-InvalidRefreshToken</Name>
                 </Step>
                 <Step>
                     <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
                 </Step>
                 <Step>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
-                    <FaultRules/>
-                    <Name>RF-InvalidRefreshToken</Name>
+                    <Name>KVM-GetConsentManagementApiKey</Name>
                 </Step>
                 <Step>
-                    <FaultRules/>
-                    <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
+                    <Name>SC-VerifyExistingCDRArrangmentId</Name>
+                </Step>
+                <Step>
+                    <Name>AM-DebugAddCalloutResponse</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractConsentCheckResult</Name>
+                </Step>
+                <Step>
+                    <Name>RF-InvalidConsent</Name>
+                    <Condition>(consentInfo.checkStatus != "true") or (consentInfo.clientId != oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.client_id) or (consentInfo.state != "LIVE")</Condition>
                 </Step>
                 <Step>
                     <FaultRules/>
@@ -423,17 +380,16 @@
                     <Name>JWT-GenerateIdTokenForTokenIssueOrRefreshStep</Name>
                 </Step>
                 <Step>
+                    <Name>AM-SetRefreshTokenExpiryDate</Name>
+                </Step>
+                <Step>
                     <Name>SC-CreateUpdateCDRArrangement</Name>
                 </Step>
                 <Step>
-                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-RefreshToken</Name>
+                    <Name>FC-ManageTokensAssociatedWithConsentId-RefreshToken</Name>
                 </Step>
             </Request>
             <Response>
-                <Step>
-                    <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForRefreshToken</Name>
-                </Step>
                 <Step>
                     <Name>AM-SetIssueOrRefreshTokenResponse</Name>
                 </Step>
@@ -455,18 +411,9 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>FC-VerifyHoK-RefreshToken</Name>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
-                </Step>
-                <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
                     <FaultRules/>
                     <Name>OA-RevokeRefreshToken</Name>
-                </Step>
-                <Step>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = false</Condition>
-                    <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForExpireTokenWhenRefreshTokenProvided</Name>
                 </Step>
                 <Step>
                     <Name>BA-SetBasicAuthHeader</Name>
@@ -486,15 +433,6 @@
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
-                </Step>
-                <Step>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
-                    <FaultRules/>
-                    <Name>AM-SetCustomDimensionsForExpireTokenWhenAccessTokenProvided</Name>
-                </Step>
-                <Step>
-                    <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
-                    <Name>FC-VerifyHoK-AccessToken</Name>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
@@ -531,19 +469,12 @@
                     <Name>OAInfo-RetrieveRefreshTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>FC-VerifyHoK-RefreshToken</Name>
-                </Step>
-                <Step>
                     <Name>AM-GetCDRArrangementIdFromRefreshToken</Name>
                 </Step>
                 <Step>
                     <Condition>oauthV2.OAInfo-RetrieveRefreshTokenDetails.failed = true</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidRefreshToken</Name>
-                </Step>
-                <Step>
-                    <FaultRules/>
-                    <Name>FC-TrafficThresholdsWhenRefreshTokenIsPresent</Name>
                 </Step>
                 <Step>
                     <Name>KVM-GetIDPCredentials</Name>
@@ -579,9 +510,6 @@
                     <Name>OAInfo-RetrieveAccessTokenDetails</Name>
                 </Step>
                 <Step>
-                    <Name>FC-VerifyHoK-AccessToken</Name>
-                </Step>
-                <Step>
                     <Condition>(oauthV2.OAInfo-RetrieveAccessTokenDetails.failed = "true")</Condition>
                     <FaultRules/>
                     <Name>RF-InvalidAccessToken</Name>
@@ -614,35 +542,14 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/jwks") and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="Revoke Arrangement">
-            <Description>CDR Arrangement Revocation</Description>
-            <Request>
-                <Step>
-                    <Name>FC-VerifyMTLSOnly</Name>
-                </Step>
-                <Step>
-                    <Name>SC-RevokeCDRArrangement</Name>
-                </Step>
-                <Step>
-                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</Name>
-                </Step>
-            </Request>
-            <Response>
-                <Step>
-                    <Name>AM-SetResponse204NoContent</Name>
-                </Step>
-            </Response>
-            <Condition>(proxy.pathsuffix = "/arrangements/revoke") and (request.verb = "POST")</Condition>
-        </Flow>
         <Flow name="Revoke Tokens Bound to Arrangement">
-            <Description>Private endpoint to be used by Consent Management Proxy when an Arrangement is revoked out of bounds (via a different channel)</Description>
+            <Description>Private endpoint to be used by Consent Management solution when a consent is revoked out of bounds (via a different channel)</Description>
             <Request>
                 <Step>
-                    <Name>RF-InvocationFromProxyChainingOnly</Name>
-                    <Condition>virtualhost.ip != "127.0.0.1"</Condition>
+                    <Name>EV-ExtractConsentIdFromURIParam</Name>
                 </Step>
                 <Step>
-                    <Name>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</Name>
+                    <Name>FC-ManageTokensAssociatedWithConsentId-RevokeArrangment</Name>
                 </Step>
             </Request>
             <Response>
@@ -650,7 +557,7 @@
                     <Name>AM-SetResponse204NoContent</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix = "/arrangements/revoke/tokens") and (request.verb = "POST")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/consents/{theConsentId}/tokens") and (request.verb = "DELETE")</Condition>
         </Flow>
         <Flow name="Not Found">
             <Description>Not Found</Description>
@@ -665,36 +572,16 @@
     </Flows>
     <PostFlow name="PostFlow">
         <Request/>
-        <Response>
-            <Step>
-                <FaultRules/>
-                <Name>FC-CollectPerformanceSLO</Name>
-            </Step>
-        </Response>
+        <Response/>
     </PostFlow>
     <PreFlow name="PreFlow">
         <Request>
-            <Step>
-                <Name>AM-SetDefaultValuesForPerfSLO</Name>
-            </Step>
-            <Step>
-                <FaultRules/>
-                <Name>FC-DecideIfCustomerIsPresent</Name>
-            </Step>
             <!-- Do not count internal proxy chain calls for traffic thresholds -->
             <Step>
-                <FaultRules/>
-                <Name>FC-GeneralTrafficThresholdsForAuthEndpoints</Name>
-                <Condition>virtualhost.ip != "127.0.0.1"</Condition>
+                <Name>AM-SetClientIdAndPrivKeyJwt</Name>
             </Step>
-            <Step>
-                <FaultRules/>
-                <Name>AM-SetDefaultValuesForTokenCustomDimensions</Name>
-            </Step>
-            <Step>
-                <Name>FC-AuthenticateWithPrivateKeyJWT</Name>
-                <Condition>(request.formparam.client_assertion_type = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" ) and (request.formparam.client_assertion != "") and (request.formparam.client_id != "")</Condition>
-            </Step>
+            <!-- If Private Key JWT request is included. Applicable for instance to client credentials flow or par endpoint-->
+            <!-- If request object passed by value  -->
         </Request>
         <Response>
             <Step>
@@ -707,10 +594,6 @@
         <BasePath>/</BasePath>
         <Properties/>
         <VirtualHost>secure</VirtualHost>
-        <!-- Important: Uncomment the following VirtualHost entry to enable mTLS with HoK verification.
-             The secure-mtls virtual host must already be configured to support mTLS with propagateTLSInformation
-             This proxy has some endpoints that do not require mTLS, so even in a production environment DO NOT remove the "secure" virtual host  -->
-        <!-- <VirtualHost>secure-mtls</VirtualHost> -->
     </HTTPProxyConnection>
     <RouteRule name="noroute-par">
         <Condition>(proxy.pathsuffix MatchesPath "/par") and (request.verb = "POST")</Condition>
@@ -733,11 +616,8 @@
     <RouteRule name="noroute-userinfo">
         <Condition>(proxy.pathsuffix MatchesPath "/me")</Condition>
     </RouteRule>
-    <RouteRule name="noroute-arrangement-revoke">
-        <Condition>(proxy.pathsuffix MatchesPath "/arrangements/revoke")</Condition>
-    </RouteRule>
-    <RouteRule name="noroute-arrangement-revoke-tokens">
-        <Condition>(proxy.pathsuffix MatchesPath "/arrangements/revoke/tokens")</Condition>
+    <RouteRule name="noroute-arrangement-revoke-tokens-associated-with-consent">
+        <Condition>(proxy.pathsuffix MatchesPath "/consents/{theConsentId}/tokens")</Condition>
     </RouteRule>
     <RouteRule name="mock-oidc">
         <TargetEndpoint>default</TargetEndpoint>

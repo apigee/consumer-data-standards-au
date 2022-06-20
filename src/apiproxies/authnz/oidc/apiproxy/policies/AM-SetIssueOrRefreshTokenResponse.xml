@@ -15,9 +15,8 @@
   "refresh_token": "{theRefreshToken}",
   "token_type": "Bearer",
   "scope": "{OIDCTokenResponse.scope}",
-  "refresh_token_expires_at": {refreshTokenExpiresAt},
-  "sharing_expires_at": {refreshTokenExpiresAt},
-  "cdr_arrangement_id": "{cdrArrangementId}"
+  "consent_id": "{theConsentId}",
+  "refresh_token_expires_at": {refreshTokenExpiresAt}
 }</Payload>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
