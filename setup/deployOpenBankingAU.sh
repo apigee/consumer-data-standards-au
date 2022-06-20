@@ -146,6 +146,7 @@ apigeetool deployproxy -o $APIGEE_ORG -e $APIGEE_ENV -u $APIGEE_USER -p $APIGEE_
 
 popd
 
+
 # Deploy Client Dynamic Registration proxy and the required mock-register and mock-adr-client proxies
 pushd src/apiproxies/dynamic-client-registration
 for ap in $(ls .); do
@@ -179,7 +180,7 @@ apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
 echo "--->"  Creating API Product: "OIDC"
 apigeetool createProduct -o $APIGEE_ORG -u $APIGEE_USER -p $APIGEE_PASSWORD \
    --productName "CDSOIDC" --displayName "OIDC" --approvalType "auto" --productDesc "Get access to authentication and authorisation requests" \
-   --environments $APIGEE_ENV --proxies oidc --scopes "openid, profile"
+   --environments $APIGEE_ENV --proxies oidc --scopes "openid,profile"
 
 # Create product for dynamic client registration
 echo "--->"  Creating API Product: "DynamicClientRegistration"

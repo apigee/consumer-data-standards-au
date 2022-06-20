@@ -32,4 +32,4 @@ gcloud app deploy app.yaml --quiet
 popd
 
 echo "INFO: OIDC MOCK Provider Google App is successfully installed."
-echo "INFO: test request: curl https://$PROJECT.nw.r.appspot.com"
+echo "INFO: test request: curl https://$PROJECT.appspot.com"

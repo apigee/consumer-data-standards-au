@@ -103,6 +103,10 @@ docker gcr.io
    gcloud auth configure-docker gcr.io
 ```
 
+> __NOTE:__ When is required to capture the output of the commands plus statement tracing information, following way to invoke a script is useful:
+> ```sh
+> time bash -x ./setup/cds-au-setup.sh |& tee cds-au-setup-`date -u +"%Y-%m-%dT%H:%M:%SZ"`.log
+> ```
 
 ```bash
 source $CDSAU_HOME/cds-au-config.env
