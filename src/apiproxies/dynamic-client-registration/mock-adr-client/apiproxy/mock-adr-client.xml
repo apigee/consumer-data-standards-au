@@ -1,31 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="9" name="mock-adr-client">
-    <Basepaths>/mock-cdr-register</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1600924797750</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Mock proxy that emulates endpoints and ADR who wants to register a client needs to provide. Required for dynamic client registration</Description>
+<APIProxy revision="6" name="mock-adr-client">
     <DisplayName>mock-adr-client</DisplayName>
-    <LastModifiedAt>1624338717532</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:361d5ac8e714ffe21d1dea277b46479d5f407e441c25ec3006c0ae6e4840652f6bd38f0ee776cc793b97e41602ce7b3d9ae80c9a9ed6bf868477a4c54d7c4dd3:ap-southeast-2</ManifestVersion>
+    <Description>Mock proxy that emulates endpoints and ADR who wants to register a client needs to provide. Required for dynamic client registration</Description>
+    <CreatedAt>1636221674878</CreatedAt>
+    <LastModifiedAt>1636221674878</LastModifiedAt>
+    <BasePaths>/mock-adr-client</BasePaths>
     <Policies>
-        <Policy>AM-AddSectorIdToSSARequest</Policy>
-        <Policy>AM-SetMockJWKSInfo</Policy>
-        <Policy>AM-SetResponse</Policy>
-        <Policy>AM-SetSSARequest</Policy>
-        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest</Policy>
-        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PAR</Policy>
-        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT</Policy>
-        <Policy>JS-AddOptionalClaimsIfPresent</Policy>
-        <Policy>JS-SetRedirectURIs</Policy>
-        <Policy>JWT-GenerateDynamicClientRegistrationRequest</Policy>
-        <Policy>JWT-GeneratePARJWT</Policy>
-        <Policy>JWT-GeneratePrivateKeyJWT</Policy>
         <Policy>KVM-GetMockADRKeys</Policy>
+        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PAR</Policy>
+        <Policy>JS-SetRedirectURIs</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>AM-AddSectorIdToSSARequest</Policy>
+        <Policy>JWT-GeneratePrivateKeyJWT</Policy>
         <Policy>SC-GetSSAFromCDRRegister</Policy>
+        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-DCRRequest</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>AM-SetSSARequest</Policy>
+        <Policy>JS-AddOptionalClaimsIfPresent</Policy>
+        <Policy>AM-SetResponse</Policy>
+        <Policy>JWT-GenerateDynamicClientRegistrationRequest</Policy>
+        <Policy>AM-SetValuesBasedOnOptionalQueryParamsOrDefaults-PrivKeyJWT</Policy>
+        <Policy>AM-SetMockJWKSInfo</Policy>
+        <Policy>JWT-GeneratePARJWT</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -34,7 +29,4 @@
         <Resource>jsc://addOptionalClaimsIfPresent.js</Resource>
         <Resource>jsc://setRedirectURIs.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <TargetServers/>
-    <TargetEndpoints/>
 </APIProxy>

@@ -23,7 +23,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>defaultBaseURI</Name>
-        <Template>https://{organization.name}-{environment.name}.apigee.net/mock-adr-client</Template>
+        <Template>https://{request.header.host}/mock-adr-client</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>baseURI</Name>
@@ -43,7 +43,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>defaultAud</Name>
-        <Template>https://{organization.name}-{environment.name}.apigee.net</Template>
+        <Template>https://{request.header.host}</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>audience</Name>
