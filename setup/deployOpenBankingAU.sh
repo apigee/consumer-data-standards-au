@@ -28,7 +28,7 @@ function replace_with_jwks_uri {
  JWKS_PATH_SUFFIX=$2
  POLICY_BEFORE_JWKS_ELEM=$(sed  '/<JWKS/,$d' $POLICY_FILE)
  POLICY_AFTER_JWKS_ELEM=$(sed  '1,/<JWKS/d' $POLICY_FILE)
- echo $POLICY_BEFORE_JWKS_ELEM'<JWKS uri="https://'$APIGEE_ORG-$APIGEE_ENV'.apigee.net'$JWKS_PATH_SUFFIX'" />'$POLICY_AFTER_JWKS_ELEM > temp.xml
+ echo $POLICY_BEFORE_JWKS_ELEM'<JWKS uri="https://'$RUNTIME_HOST_ALIAS''$JWKS_PATH_SUFFIX'" />'$POLICY_AFTER_JWKS_ELEM > temp.xml
  # The following step is for pretty printing the resulting edited xml, we don't care if it fails. If failed, just use the original file
  xmllint --format temp.xml 1> temp2.xml 2> /dev/null
  if [ $? -eq 0 ]; then
@@ -276,7 +276,7 @@ echo "--->"  "Creating new entry in OIDC Provider configuration for Apigee"
 CDSREFIMPL_OIDC_CLIENT_ID=$(openssl rand -hex 16)
 CDSREFIMPL_OIDC_CLIENT_SECRET=$(openssl rand -hex 16)
 CDSREFIMPL_JWKS=`cat ./CDSRefImpl.jwks`
-APIGEE_CLIENT_ENTRY=$(echo '[{ "client_id": "'$CDSREFIMPL_OIDC_CLIENT_ID'", "client_secret": "'$CDSREFIMPL_OIDC_CLIENT_SECRET'", "redirect_uris": ["https://'$APIGEE_ORG'-'$APIGEE_ENV'.apigee.net/authorise-cb"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"], "token_endpoint_auth_method": "client_secret_basic","jwks": '$CDSREFIMPL_JWKS'}]')
+APIGEE_CLIENT_ENTRY=$(echo '[{ "client_id": "'$CDSREFIMPL_OIDC_CLIENT_ID'", "client_secret": "'$CDSREFIMPL_OIDC_CLIENT_SECRET'", "redirect_uris": ["https://'$RUNTIME_HOST_ALIAS'/authorise-cb"], "response_modes": ["form_post"], "response_types": ["code id_token"], "grant_types": ["authorization_code", "client_credentials","refresh_token","implicit"], "token_endpoint_auth_method": "client_secret_basic","jwks": '$CDSREFIMPL_JWKS'}]')
 
 ### OIDC_CLIENT_CONFIG=$(<../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json)
 ### echo $APIGEE_CLIENT_ENTRY > ../../src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clients.json
