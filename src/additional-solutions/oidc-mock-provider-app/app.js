@@ -32,10 +32,10 @@ else {
 	}
 	else {
 	// GOOGLE_CLOUD_PROJECT is defined. This is being deployed as a Google App Engine App.
-	// The URL is $GOOGLE_CLOUD_PROJECT.$REGION.r.appspot.com, but there is no
+	// The URL is $GOOGLE_CLOUD_PROJECT.appspot.com, but there is no
 	// way to know at this stage what the region is. We use a hardcoded value, this may need to be adjusted, based on the real
 	// hostname reported when deploying the App Engine App.
-		oidcURL = "https://34-149-216-12.nip.io";
+		oidcURL = "https://" + process.env.GOOGLE_CLOUD_PROJECT + ".appspot.com";
 	}
 }
 
