@@ -4,6 +4,9 @@
     <Request/>
     <Response>hashResponse</Response>
     <HTTPTargetConnection>
-        <URL>https://34-149-216-12.nip.io/oidc-token-hash/{tokenToHash}?alg=PS256</URL>
+        <LoadBalancer>
+            <Server name="OIDCProvider"/>
+        </LoadBalancer>
+        <Path>/oidc-token-hash/{tokenToHash}?alg=PS256</Path>
     </HTTPTargetConnection>
 </ServiceCallout>

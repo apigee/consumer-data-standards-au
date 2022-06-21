@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment">
-    <DisplayName>FC-ManageTokensAssociatedWithCDRArrangementId-RevokeArrangment</DisplayName>
-    <Parameters ignoreUnresolvedVariables="true">
-        <Parameter name="theConsentId" ref="request.formparam.cdr_arrangement_id"/>
-        <Parameter name="revokeExistingTokens">true</Parameter>
-    </Parameters>
-    <SharedFlowBundle>manage-tokens-by-consent-id</SharedFlowBundle>
-</FlowCallout>

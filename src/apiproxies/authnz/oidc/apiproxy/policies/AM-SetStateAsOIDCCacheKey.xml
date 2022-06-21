@@ -3,7 +3,7 @@
     <DisplayName>AM-SetStateAsOIDCCacheKey</DisplayName>
     <AssignVariable>
         <Name>stateVar</Name>
-        <Template>{firstnonnull(requested_state,request.formparam.state,request.queryparam.state)}</Template>
+        <Template>{firstnonnull(requested_state,PKJwtAdditionalClaims.state,request.formparam.state,request.queryparam.state)}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

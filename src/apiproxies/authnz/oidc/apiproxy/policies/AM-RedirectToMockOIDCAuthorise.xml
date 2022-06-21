@@ -3,7 +3,7 @@
     <DisplayName>AM-RedirectToMockOIDCAuthorise</DisplayName>
     <Set>
         <Headers>
-            <Header name="Location">{client.scheme}://34-149-216-12.nip.io/authorise?{request.querystring}</Header>
+            <Header name="Location">{private.IDPUri}/authorise?{request.querystring}</Header>
         </Headers>
         <StatusCode>302</StatusCode>
     </Set>

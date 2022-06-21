@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetRefreshTokenExpiryTimeBasedOnConsent">
+    <DisplayName>AM-SetRefreshTokenExpiryTimeBasedOnConsent</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>refreshTokenExpiryTime</Name>
+        <!--Default value: 28 days (2,419,200 seconds), if none provided -->
+        <Value>2419200</Value>
+        <Ref>request.queryparam.consent_expires_in</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

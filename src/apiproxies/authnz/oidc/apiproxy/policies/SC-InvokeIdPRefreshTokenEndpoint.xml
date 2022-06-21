@@ -9,7 +9,7 @@
             </Headers>
             <FormParams>
                 <FormParam name="grant_type">refresh_token</FormParam>
-                <FormParam name="scope">{request.formparam.scope}</FormParam>
+                <FormParam name="scope">{theStaticScope}</FormParam>
                 <FormParam name="client_id">{private.IDP_ClientId}</FormParam>
                 <FormParam name="client_secret">{private.IDP_ClientSecret}</FormParam>
                 <FormParam name="refresh_token">{oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.OIDCRefreshToken}</FormParam>
@@ -19,6 +19,9 @@
     </Request>
     <Response>IdPTokenResponse</Response>
     <HTTPTargetConnection>
-        <URL>https://34-149-216-12.nip.io/token</URL>
+        <LoadBalancer>
+            <Server name="OIDCProvider"/>
+        </LoadBalancer>
+        <Path>/token</Path>
     </HTTPTargetConnection>
 </ServiceCallout>

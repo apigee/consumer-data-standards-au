@@ -10,7 +10,6 @@
         <Payload contentType="application/json">{
  "active": {isActive},
  "exp": "{tokenExp}",
- "cdr_arrangement_id": "{cdrArrangementId}",
  "scope": "{oauthv2accesstoken.OAInfo-RetrieveRefreshTokenDetails.scope}",
       </Payload>
     </Set>

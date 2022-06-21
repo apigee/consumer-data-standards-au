@@ -4,6 +4,7 @@
         <Payload contentType="application/json">{
   "access_token": "{oauthv2accesstoken.OA-IssueAccessTokenClientCreds.access_token}",
   "expires_in": {oauthv2accesstoken.OA-IssueAccessTokenClientCreds.expires_in},
+  "token_type":"Bearer",
   "scope": "{oauthv2accesstoken.OA-IssueAccessTokenClientCreds.scope}"
 }</Payload>
     </Set>

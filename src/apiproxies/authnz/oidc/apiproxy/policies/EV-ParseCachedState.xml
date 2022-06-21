@@ -2,6 +2,6 @@
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ParseCachedState">
     <DisplayName>EV-ParseCachedState</DisplayName>
     <Variable name="cachedStateVal">
-        <Pattern>{requested_client_id}||{requested_redirect_uri}||{requested_scope}||{requested_nonce}||{requested_response_type} id_token||{requested_sharing_duration}||{requested_cdr_arrangement_id}||{requested_sector_id}</Pattern>
+        <Pattern>{requested_client_id}||{requested_redirect_uri}||{requested_scope}||{requested_nonce}||{requested_response_type} id_token||{requested_sector_id}||{theConsentId}</Pattern>
     </Variable>
 </ExtractVariables>

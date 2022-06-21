@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TargetEndpoint name="default">
-    <Description/>
-    <FaultRules/>
-    <Flows/>
     <HTTPTargetConnection>
-        <URL>https://34-149-216-12.nip.io</URL>
+        <LoadBalancer>
+            <Server name="OIDCProvider"/>
+        </LoadBalancer>
     </HTTPTargetConnection>
 </TargetEndpoint>

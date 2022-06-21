@@ -3,7 +3,7 @@
     <DisplayName>AM-SetIssuer</DisplayName>
     <AssignVariable>
         <Name>issuer</Name>
-        <Template>{request.header.host}</Template>
+        <Template>https://{request.header.host}</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>tokenToHash</Name>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ManageTokensAssociatedWithCDRArrangementId-RefreshToken">
-    <DisplayName>FC-ManageTokensAssociatedWithCDRArrangementId-RefreshToken</DisplayName>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ManageTokensAssociatedWithConsentId-RefreshToken">
+    <DisplayName>FC-ManageTokensAssociatedWithConsentId-RefreshToken</DisplayName>
     <Parameters ignoreUnresolvedVariables="false">
-        <Parameter name="theConsentId" ref="cdrArrangementId"/>
+        <Parameter name="theConsentId" ref="theConsentId"/>
         <Parameter name="newAccessToken" ref="theAccessToken"/>
         <Parameter name="newRefreshToken" ref="theRefreshToken"/>
         <Parameter name="revokeExistingTokens">false</Parameter>

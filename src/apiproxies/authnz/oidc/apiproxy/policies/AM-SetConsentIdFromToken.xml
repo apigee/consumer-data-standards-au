@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetConsentIdFromToken">
+    <DisplayName>AM-SetConsentIdFromToken</DisplayName>
+    <AssignVariable>
+        <Name>theConsentId</Name>
+        <Template>{firstnonnull(oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.consentId,oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.consentId)}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

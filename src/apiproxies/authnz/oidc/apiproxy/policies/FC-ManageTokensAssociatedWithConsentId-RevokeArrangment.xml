@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<FlowCallout async="false" continueOnError="false" enabled="true" name="FC-ManageTokensAssociatedWithConsentId-RevokeArrangment">
+    <DisplayName>FC-ManageTokensAssociatedWithConsentId-RevokeArrangment</DisplayName>
+    <Parameters ignoreUnresolvedVariables="true">
+        <Parameter name="theConsentId" ref="theConsentId"/>
+        <Parameter name="revokeExistingTokens">true</Parameter>
+    </Parameters>
+    <SharedFlowBundle>manage-tokens-by-consent-id</SharedFlowBundle>
+</FlowCallout>

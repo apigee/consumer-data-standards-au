@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ParseCachedPar">
-    <DisplayName>EV-ParseCachedPar</DisplayName>
-    <Variable name="cachedPAR">
-        <Pattern>{requested_state}||{requested_client_id}||{requested_redirect_uri}||{requested_scope}||{requested_nonce}||{requested_response_type}||{requested_sharing_duration}||{requested_cdr_arrangement_id}</Pattern>
-    </Variable>
-</ExtractVariables>
