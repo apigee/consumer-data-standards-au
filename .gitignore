@@ -19,3 +19,4 @@ src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clien
 **/package-lock.json
 specs/Notes.txt
 **/*.log
+**/results.json

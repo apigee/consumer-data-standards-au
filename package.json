@@ -1,0 +1,11 @@
+{
+  "name": "oidc-mock",
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber-js --publish-quiet test/integration/features"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.3.0",
+    "apickli": "^3.0.2",
+    "puppeteer": "^13.5.1"
+  }
+}
