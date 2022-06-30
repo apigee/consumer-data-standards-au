@@ -134,6 +134,9 @@
             </Request>
             <Response>
                 <Step>
+                    <Name>KVM-GetIDPCredentials</Name>
+                </Step>
+                <Step>
                     <Name>AM-RedirectToConsentFlow</Name>
                 </Step>
             </Response>

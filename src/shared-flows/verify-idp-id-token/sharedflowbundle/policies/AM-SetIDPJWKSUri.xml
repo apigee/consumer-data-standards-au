@@ -3,7 +3,7 @@
     <DisplayName>AM-SetIDPJWKSUri</DisplayName>
     <AssignVariable>
         <Name>IDPJwksURI</Name>
-        <Template>https://{request.header.host}/mock-oidc/jwks</Template>
+        <Template>https://{private.IDPUri}/jwks</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http"/>

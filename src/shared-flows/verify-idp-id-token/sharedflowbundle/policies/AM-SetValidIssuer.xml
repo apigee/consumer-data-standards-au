@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetValidIssuer">
+    <DisplayName>AM-SetValidIssuer</DisplayName>
+    <AssignVariable>
+        <Name>validIssuer</Name>
+        <Template>https://{private.IDPUri}</Template>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http"/>
+</AssignMessage>

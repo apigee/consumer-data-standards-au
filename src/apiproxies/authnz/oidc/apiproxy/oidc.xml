@@ -1,8 +1,8 @@
-<APIProxy revision="2" name="oidc">
+<APIProxy revision="11" name="oidc">
     <DisplayName>oidc</DisplayName>
     <Description>Interaction with OIDC provider - Replaces auth and refresh tokens with opaque versions</Description>
-    <CreatedAt>1655434827523</CreatedAt>
-    <LastModifiedAt>1655435986768</LastModifiedAt>
+    <CreatedAt>1656570257381</CreatedAt>
+    <LastModifiedAt>1656570342878</LastModifiedAt>
     <BasePaths>/</BasePaths>
     <Policies>
         <Policy>EV-ExtractRefreshTokenFromRefreshTokenFormParam</Policy>

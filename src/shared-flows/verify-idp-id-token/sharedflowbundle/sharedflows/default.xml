@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
+        <Name>KVM-GetIDPCredentials</Name>
+    </Step>
+    <Step>
         <Name>AM-SetIDPJWKSUri</Name>
     </Step>
     <Step>
         <Name>FC-GetIDPJWKS</Name>
     </Step>
     <Step>
-        <Name>KVM-GetIDPCredentials</Name>
-    </Step>
-    <Step>
-        <Name>AM-SetValidAudience</Name>
+        <Name>AM-SetValidIssuer</Name>
     </Step>
     <Step>
         <Name>JWT-VerifyIdpToken</Name>

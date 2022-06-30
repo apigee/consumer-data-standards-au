@@ -3,7 +3,7 @@
     <DisplayName>AM-RedirectToMockOIDCAuthorise</DisplayName>
     <Set>
         <Headers>
-            <Header name="Location">{private.IDPUri}/authorise?{request.querystring}</Header>
+            <Header name="Location">https://{private.IDPUri}/authorise?{request.querystring}</Header>
         </Headers>
         <StatusCode>302</StatusCode>
     </Set>

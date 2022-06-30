@@ -6,7 +6,7 @@
     </Remove>
     <Set>
         <Headers>
-            <Header name="Location">https://gcp.clarip.com/pref_consent/?{request.querystring}</Header>
+            <Header name="Location">{client.scheme}://{request.header.host}/consent?{request.querystring}</Header>
         </Headers>
         <StatusCode>302</StatusCode>
     </Set>
