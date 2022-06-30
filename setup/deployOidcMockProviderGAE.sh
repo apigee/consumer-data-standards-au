@@ -46,6 +46,13 @@ gcloud app deploy app.yaml --project=$PROJECT --quiet
 # Obtain the URL where it was deployed
 OIDC_PROVIDER_HOST_ALIAS=$(gcloud app describe --project=$PROJECT --format="value(defaultHostname)")
 
+# Update the app configuration file with this value as an environment variable
+sed -i '' "s/.*OIDC_URL.*/  OIDC_URL: '$OIDC_PROVIDER_HOST_ALIAS'   # Edited by deployOidcMockProvider script/" app.yaml 
+
+# Deploy once more, so that the mock oidc provider can now be configured with the proper hostname
+echo "... Updating configuration values and redeploying..."
+gcloud app deploy app.yaml --project=$PROJECT --quiet
+
 popd
 
 # Update the environment configuration file with this value

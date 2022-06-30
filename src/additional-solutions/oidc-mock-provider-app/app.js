@@ -32,10 +32,17 @@ else {
 	}
 	else {
 	// GOOGLE_CLOUD_PROJECT is defined. This is being deployed as a Google App Engine App.
-	// The URL is $GOOGLE_CLOUD_PROJECT.appspot.com, but there is no
-	// way to know at this stage what the region is. We use a hardcoded value, this may need to be adjusted, based on the real
-	// hostname reported when deploying the App Engine App.
-		oidcURL = "https://" + process.env.GOOGLE_CLOUD_PROJECT + ".appspot.com";
+	// The URL is $GOOGLE_CLOUD_PROJECT.region.appspot.com, but there is no
+	// way to know at this stage what the region is. Once the app is deployed, its hostname can be passed by updating an environment variable.
+	// If that env variable is not yet set we use a hardcoded value to begin with.
+	    if (!process.env.OIDC_URL || process.env.OIDC_URL=="ToBeAssigned") { 
+			// Use a default value
+			oidcURL = "https://" + process.env.GOOGLE_CLOUD_PROJECT + ".appspot.com";
+		}
+		else {
+			// The env variable holds the correct hostanme
+			oidcURL = "https://" + process.env.OIDC_URL;
+		}
 	}
 }
 
