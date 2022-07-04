@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PC-CachePAR">
+    <DisplayName>PC-CachePAR</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment ref="PARCacheKey"/>
+    </CacheKey>
+    <CacheResource>PushedAuthReqs</CacheResource>
+    <Scope>Global</Scope>
+    <ExpirySettings>
+        <TimeoutInSec>90</TimeoutInSec>
+    </ExpirySettings>
+    <Source>PARCacheVal</Source>
+</PopulateCache>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetIssueOrRefreshTokenResponse">
-    <DisplayName>AM-SetIssueOrRefreshTokenResponse</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetIssueTokenResponseWithNoRefreshToken">
+    <DisplayName>AM-SetIssueTokenResponseWithNoRefreshToken</DisplayName>
     <!-- Remove the temporarily reinstated authorization header (required for OAuthV2 policy)-->
     <Remove>
         <Headers>
@@ -12,10 +12,8 @@
   "access_token": "{theAccessToken}",
   "expires_in": {accessTokenExpiresIn},
   "id_token": "{theNewIdToken}",
-  "refresh_token": "{theRefreshToken}",
   "token_type": "Bearer",
   "scope": "{OIDCTokenResponse.scope}",
-  "refresh_token_expires_at": {refreshTokenExpiresAt},
   "sharing_expires_at": {refreshTokenExpiresAt},
   "cdr_arrangement_id": "{cdrArrangementId}"
 }</Payload>

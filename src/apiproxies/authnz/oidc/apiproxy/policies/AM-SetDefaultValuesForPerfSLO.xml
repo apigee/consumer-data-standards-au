@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetDefaultValuesForPerfSLO">
+    <DisplayName>AM-SetDefaultValuesForPerfSLO</DisplayName>
+    <AssignVariable>
+        <Name>tokenOp</Name>
+        <Value>n/a</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>customerPPId</Name>
+        <Value>n/a</Value>
+    </AssignVariable>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

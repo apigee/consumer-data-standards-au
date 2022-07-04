@@ -8,7 +8,7 @@
         <Attribute display="false" name="OIDCRefreshToken" ref="OIDCTokenResponse.refresh_token"/>
         <Attribute display="false" name="customerId" ref="oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.accesstoken.customerId"/>
         <Attribute display="false" name="customerPPId" ref="customerPPId"/>
-        <Attribute display="false" name="consentId" ref="theConsentId"/>
+        <Attribute display="false" name="cdrArrangementId" ref="cdrArrangementId"/>
         <Attribute display="false" name="certFingerprint" ref="tls.client.cert.fingerprint"/>
     </Attributes>
     <ExpiresIn ref="OIDCTokenExpiryTimeInMillis">60000</ExpiresIn>
@@ -19,7 +19,7 @@
     <RefreshTokenExpiresIn ref="RefreshTokenExpiryTimeInMillis">3600000</RefreshTokenExpiresIn>
     <GenerateResponse enabled="false"/>
     <ReuseRefreshToken>false</ReuseRefreshToken>
-    <Scope>theStaticScope</Scope>
+    <Scope>OIDCTokenResponse.scope</Scope>
     <SupportedGrantTypes/>
     <Tokens/>
 </OAuthV2>

@@ -36,8 +36,8 @@
 		}
 	},
 	"acrValues": [
-		"urn:brasil:openbanking:loa2",
-		"urn:brasil:openbanking:loa3"
+		"urn:cds.au:cdr:2",
+		"urn:cds.au:cdr:3"
 	],
 	"clientDefaults": {
 		"response_types": [
@@ -58,8 +58,6 @@
 			"name",
 			"given_name",
 			"family_name",
-			"cpf",
-			"cnpj",
 			"updated_at"
 		],
 		"profile": [
@@ -67,8 +65,6 @@
 			"name",
 			"given_name",
 			"family_name",
-			"cpf",
-			"cnpj",
 			"updated_at"
 		],
 		"acr": null,
@@ -125,14 +121,20 @@
 	"rotateRefreshToken": true,
 	"routes": {
 		"authorization": "/authorise",
+		"pushed_authorization_request": "/par",
 		"registration": "/register"
 	},
 	"scopes": [
 		"openid",
+		"offline_access",
 		"profile",
-		"accounts:basic",
-		"accounts:details",
-		"transactions"
+		"bank:accounts.basic:read",
+		"bank:accounts.detail:read",
+		"bank:transactions:read",
+		"bank:regular_payments:read",
+		"common:customer.basic:read",
+		"common:customer.detail:read",
+		"cdr:registration"
 	],
 	"subjectTypes": [
 		"public"

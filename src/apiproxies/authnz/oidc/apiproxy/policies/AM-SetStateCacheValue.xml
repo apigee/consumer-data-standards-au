@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-SetStateCacheValue">
     <DisplayName>AM-SetStateCacheValue</DisplayName>
-    <!-- Values included in the private key jwt request supersede any values passed as query params to this request -->
+    <!-- Use a default sharing duration of 28 days and set 'none' as placeholder for cdr_arrangement_id, if not present -->
     <AssignVariable>
-        <Name>requested_scope</Name>
-        <Template>{firstnonnull(PKJwtAdditionalClaims.scope,request.queryparam.scope)}</Template>
+        <Name>theSharingDuration</Name>
+        <Template>{firstnonnull(request.queryparam.sharing_duration,'2419200')}</Template>
     </AssignVariable>
     <AssignVariable>
-        <Name>requested_redirect_uri</Name>
-        <Template>{firstnonnull(PKJwtAdditionalClaims.redirect_uri,request.queryparam.redirect_uri)}</Template>
-    </AssignVariable>
-    <AssignVariable>
-        <Name>requested_nonce</Name>
-        <Template>{firstnonnull(PKJwtAdditionalClaims.nonce,request.queryparam.nonce)}</Template>
+        <Name>theCDRArrangementId</Name>
+        <Template>{firstnonnull(request.queryparam.cdr_arrangement_id,'none')}</Template>
     </AssignVariable>
     <AssignVariable>
         <Name>stateCacheVal</Name>
-        <Template>{request.queryparam.client_id}||{requested_redirect_uri}||{requested_scope}||{requested_nonce}||{request.queryparam.response_type}||{verifyapikey.VAK-VerifyClientId.app.SectorIdentifier}||{request.queryparam.consent_id}</Template>
+        <Template>{request.queryparam.client_id}||{request.queryparam.redirect_uri}||{request.queryparam.scope}||{request.queryparam.nonce}||{request.queryparam.response_type}||{theSharingDuration}||{theCDRArrangementId}||{verifyapikey.VAK-VerifyClientId.app.SectorIdentifier}</Template>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

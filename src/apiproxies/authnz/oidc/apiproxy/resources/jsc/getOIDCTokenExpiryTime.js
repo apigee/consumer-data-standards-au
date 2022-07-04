@@ -34,7 +34,8 @@
  var tokenExpiryTime = String(context.getVariable("OIDCTokenResponse.expires_in")) + "000";
  context.setVariable("OIDCTokenExpiryTimeInMillis", tokenExpiryTime);
  
- var refreshTokenExpiryTime = String(context.getVariable("oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.refreshTokenExpiryTimeInSeconds"));
+ var refreshTokenExpiryTime = String(context.getVariable("oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.requestedSharingDuration"));
+ print("Initial value - refreshTokenExpiryTime = " + refreshTokenExpiryTime);
  if ( (refreshTokenExpiryTime !== null) && (refreshTokenExpiryTime !== "") && (refreshTokenExpiryTime != "null")) {
      // This variable will be defined only when the token is being issued in exchange for an auth code
      if (refreshTokenExpiryTime == "0") {
@@ -50,4 +51,5 @@
     // In the refresh token conditional flow, the policy to retrieve the refresh token attributes has been defined
     refreshTokenExpiryTime = String(context.getVariable("oauthv2refreshtoken.OAInfo-RetrieveRefreshTokenDetails.refresh_token_expires_in")) + "000";
  }
+  print("Final value - refreshTokenExpiryTime = " + refreshTokenExpiryTime);
  context.setVariable("RefreshTokenExpiryTimeInMillis", refreshTokenExpiryTime);

@@ -9,6 +9,7 @@
             <QueryParam name="consent_id">{requestedConsentInfo.consent_id}</QueryParam>
             <QueryParam name="state">{requestedConsentInfo.state}</QueryParam>
             <QueryParam name="scope">{requestedConsentInfo.scope}</QueryParam>
+            <QueryParam name="status">{requestedConsentInfo.status}</QueryParam>
         </QueryParams>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

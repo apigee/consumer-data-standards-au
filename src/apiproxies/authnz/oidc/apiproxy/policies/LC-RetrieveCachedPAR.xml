@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LC-RetrieveCachedPAR">
+    <DisplayName>LC-RetrieveCachedPAR</DisplayName>
+    <CacheKey>
+        <KeyFragment ref="request.queryparam.request_uri"/>
+    </CacheKey>
+    <CacheResource>PushedAuthReqs</CacheResource>
+    <Scope>Global</Scope>
+    <AssignTo>cachedPAR</AssignTo>
+</LookupCache>
