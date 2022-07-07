@@ -41,7 +41,7 @@ Object.keys(payload).forEach(function (key) {
         // finishes in endpoint
         // We'll replace the idpURI with either the standardHostname, or mtlHostname, for mtlsEndpoints
         var targetHostname = mtlsEndpoints.includes(key) ? mtlsHostname : standardHostname
-        payload[key] = payload[key].replace(idpUri, "https://" + targetHostname);
+        payload[key] = payload[key].replace(idpUri, targetHostname);
     }
 });
 
