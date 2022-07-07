@@ -1,43 +1,43 @@
 <APIProxy revision="5" name="CDS-Accounts">
     <DisplayName>CDS-Accounts</DisplayName>
     <Description>Account API sets created by the Australian Consumer Data Standards to meet the needs of the Consumer Data Right</Description>
-    <CreatedAt>1635031673218</CreatedAt>
-    <LastModifiedAt>1635031673218</LastModifiedAt>
+    <CreatedAt>1657170920053</CreatedAt>
+    <LastModifiedAt>1657170920053</LastModifiedAt>
     <BasePaths>/cds-au/v1/banking/accounts</BasePaths>
     <Policies>
-        <Policy>JS-CheckAccountsFilterInAllAccounts</Policy>
-        <Policy>EV-AccountIdFromURL</Policy>
-        <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
-        <Policy>RF-InvalidAccountInURI</Policy>
-        <Policy>AM-InvalidScope</Policy>
-        <Policy>AM-TokenNotVerified</Policy>
-        <Policy>EV-GetAllBalancesForCustomer</Policy>
-        <Policy>EV-GetAccountsFilterCriteria</Policy>
-        <Policy>EV-ResultsForAccountId</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>AM-MockFullListOfBalances</Policy>
-        <Policy>FC-CheckRequestHeaders</Policy>
-        <Policy>RF-UnsupportedMethod</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>EV-GetAllAcountsForCustomer</Policy>
-        <Policy>AM-MockFullListOfAccounts</Policy>
-        <Policy>AM-SetCustomerId</Policy>
-        <Policy>AM-Set-Pagination-Settings</Policy>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>RF-InvalidAccountInFilter</Policy>
-        <Policy>FC-ValidateRequestParams</Policy>
-        <Policy>FC-VerifyHoK</Policy>
-        <Policy>FC-PaginateResponse</Policy>
         <Policy>JS-BuildDetailsResponse</Policy>
-        <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
-        <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
+        <Policy>FC-PaginateResponse</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>EV-GetAllBalancesForCustomer</Policy>
+        <Policy>RF-InvalidAccountInURI</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>AM-Set-Pagination-Settings</Policy>
+        <Policy>JS-CheckAccountsFilterInAllAccounts</Policy>
         <Policy>JS-FilterAccountsListBasedOnRequestFilters</Policy>
-        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
-        <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
+        <Policy>OA-VerifyTokenForGetAccountsBasic</Policy>
+        <Policy>RF-UnsupportedMethod</Policy>
         <Policy>FC-TrafficThresholds</Policy>
-        <Policy>EV-GetErrorDetail</Policy>
+        <Policy>AM-MockFullListOfAccounts</Policy>
+        <Policy>FC-ValidateRequestParams</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>EV-ResultsForAccountId</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>AM-SetCustomerId</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>EV-AccountIdFromURL</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>AM-CopyListOfAllAccountsToAllResults</Policy>
+        <Policy>EV-GetAllAcountsForCustomer</Policy>
+        <Policy>JS-BuildFilteredAccountListFromRequestBody</Policy>
         <Policy>JS-FilterResults</Policy>
+        <Policy>EV-GetErrorDetail</Policy>
+        <Policy>EV-GetAccountsFilterCriteria</Policy>
+        <Policy>FC-VerifyHoK</Policy>
+        <Policy>OA-VerifyTokenForGetAccountDetails</Policy>
+        <Policy>AM-MockFullListOfBalances</Policy>
+        <Policy>RF-InvalidAccountInFilter</Policy>
+        <Policy>AM-InvalidScope</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -45,8 +45,8 @@
     <Resources>
         <Resource>jsc://filterResults.js</Resource>
         <Resource>jsc://buildDetailsResponse.js</Resource>
+        <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
         <Resource>jsc://checkAccountsFilterInAllAccounts.js</Resource>
         <Resource>jsc://filterAccountsListBasedOnRequestFilters.js</Resource>
-        <Resource>jsc://buildFilteredAccountListFromRequestBody.js</Resource>
     </Resources>
 </APIProxy>
