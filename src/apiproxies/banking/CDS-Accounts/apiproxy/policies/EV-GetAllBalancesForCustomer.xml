@@ -6,7 +6,7 @@
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <JSONPayload>
         <Variable name="listOfAllResults">
-            <JSONPath>$.[?(@.customer == '{customerId}')].balances</JSONPath>
+            <JSONPath>$.[?(@.customer == '{customerId}')].balances[*]</JSONPath>
         </Variable>
     </JSONPayload>
     <Source clearPayload="false">listOfAllResultsByCustomer</Source>
