@@ -1,17 +1,18 @@
-<SharedFlowBundle revision="1" name="validate-audience-in-jwt">
+<SharedFlowBundle revision="3" name="validate-audience-in-jwt">
     <DisplayName>validate-audience-in-jwt</DisplayName>
     <Description>Validates the audience claim in an auth JWT token according to rules specified in standards v1.6</Description>
-    <CreatedAt>1635030192019</CreatedAt>
-    <LastModifiedAt>1635030192019</LastModifiedAt>
+    <CreatedAt>1657502075545</CreatedAt>
+    <LastModifiedAt>1657502075545</LastModifiedAt>
     <Policies>
-        <Policy>AM-ExtractAudFromAudArray</Policy>
-        <Policy>RF-InvalidAudience</Policy>
-        <Policy>PC-StoreOIDCConfig</Policy>
-        <Policy>EV-GetIssuerAndTokenEndpoint</Policy>
         <Policy>AM-SetCurrentURI</Policy>
-        <Policy>LC-RetrieveOIDCConfig</Policy>
-        <Policy>SC-GetOIDCConfig</Policy>
+        <Policy>AM-ExtractAudFromAudArray</Policy>
         <Policy>RF-InvalidAudience-400Error</Policy>
+        <Policy>SC-GetOIDCConfig</Policy>
+        <Policy>LC-RetrieveOIDCConfig</Policy>
+        <Policy>RF-InvalidAudience</Policy>
+        <Policy>EV-GetIssuerAndTokenEndpoint</Policy>
+        <Policy>PC-StoreOIDCConfig</Policy>
+        <Policy>AM-SetCurrentURIWhenProxyBasepathIsRoot</Policy>
     </Policies>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>

@@ -1,77 +1,77 @@
-<APIProxy revision="11" name="CDS-DynamicClientRegistration">
+<APIProxy revision="4" name="CDS-DynamicClientRegistration">
     <DisplayName>CDS-Admin</DisplayName>
     <Description>Implement Client Registration Management APIs</Description>
-    <CreatedAt>1636238825335</CreatedAt>
-    <LastModifiedAt>1636238825335</LastModifiedAt>
+    <CreatedAt>1657517059386</CreatedAt>
+    <LastModifiedAt>1657517059386</LastModifiedAt>
     <BasePaths>/register</BasePaths>
     <Policies>
-        <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>RF-InvalidContentType</Policy>
-        <Policy>SC-AssociateProductsWithKey</Policy>
-        <Policy>BA-SetBasicAuthHeader</Policy>
-        <Policy>AM-InternalServerError</Policy>
-        <Policy>JS-AssignProductsBasedOnScope</Policy>
-        <Policy>SC-CreateApp</Policy>
-        <Policy>AM-InvalidScope</Policy>
-        <Policy>FC-VerifyMTLSOnly</Policy>
-        <Policy>AM-TokenNotVerified</Policy>
-        <Policy>SC-DeleteApp</Policy>
-        <Policy>FC-TrafficThresholdsForClientRegistration</Policy>
-        <Policy>AE-GetApp</Policy>
-        <Policy>FC-RetrieveClientJWKS</Policy>
         <Policy>SC-DeleteClientKeySoItCanBeRecreated</Policy>
-        <Policy>FC-CheckTokenNotReused</Policy>
-        <Policy>EV-ExtractOrgIdFromAppOwnerInToken</Policy>
-        <Policy>FC-ValidateSSA</Policy>
         <Policy>RF-NotFound</Policy>
-        <Policy>JWT-DecodeJWTInRequestBody</Policy>
-        <Policy>SC-DeleteAppKeyJustCreated</Policy>
-        <Policy>RF-ClientIdDoesNotMatch</Policy>
         <Policy>AM-InvalidJWTTokenInRequest</Policy>
-        <Policy>RF-MissingEXPClaim</Policy>
+        <Policy>SC-DeleteApp</Policy>
+        <Policy>EV-ExtractOrgIdFromAppOwnerInToken</Policy>
+        <Policy>SC-UpdateApp</Policy>
+        <Policy>AM-GetOrgIdAndAppIdFromTokenInfo</Policy>
+        <Policy>KVM-GetGcpSAKey</Policy>
+        <Policy>RF-InvalidRequest</Policy>
+        <Policy>SC-AddKeysToApigeeApp</Policy>
+        <Policy>JS-CheckIfProductsHaveChanged</Policy>
+        <Policy>AM.GCPScopes</Policy>
+        <Policy>SC-CreateApp</Policy>
+        <Policy>EV-ExtractClientSecretFromUpdateAppResponse</Policy>
+        <Policy>AE-GetApp</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>EV-ExtractRegInfoAndSSAFromAccessEntityResult</Policy>
+        <Policy>RF-DuplicateRegistration</Policy>
+        <Policy>EV-ExtractOrgIdFromAppOwner</Policy>
+        <Policy>RF-InvalidRedirectURIs</Policy>
+        <Policy>AM-SetApigeeAuth</Policy>
+        <Policy>FC-ValidateAudience</Policy>
+        <Policy>FC-VerifyMTLSOnly</Policy>
+        <Policy>AM-SetOrgIdForApigee</Policy>
+        <Policy>BA-SetBasicAuthHeader</Policy>
+        <Policy>SC-CreateDeveloper</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
         <Policy>RF-SWIdOrOrgIdDoesNotMatch</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>AM-InternalServerError</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>AM-SetKeysToAddToApp</Policy>
+        <Policy>JWT-DecodeJWTInRequestBody</Policy>
+        <Policy>JS-VerifyRedirectURIClaim</Policy>
+        <Policy>FC-CheckTokenNotReused</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>FC-TrafficThresholdsForClientRegistration</Policy>
+        <Policy>AM-SetApigeeAPIEndpoint</Policy>
+        <Policy>RF-InvalidContentType</Policy>
+        <Policy>JS-BuildResponse</Policy>
         <Policy>FC-AddFAPIInteractionId</Policy>
         <Policy>AM-SetAppDeletedResponseCode</Policy>
-        <Policy>AM-BuildRegistrationInfo</Policy>
-        <Policy>RF-InvalidRedirectURIs</Policy>
-        <Policy>JS-VerifyRedirectURIClaim</Policy>
-        <Policy>EV-ExtractRegInfoAndSSAFromAccessEntityResult</Policy>
-        <Policy>KVM-GetApigeeAPICredentials</Policy>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-SetOrgIdForApigee</Policy>
-        <Policy>JS-BuildResponse</Policy>
-        <Policy>EV-ExtractOrgIdFromAppOwner</Policy>
-        <Policy>OA-VerifyTokenForDCROperations</Policy>
-        <Policy>FC-VerifyHoK</Policy>
-        <Policy>SC-UpdateApp</Policy>
-        <Policy>RF-InvalidRequest</Policy>
-        <Policy>SC-CreateDeveloper</Policy>
-        <Policy>AM-GetOrgIdAndAppIdFromTokenInfo</Policy>
-        <Policy>EV-GetClientIdFromURIParam</Policy>
-        <Policy>AM-SetKeysToAddToApp</Policy>
-        <Policy>SC-AddKeysToApigeeApp</Policy>
-        <Policy>FC-ValidateAudience</Policy>
-        <Policy>EV-ExtractClientSecretFromUpdateAppResponse</Policy>
+        <Policy>RF-MissingEXPClaim</Policy>
+        <Policy>RF-ClientIdDoesNotMatch</Policy>
+        <Policy>JS-AssignProductsBasedOnScope</Policy>
         <Policy>AE-GetDeveloper</Policy>
-        <Policy>RF-DuplicateRegistration</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
-        <Policy>JWT-VerifyJWTInRequestBody</Policy>
-        <Policy>JS-CheckIfProductsHaveChanged</Policy>
         <Policy>EV-GetErrorDetail</Policy>
-        <Policy>AM-SetApigeeAPIEndpoint</Policy>
-        <Policy>AM.GCPScopes</Policy>
-        <Policy>KVM-GetGcpSAKey</Policy>
+        <Policy>FC-ValidateSSA</Policy>
+        <Policy>SC-DeleteAppKeyJustCreated</Policy>
+        <Policy>FC-VerifyHoK</Policy>
+        <Policy>JWT-VerifyJWTInRequestBody</Policy>
+        <Policy>SC-AssociateProductsWithKey</Policy>
         <Policy>FC-Gen-GCP-SA-Auth-Token</Policy>
-        <Policy>AM-SetApigeeAuth</Policy>
+        <Policy>AM-InvalidScope</Policy>
+        <Policy>FC-RetrieveClientJWKS</Policy>
+        <Policy>OA-VerifyTokenForDCROperations</Policy>
+        <Policy>KVM-GetApigeeAPICredentials</Policy>
+        <Policy>AM-BuildRegistrationInfo</Policy>
+        <Policy>EV-GetClientIdFromURIParam</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
     <Resources>
-        <Resource>jsc://checkIfProductsHaveChanged.js</Resource>
         <Resource>jsc://buildResponse.js</Resource>
-        <Resource>jsc://assignProductsBasedOnScope.js</Resource>
         <Resource>jsc://verifyRedirectURIClaim.js</Resource>
+        <Resource>jsc://assignProductsBasedOnScope.js</Resource>
+        <Resource>jsc://checkIfProductsHaveChanged.js</Resource>
     </Resources>
 </APIProxy>

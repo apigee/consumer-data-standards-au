@@ -16,6 +16,11 @@
     </Step>
     <Step>
         <Name>AM-SetCurrentURI</Name>
+        <Condition>proxy.basepath != "/"</Condition>
+    </Step>
+    <Step>
+        <Name>AM-SetCurrentURIWhenProxyBasepathIsRoot</Name>
+        <Condition>proxy.basepath = "/"</Condition>
     </Step>
     <Step>
         <Name>AM-ExtractAudFromAudArray</Name>

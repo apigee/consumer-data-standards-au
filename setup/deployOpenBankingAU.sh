@@ -77,6 +77,10 @@ done
 # Deploy Shared flows
 
 pushd src/shared-flows
+# Replace the existing <JWKS> element in the  JWT-VerifyCDRSSAToken policy in validate-ssa shared flow
+# so that they point to the mock-cdr jwks endpoint
+echo "--->"  "Adding Mock CDR Register JWKS uri to policy used to validate SSA Token"
+replace_with_jwks_uri ./validate-ssa/sharedflowbundle/policies/JWT-VerifyCDRSSAToken.xml /mock-cdr-register/jwks
 
 for sf in $(gensfds.sh . tsort); do
     echo "--->"  Deploying $sf Shared Flow 
@@ -273,6 +277,7 @@ CDSREFIMPL_PRIVATE_KEY=`cat ./CDSRefImpl_rsa_private.pem`
 OIDC_CLIENT_CONFIG=`cat  ../../src/additional-solutions/oidc-mock-provider-app/support/clients.json `
 CDSREFIMPL_OIDC_CLIENT_ID=$(echo $OIDC_CLIENT_CONFIG | jq -r '.[0].client_id')
 CDSREFIMPL_OIDC_CLIENT_SECRET=$(echo $OIDC_CLIENT_CONFIG | jq -r '.[0].client_secret')
+
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName JWTSignKeys_jwks --entryValue "$CDSREFIMPL_JWKS"  1> /dev/null | echo Added entry for CDS Ref Impl jwks
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName JWTSignKeys_privateKey --entryValue "$CDSREFIMPL_PRIVATE_KEY"   1> /dev/null | echo Added entry for CDS Ref Impl private key
 apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $APIGEE_ENV --mapName CDSConfig --entryName ApigeeIDPCredentials_clientId --entryValue "$CDSREFIMPL_OIDC_CLIENT_ID"  1> /dev/null | echo Added entry for CDS Ref Impl credentials: client id in OIDC Provider
@@ -282,7 +287,4 @@ apigeetool addEntryToKVM -u $APIGEE_USER -p $APIGEE_PASSWORD -o $APIGEE_ORG -e $
 # Revert to original directory
 popd
 
-# Replace the existing <JWKS> element in the  JWT-VerifyCDRSSAToken policy in validate-ssa shared flow
-# so that they point to the mock-cdr jwks endpoint
-echo "--->"  "Adding Mock CDR Register JWKS uri to policy used to validate SSA Token"
-replace_with_jwks_uri src/shared-flows/validate-ssa/sharedflowbundle/policies/JWT-VerifyCDRSSAToken.xml /mock-cdr-register/jwks
+echo "----> Done"
