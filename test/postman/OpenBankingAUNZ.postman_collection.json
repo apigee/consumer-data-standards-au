@@ -3,7 +3,8 @@
 		"_postman_id": "66cf0641-c866-45cd-8b1b-73cb53f54576",
 		"name": "OpenBankingAUNZ",
 		"description": "Test Collection for OpenBanking APIs (AU)",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3708908"
 	},
 	"item": [
 		{
@@ -87,12 +88,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaa&nonce=n-0S6_WzA2Mj223&sharing_duration=1800&cdr_arrangement_id={{cdr_arrangement_id}}",
+							"raw": "https://{{api_endpoint}}/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaabcd&nonce=n-0S6_WzA2Mj223Abc&sharing_duration=1800",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"authorise"
@@ -119,12 +118,12 @@
 								},
 								{
 									"key": "state",
-									"value": "af0ifjsldklaaa",
+									"value": "af0ifjsldklaaabcd",
 									"description": "For test purposes, any string will do"
 								},
 								{
 									"key": "nonce",
-									"value": "n-0S6_WzA2Mj223",
+									"value": "n-0S6_WzA2Mj223Abc",
 									"description": "For test purposes, any string will do"
 								},
 								{
@@ -164,7 +163,8 @@
 								{
 									"key": "cdr_arrangement_id",
 									"value": "{{cdr_arrangement_id}}",
-									"description": "Optionally use an existing consent (arrangement)"
+									"description": "Optionally use an existing consent (arrangement)",
+									"disabled": true
 								}
 							]
 						}
@@ -229,12 +229,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+							"raw": "https://{{idp_endpoint}}{{nextInteraction1}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction1}}"
+								"{{idp_endpoint}}{{nextInteraction1}}"
 							]
 						}
 					},
@@ -396,12 +394,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"raw": "https://{{api_endpoint}}{{nextInteraction2}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
+								"{{api_endpoint}}{{nextInteraction2}}"
 							]
 						}
 					},
@@ -483,12 +479,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token",
+							"raw": "https://{{api_endpoint}}/token",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token"
@@ -541,12 +535,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/parrequest?aud=https://{{org}}-{{env}}.apigee.net&client_id={{client_id}}&state=af0ifjsldkl&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}&nonce=n-0S6_WzA2Mj32&sharing_duration=1800",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/parrequest?aud=https://{{api_endpoint}}&client_id={{client_id}}&state=af0ifjsldkl&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}&nonce=n-0S6_WzA2Mj32&sharing_duration=1800",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -555,7 +547,7 @@
 							"query": [
 								{
 									"key": "aud",
-									"value": "https://{{org}}-{{env}}.apigee.net"
+									"value": "https://{{api_endpoint}}"
 								},
 								{
 									"key": "client_id",
@@ -739,12 +731,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/par",
+							"raw": "https://{{api_endpoint}}/par",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"par"
@@ -830,12 +820,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&request_uri={{PAR_request_uri}}",
+							"raw": "https://{{api_endpoint}}/authorise?client_id={{client_id}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&request_uri={{PAR_request_uri}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"authorise"
@@ -934,12 +922,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+							"raw": "https://{{idp_endpoint}}{{nextInteraction1}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction1}}"
+								"{{idp_endpoint}}{{nextInteraction1}}"
 							]
 						}
 					},
@@ -1114,12 +1100,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"raw": "https://{{api_endpoint}}{{nextInteraction2}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
+								"{{api_endpoint}}{{nextInteraction2}}"
 							]
 						}
 					},
@@ -1201,12 +1185,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token",
+							"raw": "https://{{api_endpoint}}/token",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token"
@@ -1299,12 +1281,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{dynamic_client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldkla&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
+							"raw": "https://{{api_endpoint}}/authorise?client_id={{dynamic_client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldkla&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"authorise"
@@ -1427,12 +1407,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+							"raw": "https://{{idp_endpoint}}{{nextInteraction1}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction1}}"
+								"{{idp_endpoint}}{{nextInteraction1}}"
 							]
 						}
 					},
@@ -1594,12 +1572,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"raw": "https://{{api_endpoint}}{{nextInteraction2}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
+								"{{api_endpoint}}{{nextInteraction2}}"
 							]
 						}
 					},
@@ -1623,12 +1599,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -1729,12 +1703,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token",
+							"raw": "https://{{api_endpoint}}/token",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token"
@@ -1784,12 +1756,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/.well-known/openid-configuration",
+							"raw": "https://{{api_endpoint}}/.well-known/openid-configuration",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								".well-known",
@@ -1884,12 +1854,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token",
+							"raw": "https://{{api_endpoint}}/token",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token"
@@ -1957,12 +1925,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token/introspection",
+							"raw": "https://{{api_endpoint}}/token/introspection",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token",
@@ -2031,12 +1997,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token/revocation",
+							"raw": "https://{{api_endpoint}}/token/revocation",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token",
@@ -2105,12 +2069,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/token/revocation",
+							"raw": "https://{{api_endpoint}}/token/revocation",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"token",
@@ -2179,12 +2141,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/arrangements/revoke",
+							"raw": "https://{{api_endpoint}}/arrangements/revoke",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"arrangements",
@@ -2221,12 +2181,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/me",
+							"raw": "https://{{api_endpoint}}/me",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"me"
@@ -2257,12 +2215,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/jwks",
+							"raw": "https://{{api_endpoint}}/jwks",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"jwks"
@@ -2309,12 +2265,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/products",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/products",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -2340,7 +2294,7 @@
 								},
 								{
 									"key": "page-size",
-									"value": "100",
+									"value": "10",
 									"disabled": true
 								},
 								{
@@ -2492,12 +2446,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -2508,7 +2460,7 @@
 							"query": [
 								{
 									"key": "open-status",
-									"value": "ALL2",
+									"value": "ALL",
 									"disabled": true
 								},
 								{
@@ -2528,7 +2480,7 @@
 								},
 								{
 									"key": "page",
-									"value": "1",
+									"value": "2",
 									"disabled": true
 								}
 							]
@@ -2585,12 +2537,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -2650,12 +2600,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -2737,12 +2685,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/10203040-Acc001",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/10203040-Acc001",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -2808,12 +2754,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -2911,12 +2855,10 @@
 							"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"10203040-Acc001\",\"10203040-Acc003\"\n    ]\n  },\n  \"meta\": {}\n}"
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3005,12 +2947,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3083,12 +3023,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3149,12 +3087,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/balances",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/balances",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3216,12 +3152,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/10203040-Acc003/balance",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/10203040-Acc003/balance",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3308,12 +3242,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3414,12 +3346,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions?max-amount=-5",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions?max-amount=-5",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3518,12 +3448,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}xxxx/transactions",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}xxxx/transactions",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3594,12 +3522,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3650,12 +3576,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions/tx0003",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions/tx0006",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3664,7 +3588,7 @@
 								"accounts",
 								"{{accountId}}",
 								"transactions",
-								"tx0003"
+								"tx0006"
 							]
 						}
 					},
@@ -3707,12 +3631,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}xxxx/transactions/tx0003",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}xxxx/transactions/tx0006",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3721,7 +3643,7 @@
 								"accounts",
 								"{{accountId}}xxxx",
 								"transactions",
-								"tx0003"
+								"tx0006"
 							]
 						}
 					},
@@ -3764,12 +3686,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/banking/accounts/{{accountId}}/transactions/tx00033333",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions/tx00033333",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3811,12 +3731,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/discovery/outages",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/discovery/outages",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3856,12 +3774,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/discovery/status",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/discovery/status",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3896,12 +3812,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/discovery/status",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/discovery/status",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -3939,12 +3853,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/privatekeyjwt?cdr-register-client-id={{cdr_register_client_id}}",
+									"raw": "https://{{api_endpoint}}/mock-cdr-register/privatekeyjwt?cdr-register-client-id={{cdr_register_client_id}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"mock-cdr-register",
@@ -4034,12 +3946,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/token",
+									"raw": "https://{{api_endpoint}}/token",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"token"
@@ -4081,12 +3991,10 @@
 							"raw": "{\n  \"data\": {\n    \"action\": \"REFRESH\"\n  },\n  \"meta\": {}\n}"
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/register/metadata",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/admin/register/metadata",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -4126,12 +4034,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/cds-au/v1/admin/metrics?period=ALL",
+							"raw": "https://{{api_endpoint}}/cds-au/v1/admin/metrics?period=ALL",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -4175,12 +4081,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+									"raw": "https://{{api_endpoint}}/mock-adr-client/privatekeyjwt?aud=https://{{api_endpoint}}/token&client_id={{dynamic_client_id}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"mock-adr-client",
@@ -4189,8 +4093,7 @@
 									"query": [
 										{
 											"key": "aud",
-											"value": "http://pirulo.com",
-											"disabled": true
+											"value": "https://{{api_endpoint}}/token"
 										},
 										{
 											"key": "client_id",
@@ -4269,12 +4172,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/token",
+									"raw": "https://{{api_endpoint}}/token",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"token"
@@ -4303,12 +4204,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=DebsOrg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/dcrrequest?org_id=debsorg&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -4317,7 +4216,7 @@
 							"query": [
 								{
 									"key": "org_id",
-									"value": "DebsOrg"
+									"value": "debsorg"
 								},
 								{
 									"key": "recipient_base_uri",
@@ -4376,12 +4275,10 @@
 							"raw": "{{dcr_request_jwt}}"
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/register",
+							"raw": "https://{{api_endpoint}}/register",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"register"
@@ -4433,12 +4330,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+							"raw": "https://{{api_endpoint}}/register/{{dynamic_client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"register",
@@ -4495,12 +4390,10 @@
 							"raw": "{{dcr_request_jwt}}"
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+							"raw": "https://{{api_endpoint}}/register/{{dynamic_client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"register",
@@ -4553,12 +4446,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+							"raw": "https://{{api_endpoint}}/register/{{dynamic_client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"register",
@@ -4574,7 +4465,7 @@
 			"name": "HoK Verification",
 			"item": [
 				{
-					"name": "OIDC - Authorise/Obtain Token - Using mTLS",
+					"name": "OIDC - Authorise/Obtain Token (Hybrid Flow) - Using mTLS",
 					"item": [
 						{
 							"name": "OIDC Authorise - Step 1 (Hybrid) - /authorise",
@@ -4587,20 +4478,24 @@
 											"",
 											"var html = cheerio(responseBody);",
 											"var nextInteraction1 = html.find('#loginForm').attr('action');",
-											"var uuid = html.find('#uuid').attr('value');",
-											"var acr = html.find('#acr').attr('value');",
 											"",
 											"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
-											"pm.environment.set(\"uuid\", uuid);",
-											"pm.environment.set(\"acr\", acr);",
 											"",
 											"// If the auth code had already been issued and was still valid, this",
 											"// invocation would directly return it (no necessary login)",
 											"// if that's the case, store the resulting auth_code ",
 											"",
-											"var auth_code = html.find('[name=\"code\"]').val();",
+											"const htmlResponse = cheerio(responseBody);",
+											"var temp_auth_code = html.find('[name=\"code\"]').val();",
+											"var temp_id_token = html.find('[name=\"id_token\"]').val();",
+											"var temp_state = html.find('[name=\"state\"]').val();",
+											"const $ = cheerio.load(responseBody);",
+											"var temp_cb_uri = $('form').attr('action');",
+											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+											"pm.environment.set(\"temp_id_token\", temp_id_token);",
+											"pm.environment.set(\"temp_state\", temp_state);",
+											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
 											"",
-											"pm.environment.set(\"auth_code\", auth_code);",
 											"",
 											"",
 											"",
@@ -4650,12 +4545,10 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldkl&nonce=n-0S6_WzA2Mj2&max_age=600&acr_values=urn:cds.au:cdr:3&response_mode=form_post&jti=37747cd1-c105-4569-9f75-4adf28b73e32&exp=1596692638",
+									"raw": "https://{{api_endpoint}}/authorise?client_id={{client_id}}&redirect_uri={{client_redirect_uri}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=af0ifjsldklaaabcd&nonce=n-0S6_WzA2Mj223Abc&sharing_duration=1800",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"authorise"
@@ -4682,37 +4575,53 @@
 										},
 										{
 											"key": "state",
-											"value": "af0ifjsldkl",
+											"value": "af0ifjsldklaaabcd",
 											"description": "For test purposes, any string will do"
 										},
 										{
 											"key": "nonce",
-											"value": "n-0S6_WzA2Mj2",
+											"value": "n-0S6_WzA2Mj223Abc",
 											"description": "For test purposes, any string will do"
 										},
 										{
 											"key": "max_age",
-											"value": "600"
+											"value": "600",
+											"disabled": true
 										},
 										{
 											"key": "acr_values",
 											"value": "urn:cds.au:cdr:3",
-											"description": "One of the valid authentication types the OIDC provider accepts"
+											"description": "One of the valid authentication types the OIDC provider accepts",
+											"disabled": true
 										},
 										{
 											"key": "response_mode",
 											"value": "form_post",
-											"description": "This response mode allows automation in Postman in the Step to get the authorisation code"
+											"description": "This response mode allows automation in Postman in the Step to get the authorisation code",
+											"disabled": true
 										},
 										{
 											"key": "jti",
 											"value": "37747cd1-c105-4569-9f75-4adf28b73e32",
-											"description": "For test purposes, any jti will do"
+											"description": "For test purposes, any jti will do",
+											"disabled": true
 										},
 										{
 											"key": "exp",
 											"value": "1596692638",
-											"description": "Epoch timestamp. Any value in the future will work"
+											"description": "Epoch timestamp. Any value in the future will work",
+											"disabled": true
+										},
+										{
+											"key": "sharing_duration",
+											"value": "1800",
+											"description": "How long the refresh token should live for (In seconds)"
+										},
+										{
+											"key": "cdr_arrangement_id",
+											"value": "{{cdr_arrangement_id}}",
+											"description": "Optionally use an existing consent (arrangement)",
+											"disabled": true
 										}
 									]
 								}
@@ -4726,21 +4635,18 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Store html interaction  and uuid to use in subsequent calls",
+											"// Store callback response from IdP to use in subsequent call",
 											"",
-											"var html = cheerio(responseBody);",
-											"var nextInteraction2 = html.find('#consentForm').attr('action');",
-											"var uuid = html.find('#uuid').attr('value');",
-											"var acr = html.find('#acr').attr('value');",
-											"var account = html.find('#account').attr('value');",
-											"var consentResponse = html.find('#consent').attr('value');",
-											"",
-											"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
-											"pm.environment.set(\"uuid\", uuid);",
-											"pm.environment.set(\"acr\", acr);",
-											"pm.environment.set(\"account\", account);",
-											"pm.environment.set(\"consentResponse\", consentResponse);",
-											""
+											"const htmlResponse = cheerio(responseBody);",
+											"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+											"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+											"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+											"const $ = cheerio.load(responseBody);",
+											"var temp_cb_uri = $('form').attr('action');",
+											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+											"pm.environment.set(\"temp_id_token\", temp_id_token);",
+											"pm.environment.set(\"temp_state\", temp_state);",
+											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);"
 										],
 										"type": "text/javascript"
 									}
@@ -4748,19 +4654,7 @@
 							],
 							"request": {
 								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{client_secret}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{client_id}}",
-											"type": "string"
-										}
-									]
+									"type": "noauth"
 								},
 								"method": "POST",
 								"header": [
@@ -4780,11 +4674,6 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "uuid",
-											"value": "{{uuid}}",
-											"type": "text"
-										},
-										{
 											"key": "login",
 											"value": "10203040",
 											"type": "text"
@@ -4793,175 +4682,32 @@
 											"key": "password",
 											"value": "anyPasswordWillDo",
 											"type": "text"
-										},
-										{
-											"key": "acr",
-											"value": "{{acr}}",
-											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+									"raw": "https://{{idp_endpoint}}{{nextInteraction1}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net{{nextInteraction1}}"
+										"{{idp_endpoint}}{{nextInteraction1}}"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+							"name": "OIDC Authorise - Step 2.5 (Hybrid)  - Follow redirect to display consent screen",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Store IDP issued auth code and id token to use in subsequent call",
+											"// Store URL to use in subsequent call",
 											"",
-											"const htmlResponse = cheerio(responseBody);",
-											"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
-											"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
-											"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
-											"const $ = cheerio.load(responseBody);",
-											"var temp_cb_uri = $('form').attr('action');",
-											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
-											"pm.environment.set(\"temp_id_token\", temp_id_token);",
-											"pm.environment.set(\"temp_state\", temp_state);",
-											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
+											"var html = cheerio(responseBody);",
+											"var nextInteraction2 = html.find('#consentForm').attr('action');",
 											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{client_secret}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{client_id}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"type": "text",
-										"value": "application/json"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "uuid",
-											"value": "{{uuid}}",
-											"type": "text"
-										},
-										{
-											"key": "account",
-											"value": "{{account}}",
-											"type": "text"
-										},
-										{
-											"key": "acr",
-											"value": "{{acr}}",
-											"type": "text"
-										},
-										{
-											"key": "bank:accounts.basic:read",
-											"value": "bank:accounts.basic:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text"
-										},
-										{
-											"key": "bank:accounts.detail:read",
-											"value": "bank:accounts.detail:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text"
-										},
-										{
-											"key": "bank:transactions:read",
-											"value": "bank:transactions:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text"
-										},
-										{
-											"key": "bank:payees:read",
-											"value": "bank:payees:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "bank:regular_payments:read",
-											"value": "bank:regular_payments:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "common:customer.basic:read",
-											"value": "common:customer.basic:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "common:customer.detail:read",
-											"value": "common:customer.detail:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										}
-									]
-								},
-								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
-									"protocol": "https",
-									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net{{nextInteraction2}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OIDC Authorise Local - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"// Store authorisation code to use in subsequent calls",
-											"",
-											"const html_response = cheerio(responseBody);",
-											"var auth_code = html_response.find('[name=\"code\"]').val();",
-											"",
-											"pm.environment.set(\"auth_code\", auth_code);",
-											"",
-											""
+											"pm.environment.set(\"nextInteraction2\", nextInteraction2);"
 										],
 										"type": "text/javascript"
 									}
@@ -5009,6 +4755,106 @@
 									"raw": "{{temp_cb_uri}}",
 									"host": [
 										"{{temp_cb_uri}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Store auth code to use in subsequent call",
+											"",
+											"const htmlResponse = cheerio(responseBody);",
+											"var auth_code = htmlResponse.find('[name=\"code\"]').val();",
+											"pm.environment.set(\"auth_code\", auth_code);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "bank:accounts.basic:read",
+											"value": "bank:accounts.basic:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:accounts.detail:read",
+											"value": "bank:accounts.detail:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:transactions:read",
+											"value": "bank:transactions:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:payees:read",
+											"value": "bank:payees:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:regular_payments:read",
+											"value": "bank:regular_payments:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "common:customer.basic:read",
+											"value": "common:customer.basic:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "common:customer.detail:read",
+											"value": "common:customer.detail:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{api_endpoint}}{{nextInteraction2}}",
+									"protocol": "https",
+									"host": [
+										"{{api_endpoint}}{{nextInteraction2}}"
 									]
 								}
 							},
@@ -5090,10 +4936,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/token",
+									"raw": "https://{{mtls_endpoint}}/token",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"token"
@@ -5103,7 +4949,7 @@
 							"response": []
 						}
 					],
-					"description": "These 4 requests automate the steps of obtaining an authorisation code by navigating through the mock login and consent screens and obtaining a token using the authorisation code\n Use this approach when testing a client that has been added during the initial setup, as those client are persisted in the mock oidc provider and have been defined as accepting basic client auth.\n The last step uses an MTLS protected endpoint, and the client certificate presented will be associated with the issued token",
+					"description": "These 4 requests automate the steps of obtaining an authorisation code by navigating through the mock login and consent screens and obtaining a token using the authorisation code\n Use this approach when testing a client that has been added during the initial setup, as those client are persisted in the mock oidc provider and have been defined as accepting basic client auth.",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -5129,7 +4975,7 @@
 					"name": "OIDC - Authorise/Obtain Token (HF) - mTLS and PAR",
 					"item": [
 						{
-							"name": "Steo 0 - Generate PAR request",
+							"name": "Step 0 - Generate PAR request",
 							"event": [
 								{
 									"listen": "test",
@@ -5146,12 +4992,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/parrequest?aud=https://{{org}}-{{env}}.apigee.net&client_id={{client_id}}&state=af0ifjsldkl&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}&nonce=n-0S6_WzA2Mj32&sharing_duration=1800",
+									"raw": "https://{{api_endpoint}}/mock-adr-client/parrequest?aud=https://{{api_endpoint}}&client_id={{client_id}}&state=af0ifjsldkl&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}&nonce=n-0S6_WzA2Mj32&sharing_duration=1800",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"mock-adr-client",
@@ -5160,7 +5004,7 @@
 									"query": [
 										{
 											"key": "aud",
-											"value": "https://{{org}}-{{env}}.apigee.net"
+											"value": "https://{{api_endpoint}}"
 										},
 										{
 											"key": "client_id",
@@ -5344,10 +5188,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/par",
+									"raw": "https://{{mtls_endpoint}}/par",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"par"
@@ -5367,20 +5211,23 @@
 											"",
 											"var html = cheerio(responseBody);",
 											"var nextInteraction1 = html.find('#loginForm').attr('action');",
-											"var uuid = html.find('#uuid').attr('value');",
-											"var acr = html.find('#acr').attr('value');",
-											"",
 											"pm.environment.set(\"nextInteraction1\", nextInteraction1);",
-											"pm.environment.set(\"uuid\", uuid);",
-											"pm.environment.set(\"acr\", acr);",
 											"",
 											"// If the auth code had already been issued and was still valid, this",
 											"// invocation would directly return it (no necessary login)",
 											"// if that's the case, store the resulting auth_code ",
 											"",
-											"var auth_code = html.find('[name=\"code\"]').val();",
+											"const htmlResponse = cheerio(responseBody);",
+											"var temp_auth_code = html.find('[name=\"code\"]').val();",
+											"var temp_id_token = html.find('[name=\"id_token\"]').val();",
+											"var temp_state = html.find('[name=\"state\"]').val();",
+											"const $ = cheerio.load(responseBody);",
+											"var temp_cb_uri = $('form').attr('action');",
+											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+											"pm.environment.set(\"temp_id_token\", temp_id_token);",
+											"pm.environment.set(\"temp_state\", temp_state);",
+											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
 											"",
-											"pm.environment.set(\"auth_code\", auth_code);",
 											"",
 											"",
 											"",
@@ -5430,12 +5277,10 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/authorise?client_id={{client_id}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&request_uri={{PAR_request_uri}}",
+									"raw": "https://{{api_endpoint}}/authorise?client_id={{client_id}}&response_type=code%20id_token&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&request_uri={{PAR_request_uri}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"authorise"
@@ -5447,12 +5292,6 @@
 											"description": "If you want to change this value, always do it by altering the corresponding env variable. IMPORTANT: This client_id, as well as its redirect uri and public key needs to be registered with the OIDC provider included in the reference implementation (Manual edit of client configuration file)"
 										},
 										{
-											"key": "redirect_uri",
-											"value": "{{client_redirect_uri}}",
-											"description": "If you want to change this value, always do it by altering the corresponding env variable",
-											"disabled": true
-										},
-										{
 											"key": "response_type",
 											"value": "code%20id_token"
 										},
@@ -5460,47 +5299,6 @@
 											"key": "scope",
 											"value": "openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read",
 											"description": "Add the required scopes, separated by %20"
-										},
-										{
-											"key": "state",
-											"value": "af0ifjsldkl",
-											"description": "For test purposes, any string will do",
-											"disabled": true
-										},
-										{
-											"key": "nonce",
-											"value": "n-0S6_WzA2Mj2",
-											"description": "For test purposes, any string will do",
-											"disabled": true
-										},
-										{
-											"key": "max_age",
-											"value": "600",
-											"disabled": true
-										},
-										{
-											"key": "acr_values",
-											"value": "urn:cds.au:cdr:3",
-											"description": "One of the valid authentication types the OIDC provider accepts",
-											"disabled": true
-										},
-										{
-											"key": "response_mode",
-											"value": "form_post",
-											"description": "This response mode allows automation in Postman in the Step to get the authorisation code",
-											"disabled": true
-										},
-										{
-											"key": "jti",
-											"value": "37747cd1-c105-4569-9f75-4adf28b73e32",
-											"description": "For test purposes, any jti will do",
-											"disabled": true
-										},
-										{
-											"key": "exp",
-											"value": "1596692638",
-											"description": "Epoch timestamp. Any value in the future will work",
-											"disabled": true
 										},
 										{
 											"key": "request_uri",
@@ -5518,21 +5316,18 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Store html interaction  and uuid to use in subsequent calls",
+											"// Store callback response from IdP to use in subsequent call",
 											"",
-											"var html = cheerio(responseBody);",
-											"var nextInteraction2 = html.find('#consentForm').attr('action');",
-											"var uuid = html.find('#uuid').attr('value');",
-											"var acr = html.find('#acr').attr('value');",
-											"var account = html.find('#account').attr('value');",
-											"var consentResponse = html.find('#consent').attr('value');",
-											"",
-											"pm.environment.set(\"nextInteraction2\", nextInteraction2);",
-											"pm.environment.set(\"uuid\", uuid);",
-											"pm.environment.set(\"acr\", acr);",
-											"pm.environment.set(\"account\", account);",
-											"pm.environment.set(\"consentResponse\", consentResponse);",
-											""
+											"const htmlResponse = cheerio(responseBody);",
+											"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
+											"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
+											"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
+											"const $ = cheerio.load(responseBody);",
+											"var temp_cb_uri = $('form').attr('action');",
+											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
+											"pm.environment.set(\"temp_id_token\", temp_id_token);",
+											"pm.environment.set(\"temp_state\", temp_state);",
+											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);"
 										],
 										"type": "text/javascript"
 									}
@@ -5572,11 +5367,6 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "uuid",
-											"value": "{{uuid}}",
-											"type": "text"
-										},
-										{
 											"key": "login",
 											"value": "10203040",
 											"type": "text"
@@ -5585,175 +5375,32 @@
 											"key": "password",
 											"value": "anyPasswordWillDo",
 											"type": "text"
-										},
-										{
-											"key": "acr",
-											"value": "{{acr}}",
-											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction1}}",
+									"raw": "https://{{idp_endpoint}}{{nextInteraction1}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net{{nextInteraction1}}"
+										"{{idp_endpoint}}{{nextInteraction1}}"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+							"name": "OIDC Authorise - Step 2.5 (Hybrid)  - Follow redirect to display consent screen",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Store callback response from IdP to use in subsequent call",
+											"// Store URL to use in subsequent call",
 											"",
-											"const htmlResponse = cheerio(responseBody);",
-											"var temp_auth_code = htmlResponse.find('[name=\"code\"]').val();",
-											"var temp_id_token = htmlResponse.find('[name=\"id_token\"]').val();",
-											"var temp_state = htmlResponse.find('[name=\"state\"]').val();",
-											"const $ = cheerio.load(responseBody);",
-											"var temp_cb_uri = $('form').attr('action');",
-											"pm.environment.set(\"temp_auth_code\", temp_auth_code);",
-											"pm.environment.set(\"temp_id_token\", temp_id_token);",
-											"pm.environment.set(\"temp_state\", temp_state);",
-											"pm.environment.set(\"temp_cb_uri\", temp_cb_uri);",
+											"var html = cheerio(responseBody);",
+											"var nextInteraction2 = html.find('#consentForm').attr('action');",
 											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "password",
-											"value": "{{client_secret}}",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "{{client_id}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"type": "text",
-										"value": "application/json"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "uuid",
-											"value": "{{uuid}}",
-											"type": "text"
-										},
-										{
-											"key": "account",
-											"value": "{{account}}",
-											"type": "text"
-										},
-										{
-											"key": "acr",
-											"value": "{{acr}}",
-											"type": "text"
-										},
-										{
-											"key": "bank:accounts.basic:read",
-											"value": "bank:accounts.basic:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text"
-										},
-										{
-											"key": "bank:accounts.detail:read",
-											"value": "bank:accounts.detail:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text"
-										},
-										{
-											"key": "bank:transactions:read",
-											"value": "bank:transactions:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text"
-										},
-										{
-											"key": "bank:payees:read",
-											"value": "bank:payees:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "bank:regular_payments:read",
-											"value": "bank:regular_payments:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "common:customer.basic:read",
-											"value": "common:customer.basic:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "common:customer.detail:read",
-											"value": "common:customer.detail:read",
-											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
-											"type": "text",
-											"disabled": true
-										}
-									]
-								},
-								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
-									"protocol": "https",
-									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net{{nextInteraction2}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OIDC Authorise - Step 3.5 (Hybrid)  - Follow redirect to obtain auth code",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"// Store authorisation code to use in subsequent calls",
-											"",
-											"const html_response = cheerio(responseBody);",
-											"var auth_code = html_response.find('[name=\"code\"]').val();",
-											"",
-											"pm.environment.set(\"auth_code\", auth_code);",
-											"",
-											""
+											"pm.environment.set(\"nextInteraction2\", nextInteraction2);"
 										],
 										"type": "text/javascript"
 									}
@@ -5801,6 +5448,119 @@
 									"raw": "{{temp_cb_uri}}",
 									"host": [
 										"{{temp_cb_uri}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OIDC Authorise - Step 3 (Hybrid) - Submit consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Store auth code to use in subsequent call",
+											"",
+											"const htmlResponse = cheerio(responseBody);",
+											"var auth_code = htmlResponse.find('[name=\"code\"]').val();",
+											"pm.environment.set(\"auth_code\", auth_code);",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{client_secret}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "bank:accounts.basic:read",
+											"value": "bank:accounts.basic:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:accounts.detail:read",
+											"value": "bank:accounts.detail:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:transactions:read",
+											"value": "bank:transactions:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:payees:read",
+											"value": "bank:payees:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "bank:regular_payments:read",
+											"value": "bank:regular_payments:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "common:customer.basic:read",
+											"value": "common:customer.basic:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "common:customer.detail:read",
+											"value": "common:customer.detail:read",
+											"description": "Simulates consent being granted for this scope (Set to empty if you want to simulate no consent)",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{api_endpoint}}{{nextInteraction2}}",
+									"protocol": "https",
+									"host": [
+										"{{api_endpoint}}{{nextInteraction2}}"
 									]
 								}
 							},
@@ -5882,10 +5642,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/token",
+									"raw": "https://{{mtls_endpoint}}/token",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"token"
@@ -5935,12 +5695,10 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/.well-known/openid-configuration",
+									"raw": "https://{{api_endpoint}}/.well-known/openid-configuration",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										".well-known",
@@ -6036,10 +5794,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/token",
+									"raw": "https://{{mtls_endpoint}}/token",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"token"
@@ -6107,10 +5865,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/token/introspection",
+									"raw": "https://{{mtls_endpoint}}/token/introspection",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"token",
@@ -6170,14 +5928,19 @@
 											"key": "cdr_arrangement_id",
 											"value": "{{cdr_arrangement_id}}",
 											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/arrangements/revoke",
+									"raw": "https://{{mtls_endpoint}}/arrangements/revoke",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"arrangements",
@@ -6246,10 +6009,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/token/revocation",
+									"raw": "https://{{mtls_endpoint}}/token/revocation",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"token",
@@ -6318,10 +6081,10 @@
 									]
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/token/revocation",
+									"raw": "https://{{mtls_endpoint}}/token/revocation",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"token",
@@ -6358,10 +6121,10 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/me",
+									"raw": "https://{{mtls_endpoint}}/me",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"me"
@@ -6832,10 +6595,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{mtls-endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions",
+							"raw": "https://{{mtls_endpoint}}/cds-au/v1/banking/accounts/{{accountId}}/transactions",
 							"protocol": "https",
 							"host": [
-								"{{mtls-endpoint}}"
+								"{{mtls_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -6939,10 +6702,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{mtls-endpoint}}/cds-au/v1/banking/accounts",
+							"raw": "https://{{mtls_endpoint}}/cds-au/v1/banking/accounts",
 							"protocol": "https",
 							"host": [
-								"{{mtls-endpoint}}"
+								"{{mtls_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -7034,10 +6797,10 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{mtls-endpoint}}/cds-au/v1/banking/accounts/10203040-Acc003",
+							"raw": "https://{{mtls_endpoint}}/cds-au/v1/banking/accounts/10203040-Acc003",
 							"protocol": "https",
 							"host": [
-								"{{mtls-endpoint}}"
+								"{{mtls_endpoint}}"
 							],
 							"path": [
 								"cds-au",
@@ -7062,12 +6825,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/jwks",
+							"raw": "https://{{api_endpoint}}/mock-cdr-register/jwks",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-cdr-register",
@@ -7083,12 +6844,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/banking/data-recipients/brands/amybrand/software-products/{{softwareProductId}}/ssa?recipient_base_uri=https://{{org}}-{{env}}.apigee.net/mock-adr-client&redirect_uri={{client_redirect_uri}}",
+							"raw": "https://{{api_endpoint}}/mock-cdr-register/banking/data-recipients/brands/amybrand/software-products/{{softwareProductId}}/ssa?recipient_base_uri=https://{{api_endpoint}}/mock-adr-client&redirect_uri={{client_redirect_uri}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-cdr-register",
@@ -7108,7 +6867,7 @@
 								},
 								{
 									"key": "recipient_base_uri",
-									"value": "https://{{org}}-{{env}}.apigee.net/mock-adr-client"
+									"value": "https://{{api_endpoint}}/mock-adr-client"
 								},
 								{
 									"key": "redirect_uri",
@@ -7121,7 +6880,7 @@
 								},
 								{
 									"key": "jwks_uri",
-									"value": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/jwks",
+									"value": "https://{{api_endpoint}}/mock-adr-client/jwks",
 									"disabled": true
 								},
 								{
@@ -7140,21 +6899,24 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-cdr-register/adminrequest?admin-endpoint=https://{{org}}-{{env}}.apigee.net",
+							"raw": "https://{{api_endpoint}}/mock-cdr-register/privatekeyjwt?cdr-register-client-id={{cdr_register_client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-cdr-register",
-								"adminrequest"
+								"privatekeyjwt"
 							],
 							"query": [
 								{
-									"key": "admin-endpoint",
-									"value": "https://{{org}}-{{env}}.apigee.net"
+									"key": "cdr-register-client-id",
+									"value": "{{cdr_register_client_id}}"
+								},
+								{
+									"key": "aud",
+									"value": "http://pirulo.com",
+									"disabled": true
 								}
 							]
 						}
@@ -7172,12 +6934,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/jwks",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/jwks",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -7193,12 +6953,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&recipient_base_uri=https://pirulo.com&redirect_uri=https://mycompany.com/redirect1&software_id=swid2",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/dcrrequest?org_id=AAA&recipient_base_uri=https://pirulo.com&redirect_uri=https://mycompany.com/redirect1&software_id=swid2",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -7249,12 +7007,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -7293,12 +7049,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/parrequest?aud={{api_endpoint}}&client_id={{client_id}}&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}",
+							"raw": "https://{{api_endpoint}}/mock-adr-client/parrequest?aud={{api_endpoint}}&client_id={{client_id}}&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"mock-adr-client",
@@ -7363,12 +7117,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/consent?client_id={{client_id}}&customer_id=10203040&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=lalsdgkjoaegho&consent_id={{cdr_arrangement_id}}",
+							"raw": "https://{{api_endpoint}}/consent?client_id={{client_id}}&customer_id=10203040&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&state=lalsdgkjoaeghoo",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"consent"
@@ -7388,12 +7140,13 @@
 								},
 								{
 									"key": "state",
-									"value": "lalsdgkjoaegho",
+									"value": "lalsdgkjoaeghoo",
 									"description": "For test purposes any string will do"
 								},
 								{
 									"key": "consent_id",
-									"value": "{{cdr_arrangement_id}}"
+									"value": "{{cdr_arrangement_id}}",
+									"disabled": true
 								}
 							]
 						}
@@ -7496,12 +7249,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net{{nextInteraction2}}",
+							"raw": "https://{{api_endpoint}}{{nextInteraction2}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net{{nextInteraction2}}"
+								"{{api_endpoint}}{{nextInteraction2}}"
 							]
 						}
 					},
@@ -7513,12 +7264,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/consent/{{cdr_arrangement_id}}?expected_client_id={{client_id}}",
+							"raw": "https://{{api_endpoint}}/consent/{{cdr_arrangement_id}}?expected_client_id={{client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"consent",
@@ -7565,16 +7314,20 @@
 							]
 						},
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/consent/{{cdr_arrangement_id}}",
+							"raw": "https://{{api_endpoint}}/consent/{{cdr_arrangement_id}}?expected_client_id={{client_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"consent",
 								"{{cdr_arrangement_id}}"
+							],
+							"query": [
+								{
+									"key": "expected_client_id",
+									"value": "{{client_id}}"
+								}
 							]
 						}
 					},
@@ -7586,12 +7339,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://{{org}}-{{env}}.apigee.net/consent/{{cdr_arrangement_id}}",
+							"raw": "https://{{api_endpoint}}/consent/{{cdr_arrangement_id}}",
 							"protocol": "https",
 							"host": [
-								"{{org}}-{{env}}",
-								"apigee",
-								"net"
+								"{{api_endpoint}}"
 							],
 							"path": [
 								"consent",
