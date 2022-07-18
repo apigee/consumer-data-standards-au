@@ -14,6 +14,22 @@
 # roles/storage.admin
 # roles/cloudbuild.builds.editor
 
+if [ "$#" -ne 1 ]; then
+    echo "This script deploys a mock OIDC Identity provider for the CDS reference implementation as a Google App Engine service"
+    echo "Usage: deployOidcMockProviderGAE.sh CONFIG_FILE"
+    exit
+fi
+
+CONFIG_FILE=$1
+# Get absolute path to config file
+export CONFIG_FILE_ABS_PATH=$(echo "$(cd "$(dirname "$CONFIG_FILE")" && pwd)/$(basename "$CONFIG_FILE")")
+
+# Enable Cloud Build APIs
+echo "========================================================================="
+echo "--> Enabling required GCP APIs..."
+echo "----> Enabling Cloud Build APIs ..."
+echo "========================================================================="
+gcloud services enable cloudbuild.googleapis.com 
 
 set -e
 
@@ -56,8 +72,8 @@ gcloud app deploy app.yaml --project=$PROJECT --quiet
 popd
 
 # Update the environment configuration file with this value
-sed -i '' "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$OIDC_PROVIDER_HOST_ALIAS/" ../cds-au-config.env
-sed -i '' 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' ../cds-au-config.env 
+sed -i '' "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$OIDC_PROVIDER_HOST_ALIAS/" $CONFIG_FILE_ABS_PATH
+sed -i '' 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' $CONFIG_FILE_ABS_PATH
 
 echo "INFO: OIDC MOCK Provider Google App is successfully installed. Hostname = $OIDC_PROVIDER_HOST_ALIAS"
 echo "INFO: test request: curl https://$OIDC_PROVIDER_HOST_ALIAS"

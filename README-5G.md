@@ -114,7 +114,7 @@ source $CDSAU_HOME/cds-au-config.env
 cd $CDSAU_HOME/$CDSAU_REPO
 
 ./setup/cds-au-setup.sh
-./setup/deployOidcMockProviderGAE.sh
+./setup/deployOidcMockProviderGAE.sh <PATH_TO_ENV_CONFIG_FILE>
 ./setup/deployOpenBankingAU.sh
 ./setup/deployCDSAdminWithRealMetrics.sh
 
