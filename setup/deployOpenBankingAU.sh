@@ -42,8 +42,18 @@ function replace_with_jwks_uri {
 
 ###### End Utility functions
 
+if [ "$#" -ne 1 ]; then
+    echo "This script deploys the CDS reference implementation to Apigee X / hybrid"
+    echo "Usage: deployOpenBankingAU.sh CONFIG_FILE"
+    exit
+fi
+
+CONFIG_FILE=$1
+# Get absolute path to config file
+export CONFIG_FILE_ABS_PATH=$(echo "$(cd "$(dirname "$CONFIG_FILE")" && pwd)/$(basename "$CONFIG_FILE")")
+
 # Reread env configuration file to pickup the hostname where the OIDCMockProvider app has been deployed
-source ../cds-au-config.env
+source $CONFIG_FILE_ABS_PATH
 
 # Create Caches and dynamic KVM used by oidc proxy
 echo "--->"  Creating cache OIDCState...
