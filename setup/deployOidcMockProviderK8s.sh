@@ -10,6 +10,17 @@
 
 set -e
 
+if [ "$#" -ne 1 ]; then
+    echo "This script deploys a mock OIDC Identity provider for the CDS reference implementation as a Google App Engine service"
+    echo "Usage: deployOidcMockProviderK8s.sh CONFIG_FILE"
+    exit
+fi
+
+CONFIG_FILE=$1
+# Get absolute path to config file
+export CONFIG_FILE_ABS_PATH=$(echo "$(cd "$(dirname "$CONFIG_FILE")" && pwd)/$(basename "$CONFIG_FILE")")
+
+
 
 # permissions for kubectl
 gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_LOCATION
@@ -62,6 +73,10 @@ echo "WARNING:cert provisioning takes about ~11 minutes"
 
 
 kubectl apply -f oidc-ingress.yaml
+
+# Update the environment configuration file with the hostname value
+sed -i '' "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$GTM_HOST_ALIAS/" $CONFIG_FILE_ABS_PATH
+sed -i '' 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' $CONFIG_FILE_ABS_PATH
 
 # test:
 # curl https://$GTM_HOST_ALIAS
