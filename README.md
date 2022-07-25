@@ -93,7 +93,9 @@ The reference implementation can accelerate Open Banking implementation in multi
 
    ```sh
    export CDSAU_REPO_URL=https://github.com/apigee/consumer-data-standards-au.git
+   export CDSAU_REPO=consumer-data-standards-au
    export CDSAU_BRANCH_5G=apigee-x
+
    cd $CDSAU_HOME
    git clone -b $CDSAU_BRANCH_5G $CDSAU_REPO_URL
    ```
@@ -136,7 +138,6 @@ you need docker to build an image for oidc-mock-provider.
    source $CDSAU_HOME/cds-au-config.env
    cd $CDSAU_HOME/$CDSAU_REPO
    ./setup/cds-au-setup.sh
-   ./setup/deployOpenBankingAU.sh $CDSAU_HOME/cds-au-config.env
    ```
 
 5. Deploy the mock OIDC Provider.
