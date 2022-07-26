@@ -75,8 +75,8 @@ echo "WARNING:cert provisioning takes about ~11 minutes"
 kubectl apply -f oidc-ingress.yaml
 
 # Update the environment configuration file with the hostname value
-sed -i '' "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$GTM_HOST_ALIAS/" $CONFIG_FILE_ABS_PATH
-sed -i '' 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' $CONFIG_FILE_ABS_PATH
+sed -i.bak "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$GTM_HOST_ALIAS/" $CONFIG_FILE_ABS_PATH
+sed -i.bak 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' $CONFIG_FILE_ABS_PATH
 
 # test:
 # curl https://$GTM_HOST_ALIAS

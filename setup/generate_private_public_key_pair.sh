@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/usr/bin/env bash
 #
 # Copyright 2018 Google LLC
 #
@@ -49,5 +49,4 @@ echo "----"
 IN_FILE=$OUT_FILE
 APP_JWK=$(pem-jwk $IN_FILE  | jq '{"keys": [. + { "kid": "PlaceHolderKid" } + { "use": "sig" }]}')  
 echo $APP_JWK > $KEY_PAIR_OUTPUT_DIR$KEY_PAIR_NAME.jwks
-sed  -i '' "s/PlaceHolderKid/$KEY_PAIR_NAME/" $KEY_PAIR_OUTPUT_DIR$KEY_PAIR_NAME.jwks
-
+sed -i.bak "s/PlaceHolderKid/$KEY_PAIR_NAME/" $KEY_PAIR_OUTPUT_DIR$KEY_PAIR_NAME.jwks

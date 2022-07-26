@@ -20,3 +20,4 @@ src/apiproxies/authnz/oidc-mock-provider/apiproxy/resources/hosted/support/clien
 specs/Notes.txt
 **/*.log
 **/results.json
+**/*.bak

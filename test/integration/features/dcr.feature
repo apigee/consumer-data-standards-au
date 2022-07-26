@@ -59,10 +59,10 @@ Feature:
     Then response code should be 200
     And I store response body as dcrRequest in scenario scope
     
-   # Create dynamic client 
-#    curl --location --request POST 'https://34-149-27-240.nip.io/register' \
-#--header 'Content-Type: application/jwt' \
-#--data-raw 'eyJraWQi.....5kw46Msl1g'
+    # Create dynamic client 
+    #    curl --location --request POST 'https://34-149-27-240.nip.io/register' \
+    # --header 'Content-Type: application/jwt' \
+    #--data-raw 'eyJraWQi.....5kw46Msl1g'
 
     Given I clear request
     And I set Content-Type header to application/jwt
@@ -89,16 +89,16 @@ Feature:
 
     # OIDC - Obtain token for Registration Operations (Get/Update/Delete) - Step 2: Acquire Token using Private Key JWT
     # curl --location --request POST 'https://eval-group.34-107-221-103.nip.io/token' \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=client_credentials' \
---data-urlencode 'scope=cdr:registration' \
---data-urlencode 'client_id=ZA9C1Ji1F4J9eXa9g7BaGKx2F69Go98yZq1m57IzGqEU1q3W' \
---data-urlencode 'client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer' \
---data-urlencode 'client_assertion={thePrivKeyJwt}'
+    #      --header 'Accept: application/json' \
+    #      --header 'Content-Type: application/x-www-form-urlencoded' \
+    #      --data-urlencode 'grant_type=client_credentials' \
+    #      --data-urlencode 'scope=cdr:registration' \
+    #      --data-urlencode 'client_id=ZA9C1Ji1F4J9eXa9g7BaGKx2F69Go98yZq1m57IzGqEU1q3W' \
+    #      --data-urlencode 'client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer' \
+    #      --data-urlencode 'client_assertion={thePrivKeyJwt}'
 
     Given I clear request
-     And I set Accept-Type header to application/json
+    And I set Accept-Type header to application/json
     And I set form parameters to
       | parameter             | value |
       | grant_type            | client_credentials |
@@ -110,11 +110,11 @@ Feature:
     Then response code should be 200
     And I store the value of body path $.access_token as dcrOperationsToken in scenario scope
 
-   # Get details of client created
-   # curl --location --request GET 'https://eval-group.34-107-221-103.nip.io/register/ZA9C1Ji1F4J9eXa9g7BaGKx2F69Go98yZq1m57IzGqEU1q3W' \
---header 'Content-Type: application/jwt' \
---header 'Authorization: Bearer pdYayN7Gu6SwAJTyo6xwzb2TnUtD'
-  Given I clear request
+    # Get details of client created
+    # curl --location --request GET 'https://eval-group.34-107-221-103.nip.io/register/ZA9C1Ji1F4J9eXa9g7BaGKx2F69Go98yZq1m57IzGqEU1q3W' \
+    #      --header 'Content-Type: application/jwt' \
+    #      --header 'Authorization: Bearer pdYayN7Gu6SwAJTyo6xwzb2TnUtD'
+    Given I clear request
     And I set Accept-Type header to application/json
     And I set Authorization header to Bearer `dcrOperationsToken`
     When I GET /register/`dynamicClientId`
@@ -122,48 +122,45 @@ Feature:
     And response body path $.client_name should be Mock Software
     And response body path $.org_name should be Mock Company
 
-   # Acquire token for regular Operations - Follow priv key jwt flow - To be done
+    # Acquire token for regular Operations - Follow priv key jwt flow - To be done
 
-   # Acquire token for regular Operations - Step 0a - Generate PAR Request
+    # Acquire token for regular Operations - Step 0a - Generate PAR Request
 
-   # Acquire token for regular Operations - Step 0b - Invoke PAR Endpoint
+    # Acquire token for regular Operations - Step 0b - Invoke PAR Endpoint
 
-   # Acquire token for regular Operations - Step 1a - Invoke /authorise Endpoint
+    # Acquire token for regular Operations - Step 1a - Invoke /authorise Endpoint
 
-   # Acquire token for regular Operations - Step 1b - Follow redirect to Idp Login
+    # Acquire token for regular Operations - Step 1b - Follow redirect to Idp Login
 
-   # Acquire token for regular Operations - Step 2a - Submit Login
+    # Acquire token for regular Operations - Step 2a - Submit Login
 
-   # Acquire token for regular Operations - Step 2b - Follow redirect to /authorise-cb
+    # Acquire token for regular Operations - Step 2b - Follow redirect to /authorise-cb
 
-   # Acquire token for regular Operations - Step 2c - Follow redirect to consent screen
+    # Acquire token for regular Operations - Step 2c - Follow redirect to consent screen
 
-   # Acquire token for regular Operations - Step 3a - Submit Accept in consent screen
+    # Acquire token for regular Operations - Step 3a - Submit Accept in consent screen
 
-   # Acquire token for regular Operations - Step 3b - Follow redirect to /consent-cb
+    # Acquire token for regular Operations - Step 3b - Follow redirect to /consent-cb
 
-   # Acquire token for regular Operations - Step 4a - Invoke /token endpoint
+    # Acquire token for regular Operations - Step 4a - Invoke /token endpoint
 
-   # Acquire token for regular Operations - Step 4b - Generate Priv Key JWT
-
-
+    # Acquire token for regular Operations - Step 4b - Generate Priv Key JWT
 
 
 
-  # Delete client 
-  Given I clear request
+
+
+    # Delete client 
+    Given I clear request
     And I set Authorization header to Bearer `dcrOperationsToken`
     When I DELETE /register/`dynamicClientId`
     Then response code should be 200
 
-   # Get details of client once again. It should fail
-  Given I clear request
+    # Get details of client once again. It should fail
+    Given I clear request
     And I set Accept-Type header to application/json
     And I set Authorization header to Bearer `dcrOperationsToken`
     When I GET /register/`dynamicClientId`
     Then response code should be 400
     #And response body path $.client_name should be Mock Software
     #And response body path $.org_name should be Mock Company
-
-
-

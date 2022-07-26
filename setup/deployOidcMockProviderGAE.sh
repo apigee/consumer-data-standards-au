@@ -63,7 +63,7 @@ gcloud app deploy app.yaml --project=$PROJECT --quiet
 OIDC_PROVIDER_HOST_ALIAS=$(gcloud app describe --project=$PROJECT --format="value(defaultHostname)")
 
 # Update the app configuration file with this value as an environment variable
-sed -i '' "s/.*OIDC_URL.*/  OIDC_URL: '$OIDC_PROVIDER_HOST_ALIAS'   # Edited by deployOidcMockProvider script/" app.yaml 
+sed -i.bak "s/.*OIDC_URL.*/  OIDC_URL: '$OIDC_PROVIDER_HOST_ALIAS'   # Edited by deployOidcMockProvider script/" app.yaml
 
 # Deploy once more, so that the mock oidc provider can now be configured with the proper hostname
 echo "... Updating configuration values and redeploying..."
@@ -72,8 +72,8 @@ gcloud app deploy app.yaml --project=$PROJECT --quiet
 popd
 
 # Update the environment configuration file with this value
-sed -i '' "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$OIDC_PROVIDER_HOST_ALIAS/" $CONFIG_FILE_ABS_PATH
-sed -i '' 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' $CONFIG_FILE_ABS_PATH
+sed -i.bak "s/.*OIDC_PROVIDER_HOST_ALIAS.*/export OIDC_PROVIDER_HOST_ALIAS=$OIDC_PROVIDER_HOST_ALIAS/" $CONFIG_FILE_ABS_PATH
+sed -i.bak 's/.*OIDC Mock Provider ALIAS.*/# OIDC Mock Provider ALIAS - Edited by deployOidcMockProvider script/' $CONFIG_FILE_ABS_PATH
 
 echo "INFO: OIDC MOCK Provider Google App is successfully installed. Hostname = $OIDC_PROVIDER_HOST_ALIAS"
 echo "INFO: test request: curl https://$OIDC_PROVIDER_HOST_ALIAS"
