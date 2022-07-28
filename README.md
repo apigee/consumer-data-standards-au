@@ -6,6 +6,8 @@ The [Consumer Data Standards (CDS)](https://consumerdatastandards.org.au/) have 
 
 This is a reference implementation of the CDS Banking APIs, also known as *Open Banking Australia*, using the Google Cloud Apigee API Management platform.
 
+> __NOTE:__**This reference implementation works with Apigee Edge deployments. Check the [apigee-x branch](https://github.com/apigee/consumer-data-standards-au/tree/apigee-x) of this repository for a version that works with Apigee X or hybrid deployments**
+
 This implementation is based on **v1.11** of the standards and currently supports the following Banking APIs
 
 - Get Products
