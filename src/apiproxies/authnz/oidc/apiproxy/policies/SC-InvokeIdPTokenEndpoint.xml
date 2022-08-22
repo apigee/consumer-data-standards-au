@@ -10,7 +10,7 @@
             </Headers>
             <FormParams>
                 <FormParam name="code">{oauthv2authcode.OAInfo-RetrieveOIDCAuthCode.OIDCAuthCode}</FormParam>
-                <FormParam name="redirect_uri">https://{request.header.host}/authorise-cb</FormParam>
+                <FormParam name="redirect_uri">https://{firstnonnull(private.stdHostname,request.header.host)}/authorise-cb</FormParam>
                 <FormParam name="grant_type">authorization_code</FormParam>
                 <FormParam name="refresh_token">true</FormParam>
             </FormParams>

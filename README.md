@@ -43,7 +43,9 @@ and dynamic client registration endpoints:
 - Register a client using a CDR Register issued Software Statement Assertion
 - Get/Update/Delete a Client Registration for a given Client ID
 
-Other APIs will be gradually added, as well as support for mutual TLS (mTLS) with Holder of Key (HoK) verification.
+It optionally supports mutual TLS (mTLS) with Holder of Key (HoK) verification. For details on how to enable that feature, see [README.md](./setup/mtls/README.md)
+
+Other APIs will be gradually added.
 
 This repository includes:
 1. A set of reusable artefacts (Shared flows) that implement common functionality mandated by the standards (e.g: check request headers and parameters, include pagination information and self links in responses, etc.). These shared flows can be used in any CDS Banking API implementation
@@ -189,4 +191,4 @@ There are 17 shared flows that implement common functionality required by the Ba
 14. *validate-request-params*: Implements checks on request parameters: data types, admissible values, etc.
 15. *validate-ssa*: Validates a Software Statement Assertion included in a dynamic client registration request, as specified in Section [Dynamic Client Registration](https://cdr-register.github.io/register/#dynamic-client-registration) of the CDR Register standards
 16. *verify-idp-id-token*: Verifies the JWT ID token issued by the IDP and stores the relevant claims into variables for reuse
-17. *verify-mtls-and-hok*: Once support for mTLS/Holder of Key functionality is added, this shared flow will be able to be configured to check that mTLS is used on a given request, and, if mTLS is used, that the client certificate being presented is the same used for acquiring a token (Holder of Key verification). For the moment it is a placeholder.
+17. *verify-mtls-and-hok*:  Can be configured to check that mTLS is used on a given request, and, if mTLS is used, that the client certificate being presented is the same used for acquiring a token (Holder of Key verification).

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KVM-GetMTLSHostname" mapIdentifier="CDSConfig">
+    <DisplayName>KVM-GetMTLSHostname</DisplayName>
+    <Properties/>
+    <ExclusiveCache>false</ExclusiveCache>
+    <ExpiryTimeInSecs>3000</ExpiryTimeInSecs>
+    <Get assignTo="private.mtlsHostname" index="1">
+        <Key>
+            <Parameter>HOK_mtlsHostname</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.stdHostname" index="1">
+        <Key>
+            <Parameter>HOK_stdHostname</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.enforceMTLSOnly" index="1">
+        <Key>
+            <Parameter>HOK_enforceMTLSOnly</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

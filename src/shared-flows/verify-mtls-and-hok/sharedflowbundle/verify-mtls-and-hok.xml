@@ -1,12 +1,17 @@
-<SharedFlowBundle revision="1" name="verify-mtls-and-hok">
+<SharedFlowBundle revision="5" name="verify-mtls-and-hok">
     <DisplayName>verify-mtls-and-hok</DisplayName>
-    <Description>Verifies that mtls is used (not enfoced in testing envs) and, optionally, that the client certificate being used is the same that was used when the client requested a token. In non-production environments this test can be bypassed by using a non-mtls enabled virtual host. In production environments, proxies protected by mTLS with HoK should ONLY be associated with the secure-mtls virtual host</Description>
-    <CreatedAt>1635031229311</CreatedAt>
-    <LastModifiedAt>1635031229311</LastModifiedAt>
+    <Description>Verifies that mtls is used (not enfoced in testing envs) and, optionally, that the client certificate being used is the same that was used when the client requested a token. In a production environment make sure to add an entry to the CDSConfig KVM with key = "HOK_enforceMTLSOnly" and value = "true" to ensure that this check is always enforced.</Description>
+    <CreatedAt>1660281136140</CreatedAt>
+    <LastModifiedAt>1660281136140</LastModifiedAt>
     <Policies>
-        <Policy>RF-CertificateFingerprintDoesNotMatch</Policy>
         <Policy>RF-NonMTLS</Policy>
+        <Policy>RF-CertificateFingerprintDoesNotMatch</Policy>
+        <Policy>KVM-GetMTLSHostname</Policy>
+        <Policy>JS-CheckIfHostHeaderMatchesMTLSHostname</Policy>
     </Policies>
+    <Resources>
+        <Resource>jsc://checkIfHostHeaderMatchesMTLSHostname.js</Resource>
+    </Resources>
     <SharedFlows>
         <SharedFlow>default</SharedFlow>
     </SharedFlows>

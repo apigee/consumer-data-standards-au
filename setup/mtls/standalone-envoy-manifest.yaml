@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: standalone-envoy
+  name: standalone-envoy
+  namespace: apigee
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: standalone-envoy
+  template:
+    metadata:
+      labels:
+        app: standalone-envoy
+    spec:
+      containers:
+      - name: standalone-envoy
+        image: "envoyproxy/envoy:v1.18.2"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: GODEBUG # value must be 0, as apigee does not support http 2
+          value: http2client=0
+        ports:
+        - containerPort: 9000
+        args:
+          - -c /config/standalone-envoy-config.yaml
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        volumeMounts:
+        - mountPath: /config
+          name: standalone-envoy-config
+          readOnly: true
+        - mountPath: /ca-cert
+          name: ca-cert
+          readOnly: true
+        - mountPath: /certs
+          name: certs
+          readOnly: true
+      volumes:
+      - name: standalone-envoy-config
+        configMap:
+          name: standalone-envoy-config
+      - name: ca-cert
+        secret:
+          secretName: ca-secret
+      - name: certs
+        secret:
+          secretName: envoy-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: standalone-envoy
+  namespace: apigee
+  labels:
+    app: standalone-envoy
+  annotations:
+    cloud.google.com/neg: '{"exposed_ports": {"443":{}}}'
+spec:
+  ports:
+  - port: 443
+    name: http
+    targetPort: 8443
+    protocol: TCP
+  selector:
+    app: standalone-envoy
+  type: ClusterIP

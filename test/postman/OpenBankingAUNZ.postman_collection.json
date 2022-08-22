@@ -4992,7 +4992,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{api_endpoint}}/mock-adr-client/parrequest?aud=https://{{api_endpoint}}&client_id={{client_id}}&state=af0ifjsldkl&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}&nonce=n-0S6_WzA2Mj32&sharing_duration=1800",
+									"raw": "https://{{api_endpoint}}/mock-adr-client/parrequest?aud=https://{{mtls_endpoint}}&client_id={{client_id}}&state=af0ifjsldkl&scope=openid%20profile%20bank:accounts.basic:read%20bank:accounts.detail:read%20bank:transactions:read&redirect_uri={{client_redirect_uri}}&nonce=n-0S6_WzA2Mj32&sharing_duration=1800",
 									"protocol": "https",
 									"host": [
 										"{{api_endpoint}}"
@@ -5004,7 +5004,7 @@
 									"query": [
 										{
 											"key": "aud",
-											"value": "https://{{api_endpoint}}"
+											"value": "https://{{mtls_endpoint}}"
 										},
 										{
 											"key": "client_id",
@@ -6160,12 +6160,10 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/privatekeyjwt?client_id={{dynamic_client_id}}",
+											"raw": "https://{{api_endpoint}}/mock-adr-client/privatekeyjwt?aud=https://{{mtls_endpoint}}&client_id={{dynamic_client_id}}",
 											"protocol": "https",
 											"host": [
-												"{{org}}-{{env}}",
-												"apigee",
-												"net"
+												"{{api_endpoint}}"
 											],
 											"path": [
 												"mock-adr-client",
@@ -6174,8 +6172,7 @@
 											"query": [
 												{
 													"key": "aud",
-													"value": "https://{{mtls-endpoint}}",
-													"disabled": true
+													"value": "https://{{mtls_endpoint}}"
 												},
 												{
 													"key": "client_id",
@@ -6254,10 +6251,10 @@
 											]
 										},
 										"url": {
-											"raw": "https://{{mtls-endpoint}}/token",
+											"raw": "https://{{mtls_endpoint}}/token",
 											"protocol": "https",
 											"host": [
-												"{{mtls-endpoint}}"
+												"{{mtls_endpoint}}"
 											],
 											"path": [
 												"token"
@@ -6286,12 +6283,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/mock-adr-client/dcrrequest?org_id=AAA&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2",
+									"raw": "https://{{api_endpoint}}/mock-adr-client/dcrrequest?org_id=aaa&redirect_uri={{client_redirect_uri}}&software_id=SomeSWID2&aud=https://{{mtls_endpoint}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{api_endpoint}}"
 									],
 									"path": [
 										"mock-adr-client",
@@ -6300,7 +6295,7 @@
 									"query": [
 										{
 											"key": "org_id",
-											"value": "AAA"
+											"value": "aaa"
 										},
 										{
 											"key": "recipient_base_uri",
@@ -6317,8 +6312,7 @@
 										},
 										{
 											"key": "aud",
-											"value": "https://{{mtls-endpoint}}",
-											"disabled": true
+											"value": "https://{{mtls_endpoint}}"
 										}
 									]
 								}
@@ -6359,10 +6353,10 @@
 									"raw": "{{dcr_request_jwt}}"
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/register",
+									"raw": "https://{{mtls_endpoint}}/register",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"register"
@@ -6414,10 +6408,10 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/register/{{dynamic_client_id}}",
+									"raw": "https://{{mtls_endpoint}}/register/{{dynamic_client_id}}",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"register",
@@ -6474,10 +6468,10 @@
 									"raw": "{{dcr_request_jwt}}"
 								},
 								"url": {
-									"raw": "https://{{mtls-endpoint}}/register/{{dynamic_client_id}}",
+									"raw": "https://{{mtls_endpoint}}/register/{{dynamic_client_id}}",
 									"protocol": "https",
 									"host": [
-										"{{mtls-endpoint}}"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"register",
@@ -6530,12 +6524,10 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{org}}-{{env}}.apigee.net/register/{{dynamic_client_id}}",
+									"raw": "https://{{mtls_endpoint}}/register/{{dynamic_client_id}}",
 									"protocol": "https",
 									"host": [
-										"{{org}}-{{env}}",
-										"apigee",
-										"net"
+										"{{mtls_endpoint}}"
 									],
 									"path": [
 										"register",

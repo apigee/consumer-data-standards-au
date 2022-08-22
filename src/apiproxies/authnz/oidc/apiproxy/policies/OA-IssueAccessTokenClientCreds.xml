@@ -13,6 +13,6 @@
         <GrantType>client_credentials</GrantType>
     </SupportedGrantTypes>
     <Attributes>
-        <Attribute display="false" name="certFingerprint" ref="tls.client.cert.fingerprint"/>
+        <Attribute display="false" name="certFingerprint" ref="request.header.tls-client-cert-fingerprint"/>
     </Attributes>
 </OAuthV2>

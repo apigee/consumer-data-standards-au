@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SharedFlow name="default">
     <Step>
+        <Name>KVM-GetMTLSHostname</Name>
+    </Step>
+    <Step>
+        <Name>JS-CheckIfHostHeaderMatchesMTLSHostname</Name>
+    </Step>
+    <Step>
         <Name>RF-NonMTLS</Name>
-        <!-- Certain proxies (eg: oidc) need to have both tls and mtls virtualhosts,
-             as some of its endpoints require mtls, while others don't.
-             In a production environment modify the following condition to ensure that
-             this check is always enforced.
+        <!-- In a production environment make sure to add an entry to the CDSConfig KVM with key = "HOK_enforceMTLSOnly"
+             and value = "true" to ensure that this check is always enforced.
+             In a non-production environment, endpoints can also associated with the default non-mtls hostname, 
+             and that enables a test environment without HoK enforcement 
         -->
-        <Condition>(dummyVarWithNoValue = "some value") and (virtualhost.name != "secure-mtls")</Condition>
+        <Condition>(private.enforceMTLSOnly = "true") and (hostHeaderMatchesMTLSHostname != "true")</Condition>
     </Step>
     <Step>
         <Name>RF-CertificateFingerprintDoesNotMatch</Name>
-        <!--  Check enforced only when using an mtls enabled virtual host. In production, endpoints protected by HoK should ONLY be associated with this virtual host.
-              In non-production environments, endpoints are also associated with the default "secure" virtualhost, and that enables a test environment without HoK enforcement 
+        <!--  Check enforced only when using an mtls enabled hostname. In production, endpoints protected by HoK should ONLY be associated with an mtls enabled hostname.
+              In non-production environments, endpoints are also associated with the default non-mtls hostname, and that enables a test environment without HoK enforcement 
+              An non-prod endpoint accessed throught the standard endpoint will always fail this condition
         -->
-        <Condition>(verifyHok = "true") and (virtualhost.name = "secure-mtls") and (tls.client.cert.fingerprint != certFingerprintBoundToToken)</Condition>
+        <Condition>(verifyHok = "true") and (hostHeaderMatchesMTLSHostname = "true") and (request.header.tls-client-cert-fingerprint != certFingerprintBoundToToken)</Condition>
     </Step>
 </SharedFlow>

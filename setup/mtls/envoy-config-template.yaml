@@ -1,0 +1,70 @@
+static_resources:
+  listeners:
+    - name: listener_0
+      address:
+        socket_address:
+          address: 0.0.0.0
+          port_value: 8443
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: ingress_http
+                set_current_client_cert_details:
+                  subject: true
+                route_config:
+                  name: local_route
+                  virtual_hosts:
+                    - name: local_service
+                      domains: ["*"]
+                      routes:
+                        - match:
+                            prefix: "/"
+                          route:
+                            cluster: apigeex
+                            host_rewrite_literal: $RUNTIME_MTLS_HOST_ALIAS
+                      request_headers_to_add:
+                        - header:
+                            key: "tls-client-cert-fingerprint"
+                            value: "%DOWNSTREAM_PEER_FINGERPRINT_256%"
+                          append: true
+
+                http_filters:
+                  # Router
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+          transport_socket:
+            name: envoy.transport_sockets.tls
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+              require_client_certificate: true
+              common_tls_context:
+                validation_context:
+                  trusted_ca:
+                    filename: /ca-cert/tls.crt
+                tls_certificates:
+                  - certificate_chain:
+                      filename: /certs/tls.crt
+                    private_key:
+                      filename: /certs/tls.key
+  clusters:
+    - name: apigeex
+      connect_timeout: 30s
+      type: LOGICAL_DNS
+      dns_lookup_family: V4_ONLY
+      lb_policy: ROUND_ROBIN
+      load_assignment:
+        cluster_name: apigeex
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: $APIGEE_ENDPOINT
+                      port_value: 443
+      transport_socket:
+        name: envoy.transport_sockets.tls
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
