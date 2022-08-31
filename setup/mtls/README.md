@@ -23,7 +23,7 @@ The script will create all the required artefacts (including a GKE cluster, TCP 
 Before you can run the mTLS setup script, you'll need to install the following prerequisites:
 
 - *gcloud*, Google Cloud CLI tool. Installation instructions: https://cloud.google.com/sdk/docs/install
-- *jq*. If using Linux, install it by running: sudo apt-get install jq
+- *jq*. If using Linux, install it by running: sudo apt-get install jq. Version required: v1.111 or higher
 - *apigeecli*, tool to manage Apigee entities. Download the appropriate binary for your platform from https://github.com/apigee/apigeecli/releases
 
 To run the mTLS setup script:

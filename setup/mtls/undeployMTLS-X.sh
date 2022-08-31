@@ -61,16 +61,9 @@ fi
 echo "========================================================================="
 echo "--> Removing HoK related entries from CDSConfig KVM..."
 echo "========================================================================="
-# Temporary workaround as apigeecli kvms entries delete is not working
-# apigeecli -t $TOKEN -o $PROJECT -e $APIGEE_ENV kvms entries delete --map CDSConfig --key HOK_mtlsHostname 
-# apigeecli -t $TOKEN -o $PROJECT -e $APIGEE_ENV kvms entries delete --map CDSConfig --key HOK_stdHostname
-# apigeecli -t $TOKEN -o $PROJECT -e $APIGEE_ENV kvms entries delete --map CDSConfig --keyHOK_enforceMTLSOnly
-curl --request DELETE https://apigee.googleapis.com/v1/organizations/$PROJECT/environments/$APIGEE_ENV/keyvaluemaps/CDSConfig/entries/HOK_mtlsHostname \
---header "Authorization: Bearer $TOKEN"
-curl --request DELETE https://apigee.googleapis.com/v1/organizations/$PROJECT/environments/$APIGEE_ENV/keyvaluemaps/CDSConfig/entries/HOK_stdHostname \
---header "Authorization: Bearer $TOKEN"
-curl --request DELETE https://apigee.googleapis.com/v1/organizations/$PROJECT/environments/$APIGEE_ENV/keyvaluemaps/CDSConfig/entries/HOK_enforceMTLSOnly \
---header "Authorization: Bearer $TOKEN"
+apigeecli -t $TOKEN -o $PROJECT -e $APIGEE_ENV kvms entries delete --map CDSConfig --key HOK_mtlsHostname 
+apigeecli -t $TOKEN -o $PROJECT -e $APIGEE_ENV kvms entries delete --map CDSConfig --key HOK_stdHostname
+apigeecli -t $TOKEN -o $PROJECT -e $APIGEE_ENV kvms entries delete --map CDSConfig --key HOK_enforceMTLSOnly
 
 # Remove runtine mtls host from env group 
 echo "================================================================================="
@@ -78,7 +71,6 @@ echo "--> Removing mtls hostname $RUNTIME_MTLS_HOST_ALIAS from Apigee environmen
 echo "================================================================================="
 # Get existing hosts, remove mtls host and update 
 ALL_OTHER_HOSTNAMES=$(apigeecli -t $TOKEN -o $PROJECT envgroups get --name $APIGEE_ENV_GROUP | grep -v WARNING | jq -r '.hostnames[]' | grep -v $RUNTIME_MTLS_HOST_ALIAS | tr  '\n' ',' | sed 's/.$//')
-echo ALL_OTHER_HOSTNAMES = $ALL_OTHER_HOSTNAMES
 apigeecli -t $TOKEN -o $PROJECT envgroups update -n eval-group --hosts "$ALL_OTHER_HOSTNAMES"
 
 # Delete TCP Proxy Load Balancer
