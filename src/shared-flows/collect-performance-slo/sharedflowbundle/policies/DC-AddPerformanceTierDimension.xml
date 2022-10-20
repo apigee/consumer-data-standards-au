@@ -15,7 +15,7 @@
     </Capture>
     <Capture>
         <DataCollector>dc_TokenOp</DataCollector>
-        <Collect ref="tokenOpp" default="undetermined"/>
+        <Collect ref="tokenOp" default="undetermined"/>
     </Capture>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </DataCapture>

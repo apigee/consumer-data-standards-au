@@ -1,46 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="10" name="CDS-AdminWithRealMetrics">
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <Basepaths>/cds-au/v1/banking/products</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/banking/accounts/*/transactions</Basepaths>
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <Basepaths>/cds-au/v1/admin</Basepaths>
-    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1582174564322</CreatedAt>
-    <CreatedBy>defaultUser</CreatedBy>
-    <Description>Admin APIs</Description>
+<APIProxy revision="8" name="CDS-AdminWithRealMetrics">
     <DisplayName>CDS-Admin</DisplayName>
-    <LastModifiedAt>1624336557979</LastModifiedAt>
-    <LastModifiedBy>defaultUser</LastModifiedBy>
-    <ManifestVersion>SHA-512:160f8cfb03b907f0f78d5ccef8267ca121f87c98238fa624178b163e846c47f98aa2943b0d4d47cf44d4c2bf78144effd8947b2d016de1355fc78f6c346ef0c0:ap-southeast-2</ManifestVersion>
+    <Description>Admin APIs</Description>
+    <CreatedAt>1665531564796</CreatedAt>
+    <LastModifiedAt>1665531564796</LastModifiedAt>
+    <BasePaths>/cds-au/v1/admin</BasePaths>
     <Policies>
-        <Policy>AM-Add-CORS-Headers</Policy>
-        <Policy>AM-InvalidScope</Policy>
-        <Policy>AM-SetMetricsPeriodAndRequestTime</Policy>
-        <Policy>AM-SetResponseData</Policy>
-        <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
-        <Policy>AM-TokenNotVerified</Policy>
-        <Policy>EV-GetAction</Policy>
-        <Policy>EV-getErrorDetail</Policy>
-        <Policy>FC-AddFAPIInteractionId</Policy>
-        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
-        <Policy>FC-CheckRequestHeaders</Policy>
-        <Policy>FC-CollectPerformanceSLO</Policy>
-        <Policy>FC-TrafficThresholds</Policy>
-        <Policy>FC-ValidateRequestParams-MetadataUpdate</Policy>
-        <Policy>FC-ValidateRequestParams-Metrics</Policy>
-        <Policy>JS-SetRequestTime</Policy>
-        <Policy>OA-VerifyTokenForMetadataUpdate</Policy>
-        <Policy>OA-VerifyTokenForMetrics</Policy>
-        <Policy>RC-MetricsForPeriod</Policy>
         <Policy>RF-InvalidAction</Policy>
         <Policy>RF-NotFound</Policy>
+        <Policy>OA-VerifyTokenForMetadataUpdate</Policy>
+        <Policy>JS-SetRequestTime</Policy>
+        <Policy>AM-Add-CORS-Headers</Policy>
+        <Policy>FC-CheckRequestHeaders</Policy>
+        <Policy>AM-SetMetricsPeriodAndRequestTime</Policy>
+        <Policy>FC-ValidateRequestParams-Metrics</Policy>
         <Policy>RF-UnsupportedMethod</Policy>
+        <Policy>FC-TrafficThresholds</Policy>
+        <Policy>AM-TokenNotVerified</Policy>
+        <Policy>FC-AddResponseHeaders-Link-Meta</Policy>
+        <Policy>FC-CollectPerformanceSLO</Policy>
+        <Policy>RC-MetricsForPeriod</Policy>
+        <Policy>FC-AddFAPIInteractionId</Policy>
+        <Policy>OA-VerifyTokenForMetrics</Policy>
+        <Policy>EV-getErrorDetail</Policy>
+        <Policy>AM-SetResponseData</Policy>
+        <Policy>FC-ValidateRequestParams-MetadataUpdate</Policy>
+        <Policy>AM-SetXVHeaderAndEmptyResponse</Policy>
+        <Policy>AM-InvalidScope</Policy>
+        <Policy>EV-GetAction</Policy>
+        <Policy>KVM-GetGoogleOAuthClientId</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -48,8 +35,6 @@
     <Resources>
         <Resource>jsc://setRequestTime.js</Resource>
     </Resources>
-    <Spec></Spec>
-    <TargetServers/>
     <TargetEndpoints>
         <TargetEndpoint>cds-metrics-collector</TargetEndpoint>
     </TargetEndpoints>

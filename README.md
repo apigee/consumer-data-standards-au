@@ -170,6 +170,8 @@ This reference implementation includes Admin endpoints, *Metadata Update* and *G
 
 The Postman collection includes a request to the helper endpoint in the Mock CDR Register (/mock-cdr-register/privatekeyjwt).
 
+The reference implementation also includes an optional solution that utilises Apigee Analytics capabilities to return **actual** metrics. For more details see its associated [README.md](./src/additional-solutions/metrics-service/README.md) 
+
 
 ## Shared Flows
 

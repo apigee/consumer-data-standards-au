@@ -21,3 +21,4 @@ specs/Notes.txt
 **/*.log
 **/results.json
 **/*.bak
+**/*.orig*

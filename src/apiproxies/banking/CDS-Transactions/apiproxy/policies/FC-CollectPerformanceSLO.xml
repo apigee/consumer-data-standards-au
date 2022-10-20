@@ -7,6 +7,8 @@
         <Parameter name="isPublicEndpoint">false</Parameter>
         <Parameter name="isAuthEndpoint">false</Parameter>
         <Parameter name="isCustomerPresent">{isCustomerPresent}</Parameter>
+        <Parameter name="tokenOp">{tokenOp}</Parameter>
+        <Parameter name="customerPPId">{customerPPId}</Parameter>
     </Parameters>
     <SharedFlowBundle>collect-performance-slo</SharedFlowBundle>
 </FlowCallout>

@@ -1,0 +1,14 @@
+cron:
+- description: "Refresh metrics for CDS Instance"
+  url: /refreshmetrics
+  schedule: every 60 minutes
+  target: cdr-metrics
+- description: "Consolidate metrics for previous day"
+  url: /consolidatemetrics
+  schedule: every day 00:20
+  timezone: Australia/Brisbane
+  target: cdr-metrics
+- description: "Run healtcheck of CDS Instance"
+  url: /healthcheck
+  schedule: every 10 minutes
+  target: cdr-metrics
